@@ -14,6 +14,29 @@
         {% endblock %}
     </head>
     <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ path('home') }}">Home</a></li>
+                <li><a href="{{ path('presentation') }}">Présentation</a></li>
+                <li><a href="{{ path('competence') }}">Competence</a></li>
+                <li><a href="{{ path('annonces') }}">Annonces</a></li>
+                <li><a href="{{ path('contact') }}">Contact</a></li>
+                <li><a href="{{ path('conditions_generales') }}">CGU</a></li>
+                <li><a href="{{ path('mentions_legales') }}">ML</a></li>
+                <li><a href="{{ path('espace_client') }}">EC</a></li>
+                {% if is_granted('ROLE_USER') %}
+                    {{ app.user.email }}
+                    <li><a href="{{ path('app_logout') }}">Deconextion</a></li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('admin') }}">Admin</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{ path('app_login') }}">Conextion</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
         {% block body %}{% endblock %}
     </body>
 </html>
