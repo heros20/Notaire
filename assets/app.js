@@ -1,12 +1,15 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
+import './portal/assets/css/portal.css';
+
+//import './portal-theme-bs5-v2.0/assets/plugins/fontawesome/js/all.min.js';
+// import './portal/assets/plugins/popper.min.js';
+// import './portal/assets/plugins/bootstrap/js/bootstrap.js';
+import './portal/assets/js/app.js';
+
+
+
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+
 
 // start the Stimulus application
 import './bootstrap';
