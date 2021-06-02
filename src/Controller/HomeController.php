@@ -18,7 +18,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/presentation', name: 'presentation')]
-    public function index(): Response
+    public function presentation(): Response
     {
         return $this->render('home/presentation.html.twig', [
             'controller_name' => 'HomeController',
@@ -26,14 +26,14 @@ class HomeController extends AbstractController
     }
 
     #[Route('/competence', name: 'competence')]
-    public function index(): Response
+    public function competence(): Response
     {
         return $this->render('home/competence.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
     #[Route('/annonces', name: 'annonces')]
-    public function index(): Response
+    public function annonces(): Response
     {
         return $this->render('home/annonces.html.twig', [
             'controller_name' => 'HomeController',
@@ -41,7 +41,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/contact', name: 'contact')]
-    public function index(): Response
+    public function contact(): Response
     {
         return $this->render('home/contact.html.twig', [
             'controller_name' => 'HomeController',
@@ -49,7 +49,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/conditions_generales', name: 'conditions_generales')]
-    public function index(): Response
+    public function conditionsLenerales(): Response
     {
         return $this->render('home/conditions_generales.html.twig', [
             'controller_name' => 'HomeController',
@@ -57,7 +57,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/mentions_legales', name: 'mentions_legales')]
-    public function index(): Response
+    public function mentionsLegales(): Response
     {
         return $this->render('home/mentions_legales.html.twig', [
             'controller_name' => 'HomeController',
@@ -65,7 +65,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/espace_client', name: 'espace_client')]
-    public function index(): Response
+    public function espaceClient(): Response
     {
         return $this->render('home/espace_client.html.twig', [
             'controller_name' => 'HomeController',
