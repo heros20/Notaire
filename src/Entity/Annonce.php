@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -19,16 +20,31 @@ class Annonce
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Your first name must be at least {{ min }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ max }} characters"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 2000,
+     *      minMessage = "Your first name must be at least {{ min }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ max }} characters"
+     * )
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $image;
 
@@ -43,18 +59,20 @@ class Annonce
     private $superficieTerrain;
 
     /**
-     * @ORM\Column(type="string", length=80)
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     
     private $price;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotBlank
      */
     private $status;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $etat;
 
