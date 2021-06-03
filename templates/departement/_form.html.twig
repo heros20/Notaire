@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+=======
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 <div class="p-5">
@@ -7,3 +13,4 @@
 	<button class="btn btn-info">{{ button_label|default('Ajoutez') }}</button>
 	{{ form_end(form) }}
 </div>
+>>>>>>> ea4e6dcb3d309fa0ef88274d70419998542e02ef

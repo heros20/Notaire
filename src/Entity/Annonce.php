@@ -24,8 +24,8 @@ class Annonce
      * @Assert\Length(
      *      min = 2,
      *      max = 255,
-     *      minMessage = "Vous devez respecter {{ min }} characters minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     *      minMessage = "Vous devez respecter {{ limit }} characters minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} characters maximums"
      * )
      */
     private $title;
