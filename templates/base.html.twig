@@ -19,35 +19,23 @@
 		<header>
 			<nav>
 				<ul>
-					<li>
-						<a href="{{ path('home') }}">Home</a>
-					</li>
-					<li>
-						<a href="{{ path('presentation') }}">Présentation</a>
-					</li>
-					{# <li><a href="{{ path('competence') }}">Competence</a></li>
-								                <li><a href="{{ path('annonces') }}">Annonces</a></li>
-								                <li><a href="{{ path('contact') }}">Contact</a></li>
-								                <li><a href="{{ path('conditions_generales') }}">CGU</a></li>
-								                <li><a href="{{ path('mentions_legales') }}">ML</a></li>
-								                <li><a href="{{ path('espace_client') }}">EC</a></li> #}
+					<li><a href="{{ path('home') }}">Home</a></li>
+					<li><a href="{{ path('presentation') }}">Présentation</a></li>
+					<li><a href="{{ path('competence') }}">Competence</a></li>
+					<li><a href="{{ path('annonces') }}">Annonces</a></li>
+					<li><a href="{{ path('contact') }}">Contact</a></li>
+					<li><a href="{{ path('conditions_generales') }}">Conditions Generales</a></li>
+					<li><a href="{{ path('mentions_legales') }}">Mentions Legales</a></li>
 					{% if is_granted('ROLE_USER') %}
 						{{ app.user.email }}
-						<li>
-							<a href="{{ path('app_logout') }}">Deconnexion</a>
-						</li>
-						{% if is_granted('ROLE_USER') %}
-							<li>
-								<a href="{{ path('admin') }}">Admin</a>
-							</li>
+						<li><a href="{{ path('profile') }}">Escpace Client</a></li>
+						<li><a href="{{ path('app_logout') }}">Deconextion</a></li>
+						{% if is_granted('ROLE_ADMIN') %}
+							<li><a href="{{ path('admin') }}">Admin</a></li>
 						{% endif %}
 					{% else %}
-						<li>
-							<a href="{{ path('app_login') }}">Connexion</a>
-						</li>
-						<li>
-							<a href="{{ path('app_register') }}">Inscription</a>
-						</li>
+						<li><a href="{{ path('app_login') }}">Connection</a></li>
+						<li><a href="{{ path('app_register') }}">Inscription</a></li>
 					{% endif %}
 				</ul>
 			</nav>
