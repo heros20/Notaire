@@ -52,9 +52,7 @@ class Annonce
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Length(
      *      min = 2,
-     *      max = 20 000,
-     *      minMessage = "Vous devez respecter {{ min }} chiffre minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     *      minMessage = "Vous devez respecter {{ min }} chiffre minimums"
      * )
      */
     private $superficie;
