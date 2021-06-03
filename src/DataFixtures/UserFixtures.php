@@ -33,7 +33,7 @@ class UserFixtures extends Fixture
         $admin2 = new User();
         $admin2->setName('admin')
               ->setUsername('admin')
-              ->setToken('ddddd')
+              ->setToken('zzzzzz')
               ->setCreatedAt(new DateTime())
               ->setEmail('sebatienweb27@gmail.com')
               ->setRoles(array('ROLE_ADMIN'))
@@ -46,7 +46,7 @@ class UserFixtures extends Fixture
         $admin3 = new User();
         $admin3->setName('admin')
               ->setUsername('admin')
-              ->setToken('ddddd')
+              ->setToken('aaaaa')
               ->setCreatedAt(new DateTime())
               ->setEmail('stellazenon@gmail.com')
               ->setRoles(array('ROLE_ADMIN'))
