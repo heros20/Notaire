@@ -58,6 +58,7 @@ class AnnonceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $form['image']->getData();
 
             return $this->redirectToRoute('annonce_index');
         }
