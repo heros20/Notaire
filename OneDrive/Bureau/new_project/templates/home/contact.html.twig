@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact Page{% endblock %}
+
+{% block body %}
+    <h1>Contact Page</h1>
+    <div class="name">
+        <h3>Bonjour {{ name }}</h3>
+        <ul>
+            {% for fruit in fruits %}
+                <li>{{ fruit }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
