@@ -12,9 +12,11 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
+        dd($this->tokengenerator);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
+        
     }
 
     #[Route('/presentation', name: 'presentation')]
