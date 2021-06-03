@@ -65,12 +65,4 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-
-    #[Route('/espace_client', name: 'espace_client')]
-    public function espaceClient(): Response
-    {
-        return $this->render('home/espace_client.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
 }
