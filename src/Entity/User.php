@@ -50,8 +50,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $phone;
 
-    /**
-     * @ORM\Column(type="string", length=255)
+     /**
+     * @ORM\Column(type="string", unique=true, nullable=true)
      */
     private $token;
 
