@@ -6,6 +6,9 @@ use App\Entity\Annonce;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+// use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class AnnonceType extends AbstractType
 {
@@ -18,8 +21,24 @@ class AnnonceType extends AbstractType
             ->add('superficie')
             ->add('superficieTerrain')
             ->add('price')
-            ->add('status')
-            ->add('etat')
+            ->add('status', ChoiceType::class, [
+                'choices'  => [
+                    'Vente' => true,
+                    'Location' => false,
+                    '--------' => null,
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ])
+            ->add('etat', ChoiceType::class, [
+                'choices'  => [
+                    'Vendu' => true,
+                    'Loué' => false,
+                    '--------' => null,
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ])
             ->add('dpe')
             ->add('ges')
             ->add('nbrePieces')

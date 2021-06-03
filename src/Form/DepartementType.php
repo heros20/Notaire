@@ -15,7 +15,6 @@ class DepartementType extends AbstractType
             ->add('title')
             ->add('codePostal')
             ->add('description')
-            ->add('createdAt')
         ;
     }
 
