@@ -33,14 +33,14 @@ class ProfileController extends AbstractController
     }
     
     #[Route('/informations_personnelles', name: 'infos_perso')]
-    public function infos_preso(): Response
+    public function infos_perso(): Response
     {
         return $this->render('profile/infos_perso.html.twig', [
             'controller_name' => 'ProfileController',
         ]);
     }
     #[Route('/informations_personnelles/edit', name: 'infos_perso_edit')]
-    public function infos_preso(): Response
+    public function infos_persoEdit(): Response
     {
         return $this->render('profile/infos_perso_edit.html.twig', [
             'controller_name' => 'ProfileController',
@@ -55,14 +55,14 @@ class ProfileController extends AbstractController
         ]);
     }
     #[Route('/favoris/show', name: 'favoris_show')]
-    public function favori(): Response
+    public function favoriShow(): Response
     {
         return $this->render('profile/favoris_show.html.twig', [
             'controller_name' => 'ProfileController',
         ]);
     }
     #[Route('/favoris/edit', name: 'favoris_edit')]
-    public function favori(): Response
+    public function favoriEdit(): Response
     {
         return $this->render('profile/favoris_edit.html.twig', [
             'controller_name' => 'ProfileController',
