@@ -30,6 +30,32 @@ class UserFixtures extends Fixture
               ));
         $manager->persist($admin);
 
+        $admin2 = new User();
+        $admin2->setName('admin')
+              ->setUsername('admin')
+              ->setToken('ddddd')
+              ->setCreatedAt(new DateTime())
+              ->setEmail('sebatienweb27@gmail.com')
+              ->setRoles(array('ROLE_ADMIN'))
+              ->setPassword($this->passwordHasher->hashPassword(
+                $admin2,
+                '123456'
+              ));
+        $manager->persist($admin2);
+
+        $admin3 = new User();
+        $admin3->setName('admin')
+              ->setUsername('admin')
+              ->setToken('ddddd')
+              ->setCreatedAt(new DateTime())
+              ->setEmail('stellazenon@gmail.com')
+              ->setRoles(array('ROLE_ADMIN'))
+              ->setPassword($this->passwordHasher->hashPassword(
+                $admin3,
+                '123456'
+              ));
+        $manager->persist($admin3);
+
         $manager->flush();
     }
 }
