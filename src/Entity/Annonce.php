@@ -24,8 +24,8 @@ class Annonce
      * @Assert\Length(
      *      min = 2,
      *      max = 255,
-     *      minMessage = "Your first name must be at least {{ min }} characters long",
-     *      maxMessage = "Your first name cannot be longer than {{ max }} characters"
+     *      minMessage = "Vous devez respecter {{ min }} characters minimums",
+     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
      * )
      */
     private $title;
@@ -35,9 +35,9 @@ class Annonce
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 2,
-     *      max = 2000,
-     *      minMessage = "Your first name must be at least {{ min }} characters long",
-     *      maxMessage = "Your first name cannot be longer than {{ max }} characters"
+     *      max = 255,
+     *      minMessage = "Vous devez respecter {{ min }} characters minimums",
+     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
      * )
      */
     private $description;
@@ -50,6 +50,12 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 20 000,
+     *      minMessage = "Vous devez respecter {{ min }} chiffre minimums",
+     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     * )
      */
     private $superficie;
 
