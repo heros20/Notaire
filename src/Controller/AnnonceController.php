@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/annonce')]
+#[Route('/admin/annonce')]
 class AnnonceController extends AbstractController
 {
     #[Route('/', name: 'annonce_index', methods: ['GET'])]
@@ -21,7 +21,7 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'annonce_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/new', name: 'annonce_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $annonce = new Annonce();
@@ -42,7 +42,7 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'annonce_show', methods: ['GET'])]
+    #[Route('/admin/{id}', name: 'annonce_show', methods: ['GET'])]
     public function show(Annonce $annonce): Response
     {
         return $this->render('annonce/show.html.twig', [
@@ -50,7 +50,7 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'annonce_edit', methods: ['GET', 'POST'])]
+    #[Route('/admin/{id}/edit', name: 'annonce_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Annonce $annonce): Response
     {
         $form = $this->createForm(AnnonceType::class, $annonce);
@@ -68,7 +68,7 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'annonce_delete', methods: ['POST'])]
+    #[Route('/admin/{id}', name: 'annonce_delete', methods: ['POST'])]
     public function delete(Request $request, Annonce $annonce): Response
     {
         if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {

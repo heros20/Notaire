@@ -11,39 +11,49 @@
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-   
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{ path('home') }}">Home</a></li>
-                <li><a href="{{ path('presentation') }}">Présentation</a></li>
-                {# <li><a href="{{ path('competence') }}">Competence</a></li>
-                <li><a href="{{ path('annonces') }}">Annonces</a></li>
-                <li><a href="{{ path('contact') }}">Contact</a></li>
-                <li><a href="{{ path('conditions_generales') }}">CGU</a></li>
-                <li><a href="{{ path('mentions_legales') }}">ML</a></li>
-                <li><a href="{{ path('espace_client') }}">EC</a></li> #}
-                {% if is_granted('ROLE_USER') %}
-                    {{ app.user.email }}
-                    <li><a href="{{ path('app_logout') }}">Deconextion</a></li>
-                    {% if is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('admin') }}">Admin</a></li>
-                    {% endif %}
-                {% else %}
-                    <li><a href="{{ path('app_login') }}">Connection</a></li>
-                    <li><a href="{{ path('app_register') }}">Inscription</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
- 
 	<body>
+		<header>
+			<nav>
+				<ul>
+					<li>
+						<a href="{{ path('home') }}">Home</a>
+					</li>
+					<li>
+						<a href="{{ path('presentation') }}">Présentation</a>
+					</li>
+					{# <li><a href="{{ path('competence') }}">Competence</a></li>
+								                <li><a href="{{ path('annonces') }}">Annonces</a></li>
+								                <li><a href="{{ path('contact') }}">Contact</a></li>
+								                <li><a href="{{ path('conditions_generales') }}">CGU</a></li>
+								                <li><a href="{{ path('mentions_legales') }}">ML</a></li>
+								                <li><a href="{{ path('espace_client') }}">EC</a></li> #}
+					{% if is_granted('ROLE_USER') %}
+						{{ app.user.email }}
+						<li>
+							<a href="{{ path('app_logout') }}">Deconextion</a>
+						</li>
+						{% if is_granted('ROLE_USER') %}
+							<li>
+								<a href="{{ path('admin') }}">Admin</a>
+							</li>
+						{% endif %}
+					{% else %}
+						<li>
+							<a href="{{ path('app_login') }}">Connection</a>
+						</li>
+						<li>
+							<a href="{{ path('app_register') }}">Inscription</a>
+						</li>
+					{% endif %}
+				</ul>
+			</nav>
+		</header>
 		{% block body %}{% endblock %}
-	</body>
+		<script src="https://kit.fontawesome.com/5541233122.js" crossorigin="anonymous"></script>
 
+	</body>
 </html>
