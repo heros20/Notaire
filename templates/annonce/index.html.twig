@@ -1,67 +1,76 @@
 {% extends 'back.html.twig' %}
-
-{% block title %}Annonce index{% endblock %}
+{% block title %}Annonce index
+{% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
+	<h1>Annonce index</h1>
+
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Id</th>
+=======
 <div class="p-5">
     <h1>Annonce index</h1>
+>>>>>>> 3484498b1d388ea1e672dedbd8f0278f2f8a7430
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Superficie</th>
-                <th>SuperficieTerrain</th>
-                <th>Price</th>
-                <th>Status</th>
-                <th>Etat</th>
-                <th>Dpe</th>
-                <th>Ges</th>
-                <th>NbrePieces</th>
-                <th>NbreChambre</th>
-                <th>SalleBain</th>
-                <th>Wc</th>
-                <th>Garage</th>
-                <th>Piscine</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for annonce in annonces %}
-            <tr>
-                <td>{{ annonce.id }}</td>
-                <td>{{ annonce.title }}</td>
-                <td>{{ annonce.description }}</td>
-                <td>{{ annonce.image }}</td>
-                <td>{{ annonce.superficie }}</td>
-                <td>{{ annonce.superficieTerrain }}</td>
-                <td>{{ annonce.price }}</td>
-                <td>{{ annonce.status ? 'Vente' : 'Location' }}</td>
-                <td>{{ annonce.etat }}</td>
-                <td>{{ annonce.dpe }}</td>
-                <td>{{ annonce.ges }}</td>
-                <td>{{ annonce.nbrePieces }}</td>
-                <td>{{ annonce.nbreChambre }}</td>
-                <td>{{ annonce.salleBain }}</td>
-                <td>{{ annonce.wc }}</td>
-                <td>{{ annonce.garage }}</td>
-                <td>{{ annonce.piscine }}</td>
-                <td>
-                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">show</a>
-                    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="18">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Image</th>
+				<th>Superficie</th>
+				<th>SuperficieTerrain</th>
+				<th>Price</th>
+				<th>Status</th>
+				<th>Etat</th>
+				<th>Dpe</th>
+				<th>Ges</th>
+				<th>NbrePieces</th>
+				<th>NbreChambre</th>
+				<th>SalleBain</th>
+				<th>Wc</th>
+				<th>Garage</th>
+				<th>Piscine</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for annonce in annonces %}
+				<tr>
+					<td>{{ annonce.id }}</td>
+					<td>{{ annonce.title }}</td>
+					<td>{{ annonce.description }}</td>
+					<td>{{ annonce.image }}</td>
+					<td>{{ annonce.superficie }}</td>
+					<td>{{ annonce.superficieTerrain }}</td>
+					<td>{{ annonce.price }}</td>
+					<td>{{ annonce.status ? 'Vente' : 'Location' }}</td>
+					<td>{{ annonce.etat }}</td>
+					<td>{{ annonce.dpe }}</td>
+					<td>{{ annonce.ges }}</td>
+					<td>{{ annonce.nbrePieces }}</td>
+					<td>{{ annonce.nbreChambre }}</td>
+					<td>{{ annonce.salleBain }}</td>
+					<td>{{ annonce.wc }}</td>
+					<td>{{ annonce.garage }}</td>
+					<td>{{ annonce.piscine }}</td>
+					<td>
+						<a href="{{ path('annonce_show', {'id': annonce.id}) }}">show</a>
+						<a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="18">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
+<<<<<<< HEAD
+	<a href="{{ path('annonce_new') }}">Create new</a>
+=======
     <a href="{{ path('annonce_new') }}">Create new</a>
 </div>
+>>>>>>> 3484498b1d388ea1e672dedbd8f0278f2f8a7430
 {% endblock %}

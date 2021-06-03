@@ -25,7 +25,9 @@ class AnnonceType extends AbstractType
                 'label' => 'Description',
                 'attr' => ['placeholder' => 'Maison situé plein sud...']
             ])
-            ->add('image', FileType::class)
+            ->add('image', FileType::class,[
+                'mapped' => false
+            ])
             ->add('superficie', NumberType::class, [
                 'label' => 'Superficie',
                 'attr' => ['placeholder' => '20m²']
