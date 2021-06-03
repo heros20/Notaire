@@ -39,6 +39,7 @@ class AnnonceType extends AbstractType
                 'attr' => ['placeholder' => '300 000 € ']
             ])
             ->add('status', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
                 'choices'  => [
                     'Vente' => true,
                     'Location' => false,
@@ -47,6 +48,7 @@ class AnnonceType extends AbstractType
                 // 'expanded' => true,
             ])
             ->add('etat', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
                 'choices'  => [
                     '--------' => null,
                     'Vendu' => 'Vendu',
