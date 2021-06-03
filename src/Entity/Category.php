@@ -22,6 +22,12 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums"
+     * )
      */
     private $title;
 
