@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th scope="col">Id</th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Image</th>
@@ -38,8 +38,8 @@
                 <td>{{ annonce.superficie }}</td>
                 <td>{{ annonce.superficieTerrain }}</td>
                 <td>{{ annonce.price }}</td>
-                <td>{{ annonce.status ? 'Yes' : 'No' }}</td>
-                <td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
+                <td>{{ annonce.status ? 'Vente' : 'Location' }}</td>
+                <td>{{ annonce.etat }}</td>
                 <td>{{ annonce.dpe }}</td>
                 <td>{{ annonce.ges }}</td>
                 <td>{{ annonce.nbrePieces }}</td>
