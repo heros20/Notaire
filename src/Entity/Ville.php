@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\VilleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=VilleRepository::class)
@@ -19,11 +21,13 @@ class Ville
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\NotBlank
      */
     private $title;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $codePostal;
 
@@ -36,6 +40,11 @@ class Ville
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime;
+    }
 
     public function getId(): ?int
     {

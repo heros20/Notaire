@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\DepartementRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=DepartementRepository::class)
@@ -19,11 +21,13 @@ class Departement
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\NotBlank
      */
     private $title;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $codePostal;
 
@@ -37,6 +41,11 @@ class Departement
      */
     private $createdAt;
 
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime;
+    }
     public function getId(): ?int
     {
         return $this->id;
