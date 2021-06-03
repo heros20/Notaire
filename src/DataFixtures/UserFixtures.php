@@ -63,11 +63,11 @@ class UserFixtures extends Fixture
         $manager->persist($admin3);
 
         $admin4 = new User();
-        $admin4->setName('admin')
-              ->setUsername('admin')
+        $admin4->setName('Michellus')
+              ->setUsername('Michel')
               ->setToken($this->tokengenerator->generateToken())
               ->setCreatedAt(new DateTime())
-              ->setEmail('quidelantoine@gmail.com')
+              ->setEmail('michel@gmail.com')
               ->setRoles(array('ROLE_ADMIN'))
               ->setPassword($this->passwordHasher->hashPassword(
                 $admin4,
