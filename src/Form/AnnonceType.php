@@ -32,9 +32,10 @@ class AnnonceType extends AbstractType
             ])
             ->add('etat', ChoiceType::class, [
                 'choices'  => [
-                    'Vendu' => true,
-                    'Loué' => false,
                     '--------' => null,
+                    'Vendu' => 'Vendu',
+                    'Loué' => 'Loué',
+                    'Réservé' => 'Réservé',
                 ],
                 // 'multiple' => true,
                 // 'expanded' => true,

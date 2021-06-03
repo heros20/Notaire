@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210603073153 extends AbstractMigration
+final class Version20210603102543 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,6 +20,7 @@ final class Version20210603073153 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE annonce CHANGE price price INT NOT NULL, CHANGE etat etat VARCHAR(20) DEFAULT NULL');
         $this->addSql('ALTER TABLE user CHANGE token token VARCHAR(255) DEFAULT NULL');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D6495F37A13B ON user (token)');
     }
@@ -27,6 +28,7 @@ final class Version20210603073153 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE annonce CHANGE price price VARCHAR(80) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE etat etat TINYINT(1) DEFAULT NULL');
         $this->addSql('DROP INDEX UNIQ_8D93D6495F37A13B ON user');
         $this->addSql('ALTER TABLE user CHANGE token token VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`');
     }
