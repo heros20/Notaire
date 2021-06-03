@@ -6,8 +6,8 @@ use App\Entity\Annonce;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-// use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 
 class AnnonceType extends AbstractType
@@ -17,7 +17,7 @@ class AnnonceType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('image')
+            ->add('image', FileType::class)
             ->add('superficie')
             ->add('superficieTerrain')
             ->add('price')
@@ -32,9 +32,10 @@ class AnnonceType extends AbstractType
             ])
             ->add('etat', ChoiceType::class, [
                 'choices'  => [
-                    'Vendu' => true,
-                    'Loué' => false,
                     '--------' => null,
+                    'Vendu' => 'Vendu',
+                    'Loué' => 'Loué',
+                    'Réservé' => 'Réservé',
                 ],
                 // 'multiple' => true,
                 // 'expanded' => true,
