@@ -28,6 +28,12 @@ class Ville
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+     *      minMessage = "Vous devez respecter {{ min }} characters minimums",
+     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     * )
      */
     private $codePostal;
 
