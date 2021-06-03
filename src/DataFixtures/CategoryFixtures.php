@@ -26,9 +26,9 @@ class CategoryFixtures extends Fixture
         $manager->persist($category3);
         $category4 = (new Category())
             ->setTitle('Terrain non constructible')
-            ->setDescription('usdoivf soidyvfoir gfrhsdoifvyh rsg')
+            ->setDescription('usdoivf soidyvfoir gfrhsdoifvyh rsg');
 
-        $manager->persist($category4);
+        $manager->persist($category4)
 
         $manager->flush();
     }
