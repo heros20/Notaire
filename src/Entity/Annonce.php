@@ -52,21 +52,27 @@ class Annonce
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Length(
      *      min = 2,
-     *      max = 20 000,
-     *      minMessage = "Vous devez respecter {{ min }} chiffre minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     *      minMessage = "Vous devez respecter {{ min }} chiffres minimum",
      * )
      */
     private $superficie;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage = "Vous devez respecter {{ min }} chiffres minimum",
+     * )
      */
     private $superficieTerrain;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage = "Vous devez respecter {{ min }} chiffres minimum",
+     * )
      */
     
     private $price;
@@ -84,11 +90,23 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 600,
+     *      minMessage = "Vous devez respecter {{ min }} characters minimums",
+     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     * )
      */
     private $dpe;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 200,
+     *      minMessage = "Vous devez respecter {{ min }} characters minimums",
+     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     * )
      */
     private $ges;
 
