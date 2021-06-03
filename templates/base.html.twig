@@ -16,6 +16,7 @@
 		{% endblock %}
 	</head>
 	<body>
+
 		<header>
 			<nav>
 				<ul>
@@ -26,20 +27,21 @@
 					<li><a href="{{ path('contact') }}">Contact</a></li>
 					<li><a href="{{ path('conditions_generales') }}">Conditions Generales</a></li>
 					<li><a href="{{ path('mentions_legales') }}">Mentions Legales</a></li>
+					<li><a href="{{ path('profile') }}">Espace Client</a></li>
 					{% if is_granted('ROLE_USER') %}
 						{{ app.user.email }}
-						<li><a href="{{ path('profile') }}">Escpace Client</a></li>
-						<li><a href="{{ path('app_logout') }}">Deconextion</a></li>
+					<li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
 						{% if is_granted('ROLE_ADMIN') %}
 							<li><a href="{{ path('admin') }}">Admin</a></li>
 						{% endif %}
 					{% else %}
-						<li><a href="{{ path('app_login') }}">Connection</a></li>
-						<li><a href="{{ path('app_register') }}">Inscription</a></li>
+					<li><a href="{{ path('app_login') }}">Connexion</a></li>
+					<li><a href="{{ path('app_register') }}">Inscription</a></li>
 					{% endif %}
 				</ul>
 			</nav>
 		</header>
+	
 		{% block body %}{% endblock %}
 		<script src="https://kit.fontawesome.com/5541233122.js" crossorigin="anonymous"></script>
 
