@@ -22,7 +22,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         $annonce1 ->setStatus(true);
         $annonce1 ->setVille($this->getReference('ville2'));
         $annonce1 ->setDepartement($this->getReference('departement3'));
-        // $annonce1 ->getCategory($this->getReference('category3'));
+        $annonce1 ->addCategory($this->getReference('category3'));
         $manager->persist($annonce1);
 
         $annonce2 = new Annonce();
@@ -33,7 +33,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         $annonce2 ->setPrice(20000);
         $annonce2 ->setStatus(false);
         $annonce2 ->setVille($this->getReference('ville1'));
-        // $annonce2 ->getCategory($this->getReference('category2'));
+        $annonce2 ->addCategory($this->getReference('category2'));
         $manager->persist($annonce2);
 
         $annonce3 = new Annonce();
@@ -44,7 +44,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         $annonce3 ->setStatus(true);
         $annonce3 ->setVille($this->getReference('ville2'));
         $annonce3 ->setDepartement($this->getReference('departement2'));
-        // $annonce3 ->getCategory($this->getReference('category4'));
+        $annonce3 ->addCategory($this->getReference('category4'));
         $manager->persist($annonce3);
 
         $manager->flush();
