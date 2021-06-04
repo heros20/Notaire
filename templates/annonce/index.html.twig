@@ -25,6 +25,7 @@
 				<th>Wc</th>
 				<th>Garage</th>
 				<th>Piscine</th>
+				{# <th>image</th> #}
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -48,6 +49,7 @@
 					<td>{{ annonce.wc }}</td>
 					<td>{{ annonce.garage }}</td>
 					<td>{{ annonce.piscine }}</td>
+					{# <td><img src="{{ annonce.piscine }}" alt=""></td> #}
 					<td>
 						<a href="{{ path('annonce_show', {'id': annonce.id}) }}">show</a>
 						<a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a>

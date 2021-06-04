@@ -19,26 +19,26 @@ class AnnonceType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Titre',
-                'attr' => ['placeholder' => 'Chaumière Normande']
+                'attr' => ['placeholder' => 'Titre de l\'annonce...']
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
-                'attr' => ['placeholder' => 'Maison situé plein sud...']
+                'attr' => ['placeholder' => 'Description de l\'annonce...']
             ])
             ->add('image', FileType::class,[
-                'mapped' => false
+                // 'mapped' => false
             ])
             ->add('superficie', NumberType::class, [
-                'label' => 'Superficie',
-                'attr' => ['placeholder' => '20m²']
+                'label' => 'Superficie (m²)',
+                'attr' => ['placeholder' => 'Superficie en chiffres...']
             ])
             ->add('superficieTerrain', NumberType::class, [
-                'label' => 'Superficie Terrain',
-                'attr' => ['placeholder' => '1ha']
+                'label' => 'Superficie Terrain (m²)',
+                'attr' => ['placeholder' => 'Superficie en chiffres...']
             ])
             ->add('price', NumberType::class, [
-                'label' => 'Prix',
-                'attr' => ['placeholder' => '300 000 € ']
+                'label' => 'Prix ( € )',
+                'attr' => ['placeholder' => '300000  ']
             ])
             ->add('status', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
@@ -62,35 +62,35 @@ class AnnonceType extends AbstractType
             ])
             ->add('dpe', NumberType::class, [
                 'label' => 'DPE',
-                'attr' => ['placeholder' => '100']
+                'attr' => ['placeholder' => 'Performance énergétique ...']
             ])
             ->add('ges', NumberType::class, [
                 'label' => 'GES',
-                'attr' => ['placeholder' => '100']
+                'attr' => ['placeholder' => 'Gaz à effet de serre']
             ])
             ->add('nbrePieces', NumberType::class, [
                 'label' => 'Nombre de pièce',
-                'attr' => ['placeholder' => '4']
+                'attr' => ['placeholder' => 'renseignez ici...']
             ])
             ->add('nbreChambre', NumberType::class, [
                 'label' => 'Nombre de chambre',
-                'attr' => ['placeholder' => '2']
+                'attr' => ['placeholder' => 'renseignez ici...']
             ])
             ->add('salleBain', NumberType::class, [
                 'label' => 'Nombre de salle de bain',
-                'attr' => ['placeholder' => '1']
+                'attr' => ['placeholder' => 'renseignez ici...']
             ])
             ->add('wc', NumberType::class, [
                 'label' => 'Nombre de toilette',
-                'attr' => ['placeholder' => '1']
+                'attr' => ['placeholder' => 'renseignez ici...']
             ])
             ->add('garage', NumberType::class, [
-                'label' => 'Nombre de garage',
-                'attr' => ['placeholder' => "S'il n'y a pas de garage ne remplissez pas"]
+                'label' => 'Nombre de garage ',
+                'attr' => ['placeholder' => "Optionnel..."]
             ])
             ->add('piscine', NumberType::class, [
                 'label' => 'Nombre de piscine',
-                'attr' => ['placeholder' => "S'il n'y a pas de garage ne remplissez pas"]
+                'attr' => ['placeholder' => "Optionnel..."]
             ]);
     }
 
