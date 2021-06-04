@@ -11,14 +11,27 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
             ->add('email')
+            ->add('name',TextType::class, [
+                'label' => 'Nom*',
+                'attr' => ['placeholder' => 'renseignez ici...']
+            ])
+            ->add('username',TextType::class, [
+                'label' => 'Prénom*',
+                'attr' => ['placeholder' => 'renseignez ici...']
+            ])
+            ->add('phone',TextType::class, [
+                'label' => 'Numero',
+                'attr' => ['placeholder' => 'Optionnel...']
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
