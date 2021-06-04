@@ -1,38 +1,41 @@
 {% extends 'back.html.twig' %}
 
-{% block title %}Category{% endblock %}
+{% block title %}Categorie
+{% endblock %}
 
 {% block body %}
-    <h1>Category</h1>
+<div class="pl-5 pr-5">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ category.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ category.description }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ModifiedAt</th>
-                <td>{{ category.modifiedAt ? category.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<h1 class="mb-5">Categorie</h1>
 
-    <a href="{{ path('category_index') }}">back to list</a>
+	<table class="table boxshadow">
 
-    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ category.id }}</td>
+			</tr>
+			<tr>
+				<th>Title</th>
+				<td>{{ category.title }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ category.description }}</td>
+			</tr>
+			<tr>
+				<th>CreatedAt</th>
+				<td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>ModifiedAt</th>
+				<td>{{ category.modifiedAt ? category.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
-    {{ include('category/_delete_form.html.twig') }}
+	<a class="btn btn-primary ml-5" href="{{ path('category_index') }}">Retour</a>
+
+	{{ include('category/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,10 +1,10 @@
 {% extends 'back.html.twig' %}
-{% block title %}Annonce index
+{% block title %}Les Annonces
 {% endblock %}
 
 {% block body %}
-<div class="p-5">
-    <h1>Annonce index</h1>
+<div class="pl-5 pr-5">
+    <h1 class="mb-5">Annonce</h1>
 	<table class="table">
 		<thead>
 			<tr>
@@ -51,19 +51,19 @@
 					<td>{{ annonce.piscine }}</td>
 					{# <td><img src="{{ annonce.piscine }}" alt=""></td> #}
 					<td>
-						<a href="{{ path('annonce_show', {'id': annonce.id}) }}">show</a>
-						<a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a>
+						<a href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a>
+						<a href="{{ path('annonce_edit', {'id': annonce.id}) }}">Éditer</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="18">no records found</td>
+					<td colspan="18">Pas d'éléments</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-    <a href="{{ path('annonce_new') }}">Create new</a>
+    <a class="btn btn-primary mt-5 pl-4 pr-4" href="{{ path('annonce_new') }}">Créez</a>
 </div>
 {% endblock %}
 
