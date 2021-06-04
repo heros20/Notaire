@@ -3,9 +3,9 @@
 {% block title %}Nouveau Département{% endblock %}
 
 {% block body %}
-    <h1>Créez un nouveau département</h1>
+    <h1 class="mb-5 ml-5">Créez un nouveau département</h1>
 
     {{ include('departement/_form.html.twig') }}
 
-    <a href="{{ path('departement_index') }}">Retour</a>
+    <a class="btn btn-primary ml-5 pt-2 pb-2 pl-3 pr-3" href="{{ path('departement_index') }}">Retour</a>
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'back.html.twig' %}
 
-{% block title %}Edit Departement{% endblock %}
+{% block title %}Éditer le Département{% endblock %}
 
 {% block body %}
-    <h1>Edit Departement</h1>
+    <h1 class="ml-5">Éditer le Département</h1>
 
-    {{ include('departement/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('departement/_form.html.twig', {'button_label': 'Modifiez'}) }}
 
-    <a href="{{ path('departement_index') }}">back to list</a>
+    <a class="btn-primary ml-5 pt-2 pb-2 pl-3 pr-3" href="{{ path('departement_index') }}">Retour</a>
 
     {{ include('departement/_delete_form.html.twig') }}
 {% endblock %}
