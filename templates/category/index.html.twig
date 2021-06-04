@@ -4,16 +4,15 @@
 {% endblock %}
 
 {% block body %}
-	<div class="pl-5 pr-5">
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+
 		<h1 class="mb-5">Categories</h1>
 
-		<table class="table boxshadow">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>Titre</th>
 					<th>Description</th>
-					<th>Créez le</th>
-					<th>Modifiez le</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -22,8 +21,6 @@
 					<tr>
 						<td>{{ category.title }}</td>
 						<td>{{ category.description }}</td>
-						<td>{{ category.createdAt ? category.createdAt|date('d/m/Y à H:i') : '' }}</td>
-						<td>{{ category.modifiedAt ? category.modifiedAt|date('d/m/Y à H:i') : '' }}</td>
 						<td>
 							<a class="action" href="{{ path('category_show', {'id': category.id}) }}">Voir</a>
 							<a class="action" href="{{ path('category_edit', {'id': category.id}) }}">Éditer</a>
@@ -37,5 +34,5 @@
 			</tbody>
 		</table>
 	</div>
-	<a class="btn btn-primary ml-5" href="{{ path('category_new') }}">Créez</a>
+	<a class="btn btn-primary ml-5" href="{{ path('category_new') }}">Créer</a>
 {% endblock %}
