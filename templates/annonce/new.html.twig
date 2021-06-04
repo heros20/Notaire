@@ -1,11 +1,13 @@
 {% extends 'back.html.twig' %}
 
-{% block title %}New Annonce{% endblock %}
+{% block title %}Nouvelle Annonce
+{% endblock %}
 
 {% block body %}
-    <h1 class="ml-5">Créez une Nouvelle Annonce</h1>
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+		<h1 class="ml-5">Créez une Nouvelle Annonce</h1>
 
-    {{ include('annonce/_form.html.twig') }}
-
-    <a class="btn btn-primary ml-5" href="{{ path('annonce_index') }}">Retour</a>
+		{{ include('annonce/_form.html.twig') }}
+	</div>
+	<a class="btn btn-primary ml-5" href="{{ path('annonce_index') }}">Retour</a>
 {% endblock %}
