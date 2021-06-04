@@ -30,5 +30,9 @@ class VilleFixtures extends Fixture
         $manager->persist($ville3);
 
         $manager->flush();
+
+        $this->addReference('ville1', $ville1);
+        $this->addReference('ville2', $ville2);
+        $this->addReference('ville3', $ville3);
     }
 }
