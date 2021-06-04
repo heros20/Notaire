@@ -92,7 +92,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 2,
      *      max = 3,
@@ -104,7 +103,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 1,
      *      max = 2,
@@ -116,7 +114,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
      *  @Assert\Length(
      *      min = 1,
      *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
@@ -126,7 +123,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 1,
      *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
@@ -136,7 +132,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     *  @Assert\NotBlank
      *  @Assert\Length(
      *      min = 1,
      *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
@@ -146,7 +141,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 1,
      *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
@@ -166,18 +160,21 @@ class Annonce
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="annonces")
+     * @Assert\NotBlank
      */
     private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\NotBlank
      */
     private $ville;
 
     /**
      * @ORM\ManyToOne(targetEntity=Departement::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $departement;
 
