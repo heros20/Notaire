@@ -26,8 +26,8 @@ class Annonce
      * @Assert\Length(
      *      min = 2,
      *      max = 255,
-     *      minMessage = "Vous devez respecter {{ limit }} characters minimums",
-     *      maxMessage = "Vous devez respecter {{ limit }} characters maximums"
+     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums"
      * )
      */
     private $title;
@@ -38,8 +38,8 @@ class Annonce
      * @Assert\Length(
      *      min = 2,
      *      max = 255,
-     *      minMessage = "Vous devez respecter {{ min }} characters minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums"
      * )
      */
     private $description;
@@ -52,9 +52,10 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 2,
-     *      minMessage = "Vous devez respecter {{ min }} chiffres minimum",
+     *      minMessage = "Vous devez respecter {{ limit }} chiffres minimum",
      * )
      */
     private $superficie;
@@ -63,7 +64,7 @@ class Annonce
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Length(
      *      min = 2,
-     *      minMessage = "Vous devez respecter {{ min }} chiffres minimum",
+     *      minMessage = "Vous devez respecter {{ limit }} chiffres minimum",
      * )
      */
     private $superficieTerrain;
@@ -73,7 +74,7 @@ class Annonce
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 2,
-     *      minMessage = "Vous devez respecter {{ min }} chiffres minimum",
+     *      minMessage = "Vous devez respecter {{ limit }} chiffres minimum",
      * )
      */
     
@@ -81,7 +82,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank
      */
     private $status;
 
@@ -92,43 +92,65 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
      * @Assert\Length(
-     *      min = 1,
-     *      max = 600,
-     *      minMessage = "Vous devez respecter {{ min }} characters minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     *      min = 2,
+     *      max = 3,
+     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums"
      * )
      */
     private $dpe;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 1,
-     *      max = 200,
-     *      minMessage = "Vous devez respecter {{ min }} characters minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     *      max = 2,
+     *      minMessage = "Vous devez respecter {{ min }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ max }} caractères maximums"
      * )
      */
     private $ges;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
+     *  @Assert\Length(
+     *      min = 1,
+     *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
+     * )
      */
     private $nbrePieces;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 1,
+     *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
+     * )
      */
     private $nbreChambre;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     *  @Assert\NotBlank
+     *  @Assert\Length(
+     *      min = 1,
+     *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
+     * )
      */
     private $salleBain;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 1,
+     *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
+     * )
      */
     private $wc;
 
