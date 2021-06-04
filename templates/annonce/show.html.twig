@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="pl-5 pr-5">
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
 		<h1 class="mb-5">Annonce</h1>
 
 		<table class="table">
@@ -14,7 +14,7 @@
 					<td>{{ annonce.id }}</td>
 				</tr>
 				<tr>
-					<th>Title</th>
+					<th>Titre</th>
 					<td>{{ annonce.title }}</td>
 				</tr>
 				<tr>
@@ -26,15 +26,15 @@
 					<td>{{ annonce.image }}</td>
 				</tr>
 				<tr>
-					<th>Superficie</th>
+					<th>Superficie(m²)</th>
 					<td>{{ annonce.superficie }}</td>
 				</tr>
 				<tr>
-					<th>SuperficieTerrain</th>
+					<th>Superficie Terrain</th>
 					<td>{{ annonce.superficieTerrain }}</td>
 				</tr>
 				<tr>
-					<th>Price</th>
+					<th>Prix</th>
 					<td>{{ annonce.price }}</td>
 				</tr>
 				<tr>
@@ -42,31 +42,31 @@
 					<td>{{ annonce.status ? 'Yes' : 'No' }}</td>
 				</tr>
 				<tr>
-					<th>Etat</th>
+					<th>État</th>
 					<td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
 				</tr>
 				<tr>
-					<th>Dpe</th>
+					<th>Diagnostic de perfomance énergétique</th>
 					<td>{{ annonce.dpe }}</td>
 				</tr>
 				<tr>
-					<th>Ges</th>
+					<th>Gaz à effet de serre</th>
 					<td>{{ annonce.ges }}</td>
 				</tr>
 				<tr>
-					<th>NbrePieces</th>
+					<th>Nombre de pieces</th>
 					<td>{{ annonce.nbrePieces }}</td>
 				</tr>
 				<tr>
-					<th>NbreChambre</th>
+					<th>Nombre de chambres</th>
 					<td>{{ annonce.nbreChambre }}</td>
 				</tr>
 				<tr>
-					<th>SalleBain</th>
+					<th>Salle de Bain</th>
 					<td>{{ annonce.salleBain }}</td>
 				</tr>
 				<tr>
-					<th>Wc</th>
+					<th>Toilettes</th>
 					<td>{{ annonce.wc }}</td>
 				</tr>
 				<tr>

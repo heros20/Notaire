@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DepartementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -47,8 +49,17 @@ class Departement
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="departement")
+     */
+    private $annonces;
 
-    
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime;
+        $this->annonces = new ArrayCollection();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -98,6 +109,36 @@ class Departement
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setDepartement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getDepartement() === $this) {
+                $annonce->setDepartement(null);
+            }
+        }
 
         return $this;
     }
