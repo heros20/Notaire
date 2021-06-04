@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -90,7 +92,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 2,
      *      max = 3,
@@ -102,7 +103,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 1,
      *      max = 2,
@@ -114,7 +114,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
      *  @Assert\Length(
      *      min = 1,
      *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
@@ -124,7 +123,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 1,
      *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
@@ -134,7 +132,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     *  @Assert\NotBlank
      *  @Assert\Length(
      *      min = 1,
      *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
@@ -144,7 +141,6 @@ class Annonce
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 1,
      *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
@@ -161,6 +157,31 @@ class Annonce
      * @ORM\Column(type="integer", nullable=true)
      */
     private $piscine;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="annonces")
+     * @Assert\NotBlank
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=true)
+     * @Assert\NotBlank
+     */
+    private $ville;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Departement::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
+     */
+    private $departement;
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -355,6 +376,54 @@ class Annonce
     public function setPiscine(?int $piscine): self
     {
         $this->piscine = $piscine;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->category->removeElement($category);
+
+        return $this;
+    }
+
+    public function getVille(): ?Ville
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getDepartement(): ?Departement
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(?Departement $departement): self
+    {
+        $this->departement = $departement;
 
         return $this;
     }

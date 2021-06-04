@@ -31,5 +31,9 @@ class DepartementFixtures extends Fixture
         
 
         $manager->flush();
+
+        $this->addReference('departement1', $departement1);
+        $this->addReference('departement2', $departement2);
+        $this->addReference('departement3', $departement3);
     }
 }
