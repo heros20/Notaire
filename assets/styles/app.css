@@ -1,3 +1,59 @@
 body {
-    background-color: rgb(197, 31, 31);
+    background-color: rgb(217, 240, 235);
+}
+.btn-primary {
+    background-color: #0275d8;
+    color: #fff;
+}
+.btn-primary:hover {
+    opacity: 0.8;
+    background-color: #0275d8;
+    color: #fff;
+}
+a {
+    color: #0275d8;
+}
+.action:hover {
+    text-decoration: none;
+}
+.boxshadow {
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.56);
+}
+.btn-danger {
+    color: #fff;
+}
+.btn-danger:hover {
+    color: #fff;
+}
+.form {
+    margin: 0 40px;
+}
+textarea.form-control  {
+    resize: none;
+    height: 150px;
+}
+.flex{
+    display: flex;
+    align-items: center;
+}
+.mt-3{
+    margin-top: 0 !important;
+}
+.app-nav .nav-link:hover{
+    color: #0275d8;
+}
+.app-nav .nav-link.active{
+    color: #0275d8;
+    background-color: #bbd4e9;
+    border-left: 3px solid #0275d8;
+}
+.app-card.border-left-decoration{
+    border-left: 3px solid #0275d8;
+}
+
+.table>:not(:last-child)>:last-child>*{
+    border-bottom-color: #0275d8;
+}
+.table th, .table td{
+    border-color: #0275d8;
 }

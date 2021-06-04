@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -46,10 +48,16 @@ class Category
      */
     private $modifiedAt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Annonce::class, mappedBy="category")
+     */
+    private $annonces;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;
         $this->modifiedAt = new \DateTime;
+        $this->annonces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,6 +109,33 @@ class Category
     public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            $annonce->removeCategory($this);
+        }
 
         return $this;
     }

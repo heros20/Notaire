@@ -1,11 +1,15 @@
 {% extends 'back.html.twig' %}
 
-{% block title %}Nouveau Département{% endblock %}
+{% block title %}Nouveau Département
+{% endblock %}
 
 {% block body %}
-    <h1>Créez un nouveau département</h1>
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
 
-    {{ include('departement/_form.html.twig') }}
+		<h1 class="mb-5 ml-5">Créez un nouveau département</h1>
 
-    <a href="{{ path('departement_index') }}">Retour</a>
+		{{ include('departement/_form.html.twig') }}
+	</div>
+
+	<a class="btn btn-primary ml-5" " href=" {{ path('departement_index') }} ">Retour</a>
 {% endblock %}

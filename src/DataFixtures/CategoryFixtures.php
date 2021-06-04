@@ -30,7 +30,13 @@ class CategoryFixtures extends Fixture
             ->setDescription('usdoivf soidyvfoir gfrhsdoifvyh rsg'); 
 
         $manager->persist($category4);
-
+        
         $manager->flush();
+
+        
+        $this->addReference('category1', $category1);
+        $this->addReference('category2', $category2);
+        $this->addReference('category3', $category3);
+        $this->addReference('category4', $category4);     
     }
 }
