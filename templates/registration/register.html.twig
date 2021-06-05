@@ -4,9 +4,9 @@
 
 {% block body %}
 {% if is_granted('ROLE_USER') %}
-        <li>
+            <p>Bonjour {{ app.user.name }}</p>
+            <p>Vous êtes déja connecté</p>
             <a href="{{ path('home') }}">Retour à l'accueil</a>
-        </li>
 {% else %}
 {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
