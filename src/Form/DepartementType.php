@@ -20,8 +20,8 @@ class DepartementType extends AbstractType
                 'attr' => ['placeholder' => 'renseignez ici...']
             ])
             ->add('codePostal', NumberType::class, [
-                'label' => 'Code Postal',
-                'attr' => ['placeholder' => 'renseignez ici...']
+                'label' => 'N° Département',
+                'attr' => ['placeholder' => 'exemple : 14, 76, 27 etc.']
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description ( Optionnel )',
