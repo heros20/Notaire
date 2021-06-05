@@ -12,17 +12,17 @@ class VilleFixtures extends Fixture
     {
         $ville1 = (new Ville())
             ->setTitle('Seoul')
-            ->setCodePostal('27568')
+            ->setCodePostal('568')
             ->setDescription('jfsdegf dhoir ihsdofi shdgfh');
         
         $ville2 = (new Ville())
             ->setTitle('Busan')
-            ->setCodePostal('27753')
+            ->setCodePostal('753')
             ->setDescription('jfsdegf dhoir ihsdofi shdgfh');
 
         $ville3 = (new Ville())
             ->setTitle('Incheon')
-            ->setCodePostal('27375')
+            ->setCodePostal('375')
             ->setDescription('jfsdegf dhoir ihsdofi shdgfh');
 
         $manager->persist($ville1);
