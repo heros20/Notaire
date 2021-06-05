@@ -39,7 +39,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         $annonce3 = new Annonce();
         $annonce3 ->setTitle('fjfzrisf ffikfg');
         $annonce3 ->setDescription('jhforif zhfifes fhesd qfrfzr');
-        $annonce3 ->setImage('https://picsum.photos/200/300s');
+        $annonce3 ->setImage('https://picsum.photos/200/300');
         $annonce3 ->setPrice(100000);
         $annonce3 ->setStatus(true);
         $annonce3 ->setVille($this->getReference('ville2'));

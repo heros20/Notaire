@@ -57,3 +57,18 @@ textarea.form-control  {
 .table th, .table td{
     border-color: #0275d8;
 }
+.allAnnonces{
+    text-align: center;
+}
+.allAnnonces h1{
+    margin-bottom: 30px;
+}
+.allAnnonces .annonces{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+}
+.allAnnonces .annonces .annonce{
+    -webkit-box-shadow: 1px 1px 15px 6px rgba(0,0,0,0.61); 
+    box-shadow: 1px 1px 15px 6px rgba(0,0,0,0.61);
+}
