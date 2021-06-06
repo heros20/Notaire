@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
+use App\Entity\Annonce;
 
 #[Route('/profile')]
 class ProfileController extends AbstractController
@@ -50,8 +52,12 @@ class ProfileController extends AbstractController
     #[Route('/favoris', name: 'favoris')]
     public function favori(): Response
     {
+        $annonceFav = $this->getDoctrine()->getRepository(Annonce::class)->findBy(
+            [],
+            ['title' => 'ASC']
+        );
         return $this->render('profile/favoris.html.twig', [
-            'controller_name' => 'ProfileController',
+            'annonceFav' => $annonceFav,
         ]);
     }
     #[Route('/favoris/show', name: 'favoris_show')]

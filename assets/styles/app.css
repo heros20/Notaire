@@ -72,3 +72,17 @@ textarea.form-control  {
     -webkit-box-shadow: 1px 1px 15px 6px rgba(0,0,0,0.61); 
     box-shadow: 1px 1px 15px 6px rgba(0,0,0,0.61);
 }
+.show{
+    display: flex;
+    justify-content: center;
+
+}
+.showAnnonce{
+    background-color: rgb(207, 241, 236);
+    padding: 10px 100px;
+    text-align: center;
+    border: groove rgb(10, 39, 66);
+}
+.red{
+    color: red;
+}
