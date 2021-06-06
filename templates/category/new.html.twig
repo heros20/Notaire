@@ -4,9 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="ml-5 mb-5">Créez une nouvelle catégorie</h1>
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
 
-	{{ include('category/_form.html.twig') }}
+		<h1 class="ml-5 mb-5">Créez une nouvelle catégorie</h1>
+
+		{{ include('category/_form.html.twig') }}
+	</div>
 
 	<a class="btn btn-primary ml-5" href="{{ path('category_index') }}">Retour</a>
 

@@ -5,7 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Entity\Annonce;
+use App\Entity\Annonce;
 
 class HomeController extends AbstractController
 {
@@ -37,9 +37,44 @@ class HomeController extends AbstractController
     #[Route('/annonces', name: 'annonces')]
     public function annonces(): Response
     {
+        $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy(
+            [],
+            ['title' => 'ASC']
+        );
         return $this->render('home/annonces.html.twig', [
-            'controller_name' => 'HomeController',
+            'annonces' => $annonces,
         ]);
+    }
+    #[Route('/annonces/{id}', name: 'annonce_show', methods: ['GET'])]
+    public function show(Annonce $annonce): Response
+    {
+        return $this->render('home/show.html.twig', [
+            'annonce' => $annonce,
+        ]);
+    }
+    #[Route('/annonces/favoris/ajout/{id}', name: 'ajout_favoris')]
+    public function ajoutFavoris(Annonce $annonce): Response
+    {
+        if (!$annonce) {
+            throw new NotFoundHttpException('Pas d\'annonce trouvée');
+        }
+        $annonce->addFavori($this->getUser());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($annonce);
+        $em->flush();
+        return $this->redirectToRoute('annonces');
+    }
+     #[Route('/annonces/favoris/retrait/{id}', name: 'retrait_favoris')]
+    public function retraitFavoris(Annonce $annonce): Response
+    {
+        if (!$annonce) {
+            throw new NotFoundHttpException('Pas d\'annonce trouvée');
+        }
+        $annonce->removeFavori($this->getUser());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($annonce);
+        $em->flush();
+        return $this->redirectToRoute('annonces');
     }
 
     #[Route('/contact', name: 'contact')]

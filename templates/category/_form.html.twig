@@ -1,8 +1,5 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
-
-<div class="p-5 shadow p-3 mb-5 bg-white rounded form">
 	{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 	{{ form_widget(form) }}
-	<button class="btn btn-info">{{ button_label|default('Save') }}</button>
+	<button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
 	{{ form_end(form) }}
-</div>

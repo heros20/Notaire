@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Annonce;
+use App\Entity\Ville;
+use App\Entity\Category;
+use App\Entity\Departement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class AnnonceType extends AbstractType
 {
@@ -26,7 +30,7 @@ class AnnonceType extends AbstractType
                 'attr' => ['placeholder' => 'Description de l\'annonce...']
             ])
             ->add('image', FileType::class,[
-                // 'mapped' => false
+                'mapped' => false
             ])
             ->add('superficie', NumberType::class, [
                 'label' => 'Superficie (m²)',
@@ -60,6 +64,27 @@ class AnnonceType extends AbstractType
                 // 'multiple' => true,
                 // 'expanded' => true,
             ])
+            ->add('ville', EntityType::class, [
+                'label' => 'Ville *',
+                'class' => Ville::class,
+                'choice_label' => 'title',
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ])
+            ->add('departement', EntityType::class, [
+                'label' => 'Departement *',
+                'class' => Departement::class,
+                'choice_label' => 'title',
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ])
+            ->add('category', EntityType::class, [
+                'label' => 'Categorie(s) *',
+                'class' => Category::class,
+                'choice_label' => 'title',
+                'multiple' => true,
+                'expanded' => true,
+            ])
             ->add('dpe', NumberType::class, [
                 'label' => 'DPE',
                 'attr' => ['placeholder' => 'Performance énergétique ...']
@@ -91,7 +116,8 @@ class AnnonceType extends AbstractType
             ->add('piscine', NumberType::class, [
                 'label' => 'Nombre de piscine',
                 'attr' => ['placeholder' => "Optionnel..."]
-            ]);
+            ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

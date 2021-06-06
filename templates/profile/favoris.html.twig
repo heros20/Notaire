@@ -2,4 +2,10 @@
 {% block body %}
 {% include "profile/nav.html.twig" %}
 <h1>Page favori</h1>
+
+{% for fav in annonceFav %}
+                <div class="annonce">
+                    <p><img src="{{ fav.image }}" alt=""></p>
+                </div>
+            {% endfor %}
 {% endblock %}
