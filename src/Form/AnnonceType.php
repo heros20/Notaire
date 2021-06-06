@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Annonce;
 use App\Entity\Ville;
 use App\Entity\Category;
+use App\Entity\Departement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -66,6 +67,13 @@ class AnnonceType extends AbstractType
             ->add('ville', EntityType::class, [
                 'label' => 'Ville *',
                 'class' => Ville::class,
+                'choice_label' => 'title',
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ])
+            ->add('departement', EntityType::class, [
+                'label' => 'Departement *',
+                'class' => Departement::class,
                 'choice_label' => 'title',
                 // 'multiple' => true,
                 // 'expanded' => true,
