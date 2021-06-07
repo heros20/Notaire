@@ -183,10 +183,16 @@ class Annonce
      */
     private $favoris;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Contact::class, mappedBy="annonce")
+     */
+    private $contacts;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
         $this->favoris = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -454,6 +460,33 @@ class Annonce
     public function removeFavori(User $favori): self
     {
         $this->favoris->removeElement($favori);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->addAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->removeElement($contact)) {
+            $contact->removeAnnonce($this);
+        }
 
         return $this;
     }
