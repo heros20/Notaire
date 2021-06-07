@@ -3,9 +3,18 @@
 {% include "profile/nav.html.twig" %}
 <h1>Page favori</h1>
 
-{% for fav in annonceFav %}
-                <div class="annonce">
-                    <p><img src="{{ fav.image }}" alt=""></p>
-                </div>
+{% if is_granted("ROLE_USER") %}
+    {% for user in users %}
+            {% for fav in user.favoris %}
+                    <div class="annonces">
+                        <div class="annonce">
+                            <h2>{{ fav.title }}</h2>
+                            <p>{{ fav.description }}</p>
+                            <p><img src="{{ fav.image }}" alt=""></p>
+                        </div>
+                    </div>
             {% endfor %}
+    {% endfor %}
+{% endif %}
+
 {% endblock %}
