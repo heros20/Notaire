@@ -2,17 +2,21 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
 
 		{% block stylesheets %}
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-			{{ encore_entry_link_tags('app') }}
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+			{{ encore_entry_link_tags('front') }}
 		{% endblock %}
 		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
+			{{ encore_entry_script_tags('front') }}
 		{% endblock %}
 	</head>
 	<body>
@@ -24,17 +28,35 @@
 				<div class="navHeader">
 					<nav>
 						<ul>
-							<li><a href="{{ path('home') }}">Home</a></li>
-							<li><a href="{{ path('presentation') }}">Présentation</a></li>
-							<li><a href="{{ path('competence') }}">Competence</a></li>
-							<li><a href="{{ path('annonces') }}">Annonces</a></li>
-							<li><a href="{{ path('contact') }}">Contact</a></li>
-							<li><a href="{{ path('conditions_generales') }}">Conditions Generales</a></li>
-							<li><a href="{{ path('mentions_legales') }}">Mentions Legales</a></li>
-							<li><a href="{{ path('profile') }}">Espace Client</a></li>
+							<li>
+								<a href="{{ path('home') }}">Home</a>
+							</li>
+							<li>
+								<a href="{{ path('presentation') }}">Présentation</a>
+							</li>
+							<li>
+								<a href="{{ path('competence') }}">Competence</a>
+							</li>
+							<li>
+								<a href="{{ path('annonces') }}">Annonces</a>
+							</li>
+							<li>
+								<a href="{{ path('contact') }}">Contact</a>
+							</li>
+							<li>
+								<a href="{{ path('conditions_generales') }}">Conditions Generales</a>
+							</li>
+							<li>
+								<a href="{{ path('mentions_legales') }}">Mentions Legales</a>
+							</li>
+							<li>
+								<a href="{{ path('profile') }}">Espace Client</a>
+							</li>
 							{% if is_granted('ROLE_USER') %}
 								{{ app.user.email }}
-							<li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
+								<li>
+									<a href="{{ path('app_logout') }}">Deconnexion</a>
+								</li>
 								{% if is_granted('ROLE_ADMIN') %}
 									<li>
 										<a href="{{ path('admin') }}">Admin</a>
@@ -50,12 +72,14 @@
 							{% endif %}
 						</ul>
 					</nav>
-				</div> {# .navHeader #}
-			</div> {# .header #}
+				</div>
+				{# .navHeader #}
+			</div>
+			{# .header #}
 		</header>
-	
+
 		{% block body %}{% endblock %}
-		
+
 	</body>
-	
+
 </html>
