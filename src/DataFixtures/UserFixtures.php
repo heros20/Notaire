@@ -67,11 +67,11 @@ class UserFixtures extends Fixture
               ->setUsername('Michel')
               ->setToken($this->tokengenerator->generateToken())
               ->setCreatedAt(new DateTime())
-              ->setEmail('michel@gmail.com')
+              ->setEmail('quidelantoine@gmail.com')
               ->setRoles(array('ROLE_ADMIN'))
               ->setPassword($this->passwordHasher->hashPassword(
                 $admin4,
-                '123456'
+                'michel'
               ));
         $manager->persist($admin4);
 
