@@ -70,3 +70,220 @@ a{
 }
 /* font-family: 'Montserrat', sans-serif;
 font-family: 'Roboto', sans-serif; */
+
+/* HEADER */
+.logo{
+  margin-top: 5px;
+}
+.logo img{
+  width: 20%;
+}
+.topHeader{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 62%;
+  margin: 0 auto;
+}
+.coordonnée{
+  display: flex;
+}
+.coordonnée .number{
+  margin: 0 50px;
+}
+.mail p{
+  margin-left: 8px;
+}
+.mail p svg{
+  margin-right: 5px;
+}
+.header{
+  display: flex;
+  background-color: #0275d8;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+.navHeader nav .bigNav{
+  display: flex;
+  color: rgb(180, 180, 180);
+}
+.navHeader nav ul li{
+  margin-left: 15px;
+}
+.navHeader nav ul li a{
+  margin-left: 15px;
+  font-weight: bold;
+  color: #fff;
+}
+.navHeader nav ul li a:hover{
+  transition: all .4s;
+  color: rgb(175, 175, 175);
+  border-bottom: solid 1px;
+}
+.navHeader nav ul li .regist{
+  border-radius: 3px;
+  background-color: rgb(255, 255, 255);
+  color: #0275d8;
+  padding: 5px;
+}
+.navHeader nav ul li .regist:hover{ 
+  transition: all .4s;
+  color: rgb(25, 15, 172);
+}
+.navHeader nav ul li .log{ 
+  border-radius: 3px;
+  padding: 5px;
+  border: solid 1px #fff;
+}
+/* ESPACE CLIENT SOUS MENU */
+.sous{
+  display: none;
+  box-shadow: 0px 1px 2px #CCC;
+  background: rgb(144, 151, 157);
+  z-index: 100;
+  padding: 20px;
+  position: absolute;
+}
+
+/* nav > ul li:hover .sous{
+  display: block;
+} */
+.sous li{
+  float: none;
+  width: 100%;
+  text-align: left;
+}
+.sous a{
+  border-bottom: none;
+  color: #0275d8;
+}
+.sous a:hover{
+  background: #06131f;
+}
+/* END ESPACE CLIENT SOUS MENU */
+/* END HEADER */
+
+
+/* FOOTER */
+.footer{
+  background: #0275d8;
+}
+.insidefooter{
+  display: flex;
+  justify-content: space-around;
+  align-items:flex-start;
+  margin: 0 150px;
+}
+.footer .description,.pratique,.contact{
+  margin-top: 45px;
+}
+.footer h2,.footer p,.footer a{
+  color: #fff;
+}
+.footer h2{
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+.footer .pratique p{
+  margin-bottom: 7px;
+}
+.footer .contact p{
+ margin-bottom: 7px;
+}
+.footer .description a{
+  margin-right: 50px;
+  font-size: 2em;
+}
+.description{
+  width: 400px;
+}
+.description .mb{
+  margin-bottom: 20px;
+}
+.description img {
+  margin-top: 10Px;
+  width: 40%;
+}
+
+/* END FOOTER */
+/* HOME PAGE */
+.dixAns{
+  background: rgb(118, 212, 255);
+  text-align: center;
+  padding: 60px;
+  font-size: 3em;
+  color: #fff;
+}
+.proposIMG{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.propos{
+  margin-left: 200px;
+  width: 50%;
+}
+.propos h2{
+  font-size: 2em;
+  margin-bottom: 50px;
+  margin: 0 100px;
+}
+.propos p{
+  font-size: 1.5em;
+  margin: 20px 100px;
+}
+.image{
+  margin-right: 200px;
+  height: 400px;
+  width: 400px;
+}
+.image img{
+  width: 100%;
+} 
+.h2Annonces{
+  margin: 100px 0;
+}
+.h2Annonces h2{
+  font-size: 3em;
+  margin-bottom: 19px;
+}
+/* END HOME PAGE  */
+/* ANNONCES PAGE */
+.allAnnonces{
+  text-align: center;
+  margin: 20px;
+}
+.allAnnonces h1{
+  margin-bottom: 30px;
+}
+.allAnnonces .annonces{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-around;
+}
+.allAnnonces .annonces .annonce{
+  -webkit-box-shadow: 1px 1px 15px 6px rgba(0,0,0,0.61); 
+  box-shadow: 1px 1px 15px 6px rgba(0,0,0,0.61);
+}
+
+.show{
+  display: flex;
+  justify-content: center;
+
+}
+.showAnnonce{
+  background-color: rgb(207, 241, 236);
+  padding: 10px 100px;
+  text-align: center;
+  border: groove rgb(10, 39, 66);
+}
+.fa-heart{
+  color: red;
+}
+.action{
+  color: #0275d8;
+  font-weight: bold;
+}
+/* END ANNONCE PAGE */
