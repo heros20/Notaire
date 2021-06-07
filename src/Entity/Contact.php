@@ -45,7 +45,7 @@ class Contact
     private $createdAt;
 
     /**
-     * @ORM\Column(type="boolean", options={"default":0})
+     * @ORM\Column(type="boolean")
      */
     private $etat;
 
@@ -61,6 +61,7 @@ class Contact
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime;
         $this->annonces = new ArrayCollection();
         $this->users = new ArrayCollection();
     }

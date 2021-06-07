@@ -7,7 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
-
+use App\Entity\Category;
+use App\Entity\Ville;
+use App\Entity\Departement;
 
 class HomeController extends AbstractController
 {
@@ -77,14 +79,6 @@ class HomeController extends AbstractController
         $em->persist($annonce);
         $em->flush();
         return $this->redirectToRoute('annonces');
-    }
-
-    #[Route('/contact', name: 'contact')]
-    public function contact(): Response
-    {
-        return $this->render('home/contact.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
     }
 
     #[Route('/conditions_generales', name: 'conditions_generales')]

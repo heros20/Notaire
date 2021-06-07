@@ -7,21 +7,67 @@
 	<div class="show">
 		<div class="showAnnonce">
 			<p>{{ annonce.title }}</p>
-			<p>{{ annonce.description }}</p>
+			<p>Description : {{ annonce.description }}</p>
+			<p>{{ annonce.ville.title }}  {{ annonce.ville.codePostal }}</P>
+			<p>{{ annonce.departement.title }}</P>
 			<p><img src="{{ annonce.image }}" alt=""></p>
-			<p>{{ annonce.superficie }}</p>
-			<p>{{ annonce.superficieTerrain }}</p>
-			<p>{{ annonce.price }}</p>
-			<p>{{ annonce.status ? 'Yes' : 'No' }}</p>
-			<p>{{ annonce.etat ? 'Yes' : 'No' }}</p>
-			<p>{{ annonce.dpe }}</p>
-			<p>{{ annonce.ges }}</p>
-			<p>{{ annonce.nbrePieces }}</p>
-			<p>{{ annonce.nbreChambre }}</p>
-			<p>{{ annonce.salleBain }}</p>
-			<p>{{ annonce.wc }}</p>
-			<p>{{ annonce.garage }}</p>
-			<p>{{ annonce.piscine }}</p>
+			<p>
+				{% if annonce.superficie %}
+					Superficie du batiment : {{ annonce.superficie }}
+				{% endif %}
+			</p>
+			<p>
+				{% if annonce.superficieTerrain %}
+					Superficie du terrain : {{ annonce.superficieTerrain }}
+				{% endif %}
+			</p>
+			<p>Prix : {{ annonce.price }} €</p>
+			<p>Categorie(s) : {% for cat in annonce.category %}
+                        {{ cat.title }}
+                {% endfor %}
+			</P>
+			<p>{{ annonce.status ? 'Vente' : 'Location' }}</p>
+			<p>{{ annonce.etat}}</p>
+			<p>
+				{% if annonce.dpe %}
+					{{ annonce.dpe }}
+				{% endif %}
+			</p>
+			<p>
+				{% if annonce.ges %}
+					{{ annonce.ges }}
+				{% endif %}
+			</p>
+			<p>
+				{% if annonce.nbrePieces %}
+					Nombre de pièces  : {{ annonce.nbrePieces }}
+				{% endif %}
+			</p>
+			<p>
+				{% if annonce.nbreChambre %}
+					Nombre de chambre  : {{ annonce.nbreChambre }}
+				{% endif %}
+			</p>
+			<p>
+				{% if annonce.salleBain %}
+					Nombre de salle de bain  : {{ annonce.salleBain }}
+				{% endif %}
+			</p>
+			<p>
+				{% if annonce.wc %}
+					Nombre de wc  : {{ annonce.wc }}
+				{% endif %}
+			</p>
+			<p>
+				{% if annonce.garage %}
+					Nombre de garage  : {{ annonce.garage }}
+				{% endif %}
+			</p>
+			<p>
+				{% if annonce.piscine %}
+					Nombre de picine  : {{ annonce.piscine }}
+				{% endif %}
+			</p>
 			<div class="red">
 			{% if is_granted("ROLE_USER") %}
 				{% for favoris in annonce.favoris %}
@@ -41,3 +87,6 @@
 		
 	</div>
 {% endblock %}
+
+
+
