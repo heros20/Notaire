@@ -71,11 +71,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\ManyToMany(targetEntity=Annonce::class, mappedBy="favoris")
      */
     private $favoris;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Contact::class, mappedBy="users")
+     */
+    private $contacts;
     
     public function __construct()
     {
         $this->createdAt = new \DateTime;
         $this->favoris = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -252,6 +258,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->favoris->removeElement($favori)) {
             $favori->removeFavori($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->removeElement($contact)) {
+            $contact->removeUser($this);
         }
 
         return $this;
