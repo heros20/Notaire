@@ -6,6 +6,7 @@ use App\Repository\ContactRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
@@ -45,7 +46,7 @@ class Contact
     private $createdAt;
 
     /**
-     * @ORM\Column(type="boolean", options={"default":0})
+     * @ORM\Column(type="boolean")
      */
     private $etat;
 
@@ -61,6 +62,7 @@ class Contact
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime;
         $this->annonces = new ArrayCollection();
         $this->users = new ArrayCollection();
     }

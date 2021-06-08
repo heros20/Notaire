@@ -1,5 +1,4 @@
-import "./styles/front.css";
-
+import "./scss/main.scss";
 import $ from "jquery";
 
 
@@ -12,3 +11,4 @@ $(document).ready(() => {
     //     $(".sous").fadeOut("slow");
     //   });
 })
+
