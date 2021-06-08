@@ -1,6 +1,6 @@
 import './portal/assets/css/portal.css';
 
-//import './portal-theme-bs5-v2.0/assets/plugins/fontawesome/js/all.min.js';
+// import './portal-theme-bs5-v2.0/assets/plugins/fontawesome/js/all.min.js';
 // import './portal/assets/plugins/popper.min.js';
 // import './portal/assets/plugins/bootstrap/js/bootstrap.js';
 import './portal/assets/js/app.js';

@@ -5,7 +5,9 @@ namespace App\Repository;
 use App\Entity\Annonce;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use App\Data\SearchData;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
 /**
  * @method Annonce|null find($id, $lockMode = null, $lockVersion = null)
  * @method Annonce|null findOneBy(array $criteria, array $orderBy = null)
@@ -19,9 +21,43 @@ class AnnonceRepository extends ServiceEntityRepository
         parent::__construct($registry, Annonce::class);
     }
 
-    // /**
-    //  * @return Annonce[] Returns an array of Annonce objects
-    //  */
+    /**
+     * @return PaginatorInterface Returns an array of Annonce objects
+     */
+
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('a')
+            ->select('c', 'a')
+            ->join('a.category', 'c');
+
+        if (!empty($search->q)) {
+            $query = $query 
+                ->andWhere('a.title LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+
+        if (!empty($search->min)) {
+            $query = $query 
+                ->andWhere('a.price >= :min')
+                ->setParameter('min', $search->min); 
+        }
+
+        if (!empty($search->max)) {
+            $query = $query 
+                ->andWhere('a.price <= :max')
+                ->setParameter('max', $search->max); 
+        }
+
+        if (!empty($search->category)) {
+            $query = $query 
+                ->andWhere('c.id IN (:category)')
+                ->setParameter('category', $search->category); 
+        }
+        return $query->getQuery()->getResult();
+    }
+
     /*
     public function findByExampleField($value)
     {

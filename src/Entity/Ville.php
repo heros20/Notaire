@@ -26,7 +26,7 @@ class Ville
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 1,
-     *      max = 2,
+     *      max = 80,
      *      minMessage = "Vous devez respecter {{ min }} caractères minimums",
      *      maxMessage = "Vous devez respecter {{ max }} caractères maximums"
      * )
