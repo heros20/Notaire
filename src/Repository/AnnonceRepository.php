@@ -16,17 +16,16 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class AnnonceRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Annonce::class);
-        $this->paginator = $paginator; 
     }
 
     /**
      * @return PaginatorInterface Returns an array of Annonce objects
      */
 
-    public function findSearch(SearchData $search): SearchData
+    public function findSearch(SearchData $search): array
     {
         $query = $this
             ->createQueryBuilder('a')
@@ -56,12 +55,7 @@ class AnnonceRepository extends ServiceEntityRepository
                 ->andWhere('c.id IN (:category)')
                 ->setParameter('category', $search->category); 
         }
-        $query = $query->getQuery();
-        return $this->paginator->paginate(
-            $query,
-            1,
-            5
-        );
+        return $query->getQuery()->getResult();
     }
 
     /*
