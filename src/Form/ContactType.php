@@ -7,6 +7,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Validator\Constraints\NotNull;
+use 	Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ContactType extends AbstractType
 {
@@ -19,21 +23,30 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
          if ($this->security->isGranted('ROLE_USER')) {
-            $user = $this->security->getUser();
-        if ($user) {
-           $builder
-                ->getData('user')
-           ;
-        }
+
         } else {
             $builder         
-            ->add('name')
-            ->add('email')
+            ->add('name', TextType::class, [
+                'label' => 'Nom *',
+                'constraints' => [ new NotNull([
+                    'message' => 'Veuillez renseigner ce champ',
+                ]),]
+                ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email *',
+                'constraints' => [ new NotNull([
+                    'message' => 'Veuillez renseigner ce champ',
+                ]),]
+                ])
             ->add('phone')
             ;
         }      
         $builder
-            ->add('message')
+            ->add('message', TextareaType::class, [
+                'constraints' => [ new NotNull([
+                    'message' => 'Veuillez renseigner ce champ',
+                ]),]
+                ])
         ;
 
     }

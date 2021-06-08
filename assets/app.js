@@ -7,13 +7,7 @@ import './portal/assets/js/app.js';
 import './styles/app.css';
 import '../bower_components/dpeges/dpeges'
 
-import $ from "jquery";
 
-
-
-$(document).ready(() => {
-    console.log('ok');
-})
 
 
 // any CSS you import will output into a single css file (app.css in this case)

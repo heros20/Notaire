@@ -3,23 +3,61 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<div class="flexslider">
-  <ul class="slides">
-    <li>
-      <img src="" />
-    </li>
-    <li>
-      <img src="" />
-    </li>
-    <li>
-      <img src="" />
-    </li>
-    <li>
-      <img src="" />
-    </li>
-  </ul>
-</div>
-<div class="dixAns">
- <h2>Nous avons 10 ans d'expérience dans de différents cas</h2>
-</div>
+  <div class="flexslider">
+      <img style="width:100%" src="https://via.placeholder.com/468x60?text=Visit+Blogging.com+Now
+      C/O https://placeholder.com/" alt="">
+  </div>
+  <div class="dixAns">
+      <h2>Nous avons 10 ans d'expérience </h2>
+      <p>dans de différents cas</p>
+  </div>
+  <div class="proposIMG">
+    <div class="propos">
+      <h2>à propos</h2>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
+      repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+      impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+      a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
+      repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+      impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+      a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+    </div>
+    <div class="image">
+      <img src="https://via.placeholder.com/150/0000FF/808080 ?Text=Digital.com
+      C/O https://placeholder.com/" alt="">
+    </div>
+  </div>
+  <div class="allAnnonces">
+    <div class="h2Annonces">
+      <h2>Les dernières annonces immobilières</h2>
+      <p>Que vous soyez vendeur ou acquéreur, vous trouvere chez votre notaire le service complet vous garantissant la bone fin de votre opération</p>
+    </div>
+    <div class="Annonces">
+        <div class="allAnnonces">
+          <div class="annonces">
+          {% for annonce in annonces %}
+                  <div class="annonce"> 
+                      {% if is_granted("ROLE_USER") %}
+                          {% for favoris in annonce.favoris %}
+                              {% if favoris.id == app.user.id %}
+                                  <a href="{{ path('retrait_favoris', {id: annonce.id}) }}"><i class="fas fa-heart"></i></a>
+                              {% else %}
+                                  <a href="{{ path('ajout_favoris', {id: annonce.id}) }}"><i class="far fa-heart"></i></a>
+                              {% endif %}
+                          {% else %}
+                              <a href="{{ path('ajout_favoris', {id: annonce.id}) }}"><i class="far fa-heart"></i></a>
+                          {% endfor %}	
+                      {% endif %}
+                      <h2>{{ annonce.title }}</h2>
+                      <p>{{ annonce.description }}</p>
+                      <p><img src="{{ annonce.image }}" alt=""></p>
+                      <p><a class="action" href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a></p>
+                  </div> {# .annonce #}
+            {% endfor %}
+          </div>{# .annonces #}
+        </div> {# .allAnnonces #}
+    </div>
+  </div>
+  
 {% endblock %}
