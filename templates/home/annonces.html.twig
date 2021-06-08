@@ -3,7 +3,19 @@
 {% block title %}Annonce index{% endblock %}
 
 {% block body %}
-    <div class="allAnnonces">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {% include "home/_filter.html.twig" with {form: form} only %}
+        </div> 
+        <div class="col-md-9">
+            {% for annonce in searchAnnonce %}
+                {% include "home/_card.html.twig" with {annonce: annonce} only %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    {# <div class="allAnnonces">
         <h1>Toutes les annonces</h1>
         <div class="annonces">
          {% for annonce in annonces %}
@@ -23,8 +35,12 @@
                     <p>{{ annonce.description }}</p>
                     <p><img src="{{ annonce.image }}" alt=""></p>
                     <p><a class="action" href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a></p>
+                    {% for c in annonce.category %}
+                        <em>#{{ c.title }} </em>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+                
+        {% endfor %}
          </div>
-    </div>
+    </div> #}
 {% endblock %}

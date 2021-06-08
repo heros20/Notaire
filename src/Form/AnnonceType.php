@@ -6,9 +6,12 @@ use App\Entity\Annonce;
 use App\Entity\Ville;
 use App\Entity\Category;
 use App\Entity\Departement;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
+
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -29,8 +32,20 @@ class AnnonceType extends AbstractType
                 'label' => 'Description',
                 'attr' => ['placeholder' => 'Description de l\'annonce...']
             ])
-            ->add('image', FileType::class,[
-                'mapped' => false
+            ->add('fileimage', FileType::class,[
+                'required' => false,
+                'mapped' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2000k',
+                        'mimeTypes' => [
+                            'image/jpg',
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez uploader une image sous format jpg, jpeg ou png',
+                    ])
+                ],
             ])
             ->add('superficie', NumberType::class, [
                 'label' => 'Superficie (m²)',
