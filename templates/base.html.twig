@@ -21,60 +21,64 @@
 	</head>
 	<body>
 		<header>
-			<div class="header">
 				<div class="logo">
 					<img src="" alt="">
 				</div>
-				<div class="navHeader">
-					<nav>
-						<ul>
-							<li>
-								<a href="{{ path('home') }}">Home</a>
+				<div class="navigation">
+					<input type="checkbox" class="navigation__checkbox" id="navi-toggle" aria-checked="false">
+					<nav class="navbar">
+						<div class="navbar__menu">
+							<ul class="navbar__links">
+								<li class="navbar__item">
+									<a href="{{path('home')}}" class="current-page">Accueil</a>
+								</li>
+								<li class="navbar__item">
+									<a href="{{ path('presentation') }}" class="navbar__link">Présentation</a>
+								</li>
+								<li class="navbar__item">
+									<a href="{{ path('competence') }}" class="navbar__link">Compétences</a>
+								</li>
+								<li class="navbar__item">
+									<a href="{{ path('annonces') }}" class="navbar__link">Annonces</a>
+								</li>
+								<li class="navbar__item">
+									<a href="{{ path('contact') }}" class="navbar__link">Contact</a>
+								</li>
+								<li>
+								<a href="{{ path('conditions_generales') }}" class="navbar__link">Conditions Generales</a>
 							</li>
 							<li>
-								<a href="{{ path('presentation') }}">Présentation</a>
+								<a href="{{ path('mentions_legales') }}" class="navbar__link">Mentions Legales</a>
 							</li>
 							<li>
-								<a href="{{ path('competence') }}">Competence</a>
+								<a href="{{ path('profile') }}" class="navbar__link">Espace Client</a>
 							</li>
-							<li>
-								<a href="{{ path('annonces') }}">Annonces</a>
-							</li>
-							<li>
-								<a href="{{ path('contact') }}">Contact</a>
-							</li>
-							<li>
-								<a href="{{ path('conditions_generales') }}">Conditions Generales</a>
-							</li>
-							<li>
-								<a href="{{ path('mentions_legales') }}">Mentions Legales</a>
-							</li>
-							<li>
-								<a href="{{ path('profile') }}">Espace Client</a>
-							</li>
-							{% if is_granted('ROLE_USER') %}
+							{# {% if is_granted('ROLE_USER') %}
 								{{ app.user.email }}
 								<li>
-									<a href="{{ path('app_logout') }}">Deconnexion</a>
+									<a href="{{ path('app_logout') }}" class="navbar__link">Deconnexion</a>
 								</li>
 								{% if is_granted('ROLE_ADMIN') %}
 									<li>
-										<a href="{{ path('admin') }}">Admin</a>
+										<a href="{{ path('admin') }}" class="navbar__link">Admin</a>
 									</li>
 								{% endif %}
 							{% else %}
 								<li>
-									<a href="{{ path('app_login') }}">Connexion</a>
+									<a href="{{ path('app_login') }}" class="navbar__link">Connexion</a>
 								</li>
 								<li>
-									<a href="{{ path('app_register') }}">Inscription</a>
+									<a href="{{ path('app_register') }}" class="navbar__link">Inscription</a>
 								</li>
-							{% endif %}
-						</ul>
+							{% endif %} #}
+							</ul>
+						</div>
 					</nav>
+					<label for="navi-toggle" class="navigation__button" aria-haspopup="true" aria-controls="main-menu" aria-label="Open or close main menu">
+						<span class="navigation__icon">&nbsp;</span>
+					</label>
 				</div>
 				{# .navHeader #}
-			</div>
 			{# .header #}
 		</header>
 

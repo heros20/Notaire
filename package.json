@@ -18,6 +18,11 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "autoprefixer": "^10.2.6",
         "popper.js": "^1.16.1"
-    }
+    },
+    "browserslist": 
+    [
+        "last 4 versions"
+    ]         
 }
