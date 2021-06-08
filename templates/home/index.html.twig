@@ -29,7 +29,7 @@
   <div class="container_allAnnonces">
     <div class="container_h2Annonces">
       <h3>Les dernières annonces immobilières</h3>
-      <p>Que vous soyez vendeur ou acquéreur, vous trouvere chez votre notaire le service complet vous garantissant la bone fin de votre opération</p>
+      <p>Que vous soyez vendeur ou acquéreur, vous trouverez chez votre notaire le service complet vous garantissant la bone fin de votre opération</p>
     </div>
     <div class="container_Annonces">
         <div class="container_allAnnonces">
@@ -37,7 +37,7 @@
           {% for annonce in annonces %}
           <a class="action" href="{{ path('annonce_show', {'id': annonce.id}) }}">
                 <div class="container_annonce">
-                  <img class="container_cardimg" src="" alt="">
+                  <img class="container_cardimg" src="{{ annonce.image }}" alt="">
                       <h3>{{ annonce.title }}</h3>
                       <p>{{ annonce.description }}</p>
                       <div class="container_coeur">

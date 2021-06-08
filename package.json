@@ -21,6 +21,7 @@
     "dependencies": {
         "autoprefixer": "^10.2.6",
         "jquery": "^3.6.0",
+        "nouislider": "^15.1.1",
         "popper.js": "^1.16.1"
     },
     "browserslist": [
