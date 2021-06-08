@@ -1,4 +1,6 @@
 @use "../utils/variable" as var;
 :root {
   --color-primary : #{var.$color-primary};
+  --texte         : #{var.$texte};
+  --title        : #{var.$title};
 }
