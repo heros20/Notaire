@@ -11,7 +11,7 @@
 			<p><img src="{{ annonce.image }}" alt=""></p>
 			<p>{{ annonce.superficie }}</p>
 			<p>{{ annonce.superficieTerrain }}</p>
-			<p>{{ annonce.price }}</p>
+			<p>{{ annonce.price | number_format(0,',', ' ')}} €</p>
 			<p>{{ annonce.status ? 'Yes' : 'No' }}</p>
 			<p>{{ annonce.etat ? 'Yes' : 'No' }}</p>
 			<p>{{ annonce.dpe }}</p>

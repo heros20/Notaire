@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
+use App\Form\SearchForm;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\AnnonceRepository;
 use App\Entity\Annonce;
 
 
@@ -40,14 +44,22 @@ class HomeController extends AbstractController
         ]);
     }
     #[Route('/annonces', name: 'annonces')]
-    public function annonces(): Response
+    public function annonces(AnnonceRepository $repository,Request $request): Response
     {
-        $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy(
-            [],
-            ['title' => 'ASC']
-        );
+        // $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy(
+        //     [], 
+        //     ['createdAt' => 'DESC']
+        // );
+        $data = new SearchData();
+        $form = $this->createForm(SearchForm::class, $data, [
+            'method' => 'GET',
+        ]);
+        $form->handleRequest($request);
+        $searchAnnonce = $repository->findSearch($data);
         return $this->render('home/annonces.html.twig', [
-            'annonces' => $annonces,
+            // 'annonces' => $annonces,
+            'searchAnnonce' => $searchAnnonce,
+            'form' => $form->createView()
         ]);
     }
     #[Route('/annonces/{id}', name: 'annonce_show', methods: ['GET'])]

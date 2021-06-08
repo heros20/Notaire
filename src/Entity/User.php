@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -39,16 +40,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=30)
+     *  @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "Vous devez respecter {{ min }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ max }} caractères maximums"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=30)
+     *  @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "Vous devez respecter {{ min }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ max }} caractères maximums"
+     * )
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
+     *  @Assert\Regex(pattern="/^[0-9]*$/", message="Veuillez renseigner un numéro valide") 
      */
     private $phone;
 

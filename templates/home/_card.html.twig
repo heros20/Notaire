@@ -1,0 +1,13 @@
+<div class="card">
+    <img src="{{ annonce.image }}" alt="" class="card-img-top">
+    <div class="card-body">
+        <h5>{{ annonce.title }}</h5>
+        <div class="card-title">
+            {{ annonce.price | number_format(0,',', ' ')}} €
+        </div>
+        <p>{{ annonce.description }}</p>
+        {% for c in annonce.category %}
+            <em>#{{ c.title }} </em>
+        {% endfor %}
+    </div>
+</div>
