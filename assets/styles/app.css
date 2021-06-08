@@ -1,3 +1,4 @@
+
 /* BOOSTRAP */
 .btn-primary {
     background-color: #0275d8;
@@ -7,9 +8,6 @@
     opacity: 0.8;
     background-color: #0275d8;
     color: #fff;
-}
-a {
-    color: #0275d8;
 }
 .action:hover {
     text-decoration: none;
@@ -56,39 +54,3 @@ textarea.form-control  {
     border-color: #0275d8;
 }
 /* END BOOSTRAP */
-/* HEADER */
-.header{
-    display: flex;
-}
-/* END HEADER */
-/* ANNONCES PAGE */
-.allAnnonces{
-    text-align: center;
-}
-.allAnnonces h1{
-    margin-bottom: 30px;
-}
-.allAnnonces .annonces{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:space-around;
-}
-.allAnnonces .annonces .annonce{
-    -webkit-box-shadow: 1px 1px 15px 6px rgba(0,0,0,0.61); 
-    box-shadow: 1px 1px 15px 6px rgba(0,0,0,0.61);
-}
-.show{
-    display: flex;
-    justify-content: center;
-
-}
-.showAnnonce{
-    background-color: rgb(207, 241, 236);
-    padding: 10px 100px;
-    text-align: center;
-    border: groove rgb(10, 39, 66);
-}
-.red{
-    color: red;
-}
-/* END ANNONCE PAGE */

@@ -47,6 +47,39 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         $annonce3 ->addCategory($this->getReference('category4'));
         $manager->persist($annonce3);
 
+        $annonce4 = new Annonce();
+        $annonce4 ->setTitle('Villa vue sur mer');
+        $annonce4 ->setDescription('jolie trop mognon');
+        $annonce4 ->setImage('https://picsum.photos/200/300');
+        $annonce4 ->setPrice(120000);
+        $annonce4 ->setStatus(true);
+        $annonce4 ->setVille($this->getReference('ville1'));
+        $annonce4 ->setDepartement($this->getReference('departement2'));
+        $annonce4 ->addCategory($this->getReference('category3'));
+        $manager->persist($annonce4);
+
+        $annonce5 = new Annonce();
+        $annonce5 ->setTitle('Villa vue sur mer');
+        $annonce5 ->setDescription('jolie trop mognon');
+        $annonce5 ->setImage('https://picsum.photos/200/300');
+        $annonce5 ->setPrice(120000);
+        $annonce5 ->setStatus(true);
+        $annonce5 ->setVille($this->getReference('ville1'));
+        $annonce5 ->setDepartement($this->getReference('departement2'));
+        $annonce5 ->addCategory($this->getReference('category3'));
+        $manager->persist($annonce5);
+
+        $annonce6 = new Annonce();
+        $annonce6 ->setTitle('Villa vue sur mer');
+        $annonce6 ->setDescription('jolie trop mognon');
+        $annonce6 ->setImage('https://picsum.photos/200/300');
+        $annonce6 ->setPrice(120000);
+        $annonce6 ->setStatus(true);
+        $annonce6 ->setVille($this->getReference('ville1'));
+        $annonce6 ->setDepartement($this->getReference('departement2'));
+        $annonce6 ->addCategory($this->getReference('category3'));
+        $manager->persist($annonce6);
+
         $manager->flush();
 
     }

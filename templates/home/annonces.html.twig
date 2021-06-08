@@ -4,9 +4,9 @@
 
 {% block body %}
     <div class="allAnnonces">
-        <h1>Annonce index</h1>
+        <h1>Toutes les annonces</h1>
         <div class="annonces">
-            {% for annonce in annonces %}
+         {% for annonce in annonces %}
                 <div class="annonce"> 
                     {% if is_granted("ROLE_USER") %}
                         {% for favoris in annonce.favoris %}

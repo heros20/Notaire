@@ -188,8 +188,19 @@ class Annonce
      */
     private $contacts;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $modifiedAt;
+    
     public function __construct()
     {
+        $this->createdAt = new \DateTime;
         $this->category = new ArrayCollection();
         $this->favoris = new ArrayCollection();
         $this->contacts = new ArrayCollection();
@@ -487,6 +498,30 @@ class Annonce
         if ($this->contacts->removeElement($contact)) {
             $contact->removeAnnonce($this);
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getModifiedAt(): ?\DateTimeInterface
+    {
+        return $this->modifiedAt;
+    }
+
+    public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
+    {
+        $this->modifiedAt = $modifiedAt;
 
         return $this;
     }
