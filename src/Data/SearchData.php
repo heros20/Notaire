@@ -4,13 +4,10 @@ namespace App\Data;
 
 use App\Entity\Category;
 use App\Entity\Ville;
+use App\Entity\Departement;
 
 class SearchData
 {
-    /**
-     * @var string
-     */
-     public $q = '';
 
 
      /**
@@ -20,6 +17,11 @@ class SearchData
      
 
       /**
+     * @var Departement[]
+     */
+    public $departement = [];
+
+     /**
      * @var Ville[]
      */
     public $ville = [];
@@ -35,6 +37,11 @@ class SearchData
       * @var null|integer
     */
      public $min;
+
+    /**
+      * @var null|integer
+    */
+    public $status;
 
    
      

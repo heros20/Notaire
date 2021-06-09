@@ -65,24 +65,29 @@ class AnnonceRepository extends ServiceEntityRepository
                 ->andWhere('a.price <= :max')
                 ->setParameter('max', $search->max); 
         }
-
+        if (!empty($search->status)) {
+            $query = $query 
+                ->andWhere('a.status IN (:status)')
+                ->setParameter('status', $search->status); 
+        }
         if (!empty($search->category)) {
             $query = $query 
                 ->andWhere('c.id IN (:category)')
                 ->setParameter('category', $search->category); 
         }
         if (!empty($search->ville)) {
-            // dd($search->ville);
-            // $query = $query 
-            //         ->andWhere('a.ville_id IN (:ville)')
-            //         ->setParameter('ville', $search->ville); 
             for ($i=0; $i < count($search->ville) ; $i++) { 
                 $query = $query 
-                    ->orWhere('a.ville IN (:ville)')
+                    ->andWhere('a.ville IN (:ville)')
                     ->setParameter('ville', $search->ville); 
             }
-                
-                
+        }
+        if (!empty($search->departement)) {
+            for ($i=0; $i < count($search->departement) ; $i++) { 
+                $query = $query 
+                    ->andWhere('a.departement IN (:departement)')
+                    ->setParameter('departement', $search->departement); 
+            }
         }
         // dd($search->category);
         return $query ;

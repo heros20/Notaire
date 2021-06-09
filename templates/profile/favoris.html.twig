@@ -6,11 +6,16 @@
 {% if is_granted("ROLE_USER") %}
     {% for user in users %}
             {% for fav in user.favoris %}
+            
                     <div class="annonces">
                         <div class="annonce">
                             <h2>{{ fav.title }}</h2>
                             <p>{{ fav.description }}</p>
                             <p><img src="{{ fav.image }}" alt=""></p>
+                            {% for f in fav.favoris %}
+                                <span><a href="{{ path('remove_favoris', {id: f.id}) }}"><i class="fas fa-heart"></i></a></span>
+                            {% endfor %}
+                            
                         </div>
                     </div>
             {% endfor %}

@@ -20,12 +20,13 @@ $(document).ready(() => {
     const max = document.getElementById('max')
     if (slider) {
       const range =  noUiSlider.create(slider, {
-          start: [1000, 1000000],
+          start: [400, 1000000],
+          tooltips: [true,true],
           connect: true,
           step: 1000,
           range: {
-              'min': 10000,
-              'max': 30000
+              'min': 1000,
+              'max': 300000
           }
       })
      range.on('slide',function(values,handle){

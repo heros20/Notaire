@@ -38,7 +38,7 @@
 						{% for annonce in annonces %}
 
 							<div class="container_annonce">
-								<a class="action" href="{{ path('annonce_show', {'id': annonce.id}) }}">
+								<a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
 									<img class="container_cardimg" src="{{ annonce.image }}" alt="">
 									<h3>{{ annonce.title }}</h3>
 									<p>{{ annonce.description }}</p>

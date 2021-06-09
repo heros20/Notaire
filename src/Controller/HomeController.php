@@ -68,7 +68,7 @@ class HomeController extends AbstractController
             'max' => $max
         ]);
     }
-    #[Route('/annonces/{id}', name: 'annonce_show', methods: ['GET'])]
+    #[Route('/annonces/{id}', name: 'frontAnnonce_show', methods: ['GET'])]
     public function show(Annonce $annonce): Response
     {
         return $this->render('home/show.html.twig', [
@@ -85,7 +85,7 @@ class HomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
         $em->flush();
-        return $this->redirectToRoute('annonces');
+        return $this->redirectToRoute('home');
     }
      #[Route('/annonces/favoris/retrait/{id}', name: 'retrait_favoris')]
     public function retraitFavoris(Annonce $annonce): Response
@@ -97,7 +97,7 @@ class HomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
         $em->flush();
-        return $this->redirectToRoute('annonces');
+        return $this->redirectToRoute('home');
     }
 
     #[Route('/conditions_generales', name: 'conditions_generales')]
