@@ -23,28 +23,33 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'Email*',
-                'attr' => ['placeholder' => 'renseignez ici...'],
+                'label_attr' => ['class' => 'formConnex_label1'],
+                'attr' => ['class' => 'class="form-control-material"'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner votre Email',
                     ]),
-                    
+
                 ],
             ])
-            ->add('name',TextType::class, [
+            ->add('name', TextType::class, [
                 'label' => 'Nom*',
-                'attr' => ['placeholder' => 'renseignez ici...']
+                'label_attr' => ['class' => 'formConnex_label2'],
+                'attr' => ['class' => 'class="form-control-material"']
             ])
-            ->add('username',TextType::class, [
+            ->add('username', TextType::class, [
                 'label' => 'Prénom*',
-                'attr' => ['placeholder' => 'renseignez ici...']
+                'label_attr' => ['class' => 'formConnex_label2'],
+                'attr' => ['class' => 'class="form-control-material"']
             ])
-            ->add('phone',TextType::class, [
+            ->add('phone', TextType::class, [
                 'label' => 'Numero',
-                'attr' => ['placeholder' => 'Optionnel...']
+                'label_attr' => ['class' => 'formConnex_label2'],
+                'attr' => ['class' => 'class="form-control-material"']
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' =>'Accepter les conditions d\'utilisation',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter nos conditions d\'utilisations',
@@ -55,10 +60,12 @@ class RegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
-                'invalid_message' => 'veuillez renseigner des mot de passe identique.',
+                'invalid_message' => 'Veuillez renseigner des mot de passe identique.',
+                'first_options'  => ['label' => 'Mot de passe*', 'label_attr' => ['class' => 'formConnex_label2'], 'attr' => ['class' => 'class="form-control-material"']],
+                'second_options' => ['label' => 'Confirmation mot de passe*', 'label_attr' => ['class' => 'formConnex_label2'], 'attr' => ['class' => 'class="form-control-material"']],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'veuillez renseigner un mot de passe',
+                        'message' => 'Veuillez renseigner un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
@@ -67,8 +74,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ]);
-        ;
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)
