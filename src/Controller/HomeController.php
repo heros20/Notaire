@@ -57,11 +57,15 @@ class HomeController extends AbstractController
             'method' => 'GET',
         ]);
         $form->handleRequest($request);
+        [$min, $max] = $repository->findMinMax($data);
         $searchAnnonce = $repository->findSearch($data);
+        // dd($searchAnnonce);
         return $this->render('home/annonces.html.twig', [
             // 'annonces' => $annonces,
             'searchAnnonce' => $searchAnnonce,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'min' => $min,
+            'max' => $max
         ]);
     }
     #[Route('/annonces/{id}', name: 'annonce_show', methods: ['GET'])]

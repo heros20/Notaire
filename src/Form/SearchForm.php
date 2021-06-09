@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Data\SearchData;
 use App\Entity\Category;
+use App\Entity\Ville;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\formBuilderInterface;
@@ -17,17 +18,18 @@ class SearchForm extends AbstractType
     public function buildForm(formBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('q', TextType::class, [
-                'label' => false,
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'Rechercher'
-                ]
-            ])
             ->add('category', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => Category::class,
+                'expanded' => true,
+                'multiple' => true
+            ])
+            ->add('ville', EntityType::class, [
+                'label' => false,
+                'required' => false,
+                'class' => Ville::class,
+                'choice_label' => 'title',
                 'expanded' => true,
                 'multiple' => true
             ])

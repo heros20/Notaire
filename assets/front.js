@@ -14,15 +14,27 @@ $(document).ready(() => {
         $(".sous").fadeOut("slow");
       });
 })
-const slider = document.getElementById('price-slider');
+
+    const slider = document.getElementById('price-slider');
+    const min = document.getElementById('min')
+    const max = document.getElementById('max')
     if (slider) {
-      noUiSlider.create(slider, {
-        start: [20, 80],
-        connect: true,
-        range: {
-            'min': 0,
-            'max': 100
+      const range =  noUiSlider.create(slider, {
+          start: [1000, 1000000],
+          connect: true,
+          step: 1000,
+          range: {
+              'min': 10000,
+              'max': 30000
+          }
+      })
+     range.on('slide',function(values,handle){
+        if(handle === 0){
+            min.value = Math.round(values[0])
         }
-    });
+        if(handle === 1){
+          max.value = Math.round(values[1])
+      }
+      });
     }
 
