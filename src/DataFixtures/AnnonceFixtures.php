@@ -14,7 +14,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
             $annonce1 = new Annonce();
             $annonce1 ->setTitle('Villa vue sur mer');
             $annonce1 ->setDescription('jolie trop mognon');
@@ -36,7 +36,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
             $annonce1 ->addCategory($this->getReference('category3'));
             $manager->persist($annonce1);
         }
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
             $annonce2 = new Annonce();
             $annonce2 ->setTitle('knrfsvrs');
             $annonce2 ->setImage('https://picsum.photos/200/300');
@@ -58,7 +58,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
             $annonce2 ->addCategory($this->getReference('category2'));
             $manager->persist($annonce2);
         }
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
             $annonce3 = new Annonce();
             $annonce3 ->setTitle('fjfzrisf ffikfg');
             $annonce3 ->setDescription('jhforif zhfifes fhesd qfrfzr');

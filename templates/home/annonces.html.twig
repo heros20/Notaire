@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            {% include "home/_filter.html.twig" with {form: form} only %}
+            {% include "home/_filter.html.twig" with {form: form, min: min, max: max} only %}
         </div> 
         <div class="col-md-9">
             {% for annonce in searchAnnonce %}

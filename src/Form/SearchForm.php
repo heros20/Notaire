@@ -4,12 +4,15 @@ namespace App\Form;
 
 use App\Data\SearchData;
 use App\Entity\Category;
+use App\Entity\Ville;
+use App\Entity\Departement;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\formBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 class SearchForm extends AbstractType
@@ -17,19 +20,37 @@ class SearchForm extends AbstractType
     public function buildForm(formBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('q', TextType::class, [
-                'label' => false,
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'Rechercher'
-                ]
-            ])
             ->add('category', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => Category::class,
                 'expanded' => true,
                 'multiple' => true
+            ])
+            ->add('ville', EntityType::class, [
+                'label' => false,
+                'required' => false,
+                'class' => Ville::class,
+                'choice_label' => 'title',
+                'expanded' => true,
+                'multiple' => true
+            ])
+            ->add('departement', EntityType::class, [
+                'label' => false,
+                'required' => false,
+                'class' => Departement::class,
+                'choice_label' => 'title',
+                'expanded' => true,
+                'multiple' => true
+            ])
+            ->add('status', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    'Vente' => true,
+                    'Location' => false,
+                ],
+                'multiple' => true,
+                'expanded' => true,
             ])
             ->add('min', NumberType::class, [
                 'label' => false,

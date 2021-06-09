@@ -57,14 +57,18 @@ class HomeController extends AbstractController
             'method' => 'GET',
         ]);
         $form->handleRequest($request);
+        [$min, $max] = $repository->findMinMax($data);
         $searchAnnonce = $repository->findSearch($data);
+        // dd($searchAnnonce);
         return $this->render('home/annonces.html.twig', [
             // 'annonces' => $annonces,
             'searchAnnonce' => $searchAnnonce,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'min' => $min,
+            'max' => $max
         ]);
     }
-    #[Route('/annonces/{id}', name: 'annonce_show', methods: ['GET'])]
+    #[Route('/annonces/{id}', name: 'frontAnnonce_show', methods: ['GET'])]
     public function show(Annonce $annonce): Response
     {
         return $this->render('home/show.html.twig', [
@@ -81,7 +85,7 @@ class HomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
         $em->flush();
-        return $this->redirectToRoute('annonces');
+        return $this->redirectToRoute('home');
     }
      #[Route('/annonces/favoris/retrait/{id}', name: 'retrait_favoris')]
     public function retraitFavoris(Annonce $annonce): Response
@@ -93,7 +97,7 @@ class HomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
         $em->flush();
-        return $this->redirectToRoute('annonces');
+        return $this->redirectToRoute('home');
     }
 
     #[Route('/conditions_generales', name: 'conditions_generales')]

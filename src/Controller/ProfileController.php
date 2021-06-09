@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
@@ -65,6 +66,15 @@ class ProfileController extends AbstractController
             'annonces' => $annonces,
             'users' => $users
         ]);
+    }
+     #[Route('/favoris/retrait/{id}', name: 'remove_favoris')]
+    public function retraitFavoris(Annonce $annonce): Response
+    {
+        $annonce->removeFavori($this->getUser());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($annonce);
+        $em->flush();
+        return $this->redirectToRoute('favoris');
     }
     #[Route('/favoris/show', name: 'favoris_show')]
     public function favoriShow(): Response
