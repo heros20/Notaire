@@ -8,7 +8,11 @@ import './styles/app.css';
 import '../bower_components/dpeges/dpeges'
 
 
-
+window.onload = () => {
+    // Gestion des boutons "Supprimer"
+    let links = document.querySelectorAll("[data-delete]")
+    console.log(links);
+}
 
 // any CSS you import will output into a single css file (app.css in this case)
 

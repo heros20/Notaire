@@ -2,8 +2,17 @@
 
 <div class="p-5">
 	{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
-	{{ form_row(form.fileimage) }}
 	{{ form_row(form) }}
+	{# Vérifier si la rounte est "annonces_dit" : on affiche les images #}
+	{% if app.request.attributes.get('_route') == 'annonce_edit' %}
+		<h2>Images</h2>
+		{% for image in annonce.images %}
+			<div>
+				<img src="{{ asset('assets/uploads/'~ image.name) }}" alt="" width="150">
+				<a href="{{ path('annonce_delete_image', {'id': image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">supprimer</a>
+			</div>
+		{% endfor %}
+	{% endif %}
 	<button class="btn btn-primary">{{ button_label|default('Ajoutez') }}</button>
 	{{ form_end(form) }}
 </div>
