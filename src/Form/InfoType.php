@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class InfoType extends AbstractType
 {
@@ -26,7 +27,7 @@ class InfoType extends AbstractType
                 'label_attr' => ['class' => 'formConnex_label1'],
                 'attr' => ['class' => 'class="form-control-material"'],
                 'constraints' => [
-                    new NotBlank([
+                    new NotNull([
                         'message' => 'Veuillez renseigner votre Email',
                     ]),
 
@@ -35,12 +36,24 @@ class InfoType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom*',
                 'label_attr' => ['class' => 'formConnex_label2'],
-                'attr' => ['class' => 'class="form-control-material"']
+                'attr' => ['class' => 'class="form-control-material"'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner votre Email',
+                    ]),
+
+                ],
             ])
             ->add('username', TextType::class, [
                 'label' => 'Prénom*',
                 'label_attr' => ['class' => 'formConnex_label2'],
-                'attr' => ['class' => 'class="form-control-material"']
+                'attr' => ['class' => 'class="form-control-material"'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner votre Email',
+                    ]),
+
+                ],
             ])
             ->add('phone', TextType::class, [
                 'label' => 'Numero',
