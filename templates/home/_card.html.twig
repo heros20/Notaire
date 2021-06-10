@@ -1,16 +1,9 @@
-<div class="card">
-    <a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
-        <img src="{{ annonce.image }}" alt="" class="card-img-top">
-        <div class="card-body">
-            <h5>{{ annonce.title }}</h5>
-            <div class="card-title">
-                {{ annonce.price | number_format(0,',', ' ')}} €
-            </div>
-            <p>{{ annonce.description }}</p>
-            {% for c in annonce.category %}
-                <em>#{{ c.title }} </em>
-            {% endfor %}
-            
-        </div>
-    </a>
-</div>
+<a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
+	<img src="{{ annonce.image }}" alt="" class="container_cardimg">
+	<h3>{{ annonce.title }}</h3>
+	<p>{{ annonce.description }}</p>
+	<p>{{ annonce.price | number_format(0,',', ' ')}}€</p>
+	{% for c in annonce.category %}
+		<p>#{{ c.title }}</p>
+	{% endfor %}
+</a>
