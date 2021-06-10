@@ -60,14 +60,17 @@ class SearchForm extends AbstractType
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Prix min'
+                    'placeholder' => 'Prix min',
+                    'class' => 'filter_input'
                 ]
             ])
             ->add('max', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Prix max'
+                    'placeholder' =>
+                    'Prix max',
+                    'class' => 'filter_input'
                 ]
             ]);
     }

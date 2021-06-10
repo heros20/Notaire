@@ -1,7 +1,6 @@
 <section class="filter">
 	{{ form_start(form, {attr: {class: 'filter'}}) }}
 	<div class="filter_container">
-		<div class="filter_flex">
 			<div class="filter_select">
 				<h4 class="filter_title">Status</h4>
 				{{ form_widget(form.status) }}
@@ -10,19 +9,15 @@
 				<h4 class="filter_title">Catégories</h4>
 				{{ form_widget(form.category) }}
 			</div>
-		</div>
 
-		<div class="filter_flex">
-			<div class="filter_select filter_pr">
+			<div class="filter_select">
 				<h4 class="filter_title">Département</h4>
 				{{ form_widget(form.departement) }}
 			</div>
-			<div class="filter_select filter_pl">
+			<div class="filter_select">
 				<h4 class="filter_title">Villes</h4>
 				{{ form_widget(form.ville) }}
 			</div>
-		</div>
-
 	</div>
 
 	<div class="filter_prix">
@@ -35,5 +30,4 @@
 
 	<button class="filter_btn" type="submit">Filtrer</button>
 	{{ form_end(form) }}
-
 </section>
