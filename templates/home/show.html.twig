@@ -9,7 +9,8 @@
 			<p>{{ annonce.title }}</p>
 			<p>Description : {{ annonce.description }}</p>
 			<p>{{ annonce.ville.title }}  {{ annonce.ville.codePostal }}</P>
-			<p>{{ annonce.departement.title }}</P>
+			<p>{{ annonce.departement.title }}</p>
+			<p><img class="container_cardimg" src="{{ asset('assets/images/' ~ annonce.image) }}" alt="{{ annonce.image }}"></p>
 			<p><img src="{{ annonce.image }}" alt=""></p>
 			<p>
 				{% if annonce.superficie %}

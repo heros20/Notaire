@@ -13,9 +13,8 @@
                             <p>{{ fav.description }}</p>
                             <p><img src="{{ fav.image }}" alt=""></p>
                             {% for f in fav.favoris %}
-                                <span><a href="{{ path('remove_favoris', {id: f.id}) }}"><i class="fas fa-heart"></i></a></span>
+                                <span><a href="{{ path('remove_favoris', {id: fav.id}) }}"><i class="fas fa-heart-broken">retirer des favoris</i><i class="fas fa-heart-broken"></i></a></span>
                             {% endfor %}
-                            
                         </div>
                     </div>
             {% endfor %}

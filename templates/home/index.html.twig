@@ -36,10 +36,9 @@
 				<div class="container_allAnnonces">
 					<div class="container_annonces">
 						{% for annonce in annonces %}
-
 							<div class="container_annonce">
 								<a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
-									<img class="container_cardimg" src="{{ annonce.image }}" alt="">
+									<img class="container_cardimg" src="{{ asset('assets/images/' ~ annonce.image) }}" alt="{{ annonce.image }}">
 									<h3>{{ annonce.title }}</h3>
 									<p>{{ annonce.description }}</p>
 									<div class="container_coeur">
