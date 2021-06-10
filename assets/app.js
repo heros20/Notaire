@@ -10,9 +10,10 @@ import '../bower_components/dpeges/dpeges'
 
 window.onload = () => {
     // Gestion des boutons "Supprimer"
-    let links = document.querySelectorAll("[data-delete]")
+    let links = document.querySelectorAll("div")
     console.log(links);
-}
+    // on boucle sur links
+  }
 
 // any CSS you import will output into a single css file (app.css in this case)
 

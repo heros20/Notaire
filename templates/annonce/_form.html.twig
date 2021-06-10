@@ -9,7 +9,7 @@
 		{% for image in annonce.images %}
 			<div>
 				<img src="{{ asset('assets/uploads/'~ image.name) }}" alt="" width="150">
-				<a href="{{ path('annonce_delete_image', {'id': image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">supprimer</a>
+				<a href="{{ path('annonce_delete_image', {'id': image.id}) }}" data-delete="" data-token="{{ csrf_token('delete' ~ image.id) }}">supprimer</a>
 			</div>
 		{% endfor %}
 	{% endif %}
