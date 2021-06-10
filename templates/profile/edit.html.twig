@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% include "profile/nav.html.twig" %}
+
+    <div class="log">
+		{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+		<div class="input-cont">
+
+			{{ form_widget(form.email) }}
+			{{form_label(form.email)}}
+			<div class="border1"></div>
+		</div>
+
+		<div class="input-cont">
+
+			{{ form_widget(form.name)}}
+			{{form_label(form.name)}}
+			<div class="border2"></div>
+		</div>
+
+		<div class="input-cont">
+
+			{{ form_widget(form.username)}}
+			{{form_label(form.username)}}
+			<div class="border2"></div>
+		</div>
+
+		<div class="input-cont">
+			{{ form_widget(form.phone)}}
+			{{form_label(form.phone)}}
+			<div class="border2"></div>
+		</div>
+
+		{# <div class="input-cont">
+			{{ form_widget(form.plainPassword.first)}}
+			{{form_label(form.plainPassword.first)}}
+			<div class="border2"></div>
+		</div>
+
+		<div class="input-cont">
+			{{ form_widget(form.plainPassword.second)}}
+			{{form_label(form.plainPassword.second)}}
+			<div class="border2"></div>
+		</div> #}
+		{# <span class="check">
+			{{ form_widget(form.agreeTerms) }}
+		</span>
+		<p class="help">*Obligatoire</p> #}
+		<div class="clear"></div>
+
+		<input type="submit" value="Modifier" onclick="return confirm('Cela va modifer vos informations personnelles: cliquez pour confirmer');"></input>
+
+    {{form_end(form)}}
+</div>
+{% endblock %}

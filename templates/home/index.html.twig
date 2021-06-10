@@ -6,7 +6,7 @@
 {% block body %}
 	<section class="container">
 		<div class="container_img">
-			<img class="container_imge" src="{{asset('assets/images/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+			<img class="container_imge" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
 		</div>
 		<div class="container_dixAns">
 			<h1>Nous avons 10 ans d'expérience dans différent cas</h1>
@@ -24,7 +24,7 @@
 										      a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
 			</div>
 			<div class="container_img">
-				<img class="container_imgs" src="{{asset('assets/images/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+				<img class="container_imgs" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
 			</div>
 		</div>
 		<div class="container_allAnnonces">
@@ -38,7 +38,7 @@
 						{% for annonce in annonces %}
 							<div class="container_annonce">
 								<a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
-									<img class="container_cardimg" src="{{ asset('assets/images/' ~ annonce.image) }}" alt="{{ annonce.image }}">
+									<img class="container_cardimg" src="{{ asset('assets/uploads/' ~ annonce.image) }}" alt="{{ annonce.image }}">
 									<h3>{{ annonce.title }}</h3>
 									<p>{{ annonce.description }}</p>
 									<div class="container_coeur">
