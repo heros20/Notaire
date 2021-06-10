@@ -23,6 +23,7 @@ class SearchForm extends AbstractType
             ->add('category', EntityType::class, [
                 'label' => false,
                 'required' => false,
+                'attr' => ['class' => 'filter_selecte'],
                 'class' => Category::class,
                 // 'expanded' => true,
                 'multiple' => true
@@ -33,7 +34,8 @@ class SearchForm extends AbstractType
                 'class' => Ville::class,
                 'choice_label' => 'title',
                 // 'expanded' => true,
-                'multiple' => true
+                'multiple' => true,
+                'attr' => ['class' => 'filter_selecte'],
             ])
             ->add('departement', EntityType::class, [
                 'label' => false,
@@ -41,7 +43,8 @@ class SearchForm extends AbstractType
                 'class' => Departement::class,
                 'choice_label' => 'title',
                 // 'expanded' => true,
-                'multiple' => true
+                'multiple' => true,
+                'attr' => ['class' => 'filter_selecte'],
             ])
             ->add('status', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
@@ -49,6 +52,7 @@ class SearchForm extends AbstractType
                     'Vente' => true,
                     'Location' => false,
                 ],
+                'attr' => ['class' => 'filter_selecte'],
                 // 'multiple' => true,
                 // 'expanded' => true,
             ])
@@ -65,10 +69,9 @@ class SearchForm extends AbstractType
                 'attr' => [
                     'placeholder' => 'Prix max'
                 ]
-            ])
-        ;
+            ]);
     }
-    
+
     public function configurationOptions(optionsResolver $resolver)
     {
         $resolver->setDefaults([
