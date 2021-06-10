@@ -1,46 +1,48 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Annonce index{% endblock %}
+{% block title %}Annonce index
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            {% include "home/_filter.html.twig" with {form: form} only %}
-        </div> 
-        <div class="col-md-9">
-            {% for annonce in searchAnnonce %}
-                {% include "home/_card.html.twig" with {annonce: annonce} only %}
-            {% endfor %}
-        </div>
-    </div>
-</div>
-    {# <div class="allAnnonces">
-        <h1>Toutes les annonces</h1>
-        <div class="annonces">
-         {% for annonce in annonces %}
-                <div class="annonce"> 
-                    {% if is_granted("ROLE_USER") %}
-                        {% for favoris in annonce.favoris %}
-                            {% if favoris.id == app.user.id %}
-                                <a href="{{ path('retrait_favoris', {id: annonce.id}) }}"><i class="fas fa-heart"></i></a>
-                            {% else %}
-                                <a href="{{ path('ajout_favoris', {id: annonce.id}) }}"><i class="far fa-heart"></i></a>
-                            {% endif %}
-                        {% else %}
-                            <a href="{{ path('ajout_favoris', {id: annonce.id}) }}"><i class="far fa-heart"></i></a>
-                        {% endfor %}	
-                    {% endif %}
-                    <h2>{{ annonce.title }}</h2>
-                    <p>{{ annonce.description }}</p>
-                    <p><img src="{{ annonce.image }}" alt=""></p>
-                    <p><a class="action" href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a></p>
-                    {% for c in annonce.category %}
-                        <em>#{{ c.title }} </em>
-                    {% endfor %}
-                </div>
-                
-        {% endfor %}
-         </div>
-    </div> #}
+	<section class="container">
+		<div class="container_allAnnonces">
+			<div class="container_Annonces">
+				<div class="container_allAnnonces">
+					{% include "home/_filter.html.twig" with {form: form, min: min, max: max} only %}
+					<div class="container_annonces">
+						{% for annonce in searchAnnonce %}
+							<div class="container_annonce">
+								{% include "home/_card.html.twig" with {annonce: annonce} only %}
+								<div class="container_coeur">
+									{% if is_granted("ROLE_USER") %}
+										{% for favoris in annonce.favoris %}
+											{% if favoris.id == app.user.id %}
+												<span>
+													<a href="{{ path('retrait_favoris', {id: annonce.id}) }}">
+														<i class="fas fa-heart"></i>
+													</a>
+												</span>
+											{% else %}
+												<span>
+													<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+														<i class="far fa-heart"></i>
+													</a>
+												</span>
+											{% endif %}
+										{% else %}
+											<span>
+												<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+													<i class="far fa-heart"></i>
+												</a>
+											</span>
+										{% endfor %}
+									{% endif %}
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}

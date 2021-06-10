@@ -1,0 +1,56 @@
+@use "../utils/mixins" as *;
+.filter {
+    background-color: #fff;
+    margin-bottom: 80px;
+    &_container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    &_title {
+        margin: 20px 0;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    &_selecte {
+        border: 1px solid var(--color-primary);
+        font-family: var(--para);
+        width: 180px;
+        text-align: center;
+    }
+    &_prix {
+        text-align: center;
+        margin: 60px 0;
+    }
+    &_barre {
+        width: 80%;
+        margin: 80px auto;
+    }
+    &_btn {
+        margin: 0 auto;
+        display: block;
+        background-color: var(--color-primary);
+        color: #fff;
+        border: none;
+        padding: 10px 80px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            color: var(--color-primary);
+            background-color: #fff;
+        }
+    }
+    &_input {
+        border: 1px solid var(--color-primary);
+    }
+}
+.noUi-connect{
+    background-color: var(--color-primary) !important;
+}
+@include laptop {
+    .filter {
+        &_container {
+            flex-direction: row;
+        }
+    }
+}

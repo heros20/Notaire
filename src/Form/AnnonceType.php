@@ -32,12 +32,19 @@ class AnnonceType extends AbstractType
                 'label' => 'Description',
                 'attr' => ['placeholder' => 'Description de l\'annonce...']
             ])
-            ->add('fileimage', FileType::class,[
-                'required' => false,
+            ->add('image', FileType::class,[
+                'label' => 'image multiple',
+                'multiple' => true,
                 'mapped' => false,
+                'required' => false,
+            ])
+            ->add('fileimage', FileType::class, [
+                'label' => 'image',
+                'mapped' => false,
+                'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '2000k',
+                        'maxSize' => '1024k',
                         'mimeTypes' => [
                             'image/jpg',
                             'image/jpeg',

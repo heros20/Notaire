@@ -8,7 +8,7 @@
         width: 100%;
         object-fit: cover;
     }
-    &_imgs{
+    &_imgs {
         height: 180px;
         width: 100%;
         object-fit: cover;
@@ -16,7 +16,7 @@
         border-radius: 10px 10px 0 0;
     }
     &_dixAns {
-        background: #A8D7F5;
+        background: #a8d7f5;
         text-align: center;
         padding: 30px;
         font-size: 1.5em;
@@ -26,119 +26,172 @@
         line-height: 1.5;
         font-family: var(--title);
     }
-    &_propos{
-        & h2{
+    &_propos {
+        & h2 {
             margin: 30px 0;
             text-align: center;
             font-family: var(--title);
             font-weight: 700;
             font-size: 24px;
         }
-        & p{
+        & p {
             text-align: center;
             line-height: 1.6;
             padding: 0 30px;
         }
     }
-    &_h2Annonces{
-        & h3{
+    &_h2Annonces {
+        & h3 {
             font-size: 21px;
             font-family: var(--title);
             text-align: center;
             font-weight: bold;
             margin-bottom: 30px;
         }
-        & p{
+        & p {
             text-align: center;
             line-height: 1.6;
             padding: 0 30px;
             color: #8f8f8f;
         }
-    }*
-    &_allAnnonces{
+    }
+    &_allAnnonces {
         padding-bottom: 50px;
     }
-    &_annonce{
-        box-shadow: 0px 5px 13px 6px #9E9E9E;
+    &_annonce {
+        box-shadow: var(--box-shadow);
         width: 80%;
         margin: 50px auto;
         border-radius: 10px;
         position: relative;
     }
-    &_cardimg{
+    &_cardimg {
         width: 100%;
         height: 150px;
         border-radius: 10px 10px 0 0;
         object-fit: cover;
     }
-    & h3{
+    & h3 {
         font-family: var(--title);
         padding: 20px 0 10px 15px;
         font-size: 18px;
         font-weight: bold;
     }
-    & p{
+    & p {
         padding: 0 0 20px 15px;
     }
-    &_coeur{
+    &_coeur {
         position: absolute;
         right: 18px;
         bottom: 30px;
         font-size: 22px;
         z-index: 400;
-        &:hover{
+        &:hover {
             background-color: blue;
         }
     }
+    &_boite {
+        background-color: #fff;
+        box-shadow: var(--box-shadow);
+        padding-bottom: 30px;
+    }
+    &_title {
+        text-align: center;
+        font-weight: bold;
+        font-family: var(--title);
+        font-size: 26px;
+        padding: 30px 0;
+    }
+    &_para{
+        text-align: center;
+    }
+    &_services{
+        background-color: #a8d7f5;
+        border-top: 1px solid black;
+        padding-bottom: 50px;
+    }
+    &_boites{
+        text-align: center;
+        margin: 50px 0;
+        & img{
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        & h4{
+            font-size: 19px;
+            font-family: var(--title);
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        & p{
+            padding: 0 30px;
+        }
+    }
+    &_perso{
+        margin: 30px 0;
+    }
 }
-.fa-heart{
+.fa-heart {
     color: red;
 }
 @include tablette {
-    .container{
-        &_h2Annonces{
-            & h3{
+    .container {
+        &_h2Annonces {
+            & h3 {
                 font-size: 24px;
             }
         }
-        &_annonce{
+        &_annonce {
             width: 50%;
         }
     }
-  }
-@include deckstop{
-.container{
-    &_annonces{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    &_annonce{
-        width: 25%;
-        margin: 54px 30px;
-        cursor: pointer;
-        transition: all .2s ease-in-out;
-        &:hover{
-            opacity: .7;
+}
+@include deckstop {
+    .container {
+        &_annonces {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        &_annonce {
+            width: 25%;
+            margin: 54px 30px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+        &_coeur {
+            bottom: 40px;
+        }
+        &_proposIMG {
+            display: flex;
+            margin-bottom: 80px;
+        }
+        &_propos {
+            padding: 0 100px;
+        }
+        &_imgs {
+            margin: 30px 0 0 0;
+            border-radius: 0;
+            height: 260px;
+        }
+        &_preimg{
+            height: 600px;
+        }
+        &_img {
+            margin-right: 80px;
+        }
+        &_boites{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        &_perso{
+            width: 30%;
         }
     }
-    &_coeur{
-        bottom: 40px;
-    }
-    &_proposIMG{
-        display: flex;
-        margin-bottom: 80px;
-    }
-    &_propos{
-        padding: 0 100px;
-    }
-    &_imgs{
-        margin: 30px 0 0 0;
-        border-radius: 0;
-        height: 260px;
-    }
-    &_img{
-        margin-right: 80px;
-    }
 }
-  }

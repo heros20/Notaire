@@ -14,10 +14,11 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
             $annonce1 = new Annonce();
             $annonce1 ->setTitle('Villa vue sur mer');
             $annonce1 ->setDescription('jolie trop mognon');
+            $annonce1 ->setImage('https://picsum.photos/200/300');
             $annonce1 ->setPrice(120000);
             $annonce1 ->setSuperficie(1000);
             $annonce1 ->setSuperficieTerrain(1500);
@@ -35,9 +36,10 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
             $annonce1 ->addCategory($this->getReference('category3'));
             $manager->persist($annonce1);
         }
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
             $annonce2 = new Annonce();
             $annonce2 ->setTitle('knrfsvrs');
+            $annonce2 ->setImage('https://picsum.photos/200/300');
             $annonce2 ->setDescription('livlsfhrvr fvjiovjrfs dsxilvsfjvsdosoivs');
             $annonce2 ->setPrice(20000);
             $annonce2 ->setSuperficie(1000);
@@ -56,10 +58,11 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
             $annonce2 ->addCategory($this->getReference('category2'));
             $manager->persist($annonce2);
         }
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
             $annonce3 = new Annonce();
             $annonce3 ->setTitle('fjfzrisf ffikfg');
             $annonce3 ->setDescription('jhforif zhfifes fhesd qfrfzr');
+            $annonce3 ->setImage('https://picsum.photos/200/300');
             $annonce3 ->setPrice(100000);
             $annonce3 ->setSuperficie(1000);
             $annonce3 ->setSuperficieTerrain(1500);

@@ -5,5 +5,38 @@
 {% block body %}
 {% include "profile/nav.html.twig" %}
 
-<h1>accueil espace client</h1>
+<h1>information personnelle</h1>
+
+    <section class="container">
+		<div class="">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Créé le</th>
+                        <th>Modifié le</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.phone }}</td>
+                            <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : ''  }}</td>
+                            <td>{{ user.modifiedAt ? user.modifiedAt|date('Y-m-d H:i:s') : ''  }}</td>
+                            <td>
+                                <a class="action" href="{{ path('infos_perso_edit', {'id': user.id}) }}">Éditer</a>
+                            </td>
+                        </tr>
+			    </tbody>
+            </table>
+        </div>
+    </section>
+
+
 {% endblock %}

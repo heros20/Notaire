@@ -196,6 +196,11 @@ class Annonce
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $modifiedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="annonce", orphanRemoval=true, cascade={"persist"})
+     */
+    private $images;
     
     public function __construct()
     {
@@ -203,6 +208,7 @@ class Annonce
         $this->category = new ArrayCollection();
         $this->favoris = new ArrayCollection();
         $this->contacts = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -521,6 +527,36 @@ class Annonce
     public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getAnnonce() === $this) {
+                $image->setAnnonce(null);
+            }
+        }
 
         return $this;
     }
