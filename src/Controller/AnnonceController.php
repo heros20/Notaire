@@ -4,13 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Annonce;
 use App\Form\AnnonceType;
+
 use App\Repository\AnnonceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use App\Service\FileUploader;
 
-#[Route('/annonce')]
+#[Route('/admin/annonce')]
 class AnnonceController extends AbstractController
 {
     #[Route('/', name: 'annonce_index', methods: ['GET'])]
@@ -22,7 +28,7 @@ class AnnonceController extends AbstractController
     }
 
     #[Route('/new', name: 'annonce_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
@@ -30,10 +36,36 @@ class AnnonceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            /** @var UploadedFile $imageFile */
+            $annonceFile = $form->get('fileimage')->getData();
+            if ($annonceFile) {
+                $annonceFileName = $fileUploader->upload($annonceFile);
+                $annonce->setimage($annonceFileName);
+            }
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $entityManager = $this->getDoctrine()->getManager();
+        //     $annonceFile = $form->get('fileimage')->getData();
+        //     if ($annonceFile) {
+        //         $originalFilename = pathinfo($annonceFile->getClientOriginalName(), PATHINFO_FILENAME);
+
+        //         $safeFilename = $slugger->slug($originalFilename);
+        //         $newFilename = $safeFilename.'-'.uniqid().'.'.$annonceFile->guessExtension();
+
+        //         try {
+        //             $annonceFile->move(
+        //                 $this->getParameter('images_directory'),
+        //                 $newFilename
+        //             );
+        //         } catch (FileException $e) {
+        //         }
+        //         $annonce->setImage($newFilename);
+        //     }
+            
             $entityManager->persist($annonce);
             $entityManager->flush();
 
             return $this->redirectToRoute('annonce_index');
+
         }
 
         return $this->render('annonce/new.html.twig', [
@@ -58,6 +90,7 @@ class AnnonceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $form['image']->getData();
 
             return $this->redirectToRoute('annonce_index');
         }

@@ -1,0 +1,20 @@
+$breakpoint-tablet: (
+    "tablette": 768px,
+    "laptop": 1024px,
+    "deckstop": 1440px
+);
+@mixin tablette {
+    @media screen and(min-width: map-get($breakpoint-tablet, "tablette")) {
+        @content;
+    }
+}
+@mixin laptop {
+    @media screen and(min-width: map-get($breakpoint-tablet, "laptop")) {
+        @content;
+    }
+}
+@mixin deckstop {
+    @media screen and(min-width: map-get($breakpoint-tablet, "deckstop")) {
+        @content;
+    }
+}

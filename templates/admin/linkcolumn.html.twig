@@ -1,0 +1,106 @@
+<div id="app-sidepanel" class="app-sidepanel">
+	<div id="sidepanel-drop" class="sidepanel-drop"></div>
+	<div class="sidepanel-inner d-flex flex-column">
+		<a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+		<div class="app-branding">
+			<a class="app-logo" href="index.html">
+				<span class="logo-text">{{app.user.username}}</span>
+			</a>
+		</div>
+		<!--//app-branding-->
+
+		<nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+			<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+				<li
+					class="nav-item">
+					<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+					<a class="nav-link active" href="{{path('home')}}">
+						<span class="nav-icon">
+							<svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"/>
+								<path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+							</svg>
+						</span>
+						<span class="nav-link-text">Accueil</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('annonce_index')}}">
+						<span class="nav-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-megaphone" viewbox="0 0 16 16">
+								<path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-.214c-2.162-1.241-4.49-1.843-6.912-2.083l.405 2.712A1 1 0 0 1 5.51 15.1h-.548a1 1 0 0 1-.916-.599l-1.85-3.49a68.14 68.14 0 0 0-.202-.003A2.014 2.014 0 0 1 0 9V7a2.02 2.02 0 0 1 1.992-2.013 74.663 74.663 0 0 0 2.483-.075c3.043-.154 6.148-.849 8.525-2.199V2.5zm1 0v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0zm-1 1.35c-2.344 1.205-5.209 1.842-8 2.033v4.233c.18.01.359.022.537.036 2.568.189 5.093.744 7.463 1.993V3.85zm-9 6.215v-4.13a95.09 95.09 0 0 1-1.992.052A1.02 1.02 0 0 0 1 7v2c0 .55.448 1.002 1.006 1.009A60.49 60.49 0 0 1 4 10.065zm-.657.975 1.609 3.037.01.024h.548l-.002-.014-.443-2.966a68.019 68.019 0 0 0-1.722-.082z"/>
+							</svg>
+
+						</span>
+						<span class="nav-link-text">Annonce</span>
+					</a>
+					<!--//nav-link-->
+				</li>
+				<!--//nav-item-->
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('category_index')}}">
+						<span class="nav-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewbox="0 0 16 16">
+								<path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"/>
+								<path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"/>
+							</svg>
+						</span>
+						<span class="nav-link-text">Catégorie</span>
+					</a>
+					<!--//nav-link-->
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('departement_index')}}">
+						<span class="nav-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewbox="0 0 16 16">
+								<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+							</svg>
+						</span>
+						<span class="nav-link-text">Département</span>
+					</a>
+					<!--//nav-link-->
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('ville_index')}}">
+						<span class="nav-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewbox="0 0 16 16">
+								<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+							</svg>
+						</span>
+						<span class="nav-link-text">Ville</span>
+					</a>
+					<!--//nav-link-->
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="charts.html">
+						<span class="nav-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewbox="0 0 16 16">
+								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+							</svg>
+						</span>
+						<span class="nav-link-text">Utilisateur</span>
+					</a>
+					<!--//nav-link-->
+				</li>
+				<!--//nav-item-->
+
+				<li class="nav-item">
+					<a class="nav-link" href="help.html">
+						<span class="nav-icon">
+							<svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-question-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+								<path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+							</svg>
+						</span>
+						<span class="nav-link-text">Aide</span>
+					</a>
+					<!--//nav-link-->
+				</li>
+				<!--//nav-item-->
+			</ul>
+			<!--//app-menu-->
+		</nav>
+	</div>
+	<!--//sidepanel-inner-->
+</div>

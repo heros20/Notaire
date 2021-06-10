@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'back.html.twig' %}
 
-{% block title %}New Ville{% endblock %}
+{% block title %}Ajoutez une Ville{% endblock %}
 
 {% block body %}
-    <h1>Create new Ville</h1>
+    <h1>Créez une nouvelle Ville</h1>
 
     {{ include('ville/_form.html.twig') }}
 
-    <a href="{{ path('ville_index') }}">back to list</a>
+    <a class="btn-primary ml-5 p-2" href="{{ path('ville_index') }}">Retour</a>
 {% endblock %}

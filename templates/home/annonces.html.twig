@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Annonce index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {% include "home/_filter.html.twig" with {form: form, min: min, max: max} only %}
+        </div> 
+        <div class="col-md-9">
+            {% for annonce in searchAnnonce %}
+                {% include "home/_card.html.twig" with {annonce: annonce} only %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

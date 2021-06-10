@@ -5,22 +5,28 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\entity\User;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use DateTime;
 
 class UserFixtures extends Fixture
 {
     private $passwordHasher;
-    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    private $tokengenerator;
+    public function __construct(UserPasswordHasherInterface $passwordHasher, TokenGeneratorInterface $tokengenerator)
     {
         $this->passwordHasher = $passwordHasher;
+        $this->tokengenerator = $tokengenerator;
     }
+    
+
     public function load(ObjectManager $manager)
     {
+        
         $admin = new User();
         $admin->setName('admin')
               ->setUsername('admin')
-              ->setToken('ddddd')
+              ->setToken($this->tokengenerator->generateToken())
               ->setCreatedAt(new DateTime())
               ->setEmail('heros40@hotmail.fr')
               ->setRoles(array('ROLE_ADMIN'))
@@ -29,6 +35,46 @@ class UserFixtures extends Fixture
                 '123456'
               ));
         $manager->persist($admin);
+
+        $admin2 = new User();
+        $admin2->setName('admin')
+              ->setUsername('admin')
+              ->setToken($this->tokengenerator->generateToken())
+              ->setCreatedAt(new DateTime())
+              ->setEmail('sebastienweb27@gmail.com')
+              ->setRoles(array('ROLE_ADMIN'))
+              ->setPassword($this->passwordHasher->hashPassword(
+                $admin2,
+                '123456'
+              ));
+        $manager->persist($admin2);
+
+        $admin3 = new User();
+        $admin3->setName('admin')
+              ->setUsername('admin')
+              ->setToken($this->tokengenerator->generateToken())
+              ->setCreatedAt(new DateTime())
+              ->setEmail('stellazenon@gmail.com')
+              ->setRoles(array('ROLE_ADMIN'))
+              ->setPassword($this->passwordHasher->hashPassword(
+                $admin3,
+                '123456'
+              ));
+        $manager->persist($admin3);
+
+        $admin4 = new User();
+        $admin4->setName('Michellus')
+              ->setUsername('Michel')
+              ->setToken($this->tokengenerator->generateToken())
+              ->setCreatedAt(new DateTime())
+              ->setEmail('quidelantoine@gmail.com')
+              ->setRoles(array('ROLE_ADMIN'))
+              ->setPassword($this->passwordHasher->hashPassword(
+                $admin4,
+                'michel'
+              ));
+        $manager->persist($admin4);
+
 
         $manager->flush();
     }

@@ -1,20 +1,82 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<section class="container">
+		<div class="container_img">
+			<img class="container_imge" src="{{asset('assets/images/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+		</div>
+		<div class="container_dixAns">
+			<h1>Nous avons 10 ans d'expérience dans différent cas</h1>
+		</div>
+		<div class="container_proposIMG">
+			<div class="container_propos">
+				<h2>À Propos</h2>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
+										      repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+										      impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+										      a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
+										      repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+										      impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+										      a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+			</div>
+			<div class="container_img">
+				<img class="container_imgs" src="{{asset('assets/images/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+			</div>
+		</div>
+		<div class="container_allAnnonces">
+			<div class="container_h2Annonces">
+				<h3>Les dernières annonces immobilières</h3>
+				<p>Que vous soyez vendeur ou acquéreur, vous trouverez chez votre notaire le service complet vous garantissant la bone fin de votre opération</p>
+			</div>
+			<div class="container_Annonces">
+				<div class="container_allAnnonces">
+					<div class="container_annonces">
+						{% for annonce in annonces %}
+							<div class="container_annonce">
+								<a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
+									<img class="container_cardimg" src="{{ asset('assets/images/' ~ annonce.image) }}" alt="{{ annonce.image }}">
+									<h3>{{ annonce.title }}</h3>
+									<p>{{ annonce.description }}</p>
+									<div class="container_coeur">
+										{% if is_granted("ROLE_USER") %}
+											{% for favoris in annonce.favoris %}
+												{% if favoris.id == app.user.id %}
+													<span>
+														<a href="{{ path('retrait_favoris', {id: annonce.id}) }}">
+															<i class="fas fa-heart"></i>
+														</a>
+													</span>
+												{% else %}
+													<span>
+														<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+															<i class="far fa-heart"></i>
+														</a>
+													</span>
+												{% endif %}
+											{% else %}
+												<span>
+													<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+														<i class="far fa-heart"></i>
+													</a>
+												</span>
+											{% endfor %}
+										{% endif %}
+									</div>
+								</a>
+							</div>
+							{# .annonce #}
+						{% endfor %}
+					</div>
+					{# .annonces #}
+				</div>
+				{# .allAnnonces #}
+			</div>
+		</div>
+	</section>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/Notaire/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/Notaire/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}

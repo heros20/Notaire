@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -21,6 +24,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email(
+     *      message = "L'email est invalide"
+     * )
      */
     private $email;
 
@@ -37,16 +43,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=30)
+     *  @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums",
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=30)
+     *  @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums"
+     * )
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
+     *  @Assert\Regex(pattern="/^[0-9]*$/", message="Veuillez renseigner un numéro valide") 
      */
     private $phone;
 
@@ -65,6 +84,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $modifiedAt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Annonce::class, mappedBy="favoris")
+     */
+    private $favoris;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Contact::class, mappedBy="users")
+     */
+    private $contacts;
+    
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime;
+        $this->favoris = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -214,6 +249,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Annonce $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+            $favori->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Annonce $favori): self
+    {
+        if ($this->favoris->removeElement($favori)) {
+            $favori->removeFavori($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->removeElement($contact)) {
+            $contact->removeUser($this);
+        }
 
         return $this;
     }
