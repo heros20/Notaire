@@ -97,6 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->createdAt = new \DateTime;
+        $this->modifieddAt = new \DateTime;
         $this->favoris = new ArrayCollection();
         $this->contacts = new ArrayCollection();
     }

@@ -5,10 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
 use App\Entity\User;
-
+use App\Form\InfoType;
 
 #[Route('/profile')]
 class ProfileController extends AbstractController
@@ -16,11 +17,34 @@ class ProfileController extends AbstractController
     #[Route('/', name: 'profile')]
     public function index(): Response
     {
+        $user = $this->getUser();
+
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
+            'user' => $user
         ]);
     }
+    #[Route('/{id}/edit', name: 'infos_perso_edit', methods: ['GET', 'POST'])]
+    public function infos_persoEdit(Request $request, User $user): Response
+    {
 
+        $form = $this->createForm(InfoType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setModifiedAt(new \DateTime());
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('profile');
+        }
+
+        $user = $this->getUser();
+        return $this->render('profile/edit.html.twig', [
+            'controller_name' => 'ProfileController',
+            'form' => $form->createView(),
+            'user' => $user
+        ]);
+    }
+    
     #[Route('/notification', name: 'notif')]
     public function notif(): Response
     {
@@ -35,22 +59,7 @@ class ProfileController extends AbstractController
             'controller_name' => 'ProfileController',
         ]);
     }
-    
-    #[Route('/informations_personnelles', name: 'infos_perso')]
-    public function infos_perso(): Response
-    {
-        return $this->render('profile/infos_perso.html.twig', [
-            'controller_name' => 'ProfileController',
-        ]);
-    }
-    #[Route('/informations_personnelles/edit', name: 'infos_perso_edit')]
-    public function infos_persoEdit(): Response
-    {
-        return $this->render('profile/infos_perso_edit.html.twig', [
-            'controller_name' => 'ProfileController',
-        ]);
-    }
-    
+
     #[Route('/favoris', name: 'favoris')]
     public function favori(): Response
     {
