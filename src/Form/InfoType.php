@@ -47,34 +47,6 @@ class InfoType extends AbstractType
                 'label_attr' => ['class' => 'formConnex_label2'],
                 'attr' => ['class' => 'class="form-control-material"']
             ])
-            // ->add('agreeTerms', CheckboxType::class, [
-            //     'mapped' => false,
-            //     'label' =>'Accepter les conditions d\'utilisation',
-            //     'constraints' => [
-            //         new IsTrue([
-            //             'message' => 'Vous devez accepter nos conditions d\'utilisations',
-            //         ]),
-            //     ],
-            // ])
-            // ->add('plainPassword', RepeatedType::class, [
-            //     'type' => PasswordType::class,
-            //     'mapped' => false,
-            //     'attr' => ['autocomplete' => 'new-password'],
-            //     'invalid_message' => 'Veuillez renseigner des mot de passe identique.',
-            //     'first_options'  => ['label' => 'Mot de passe*', 'label_attr' => ['class' => 'formConnex_label2'], 'attr' => ['class' => 'class="form-control-material"']],
-            //     'second_options' => ['label' => 'Confirmation mot de passe*', 'label_attr' => ['class' => 'formConnex_label2'], 'attr' => ['class' => 'class="form-control-material"']],
-            //     'constraints' => [
-            //         new NotBlank([
-            //             'message' => 'Veuillez renseigner un mot de passe',
-            //         ]),
-            //         new Length([
-            //             'min' => 6,
-            //             'minMessage' => 'Votre mot de passe doit avoir {{ limit }} caractère minimum',
-            //             // max length allowed by Symfony for security reasons
-            //             'max' => 4096,
-            //         ]),
-            //     ],
-            // ])
             ;
     }
 

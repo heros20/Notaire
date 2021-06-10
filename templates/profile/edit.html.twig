@@ -3,7 +3,6 @@
 {% block body %}
 {% include "profile/nav.html.twig" %}
 
-    {{form_start(form)}}
     <div class="log">
 		{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
@@ -51,7 +50,8 @@
 		<p class="help">*Obligatoire</p> #}
 		<div class="clear"></div>
 
-		<input type="submit" value="S'inscrire"></input>
-    {{form_end(form)}}
+		<input type="submit" value="Modifier"></input>
 
+    {{form_end(form)}}
+</div>
 {% endblock %}

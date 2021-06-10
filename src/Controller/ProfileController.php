@@ -34,7 +34,7 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            // return $this->redirectToRoute('profile');
+            return $this->redirectToRoute('profile');
         }
 
         $user = $this->getUser();
