@@ -24,7 +24,7 @@ class SearchForm extends AbstractType
                 'label' => false,
                 'required' => false,
                 'class' => Category::class,
-                'expanded' => true,
+                // 'expanded' => true,
                 'multiple' => true
             ])
             ->add('ville', EntityType::class, [
@@ -32,7 +32,7 @@ class SearchForm extends AbstractType
                 'required' => false,
                 'class' => Ville::class,
                 'choice_label' => 'title',
-                'expanded' => true,
+                // 'expanded' => true,
                 'multiple' => true
             ])
             ->add('departement', EntityType::class, [
@@ -40,7 +40,7 @@ class SearchForm extends AbstractType
                 'required' => false,
                 'class' => Departement::class,
                 'choice_label' => 'title',
-                'expanded' => true,
+                // 'expanded' => true,
                 'multiple' => true
             ])
             ->add('status', ChoiceType::class, [
@@ -49,8 +49,8 @@ class SearchForm extends AbstractType
                     'Vente' => true,
                     'Location' => false,
                 ],
-                'multiple' => true,
-                'expanded' => true,
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
             ->add('min', NumberType::class, [
                 'label' => false,
