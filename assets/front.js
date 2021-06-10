@@ -15,27 +15,33 @@ $(document).ready(() => {
       });
 })
 
-    const slider = document.getElementById('price-slider');
-    const min = document.getElementById('min')
-    const max = document.getElementById('max')
-    if (slider) {
-      const range =  noUiSlider.create(slider, {
-          start: [400, 1000000],
-          tooltips: [true,true],
-          connect: true,
-          step: 1000,
-          range: {
-              'min': 1000,
-              'max': 300000
-          }
-      })
-     range.on('slide',function(values,handle){
-        if(handle === 0){
-            min.value = Math.round(values[0])
-        }
-        if(handle === 1){
-          max.value = Math.round(values[1])
+// $(window).load(function() {
+//   $('.flexslider').flexslider({
+//     animation: "slide"
+//   });
+// });
+
+const slider = document.getElementById('price-slider');
+const min = document.getElementById('min')
+const max = document.getElementById('max')
+if (slider) {
+  const range =  noUiSlider.create(slider, {
+      start: [400, 1000000],
+      tooltips: [true,true],
+      connect: true,
+      step: 1000,
+      range: {
+          'min': 1000,
+          'max': 300000
       }
-      });
+  })
+  range.on('slide',function(values,handle){
+    if(handle === 0){
+        min.value = Math.round(values[0])
     }
+    if(handle === 1){
+      max.value = Math.round(values[1])
+  }
+  });
+}
 
