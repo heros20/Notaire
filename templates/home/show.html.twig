@@ -10,8 +10,7 @@
 			<p>Description : {{ annonce.description }}</p>
 			<p>{{ annonce.ville.title }}  {{ annonce.ville.codePostal }}</P>
 			<p>{{ annonce.departement.title }}</p>
-			{# <p><img class="container_cardimg" src="{{ asset('assets/uploads/' ~ annonce.image) }}" alt="{{ annonce.image }}"></p> #}
-			<p><img src="{{ annonce.image }}" alt=""></p>
+			{# <p><img src="{{ annonce.image }}" alt=""></p> #}
 			<p>
 				{% if annonce.superficie %}
 					Superficie du batiment : {{ annonce.superficie }}
@@ -69,30 +68,31 @@
 					Nombre de picine  : {{ annonce.piscine }}
 				{% endif %}
 			</p>
-			<pre>
-					{{ dump(annonce.images) }}
-			</pre>
-			{% for img in annonce.images %}
-				<pre>
-					{{ dump(img) }}
-				</pre>
-				{# <div class="flexslider">
+			<div id="slider" class="flexslider">
 				<ul class="slides">
 					<li>
-						<img src="{{ asset('assets/uploads/' ~ img) }}" />
+						<img src="{{ asset('assets/uploads/' ~ annonce.image) }}" alt="{{ annonce.image }}">
 					</li>
+				{% for img in annonce.images %}
 					<li>
-						<img src="slide2.jpg" />
+						<img src="{{ asset('assets/uploads/' ~ img.name) }}" />
 					</li>
-					<li>
-						<img src="slide3.jpg" />
-					</li>
-					<li>
-						<img src="slide4.jpg" />
-					</li>
+				{% endfor %}
 				</ul>
-			</div> #}
-			{% endfor %}
+			</div>
+			<div id="carousel" class="flexslider">
+				<ul class="slides">
+					<li>
+						<img src="{{ asset('assets/uploads/' ~ annonce.image) }}" alt="{{ annonce.image }}">
+					</li>
+				{% for img in annonce.images %}
+					<li>
+						<img src="{{ asset('assets/uploads/' ~ img.name) }}" />
+					</li>
+				{% endfor %}
+				</ul>
+			</div>
+			
 			
 			<div class="red">
 			{% if is_granted("ROLE_USER") %}

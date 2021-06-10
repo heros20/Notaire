@@ -43,7 +43,18 @@ window.onload = () => {
         })
     }
         
-        
+    $(function() {
+        // je stock la recherche d'une url
+        var url = window.location.href;
+
+        // je cible tous mes liens
+        $("a").each(function() {
+            // je verifie que l'url du lien et de la recherche son les mêmes
+            if (url == (this.href)) {
+                $(this).closest("li").addClass("active");
+            }
+        });
+    });        
     
         
     

@@ -2,23 +2,51 @@ import "./scss/main.scss";
 import $ from "jquery";
 import noUiSlider from "nouislider";
 import 'nouislider/dist/nouislider.css';
+import './FlexSlider/flexslider.css';
+import './FlexSlider/jquery.flexslider-min.js';
 
 
 
 $(document).ready(() => {
     $('.deroulant').on('mouseenter',function(){
         $(".sous").fadeIn(350);
-      });
-      $('.sous').on('mouseleave',function(){
+    });
+    $('.sous').on('mouseleave',function(){
         $(".sous").fadeOut("slow");
-      });
+    });
+
+     $('#carousel').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        itemWidth: 210,
+        itemMargin: 5,
+        slideshowSpeed: 7000,
+        asNavFor: '#slider'
+    });
+ 
+    $('#slider').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        sync: "#carousel"
+    });
 })
 
-// $(window).load(function() {
-//   $('.flexslider').flexslider({
-//     animation: "slide"
-//   });
-// });
+$(function() {
+      // je stock la recherche d'une url
+      var url = window.location.href;
+
+      // je cible tous mes liens
+      $(".navbar__menu a").each(function() {
+          // je verifie que l'url du lien et de la recherche son les mêmes
+          if (url == (this.href)) {
+              $(this).closest("li").addClass("active");
+          }
+      });
+  }); 
 
 const slider = document.getElementById('price-slider');
 const min = document.getElementById('min')

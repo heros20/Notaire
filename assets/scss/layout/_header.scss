@@ -22,6 +22,7 @@
     
   }
 }
+
 .navigation {
     position: relative;
     z-index: 200;
@@ -186,15 +187,15 @@
     transform-origin: left center;
   }
   
-  .current-page {
-    position: relative;
-    text-transform: uppercase;
-    font-size: 18px;
-    width: 100%;
-    display: block;
-    cursor: pointer;
-    color: #ccbaba;
-  }
+  // .current-page {
+  //   position: relative;
+  //   text-transform: uppercase;
+  //   font-size: 18px;
+  //   width: 100%;
+  //   display: block;
+  //   cursor: pointer;
+  //   color: #ccbaba;
+  // }
   
   .current-page:before {
     top: 0;
@@ -203,6 +204,11 @@
   .current-page:after {
     bottom: 0;
   }
+  .navbar__menu ul li.active a{
+    background: rgb(115, 182, 221);
+    padding: 5px;
+    border-radius: 5px;
+}
   @include tablette {
     .topHeader{
       &_logo{
