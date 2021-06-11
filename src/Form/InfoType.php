@@ -26,17 +26,18 @@ class InfoType extends AbstractType
                 'label' => 'Email*',
                 'label_attr' => ['class' => 'formConnex_label1'],
                 'attr' => ['class' => 'class="form-control-material"'],
+                'empty_data' => '',
                 'constraints' => [
-                    new NotNull([
+                    new NotBlank([
                         'message' => 'Veuillez renseigner votre Email',
                     ]),
-
                 ],
             ])
             ->add('name', TextType::class, [
                 'label' => 'Nom*',
                 'label_attr' => ['class' => 'formConnex_label2'],
                 'attr' => ['class' => 'class="form-control-material"'],
+                'empty_data' => '',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner votre Email',
@@ -48,6 +49,7 @@ class InfoType extends AbstractType
                 'label' => 'Prénom*',
                 'label_attr' => ['class' => 'formConnex_label2'],
                 'attr' => ['class' => 'class="form-control-material"'],
+                'empty_data' => '',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner votre Email',

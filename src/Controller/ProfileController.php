@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
 use App\Entity\User;
 use App\Form\InfoType;
+use Symfony\Component\Form\FormError;
 
 #[Route('/profile')]
 class ProfileController extends AbstractController
@@ -18,15 +19,17 @@ class ProfileController extends AbstractController
     public function index(): Response
     {
         $user = $this->getUser();
+        // dd($user);
 
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
             'user' => $user
         ]);
     }
-    #[Route('/{id}/edit', name: 'infos_perso_edit', methods: ['GET', 'POST'])]
-    public function infos_persoEdit(Request $request, User $user): Response
+    #[Route('/edit', name: 'infos_perso_edit', methods: ['GET', 'POST'])]
+    public function infos_persoEdit(Request $request): Response
     {
+        $user = $this->getUser();
 
         $form = $this->createForm(InfoType::class, $user);
         $form->handleRequest($request);
