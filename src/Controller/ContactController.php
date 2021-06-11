@@ -7,9 +7,12 @@ use App\entity\User;
 use App\Form\ContactType;
 use Symfony\Component\Security\Core\Security;
 use App\Repository\ContactRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/contact')]
@@ -31,21 +34,33 @@ class ContactController extends AbstractController
 
 
     #[Route('/', name: 'contact', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, MailerInterface $mailer): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $email = (new TemplatedEmail())
+                ->from($contact->getEmail())
+                ->to(new Address('sebastienweb27@gmail.com'))
+                ->subject('Contact')
+                ->htmlTemplate('emails/contact.html.twig')
+                ->context([
+                    'contact' => $contact,
+                    'mail' => $contact->getEmail(),
+                    'message' => $contact->getMessage()
+                ]);
+            $mailer->send($email);
             $entityManager = $this->getDoctrine()->getManager();
             $contact->setEtat(false);
             if ($this->security->isGranted('ROLE_USER')) {
-            $contact->addUser($this->getUser());
+                $contact->setUser($this->getUser());
             }
             $entityManager->persist($contact);
             $entityManager->flush();
-
+            $this->addFlash('message', 'Votre email à bien était envoyez');
             return $this->redirectToRoute('home');
         }
 
