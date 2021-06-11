@@ -89,19 +89,28 @@ class AdminController extends AbstractController
     }
     
     #[Route('/profil', name: 'profil_admin')]
-    public function admin_profil(): Response
+    public function admin_profil(Request $request): Response
     {
         $user = $this->getUser();
         return $this->render('admin/profil_admin.html.twig', [
-            'admin' => $user
+            'user' => $user
         ]);
     }
-    
-    // public function recup_admin_profil(User $user): Response
-    // {
-    //     dd($user);
-    //     return $this->render('header.html.twig', [
-    //         'admin' => $user
-    //     ]);
-    // }
+    #[Route('/profil/edit', name: 'edit_profil_admin')]
+    public function edit_admin_profil(Request $request): Response
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(InfoType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setModifiedAt(new \DateTime());
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('profile');
+        }
+        return $this->render('admin/edit_profil_admin.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
