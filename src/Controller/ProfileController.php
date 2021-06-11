@@ -19,7 +19,7 @@ use App\Service\FileUploader;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\FormError;
 
-#[Route('/profile')]
+#[Route('/profil')]
 class ProfileController extends AbstractController
 {
 
