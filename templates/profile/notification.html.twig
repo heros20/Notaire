@@ -1,7 +1,19 @@
 {% extends "base.html.twig" %}
 {% block body %}
 {% include "profile/nav.html.twig" %}
-<h1>page notification</h1>
+<section class="container">
+    <h1>page notification</h1>
+    <p>Reçus : {{ app.user.received|length }}</p>
+    <p>Envoyés : {{ app.user.sent|length }}</p>
+
+<ul>
+    {# {% for item in items %}
+        <li><a href=""></a></li>
+    {% endfor %} #}
+
+</ul>
+
+</section>
 
 
 {% endblock %}
