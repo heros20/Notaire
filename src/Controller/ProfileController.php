@@ -10,11 +10,19 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
 use App\Entity\User;
 use App\Form\InfoType;
+use App\Repository\AnnonceRepository;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use App\Service\FileUploader;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\FormError;
 
 #[Route('/profile')]
 class ProfileController extends AbstractController
 {
+
     #[Route('/', name: 'profile')]
     public function index(): Response
     {

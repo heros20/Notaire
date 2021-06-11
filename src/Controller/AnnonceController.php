@@ -155,4 +155,5 @@ class AnnonceController extends AbstractController
             return new JsonResponse(['error' => 'token invalide'], 400);
         }
     }
+
 }

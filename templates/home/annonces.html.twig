@@ -11,7 +11,8 @@
 					{% include "home/_filter.html.twig" with {form: form, min: min, max: max} only %}
 					<div class="container_annonces">
 						{% for annonce in searchAnnonce %}
-							<div class="container_annonce">
+							<div class="container_annonce" data-aos="zoom-in"data-aos-easing="ease-in-out"
+    						 data-aos-duration="700">
 								{% include "home/_card.html.twig" with {annonce: annonce} only %}
 								<div class="container_coeur">
 									{% if is_granted("ROLE_USER") %}

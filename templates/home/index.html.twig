@@ -37,11 +37,12 @@
 				<h3>Les dernières annonces immobilières</h3>
 				<p>Que vous soyez vendeur ou acquéreur, vous trouverez chez votre notaire le service complet vous garantissant la bone fin de votre opération</p>
 			</div>
-			<div class="container_Annonces">
+			<div class="container_Annonces" >
 				<div class="container_allAnnonces">
 					<div class="container_annonces">
 						{% for annonce in annonces %}
-							<div class="container_annonce">
+							<div class="container_annonce"data-aos="zoom-in"data-aos-easing="ease-in-out"
+     						data-aos-duration="500">
 								<a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
 									<img class="container_cardimg" src="{{ asset('assets/uploads/' ~ annonce.image) }}" alt="{{ annonce.image }}">
 									<h3>{{ annonce.title }}</h3>

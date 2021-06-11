@@ -4,6 +4,7 @@ import noUiSlider from "nouislider";
 import 'nouislider/dist/nouislider.css';
 import './FlexSlider/flexslider.css';
 import './FlexSlider/jquery.flexslider-min.js';
+AOS.init();
 
 
 
