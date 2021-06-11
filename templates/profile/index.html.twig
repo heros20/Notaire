@@ -30,7 +30,7 @@
                             <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : ''  }}</td>
                             <td>{{ user.modifiedAt ? user.modifiedAt|date('Y-m-d H:i:s') : ''  }}</td>
                             <td>
-                                <a class="action" href="{{ path('infos_perso_edit', {'id': user.id}) }}">Éditer</a>
+                                <a class="action" href="{{ path('infos_perso_edit') }}">Éditer</a>
                             </td>
                         </tr>
 			    </tbody>
