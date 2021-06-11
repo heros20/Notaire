@@ -35,7 +35,7 @@ class ContactController extends AbstractController
 
 
     #[Route('/', name: 'contact', methods: ['GET', 'POST'])]
-    public function new(Request $request, MailerInterface $mailer,int $id = 3): Response
+    public function new(Request $request, MailerInterface $mailer): Response
     {
 
         $contact = new Contact();
@@ -67,7 +67,7 @@ class ContactController extends AbstractController
             // ->find($id));
             $entityManager->persist($contact);
             $entityManager->flush();
-            $this->addFlash('message', 'Votre email à bien était envoyez');
+            // $this->addFlash('message', 'Votre email à bien était envoyez');
             return $this->redirectToRoute('home');
         }
 

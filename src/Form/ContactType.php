@@ -37,6 +37,9 @@ class ContactType extends AbstractType
                 ])
                 ->add('phone');
         }
+        else {
+            
+        }
         $builder
             ->add('message', TextType::class,[
                 'label' => 'Message *'
