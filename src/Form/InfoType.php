@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Validator\Constraints\NotNull;
 
@@ -62,6 +63,13 @@ class InfoType extends AbstractType
                 'label_attr' => ['class' => 'formConnex_label2'],
                 'attr' => ['class' => 'class="form-control-material"']
             ])
+            ->add(
+                'roles', ChoiceType::class, [
+                    'choices' => ['ROLE_ADMIN' => 'ROLE_ADMIN', 'ROLE_USER' => ''],
+                    // 'expanded' => true,
+                    'multiple' => true,
+                ]
+            )
             ;
     }
 

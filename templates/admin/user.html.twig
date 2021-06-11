@@ -34,7 +34,7 @@
                         <td>{{ user.createdAt | date('d/m/Y') }} à {{ user.createdAt | date('H:i') }}</td>
 	                    <td>
 							<a href="{{ path('utilisateur_show', {'id': user.id}) }}">Voir</a>
-							{# <a href="{{ path('utilisateur_edit', {'id': user.id}) }}">Éditer</a> #}
+							<a href="{{ path('utilisateur_edit', {'id': user.id}) }}">Éditer</a>
 						</td>
 					</tr>
 				{% else %}
