@@ -13,15 +13,16 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
 
 class RegistrationController extends AbstractController
 {
-    // private $emailVerifier;
+    private $emailVerifier;
 
-    // public function __construct(EmailVerifier $emailVerifier)
-    // {
-    //     $this->emailVerifier = $emailVerifier;
-    // }
+    public function __construct(EmailVerifier $emailVerifier)
+    {
+        $this->emailVerifier = $emailVerifier;
+    }
 
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher): Response
@@ -42,18 +43,14 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-
-            // generate a signed url and email it to the user
-            // $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-            //     (new TemplatedEmail())
-            //         ->from(new Address('notarial@gmail.com', 'agence notarial'))
-            //         ->to($user->getEmail())
-            //         ->subject('Please Confirm your Email')
-            //         ->htmlTemplate('registration/confirmation_email.html.twig')
-            // );
-            // do anything else you need here, like send an email
-
-            return $this->redirectToRoute('home');
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                (new TemplatedEmail())
+                    ->from(new Address('notarial@gmail.com', 'agence notarial'))
+                    ->to($user->getEmail())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
+            return $this->redirectToRoute('attente');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -61,23 +58,42 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    // #[Route('/verify/email', name: 'app_verify_email')]
-    // public function verifyUserEmail(Request $request): Response
-    // {
-    //     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    #[Route('/verify/email', name: 'app_verify_email')]
+    public function verifyUserEmail(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-    //     // validate email confirmation link, sets User::isVerified=true and persists
-    //     try {
-    //         $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
-    //     } catch (VerifyEmailExceptionInterface $exception) {
-    //         $this->addFlash('verify_email_error', $exception->getReason());
+        // validate email confirmation link, sets User::isVerified=true and persists
+        try {
+            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
+        } catch (VerifyEmailExceptionInterface $exception) {
+            $this->addFlash('verify_email_error', $exception->getReason());
 
-    //         return $this->redirectToRoute('app_register');
-    //     }
+            return $this->redirectToRoute('app_register');
+        }
 
-    //     // @TODO Change the redirect on success and handle or remove the flash message in your templates
-    //     $this->addFlash('success', 'Your email address has been verified.');
+        // @TODO Change the redirect on success and handle or remove the flash message in your templates
+        $this->addFlash('success', 'Your email address has been verified.');
 
-    //     return $this->redirectToRoute('app_register');
-    // }
+        return $this->redirectToRoute('profile');
+    }
+    #[Route('/attente', name: 'attente')]
+    public function attente()
+    {
+        return $this->render('emails/attente.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+    #[Route('/mdp', name: 'mdp')]
+    public function mdp(MailerInterface $mailer)
+    {
+        $email = (new TemplatedEmail())
+            ->from('test@gmail.com')
+            ->to(new Address('sebastienweb27@gmail.com'))
+            ->subject('Mot de passe oublié')
+            ->htmlTemplate('emails/mdp.html.twig');
+        $mailer->send($email);
+        return $this->render('emails/mdp.html.twig');
+    }
 }

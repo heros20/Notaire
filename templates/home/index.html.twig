@@ -4,14 +4,14 @@
 {% endblock %}
 
 {% block body %}
-{% for flashError in app.flashes('message') %}
-
-<div>{{ flashError }}</div>
-	
-{% endfor %}
 	<section class="container">
 		<div class="container_img">
 			<img class="container_imge" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+			{% for flashError in app.flashes('message') %}
+
+				<div class="container_flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
+
+			{% endfor %}
 		</div>
 		<div class="container_dixAns">
 			<h1>Nous avons 10 ans d'expérience dans différent cas</h1>
@@ -20,13 +20,13 @@
 			<div class="container_propos">
 				<h2>À Propos</h2>
 				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
-				repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
-				impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
-				 a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+														repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+														impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+														 a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
 				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
-					 repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
-					impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
-					 a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+															 repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+															impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+															 a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
 			</div>
 			<div class="container_img">
 				<img class="container_imgs" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
@@ -37,12 +37,11 @@
 				<h3>Les dernières annonces immobilières</h3>
 				<p>Que vous soyez vendeur ou acquéreur, vous trouverez chez votre notaire le service complet vous garantissant la bone fin de votre opération</p>
 			</div>
-			<div class="container_Annonces" >
+			<div class="container_Annonces">
 				<div class="container_allAnnonces">
 					<div class="container_annonces">
 						{% for annonce in annonces %}
-							<div class="container_annonce"data-aos="zoom-in"data-aos-easing="ease-in-out"
-     						data-aos-duration="500">
+							<div class="container_annonce" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
 								<a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
 									<img class="container_cardimg" src="{{ asset('assets/uploads/' ~ annonce.image) }}" alt="{{ annonce.image }}">
 									<h3>{{ annonce.title }}</h3>
