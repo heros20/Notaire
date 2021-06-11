@@ -27,23 +27,19 @@ class ContactType extends AbstractType
             $builder
                 ->add('name', TextType::class, [
                     'label' => 'Nom *',
-                    'constraints' => [new NotNull([
-                        'message' => 'Veuillez renseigner ce champ',
-                    ]),]
+                    'label_attr' => ['class' => 'formConnex_label2'],
+                    'attr' => ['class' => 'class="form-control-material"'],
                 ])
                 ->add('email', EmailType::class, [
                     'label' => 'Email *',
-                    'constraints' => [new NotNull([
-                        'message' => 'Veuillez renseigner ce champ',
-                    ]),]
+                    'label_attr' => ['class' => 'formConnex_label2'],
+                    'attr' => ['class' => "form-control-material"]
                 ])
                 ->add('phone');
         }
         $builder
-            ->add('message', TextareaType::class, [
-                'constraints' => [new NotNull([
-                    'message' => 'Veuillez renseigner ce champ',
-                ]),]
+            ->add('message', TextType::class,[
+                'label' => 'Message *'
             ]);
     }
 
