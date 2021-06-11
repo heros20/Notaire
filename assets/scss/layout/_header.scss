@@ -103,17 +103,20 @@
     transition: all 0.3s ease 0.2s;
   }
   .sous{
-    margin: 5px 80px;
-    right: 0;
-    left: 0;
-    background: #a8d7f5;
+    right: 100px;
+    left: 334px;
+    background: var(--color-primary);
+    border: 1px solid #fff;
+    display: flex;
+    margin: 30px 0;
+    border-radius: 5px;
   }
   .sous li{
     text-align: center;
     margin-bottom: 15px;
   }
-  .sous a:hover{
-    background: #ffffff;
+  .sous li a{
+    color: #fff;
   }
   .navbar {
     position: fixed;

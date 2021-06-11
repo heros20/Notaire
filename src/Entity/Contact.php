@@ -51,20 +51,19 @@ class Contact
     private $etat;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Annonce::class, inversedBy="contacts")
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="contacts")
      */
-    private $annonces;
+    private $Annonce;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="contacts")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="contacts")
      */
-    private $users;
+    private $User;
+
 
     public function __construct()
     {
         $this->createdAt = new \DateTime;
-        $this->annonces = new ArrayCollection();
-        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,50 +143,26 @@ class Contact
         return $this;
     }
 
-    /**
-     * @return Collection|Annonce[]
-     */
-    public function getAnnonce(): Collection
+    public function getAnnonce(): ?Annonce
     {
-        return $this->annonces;
+        return $this->Annonce;
     }
 
-    public function addAnnonce(Annonce $annonce): self
+    public function setAnnonce(?Annonce $Annonce): self
     {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces[] = $annonce;
-        }
+        $this->Annonce = $Annonce;
 
         return $this;
     }
 
-    public function removeAnnonce(Annonce $annonce): self
+    public function getUser(): ?User
     {
-        $this->annonces->removeElement($annonce);
-
-        return $this;
+        return $this->User;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
+    public function setUser(?User $User): self
     {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        $this->users->removeElement($user);
+        $this->User = $User;
 
         return $this;
     }

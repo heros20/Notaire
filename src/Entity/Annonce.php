@@ -183,11 +183,6 @@ class Annonce
     private $favoris;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Contact::class, mappedBy="annonce")
-     */
-    private $contacts;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -201,14 +196,19 @@ class Annonce
      * @ORM\OneToMany(targetEntity=Images::class, mappedBy="annonce", orphanRemoval=true, cascade={"persist"})
      */
     private $images;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="Annonce")
+     */
+    private $contacts;
     
     public function __construct()
     {
         $this->createdAt = new \DateTime;
         $this->category = new ArrayCollection();
         $this->favoris = new ArrayCollection();
-        $this->contacts = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -480,33 +480,6 @@ class Annonce
         return $this;
     }
 
-    /**
-     * @return Collection|Contact[]
-     */
-    public function getContacts(): Collection
-    {
-        return $this->contacts;
-    }
-
-    public function addContact(Contact $contact): self
-    {
-        if (!$this->contacts->contains($contact)) {
-            $this->contacts[] = $contact;
-            $contact->addAnnonce($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContact(Contact $contact): self
-    {
-        if ($this->contacts->removeElement($contact)) {
-            $contact->removeAnnonce($this);
-        }
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -555,6 +528,36 @@ class Annonce
             // set the owning side to null (unless already changed)
             if ($image->getAnnonce() === $this) {
                 $image->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getAnnonce() === $this) {
+                $contact->setAnnonce(null);
             }
         }
 

@@ -90,10 +90,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $favoris;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Contact::class, mappedBy="users")
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="User")
      */
     private $contacts;
-    
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;
@@ -293,7 +293,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->contacts->contains($contact)) {
             $this->contacts[] = $contact;
-            $contact->addUser($this);
+            $contact->setUser($this);
         }
 
         return $this;
@@ -302,7 +302,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeContact(Contact $contact): self
     {
         if ($this->contacts->removeElement($contact)) {
-            $contact->removeUser($this);
+            // set the owning side to null (unless already changed)
+            if ($contact->getUser() === $this) {
+                $contact->setUser(null);
+            }
         }
 
         return $this;
