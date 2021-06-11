@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\InfoType;
 use App\Repository\AnnonceRepository;
 use App\Repository\UserRepository;
 use App\Repository\VilleRepository;
@@ -14,9 +15,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
+#[Route('/admin')]
 class AdminController extends AbstractController
 {
-    #[Route('/admin', name: 'admin')]
+    #[Route('/', name: 'admin')]
     public function index(AnnonceRepository $annonceRepository,UserRepository $userRepository,VilleRepository $villeRepository,CategoryRepository $categoryRepository, DepartementRepository $departementRepository): Response
     {
         $annonces = $annonceRepository->findAll();
@@ -42,18 +44,36 @@ class AdminController extends AbstractController
             'countdepartements' => $countdepartements
         ]);
     }
-    #[Route('/admin/utilisateur', name: 'utilisateur_index')]
+    #[Route('/utilisateur', name: 'utilisateur_index')]
     public function utilisateur(UserRepository $userRepository): Response
     {
-        return $this->render('admin/utilisateur.html.twig',[
+        return $this->render('admin/user.html.twig',[
             'users' => $userRepository->findAll()
         ]);
     }
-    #[Route('/admin/{id}', name: 'utilisateur_show', methods: ['GET'])]
+    #[Route('/utilisateur/{id}', name: 'utilisateur_show', methods: ['GET'])]
     public function show(User $user): Response
     {
-        return $this->render('admin/showUser.html.twig', [
+        dd($user);
+        return $this->render('admin/show-user.html.twig', [
             'user' => $user,
+        ]);
+    }
+    #[Route('/utilisateur/{id}/edit', name: 'utilisateur_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        $form = $this->createForm(InfoType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('utilisateur_index');
+        }
+
+        return $this->render('admin/edit-user.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
     #[Route('/user/{id}', name: 'user_delete', methods: ['POST'])]
@@ -66,5 +86,31 @@ class AdminController extends AbstractController
         }
 
         return $this->redirectToRoute('utilisateur_index');
+    }
+    
+    #[Route('/profil', name: 'profil_admin')]
+    public function admin_profil(Request $request): Response
+    {
+        $user = $this->getUser();
+        return $this->render('admin/profil_admin.html.twig', [
+            'user' => $user
+        ]);
+    }
+    #[Route('/profil/edit', name: 'edit_profil_admin')]
+    public function edit_admin_profil(Request $request): Response
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(InfoType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setModifiedAt(new \DateTime());
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('profile');
+        }
+        return $this->render('admin/edit_profil_admin.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

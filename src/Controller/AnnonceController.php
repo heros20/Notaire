@@ -18,7 +18,8 @@ use Symfony\Component\HttpFoundation\File\File;
 use App\Service\FileUploader;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-#[Route('/admin/annonce')]
+
+#[Route('admin/annonce')]
 class AnnonceController extends AbstractController
 {
     #[Route('/', name: 'annonce_index', methods: ['GET'])]

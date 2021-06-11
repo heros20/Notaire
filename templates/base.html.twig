@@ -5,8 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
-			{% block title %}Welcome!
-			{% endblock %}
+			{% block title %}Welcome!{% endblock %}
 		</title>
 
 		{% block stylesheets %}
@@ -40,14 +39,14 @@
 						06 xx xx xx xx
 					</p>
 				</div>
-			</div>
+			</div> 
 			<div class="containerHeader">
 				<div class="topHeader_logo">
 					<img src="{{ asset('assets/uploads/notaire_de_france.jpg') }}" alt="notaire_de_france">
 				</div>
 				<div class="navigation">
 					<input type="checkbox" class="navigation__checkbox" id="navi-toggle" aria-checked="false">
-					<nav class="navbar">
+					<nav class="navbar">.navbar__menu ul li ul
 						<div class="navbar__menu">
 							<ul class="navbar__links">
 								<li class="navbar__item">
@@ -63,43 +62,41 @@
 									<a href="{{path('contact')}}" class="navbar__link">Contact</a>
 								</li>
 								{% if is_granted('ROLE_USER') %}
-									<li class="deroulant">
-										<a href="{{ path('profile') }}" class="navbar__link">Espace Client</a>
-										<ul class="sous">
-											<li class="navbar__item">
-												<a class="navbar__link" href="{{ path('notif') }}">Messagerie</a>
-											</li>
-											<li class="navbar__item">
-											<a class="navbar__link" href="{{ path('favoris') }}">Favoris</a>
-											</li>
+								<li class="deroulant">
+									<a href="{{ path('profile') }}" class="navbar__link">Espace Client</a>
+									<ul class="sous">
+										<li class="navbar__item">
+											<a class="navbar__link" href="{{ path('notif') }}">Messagerie</a>
 										</li>
-									</li>
-								</ul>
-							</li>
-							<li class="navbar__item">
-								<a href="{{ path('app_logout') }}" class="navbar__link">Deconnexion</a>
-							</li>
-							{% if is_granted('ROLE_ADMIN') %}
-								<li class="navbar__item">
-									<a href="{{ path('admin') }}" class="navbar__link ">Admin</a>
+										<li class="navbar__item">
+											<a class="navbar__link" href="{{ path('favoris') }}">Favoris</a>
+										</li>
+									</ul>
 								</li>
-							{% endif %}
-						{% else %}
-							<li class="navbar__item">
-								<a class="navbar__link" href="{{ path('app_register') }}" class="navbar__link ">Inscription
-								</a>
-							</li>
-							<li class="navbar__item">
-								<a class="navbar__link" href="{{ path('app_login') }}">Connexion</a>
-							</li>
-						{% endif %}
-					</ul>
+								<li class="navbar__item">
+									<a href="{{ path('app_logout') }}" class="navbar__link">Deconnexion</a>
+								</li>
+								{% if is_granted('ROLE_ADMIN') %}
+									<li class="navbar__item">
+										<a href="{{ path('admin') }}" class="navbar__link ">Admin</a>
+									</li>
+								{% endif %}
+								{% else %}
+									<li class="navbar__item">
+										<a class="navbar__link" href="{{ path('app_register') }}" class="navbar__link ">Inscription
+										</a>
+									</li>
+									<li class="navbar__item">
+										<a class="navbar__link" href="{{ path('app_login') }}">Connexion</a>
+									</li>
+								{% endif %}
+							</ul>
+						</div>
+					</nav>
+					<label for="navi-toggle" class="navigation__button" aria-haspopup="true" aria-controls="main-menu" aria-label="Open or close main menu">
+						<span class="navigation__icon">&nbsp;</span>
+					</label>
 				</div>
-			</nav>
-			<label for="navi-toggle" class="navigation__button" aria-haspopup="true" aria-controls="main-menu" aria-label="Open or close main menu">
-				<span class="navigation__icon">&nbsp;</span>
-			</label>
-		</div>
 	</body>
 </html></div></header>{% block body %}{% endblock %}<footer><div class="footer">
 <div class="footer_insidefooter">
