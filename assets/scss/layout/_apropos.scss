@@ -136,6 +136,10 @@
 .fa-heart {
     color: red;
 }
+.flexslider{
+    width: 20% ;
+}
+
 @include tablette {
     .container {
         &_h2Annonces {
