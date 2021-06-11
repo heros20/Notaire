@@ -1,0 +1,20 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Éditer le Département
+{% endblock %}
+
+{% block body %}
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+
+
+		<h1 class="ml-5">Éditer le Département</h1>
+
+		{{ include('departement/_form.html.twig', {'button_label': 'Modifiez'}) }}
+	</div>
+
+	<div class="flex">
+		<a class="btn btn-primary ml-5" href="{{ path('departement_index') }}">Retour</a>
+		{{ include('departement/_delete_form.html.twig') }}
+	</div>
+
+{% endblock %}

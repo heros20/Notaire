@@ -27,6 +27,15 @@ class AnnonceRepository extends ServiceEntityRepository
      * @return Annonce[]
      */
 
+    // public function countNbElement()
+    // {
+    //     $query = $this->createQueryBuilder('e');
+     
+    //     $query ->select($query->expr()->count('e'));
+     
+    //     return (int) $query->getQuery()->getSingleScalarResult();
+    // }
+
     public function findSearch(SearchData $search): array
     {
         $query = $this
