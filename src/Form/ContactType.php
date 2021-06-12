@@ -23,7 +23,6 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (!$this->security->isGranted('ROLE_USER')) {
-
             $builder
                 ->add('name', TextType::class, [
                     'label' => 'Nom *',
@@ -38,9 +37,9 @@ class ContactType extends AbstractType
                 ->add('phone');
         }
         $builder
-            ->add('message', TextType::class,[
+            ->add('message', TextType::class, [
                 'label' => 'Message *'
-            ]);
+            ]);     
     }
 
     public function configureOptions(OptionsResolver $resolver)
