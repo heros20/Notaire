@@ -18,7 +18,12 @@
         </thead>
         <tbody>
             {% for message in app.user.received %}
-                <tr>
+            {% if message.isRead == 1 %}
+                <tr class="no_color">
+                {# tu peux modifier si tu veux, seb. Je te laisse gérer ça #}
+            {% else %}
+                <tr class="color"> 
+            {% endif %}
                     <td><a href="{{ path("notif_show_admin", {id: message.id}) }}">{{ message.sender.email }}</a></td>
                     <td>{{ message.createdAt|date }}</td>
                 </tr>
