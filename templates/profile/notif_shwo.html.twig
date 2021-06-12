@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block body %}
+{% include "profile/nav.html.twig" %}
+<section class="container">
+
+    <p>Vous avez reçu {{ app.user.received|length }} messages</p>
+
+    <div>
+        <div>De</div> 
+        <div>Date</div> 
+        <div>Actions</div> 
+        {% for message in app.user.received %}
+            <div></div>
+            <div></div>
+            <div></div>
+        {% endfor %}
+
+    </div>
+    <p></p>
+    <p></p>
+
+</section>
+
+
+{% endblock %}

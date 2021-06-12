@@ -90,9 +90,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $favoris;
 
     /**
-     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="User")
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="sender")
      */
-    private $contacts;
+    private $sent;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="recipient")
+     */
+    private $received;
+
 
     /**
      * @ORM\Column(type="boolean",nullable=true)
@@ -109,7 +115,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->createdAt = new \DateTime;
         $this->modifieddAt = new \DateTime;
         $this->favoris = new ArrayCollection();
-        $this->contacts = new ArrayCollection();
+        $this->sent = new ArrayCollection();
+        $this->received = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -294,27 +301,57 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection|Contact[]
      */
-    public function getContacts(): Collection
+    public function getSent(): Collection
     {
-        return $this->contacts;
+        return $this->sent;
     }
 
-    public function addContact(Contact $contact): self
+    public function addSent(Contact $sent): self
     {
-        if (!$this->contacts->contains($contact)) {
-            $this->contacts[] = $contact;
-            $contact->setUser($this);
+        if (!$this->sent->contains($sent)) {
+            $this->sent[] = $sent;
+            $sent->setSender($this);
         }
 
         return $this;
     }
 
-    public function removeContact(Contact $contact): self
+    public function removeSent(Contact $sent): self
     {
-        if ($this->contacts->removeElement($contact)) {
+        if ($this->sent->removeElement($sent)) {
             // set the owning side to null (unless already changed)
-            if ($contact->getUser() === $this) {
-                $contact->setUser(null);
+            if ($sent->getSender() === $this) {
+                $sent->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getReceived(): Collection
+    {
+        return $this->received;
+    }
+
+    public function addReceived(Contact $received): self
+    {
+        if (!$this->received->contains($received)) {
+            $this->received[] = $received;
+            $received->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceived(Contact $received): self
+    {
+        if ($this->received->removeElement($received)) {
+            // set the owning side to null (unless already changed)
+            if ($received->getRecipient() === $this) {
+                $received->setRecipient(null);
             }
         }
 
