@@ -8,6 +8,24 @@
     <p>Reçus : {{ app.user.received|length }}</p>
     <p>Envoyés : {{ app.user.sent|length }}</p>
 
+ <div>
+        <div>De</div> 
+        <div>Date</div> 
+        <div>Actions</div> 
+        {% for message in app.user.received %}
+            {% if message.isRead == 0 %}
+                {% set bold = "" %}
+
+            {% else %}
+                {% set bold = "" %}
+            {% endif %}
+            <a href="{{ path("notif_show", {id: message.id}) }}">
+            <div>{{ message.sender.email }}</div></a>
+            <div>{{ message.createdAt|date }}</div>
+            <div><a href="{{ path("notif_delete", {id: message.id}) }}"></a></div>
+        {% endfor %}
+
+    </div>
 <ul>
     {# {% for item in items %}
         <li><a href=""></a></li>

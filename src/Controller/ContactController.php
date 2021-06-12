@@ -37,38 +37,42 @@ class ContactController extends AbstractController
     #[Route('/', name: 'contact', methods: ['GET', 'POST'])]
     public function new(Request $request, MailerInterface $mailer): Response
     {
-
+        $user = $this->getUser();
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
                 
-            // $email = new TemplatedEmail();
-            // if (!$this->security->isGranted('ROLE_USER')) {
-            //     $email->from($contact->getEmail())
-            // }
-            //     $email->to(new Address('sebastienweb27@gmail.com'))
-            //     ->subject('Contact')
-            //     ->htmlTemplate('emails/contact.html.twig')
-            //     ->context([
-            //         'contact' => $contact,
-            //         'mail' => $contact->getEmail(),
-            //         'message' => $contact->getMessage()
-            //     ]);
-            // $mailer->send($email);
+            $email = new TemplatedEmail();
+            if ($this->security->isGranted('ROLE_USER')) {
+                $email->from($contact->getEmail($user));
+            }else {
+                $email->from($contact->getEmail());
+            }
+
+                dd($contact);
+                $email->to(new Address('sebastienweb27@gmail.com'))
+                ->subject('Contact')
+                ->htmlTemplate('emails/contact.html.twig')
+                ->context([
+                    'contact' => $contact,
+                    'mail' => $contact->getEmail(),
+                    'message' => $contact->getMessage()
+                ]);
+            $mailer->send($email);
             $entityManager = $this->getDoctrine()->getManager();
             $contact->setIsRead(false);
             if ($this->security->isGranted('ROLE_USER')) {
                 $contact->setSender($this->getUser());
             }
-            // $contact->setRecipient($this->getDoctrine()
-            // ->getRepository(User::class)
-            // ->find($id));
+            $contact->setRecipient($this->getDoctrine()
+            ->getRepository(User::class)
+            ->find($user->getId()));
             $entityManager->persist($contact);
             $entityManager->flush();
-            // $this->addFlash('message', 'Votre email à bien était envoyez');
-            return $this->redirectToRoute('home');
+            $this->addFlash('message', 'Votre email à bien était envoyez');
+            // return $this->redirectToRoute('home');
         }
 
         return $this->render('contact/index.html.twig', [
