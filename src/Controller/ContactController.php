@@ -50,19 +50,25 @@ class ContactController extends AbstractController
             ->find($user->getId()));            $email = new TemplatedEmail();
             if ($this->security->isGranted('ROLE_USER')) {
                 $contact->setSender($this->getUser());
-                $email->from($contact->getSender()->getEmail());
+                $email->from($contact->getSender()->getEmail())
+                ->context([
+                    'contact' => $contact,
+                    'mail' => $contact->getSender()->getEmail(),
+                    'message' => $contact->getMessage()
+                ]);
             }else {
-                $email->from($contact->getEmail());
+                $email->from($contact->getEmail())
+                ->context([
+                    'contact' => $contact,
+                    'mail' => $contact->getEmail(),
+                    'message' => $contact->getMessage()
+                ]);
             }
-            //     $email->to(new Address('sebastienweb27@gmail.com'))
-            //     ->subject('Contact')
-            //     ->htmlTemplate('emails/contact.html.twig')
-            //     ->context([
-            //         'contact' => $contact,
-            //         'mail' => $contact->getEmail(),
-            //         'message' => $contact->getMessage()
-            //     ]);
-            // $mailer->send($email);
+                $email->to(new Address('sebastienweb27@gmail.com'))
+                ->subject('Contact')
+                ->htmlTemplate('emails/contact.html.twig');
+              
+            $mailer->send($email);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
