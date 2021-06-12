@@ -5,7 +5,6 @@ import './portal/assets/css/portal.css';
 // import './portal/assets/plugins/bootstrap/js/bootstrap.js';
 import './portal/assets/js/app.js';
 import './styles/app.css';
-import '../bower_components/dpeges/dpeges'
 
 
 window.onload = () => {

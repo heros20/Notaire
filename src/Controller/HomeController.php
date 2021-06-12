@@ -85,7 +85,7 @@ class HomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
         $em->flush();
-        return $this->redirectToRoute('annonces');
+        return $this->redirectToRoute('favoris');
     }
      #[Route('/annonces/favoris/retrait/{id}', name: 'retrait_favoris')]
     public function retraitFavoris(Annonce $annonce): Response

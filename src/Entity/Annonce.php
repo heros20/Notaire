@@ -94,25 +94,13 @@ class Annonce
      */
     private $etat;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 3,
-     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
-     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums"
-     * )
+      /**
+     * @ORM\Column(type="string", length=1, nullable=true)
      */
     private $dpe;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Length(
-     *      min = 1,
-     *      max = 2,
-     *      minMessage = "Vous devez respecter {{ min }} caractères minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} caractères maximums"
-     * )
+      /**
+     * @ORM\Column(type="string", length=1, nullable=true)
      */
     private $ges;
 
@@ -153,12 +141,12 @@ class Annonce
     private $wc;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=3, nullable=true)
      */
     private $garage;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=3, nullable=true)
      */
     private $piscine;
 
@@ -317,24 +305,24 @@ class Annonce
         return $this;
     }
 
-    public function getDpe(): ?int
+    public function getDpe(): ?string
     {
         return $this->dpe;
     }
 
-    public function setDpe(?int $dpe): self
+    public function setDpe(?string $dpe): self
     {
         $this->dpe = $dpe;
 
         return $this;
     }
 
-    public function getGes(): ?int
+    public function getGes(): ?string
     {
         return $this->ges;
     }
 
-    public function setGes(?int $ges): self
+    public function setGes(?string $ges): self
     {
         $this->ges = $ges;
 
@@ -389,24 +377,24 @@ class Annonce
         return $this;
     }
 
-    public function getGarage(): ?int
+    public function getGarage(): ?string
     {
         return $this->garage;
     }
 
-    public function setGarage(?int $garage): self
+    public function setGarage(?string $garage): self
     {
         $this->garage = $garage;
 
         return $this;
     }
 
-    public function getPiscine(): ?int
+    public function getPiscine(): ?string
     {
         return $this->piscine;
     }
 
-    public function setPiscine(?int $piscine): self
+    public function setPiscine(?string $piscine): self
     {
         $this->piscine = $piscine;
 

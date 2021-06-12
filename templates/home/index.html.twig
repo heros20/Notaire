@@ -15,6 +15,8 @@
 		</div>
 		<div class="container_dixAns">
 			<h1>Nous avons 10 ans d'expérience dans différent cas</h1>
+			<div id="dpe"></div>
+   			 <div id="ges"></div>
 		</div>
 		<div class="container_proposIMG">
 			<div class="container_propos">
@@ -51,20 +53,20 @@
 											{% for favoris in annonce.favoris %}
 												{% if favoris.id == app.user.id %}
 													<span>
-														<a href="{{ path('retrait_favoris', {id: annonce.id}) }}">
+														<a id="action"  href="{{ path('retrait_favoris', {id: annonce.id}) }}">
 															<i class="fas fa-heart"></i>
 														</a>
 													</span>
 												{% else %}
 													<span>
-														<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+														<a id="action"  href="{{ path('ajout_favoris', {id: annonce.id}) }}">
 															<i class="far fa-heart"></i>
 														</a>
 													</span>
 												{% endif %}
 											{% else %}
 												<span>
-													<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+													<a id="action"  href="{{ path('ajout_favoris', {id: annonce.id}) }}">
 														<i class="far fa-heart"></i>
 													</a>
 												</span>
@@ -85,3 +87,5 @@
 
 
 {% endblock %}
+
+  

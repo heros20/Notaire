@@ -2,7 +2,13 @@
 	{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
 
 	{% if is_granted('ROLE_USER') %}
-	
+			<div class="input-cont">Nom : {{ user.name }}</div>
+			<div class="input-cont">Prénom : {{ user.username }}</div>
+			<div class="input-cont">Email : {{ user.email }}</div>
+			{% if user.phone != NULL %}
+				<div class="input-cont">Téléphone : {{ user.phone }}</div>
+			{% endif %}
+			
 	{% else %}
 
 	<div class="input-cont">
