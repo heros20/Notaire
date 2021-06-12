@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\User;
 use App\Form\InfoType;
 use App\Repository\AnnonceRepository;
@@ -112,5 +113,36 @@ class AdminController extends AbstractController
         return $this->render('admin/edit_profil_admin.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+    #[Route('/notif', name: 'notif_admin')]
+    public function admin_notif(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('admin/notif_admin.html.twig', [
+            'user' => $user
+        ]);
+    }
+
+    #[Route('/notif/show/{id}', name: 'notif_show_admin')]
+    public function admin_show_notif(Contact $message): Response
+    {
+        
+        $message->setIsRead(true);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($message);
+        $em->flush();
+        return $this->render('admin/notif_show_admin.html.twig', [
+            'contact' => $message,
+        ]);
+    }
+    
+    #[Route('/notification/delete/{id}', name: 'notif_delete')]
+    public function notifDelete(Contact $message): Response
+    {
+        $message->setIsRead(true);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($message);
+        $em->flush();
+        return $this->redirectToRoute('notif_admin');
     }
 }
