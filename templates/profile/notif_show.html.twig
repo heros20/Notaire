@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block body %}
+{% include "profile/nav.html.twig" %}
+<section class="container">
+
+    <p>De {{ contact.sender.email}}</p>
+    <p>Le {{ contact.createdAt|date }}</p>
+
+    <div>{{ contact.message}}</div>
+
+</section>
+
+
+{% endblock %}

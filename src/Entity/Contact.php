@@ -52,6 +52,7 @@ class Contact
 
     /**
      * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="contacts")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $Annonce;
 
@@ -62,6 +63,7 @@ class Contact
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sent")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $sender;
 
