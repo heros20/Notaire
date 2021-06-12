@@ -62,6 +62,7 @@ class ContactController extends AbstractController
             if ($this->security->isGranted('ROLE_USER')) {
                 $contact->setSender($this->getUser());
             }
+            
             // $contact->setRecipient($this->getDoctrine()
             // ->getRepository(User::class)
             // ->find($id));
@@ -70,12 +71,15 @@ class ContactController extends AbstractController
             // $this->addFlash('message', 'Votre email à bien était envoyez');
             return $this->redirectToRoute('home');
         }
-
+        $user = $this->getUser();
         return $this->render('contact/index.html.twig', [
             'contact' => $contact,
             'form' => $form->createView(),
+            'user' => $user
         ]);
     }
+    
+    
 
     // #[Route('/{id}', name: 'contact_show', methods: ['GET'])]
     // public function show(Contact $contact): Response
