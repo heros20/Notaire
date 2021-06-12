@@ -107,7 +107,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setModifiedAt(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('profile');
+            return $this->redirectToRoute('profil_admin');
         }
         return $this->render('admin/edit_profil_admin.html.twig', [
             'form' => $form->createView(),

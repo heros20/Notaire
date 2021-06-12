@@ -44,42 +44,41 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
                 
-            $email = new TemplatedEmail();
+            $contact->setIsRead(false)
+            ->setRecipient($this->getDoctrine()
+            ->getRepository(User::class)
+            ->find($user->getId()));            $email = new TemplatedEmail();
             if ($this->security->isGranted('ROLE_USER')) {
-                $email->from($contact->getEmail($user));
+                $contact->setSender($this->getUser());
+                $email->from($contact->getSender()->getEmail());
             }else {
                 $email->from($contact->getEmail());
             }
+            //     $email->to(new Address('sebastienweb27@gmail.com'))
+            //     ->subject('Contact')
+            //     ->htmlTemplate('emails/contact.html.twig')
+            //     ->context([
+            //         'contact' => $contact,
+            //         'mail' => $contact->getEmail(),
+            //         'message' => $contact->getMessage()
+            //     ]);
+            // $mailer->send($email);
 
-                dd($contact);
-                $email->to(new Address('sebastienweb27@gmail.com'))
-                ->subject('Contact')
-                ->htmlTemplate('emails/contact.html.twig')
-                ->context([
-                    'contact' => $contact,
-                    'mail' => $contact->getEmail(),
-                    'message' => $contact->getMessage()
-                ]);
-            $mailer->send($email);
             $entityManager = $this->getDoctrine()->getManager();
-            $contact->setIsRead(false);
-            if ($this->security->isGranted('ROLE_USER')) {
-                $contact->setSender($this->getUser());
-            }
-            $contact->setRecipient($this->getDoctrine()
-            ->getRepository(User::class)
-            ->find($user->getId()));
             $entityManager->persist($contact);
             $entityManager->flush();
             $this->addFlash('message', 'Votre email à bien était envoyez');
-            // return $this->redirectToRoute('home');
+            return $this->redirectToRoute('home');
         }
-
+        $user = $this->getUser();
         return $this->render('contact/index.html.twig', [
             'contact' => $contact,
             'form' => $form->createView(),
+            'user' => $user
         ]);
     }
+    
+    
 
     // #[Route('/{id}', name: 'contact_show', methods: ['GET'])]
     // public function show(Contact $contact): Response
