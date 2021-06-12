@@ -5,9 +5,8 @@
 
 {% block body %}
 	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
-
-		<h1 class="ml-5 mb-5">Ville</h1>
-
+		<h1 class="mb-5">Ville</h1>
+		<a class="btn btn-primary mb-2" href="{{ path('ville_new') }}">Ajouter une ville</a>
 		<table class="table">
 			<thead>
 				<tr>
@@ -41,5 +40,5 @@
 		</table>
 	</div>
 
-	<a class="btn btn-primary ml-5" href="{{ path('ville_new') }}">Créer</a>
+	
 {% endblock %}

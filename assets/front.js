@@ -7,7 +7,6 @@ import './FlexSlider/jquery.flexslider-min.js';
 AOS.init();
 
 
-
 $(document).ready(() => {
     $('.deroulant').on('mouseenter',function(){
         $(".sous").fadeIn(350);

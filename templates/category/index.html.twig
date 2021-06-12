@@ -5,9 +5,8 @@
 
 {% block body %}
 	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
-
 		<h1 class="mb-5">Categories</h1>
-
+		<a class="btn btn-primary mb-2" href="{{ path('category_new') }}">Ajouter une categorie</a>
 		<table class="table">
 			<thead>
 				<tr>
@@ -34,5 +33,5 @@
 			</tbody>
 		</table>
 	</div>
-	<a class="btn btn-primary ml-5" href="{{ path('category_new') }}">Créer</a>
+	
 {% endblock %}

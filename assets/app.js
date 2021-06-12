@@ -12,7 +12,6 @@ window.onload = () => {
     // Gestion des boutons "Supprimer"
     // on cible les liens
     let links = document.querySelectorAll("[data-token]")
-
     // on boucle sur links
     for (const link of links) {
         //on ecoute le clic

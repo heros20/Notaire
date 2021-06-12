@@ -1,22 +1,23 @@
 {% extends "base.html.twig" %}
+{% block title %}Vos favoris{% endblock %}
 {% block body %}
 {% include "profile/nav.html.twig" %}
 <h1>Page favori</h1>
-
+<input type="button" value="Retour" onclick="history.go(-1)">
 {% if is_granted("ROLE_USER") %}
     {% for user in users %}
             {% for fav in user.favoris %}
-            
+                <a class="action" href="{{ path('frontAnnonce_show', {'id': fav.id}) }}">
                     <div class="annonces">
                         <div class="annonce">
                             <h2>{{ fav.title }}</h2>
                             <p>{{ fav.description }}</p>
-                            <div><img src="{{ asset('assets/uploads/' ~ fav.image) }}" alt="{{ fav.image }}"></div>
-                            {% for f in fav.favoris %}
-                                <span><a href="{{ path('remove_favoris', {id: fav.id}) }}"><i class="fas fa-heart-broken">retirer des favoris</i><i class="fas fa-heart-broken"></i></a></span>
-                            {% endfor %}
-                        </div>
+                        <div><img src="{{ asset('assets/uploads/' ~ fav.image) }}" alt="{{ fav.image }}"></div>
+                        {% for f in fav.favoris %}
+                            <a href="{{ path('remove_favoris', {id: fav.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ fav.id) }}"><i class="fas fa-heart-broken"></i></a></span>
+                        {% endfor %} 
                     </div>
+                <a>
             {% endfor %}
     {% endfor %}
 {% endif %}
