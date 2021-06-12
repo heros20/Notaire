@@ -56,14 +56,16 @@ class ProfileController extends AbstractController
     #[Route('/notification', name: 'notif')]
     public function notif(): Response
     {
+        $user = $this->getUser();
         return $this->render('profile/notification.html.twig', [
             'controller_name' => 'ProfileController',
+            'user' => $user,
         ]);
     }
     #[Route('/notification/show', name: 'notif_show')]
     public function notifShow(): Response
     {
-        return $this->render('profile/notification_show.html.twig', [
+        return $this->render('profile/notif_show.html.twig', [
             'controller_name' => 'ProfileController',
         ]);
     }

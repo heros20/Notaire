@@ -51,20 +51,25 @@ class Contact
     private $createdAt;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $etat;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="contacts")
      */
     private $Annonce;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="contacts")
+     * @ORM\Column(type="boolean")
      */
-    private $User;
+    private $isRead = 0;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sent")
+     */
+    private $sender;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="received")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $recipient;
 
     public function __construct()
     {
@@ -135,19 +140,6 @@ class Contact
 
         return $this;
     }
-
-    public function getEtat(): ?bool
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(bool $etat): self
-    {
-        $this->etat = $etat;
-
-        return $this;
-    }
-
     public function getAnnonce(): ?Annonce
     {
         return $this->Annonce;
@@ -160,15 +152,40 @@ class Contact
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getIsRead(): ?bool
     {
-        return $this->User;
+        return $this->isRead;
     }
 
-    public function setUser(?User $User): self
+    public function setIsRead(bool $isRead): self
     {
-        $this->User = $User;
+        $this->isRead = $isRead;
 
         return $this;
     }
+
+    public function getSender(): ?User
+    {
+        return $this->sender;
+    }
+
+    public function setSender(?User $sender): self
+    {
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    public function getRecipient(): ?User
+    {
+        return $this->recipient;
+    }
+
+    public function setRecipient(?User $recipient): self
+    {
+        $this->recipient = $recipient;
+
+        return $this;
+    }
+
 }

@@ -4,32 +4,35 @@
 {% endblock %}
 
 {% block body %}
+<div class="container_boite">
+	<h1 class="container_title">Inscription</h1>
+	<p class="container_para">
+		<a href="{{path('home')}}">Acceuil</a>
+		- inscription
+	</p>
+</div>
 {% if is_granted('ROLE_USER') %}
 	<p>Bonjour
 		{{ app.user.name }}</p>
 	<p>Vous êtes déja connecté</p>
 	<a href="{{ path('home') }}">Retour à l'accueil</a>
 {% else %}
-
 	<div class="log">
 		{{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
 		<div class="input-cont">
-
 			{{ form_widget(registrationForm.email) }}
 			{{form_label(registrationForm.email)}}
 			<div class="border1"></div>
 		</div>
 
 		<div class="input-cont">
-
 			{{ form_widget(registrationForm.name)}}
 			{{form_label(registrationForm.name)}}
 			<div class="border2"></div>
 		</div>
 
 		<div class="input-cont">
-
 			{{ form_widget(registrationForm.username)}}
 			{{form_label(registrationForm.username)}}
 			<div class="border2"></div>

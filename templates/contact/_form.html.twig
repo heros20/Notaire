@@ -1,4 +1,37 @@
-{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="log">
+	{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+
+	{% if is_granted('ROLE_USER') %}
+
+	{% else %}
+
+	<div class="input-cont">
+		{{ form_widget(form.phone) }}
+		{{form_label(form.phone)}}
+		<div class="border2"></div>
+	</div>
+
+		<div class="input-cont">
+			{{ form_widget(form.email) }}
+			{{form_label(form.email)}}
+			<div class="border1"></div>
+		</div>
+
+		<div class="input-cont">
+			{{ form_widget(form.name) }}
+			{{form_label(form.name)}}
+			<div class="border2"></div>
+		</div>
+
+	{% endif %}
+	<div class="input-cont">
+		{{ form_widget(form.message) }}
+		{{form_label(form.message)}}
+		<div class="border2"></div>
+	</div>
+	<p class="help">
+		*Obligatoire
+	</p>
+	<input type="submit" value="Envoyez">
+	{{ form_end(form) }}
+</div>

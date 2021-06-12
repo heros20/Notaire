@@ -23,28 +23,26 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (!$this->security->isGranted('ROLE_USER')) {
-
             $builder
                 ->add('name', TextType::class, [
                     'label' => 'Nom *',
-                    'constraints' => [new NotNull([
-                        'message' => 'Veuillez renseigner ce champ',
-                    ]),]
+                    'label_attr' => ['class' => 'formConnex_label2'],
+                    'attr' => ['class' => 'class="form-control-material"'],
                 ])
                 ->add('email', EmailType::class, [
                     'label' => 'Email *',
-                    'constraints' => [new NotNull([
-                        'message' => 'Veuillez renseigner ce champ',
-                    ]),]
+                    'label_attr' => ['class' => 'formConnex_label2'],
+                    'attr' => ['class' => "form-control-material"]
                 ])
                 ->add('phone');
         }
+        else {
+            
+        }
         $builder
-            ->add('message', TextareaType::class, [
-                'constraints' => [new NotNull([
-                    'message' => 'Veuillez renseigner ce champ',
-                ]),]
-            ]);
+            ->add('message', TextType::class, [
+                'label' => 'Message *'
+            ]);     
     }
 
     public function configureOptions(OptionsResolver $resolver)

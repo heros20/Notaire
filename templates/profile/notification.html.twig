@@ -2,7 +2,20 @@
 {% block title %}Notification{% endblock %}
 {% block body %}
 {% include "profile/nav.html.twig" %}
-<h1>page notification</h1>
-<input type="button" value="Retour" onclick="history.go(-1)">
+<section class="container">
+    <input type="button" value="Retour" onclick="history.go(-1)">
+    <h1>page notification</h1>
+    <p>Reçus : {{ app.user.received|length }}</p>
+    <p>Envoyés : {{ app.user.sent|length }}</p>
+
+<ul>
+    {# {% for item in items %}
+        <li><a href=""></a></li>
+    {% endfor %} #}
+
+</ul>
+
+</section>
+
 
 {% endblock %}
