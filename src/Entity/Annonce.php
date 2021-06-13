@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Gedmo\Mapping\Annotation\Sluggable;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -35,8 +36,9 @@ class Annonce
      *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums"
      * )
      */
-    private $title;
 
+    private $title;
+    
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank
