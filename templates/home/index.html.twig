@@ -4,88 +4,83 @@
 {% endblock %}
 
 {% block body %}
-	<section class="container">
-		<div class="container_img">
-			<img class="container_imge" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+	<section class="presentation">
+		<div class="presentation__agence">
+			<img src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
 			{% for flashError in app.flashes('message') %}
-
-				<div class="container_flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
-
+				<div class="flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
 			{% endfor %}
-		</div>
-		<div class="container_dixAns">
-			<h1>Nous avons 10 ans d'expérience dans différent cas</h1>
-			<div id="dpe"></div>
-   			 <div id="ges"></div>
-		</div>
-		<div class="container_proposIMG">
-			<div class="container_propos">
-				<h2>À Propos</h2>
-				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
-														repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
-														impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
-														 a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
-				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
-															 repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
-															impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
-															 a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
-			</div>
-			<div class="container_img">
-				<img class="container_imgs" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
-			</div>
-		</div>
-		<div class="container_allAnnonces">
-			<div class="container_h2Annonces">
-				<h3>Les dernières annonces immobilières</h3>
-				<p>Que vous soyez vendeur ou acquéreur, vous trouverez chez votre notaire le service complet vous garantissant la bone fin de votre opération</p>
-			</div>
-			<div class="container_Annonces">
-				<div class="container_allAnnonces">
-					<div class="container_annonces">
-						{% for annonce in annonces %}
-							<div class="container_annonce" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
-								<a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
-									<img class="container_cardimg" src="{{ asset('assets/uploads/' ~ annonce.image) }}" alt="{{ annonce.image }}">
-									<h3>{{ annonce.title }}</h3>
-									<p>{{ annonce.description }}</p>
-									<div class="container_coeur">
-										{% if is_granted("ROLE_USER") %}
-											{% for favoris in annonce.favoris %}
-												{% if favoris.id == app.user.id %}
-													<span>
-														<a id="action"  href="{{ path('retrait_favoris', {id: annonce.id}) }}">
-															<i class="fas fa-heart"></i>
-														</a>
-													</span>
-												{% else %}
-													<span>
-														<a id="action"  href="{{ path('ajout_favoris', {id: annonce.id}) }}">
-															<i class="far fa-heart"></i>
-														</a>
-													</span>
-												{% endif %}
-											{% else %}
-												<span>
-													<a id="action"  href="{{ path('ajout_favoris', {id: annonce.id}) }}">
-														<i class="far fa-heart"></i>
-													</a>
-												</span>
-											{% endfor %}
-										{% endif %}
-									</div>
-								</a>
-							</div>
-							{# .annonce #}
-						{% endfor %}
-					</div>
-					{# .annonces #}
-				</div>
-				{# .allAnnonces #}
-			</div>
 		</div>
 	</section>
 
 
-{% endblock %}
+	<section class="apropos">
+		<div class="apropos__dixAns">
+			<h1>Nous avons 10 ans d'expérience dans différent cas</h1>
+			<div id="dpe"></div>
+			<div id="ges"></div>
+		</div>
+		<div class="apropos__block">
+			<div class="apropos__propos">
+				<h2>À Propos</h2>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
+																																	repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+																																	impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+																																	 a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
+																																	repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+																																	impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+																																	a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+			</div>
+			<div>
+				<img class="apropos__imgs" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+			</div>
+		</div>
+	</section>
 
-  
+	<section class="annonce">
+		<div class="annonce__blockTitle">
+			<h3>Les dernières annonces immobilières</h3>
+			<p>Que vous soyez vendeur ou acquéreur, vous trouverez chez votre notaire le service complet vous garantissant la bone fin de votre opération</p>
+		</div>
+		<div class="annonce__blockCard">
+			{% for annonce in annonces %}
+				<div class="annonce__card" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
+					<a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
+						<img src="{{ asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg') }}" alt="{{ annonce.image }}">
+						<h4>{{ annonce.title }}</h4>
+						<p>{{ annonce.description }}</p>
+						<div class="annonce__coeur">
+							{% if is_granted("ROLE_USER") %}
+								{% for favoris in annonce.favoris %}
+									{% if favoris.id == app.user.id %}
+										<span>
+											<a href="{{ path('retrait_favoris', {id: annonce.id}) }}">
+												<i class="fas fa-heart heart"></i>
+												<i class="fas fa-heart heart-color"></i>
+											</a>
+										</span>
+									{% else %}
+										<span>
+											<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+												<i class="far fa-heart heart"></i>
+												<i class="fas fa-heart heart-color"></i>
+											</a>
+										</span>
+									{% endif %}
+								{% else %}
+									<span>
+										<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+											<i class="far fa-heart heart"></i>
+											<i class="fas fa-heart heart-color"></i>
+										</a>
+									</span>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+{% endblock %}

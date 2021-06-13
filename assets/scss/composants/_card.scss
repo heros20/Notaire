@@ -1,0 +1,69 @@
+@use "../utils/mixins" as *;
+@mixin card {
+    &__card {
+        margin: 30px;
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius);
+        position: relative;
+        & img {
+            width: 100%;
+            height: 300px;
+            border-radius: var(--border-radius);
+            object-fit: cover;
+        }
+        & h4 {
+            font-family: var(--title);
+            padding: 20px 0 10px 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        & p {
+            padding: 0 0 20px 15px;
+        }
+    }
+    .étiquette {
+        font-weight: bold;
+    }
+    .fa-heart {
+        position: absolute;
+        right: 18px;
+        bottom: 40px;
+        font-size: 22px;
+        z-index: 400;
+        -webkit-text-stroke: 1px white;
+    }
+    .fa-hearts{
+        bottom: 90px;
+    }
+    .heart:hover {
+        background: linear-gradient(var(--color-primary), #a8d7f5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .heart-color {
+        opacity: 0;
+        transition: 0.3s ease;
+    }
+    .heart-color:hover {
+        opacity: 1;
+        background: linear-gradient(var(--color-primary), #a8d7f5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    @include deckstop {
+        &__blockCard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        &__card {
+            width: 25%;
+            margin: 54px 30px;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .fa-hearts{
+            bottom: 100px
+        }
+    }
+}

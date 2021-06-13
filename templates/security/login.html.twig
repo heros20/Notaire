@@ -4,16 +4,19 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container_boite">
-		<h1 class="container_title">Connexion</h1>
-		<p class="container_para">
-			<a href="{{path('home')}}">Acceuil</a>
-			- Connexion
-		</p>
-	</div>
+	<section>
+		<div class="boite">
+			<h1 class="boite__title">Se connecter</h1>
+			<p class="boite__para">
+				<a href="{{path('home')}}">Accueil</a>
+				- Se connecter
+			</p>
+		</div>
+	</section>
+
 
 	<div class="log">
-		<form method="post">
+		<form method="post" novalidate>
 			<div class="input-cont">
 				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
 				<label for="inputEmail">Email</label>
@@ -32,7 +35,7 @@
 					Souvenir de moi
 				</label>
 			</div>
-			<a href="{{path('mdp')}}">Mot de passe oublié?</a>
+			{# <a href="{{path('mdp')}}">Mot de passe oublié?</a> #}
 			<input type="submit" value="Connexion"></input>
 	</form>
 </div>{% endblock %}

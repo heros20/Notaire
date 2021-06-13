@@ -1,25 +1,30 @@
 {% extends "base.html.twig" %}
-{% block title %}Vos favoris{% endblock %}
-{% block body %}
-{% include "profile/nav.html.twig" %}
-<h1>Page favori</h1>
-<input type="button" value="Retour" onclick="history.go(-1)">
-{% if is_granted("ROLE_USER") %}
-    {% for user in users %}
-            {% for fav in user.favoris %}
-                <a class="action" href="{{ path('frontAnnonce_show', {'id': fav.id}) }}">
-                    <div class="annonces">
-                        <div class="annonce">
-                            <h2>{{ fav.title }}</h2>
-                            <p>{{ fav.description }}</p>
-                        <div><img src="{{ asset('assets/uploads/' ~ fav.image) }}" alt="{{ fav.image }}"></div>
-                        {% for f in fav.favoris %}
-                            <a href="{{ path('remove_favoris', {id: fav.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ fav.id) }}"><i class="fas fa-heart-broken"></i></a></span>
-                        {% endfor %} 
-                    </div>
-                <a>
-            {% endfor %}
-    {% endfor %}
-{% endif %}
-
+{% block title %}Vos favoris
 {% endblock %}
+{% block body %}
+	<section class="annonce">
+		<div class="annonce__blockTitle">
+			<h3>Mes favoris</h3>
+		</div>
+		<div class="annonce__blockCard">
+			{% if is_granted("ROLE_USER") %}
+				{% for user in users %}
+					{% for fav in user.favoris %}
+						<div class="annonce__card" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
+							<a class="action" href="{{ path('frontAnnonce_show', {'id': fav.id}) }}">
+								<img src="{{ asset('assets/uploads/' ~ fav.image) }}" alt="{{ fav.image }}">
+								<h4>{{ fav.title }}</h4>
+								<p>{{ fav.description }}</p>
+								{% for f in fav.favoris %}
+									<p>
+										<a class="favoris" href="{{ path('remove_favoris', {id: fav.id}) }}">Retirer</a>
+									</p>
+								{% endfor %}
+							</a>
+							</div>
+						{% endfor %}
+					{% endfor %}
+				{% endif %}
+			</div>
+		</section>
+	{% endblock %}

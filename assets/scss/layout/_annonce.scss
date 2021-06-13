@@ -1,0 +1,23 @@
+@use "../composants/card" as *;
+.annonce {
+    &__blockTitle {
+        text-align: center;
+        & h3 {
+            font-size: 21px;
+            font-family: var(--title);
+            text-align: center;
+            font-weight: bold;
+            margin: 30px 0;
+        }
+        & p {
+            text-align: center;
+            line-height: 1.6;
+            padding: 0 30px;
+            color: #8f8f8f;
+        }
+    }
+    &__blockCard{
+        margin-bottom: 100px
+    }
+    @include card;
+}
