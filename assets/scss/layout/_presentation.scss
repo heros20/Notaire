@@ -1,0 +1,11 @@
+@use "../composants/flash" as *;
+.presentation {
+    &__agence {
+        & img {
+            height: 340px;
+            width: 100%;
+            object-fit: cover;
+        }
+        @include flash;
+    }
+}

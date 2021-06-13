@@ -4,12 +4,29 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container_boite">
-		<h1 class="container_title">Contactez-nous</h1>
-		<p class="container_para">
-			<a href="{{path('home')}}">Acceuil</a>
-			-Contact
+<section>
+	<div class="boite">
+		<h1 class="boite__title">Contactez-nous</h1>
+		<p class="boite__para">
+			<a href="{{path('home')}}">Accueil</a>
+			- Contact
 		</p>
+	</div>
+</section>
+
+	<div class="global global__contact">
+		<div>
+			<img src="{{asset('assets/images/composant1.svg')}}" alt="">
+			<p>Téléphone: 02.32.33.56.26</p>
+		</div>
+		<div>
+			<img src="{{asset('assets/images/composant2.svg')}}" alt="">
+			<p>Email: test@gmail.com</p>
+		</div>
+		<div>
+			<img src="{{asset('assets/images/composant3.svg')}}" alt="">
+			<p>Adresse: 25 rue des paumettes</p>
+		</div>
 	</div>
 	{{ include('contact/_form.html.twig') }}
 	<div class="map">

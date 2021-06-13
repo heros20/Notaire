@@ -4,13 +4,16 @@
 {% endblock %}
 
 {% block body %}
-<div class="container_boite">
-	<h1 class="container_title">Inscription</h1>
-	<p class="container_para">
-		<a href="{{path('home')}}">Acceuil</a>
-		- inscription
-	</p>
-</div>
+<section>
+	<div class="boite">
+		<h1 class="boite__title">S'inscrire</h1>
+		<p class="boite__para">
+			<a href="{{path('home')}}">Accueil</a>
+			- S'inscrire
+		</p>
+	</div>
+</section>
+
 {% if is_granted('ROLE_USER') %}
 	<p>Bonjour
 		{{ app.user.name }}</p>

@@ -5,7 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
-			{% block title %}Welcome!{% endblock %}
+			{% block title %}Welcome!
+			{% endblock %}
 		</title>
 
 		{% block stylesheets %}
@@ -39,10 +40,10 @@
 						06 xx xx xx xx
 					</p>
 				</div>
-			</div> 
+			</div>
 			<div class="containerHeader">
 				<div class="topHeader_logo">
-					<img src="{{ asset('assets/uploads/notaire_de_france.jpg') }}" alt="notaire_de_france">
+					<img src="{{ asset('assets/images/logo.svg') }}" alt="notaire_de_france">
 				</div>
 				<div class="navigation">
 					<input type="checkbox" class="navigation__checkbox" id="navi-toggle" aria-checked="false">
@@ -62,25 +63,25 @@
 									<a href="{{path('contact')}}" class="navbar__link">Contact</a>
 								</li>
 								{% if is_granted('ROLE_USER') %}
-								<li class="deroulant">
-									<a href="{{ path('profile') }}" class="navbar__link">Espace Client</a>
-									<ul class="sous">
-										<li class="navbar__item">
-											<a class="navbar__link" href="{{ path('notif') }}">Messagerie</a>
-										</li>
-										<li class="navbar__item">
-											<a class="navbar__link" href="{{ path('favoris') }}">Favoris</a>
-										</li>
-									</ul>
-								</li>
-								<li class="navbar__item">
-									<a href="{{ path('app_logout') }}" class="navbar__link">Deconnexion</a>
-								</li>
-								{% if is_granted('ROLE_ADMIN') %}
-									<li class="navbar__item">
-										<a href="{{ path('admin') }}" class="navbar__link ">Admin</a>
+									<li class="deroulant">
+										<a href="{{ path('profile') }}" class="navbar__link">Espace Client</a>
+										<ul class="sous">
+											<li class="navbar__item">
+												<a class="navbar__link" href="{{ path('notif') }}">Messagerie</a>
+											</li>
+											<li class="navbar__item">
+												<a class="navbar__link" href="{{ path('favoris') }}">Favoris</a>
+											</li>
+										</ul>
 									</li>
-								{% endif %}
+									<li class="navbar__item">
+										<a href="{{ path('app_logout') }}" class="navbar__link">Deconnexion</a>
+									</li>
+									{% if is_granted('ROLE_ADMIN') %}
+										<li class="navbar__item">
+											<a href="{{ path('admin') }}" class="navbar__link ">Admin</a>
+										</li>
+									{% endif %}
 								{% else %}
 									<li class="navbar__item">
 										<a class="navbar__link" href="{{ path('app_register') }}" class="navbar__link ">Inscription
@@ -97,32 +98,41 @@
 						<span class="navigation__icon">&nbsp;</span>
 					</label>
 				</div>
+			</div>
+		</header>
+
+		{% block body %}{% endblock %}
+
+		<footer>
+			<div class="footer">
+				<div class="footer_insidefooter">
+					<div class="footer_description">
+						<div>
+							<img class="mb" src="{{asset('assets/images/logo.svg')}}" alt="notaire_de_france">
+						</div>
+						<p class="mb">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti,omnis aperiam at commodi rem id magnam aliquam voluptatibus, enim neque nihil.</p>
+					</div>
+					<div class="footer_pratique">
+						<h3>PRATIQUE</h3>
+						<p>
+							<a href="">À Propos</a>
+						</p>
+						<p>
+							<a href="">Mentions Légales</a>
+						</p>
+						<p>
+							<a href="">CGU</a>
+						</p>
+					</div>
+					<div class="footer_contact">
+						<h3>CONTACT</h3>
+						<p>>   AGENCE NOTAIRE</p>
+						<p>>   Adresse de l'agence</p>
+						<p>>   Tel : 06 xx xx xx xx</p>
+						<p>>   Email : notaire@defrance.com</p>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</body>
-</html></div></header>{% block body %}{% endblock %}<footer><div class="footer">
-<div class="footer_insidefooter">
-	<div class="footer_description">
-		<img class="mb" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="notaire_de_france">
-		<p class="mb">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti, 
-																omnis aperiam at commodi rem id magnam aliquam voluptatibus, enim neque nihil.</p>
-	</div>
-	<div class="footer_pratique">
-		<h3>PRATIQUE</h3>
-		<p>
-			<a href="">À Propos</a>
-		</p>
-		<p>
-			<a href="">Mentions Légales</a>
-		</p>
-		<p>
-			<a href="">CGU</a>
-		</p>
-	</div>
-	<div class="footer_contact">
-		<h3>CONTACT</h3>
-		<p>>   AGENCE NOTAIRE</p>
-		<p>>   Adresse de l'agence</p>
-		<p>>   Tel : 06 xx xx xx xx</p>
-		<p>>   Email : notaire@defrance.com</p>
-	</div>
-</div>
-{# .insidefooter #}</div>{# .footer #}</footer><script></script></body></html>
+</html>

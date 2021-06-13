@@ -3,17 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ForgetPasswordType;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
+use DateTime;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -85,15 +90,41 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/mdp', name: 'mdp')]
-    public function mdp(MailerInterface $mailer)
+    #[Route('/forget_password', name: 'forget')]
+    public function forget_password(Request $request, MailerInterface $mailer, TokenGeneratorInterface $tokenInterface)
     {
-        $email = (new TemplatedEmail())
-            ->from('test@gmail.com')
-            ->to(new Address('sebastienweb27@gmail.com'))
-            ->subject('Mot de passe oublié')
-            ->htmlTemplate('emails/mdp.html.twig');
-        $mailer->send($email);
-        return $this->render('emails/mdp.html.twig');
+        $form = $this->createForm(ForgetPasswordType::class)->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $email = $form->getData();
+            $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(["email"=>$email["email"]]);
+
+            if(!$user){
+                $form->addError(new FormError("email inconnu"));
+            }else{
+                $token = $tokenInterface->generateToken();
+                $user->setResetToken($token)
+                ->setResetTokenAt(new DateTime("now"));
+                $this->getDoctrine()->getManager()->persist($user);
+                $this->getDoctrine()->getManager()->flush();
+
+            //     $email = new TemplatedEmail();
+            // if (!$this->security->isGranted('ROLE_USER')) {
+            //     $email->from($contact->getEmail())
+            // }
+            //     $email->to(new Address('sebastienweb27@gmail.com'))
+            //     ->subject('Contact')
+            //     ->htmlTemplate('emails/contact.html.twig')
+            //     ->context([
+            //         'contact' => $contact,
+            //         'mail' => $contact->getEmail(),
+            //         'message' => $contact->getMessage()
+            //     ]);
+            // $mailer->send($email);
+            }
+        }
+        return $this->render('emails/mdp.html.twig',[
+            'form' => $form->createView()
+        ]);
     }
 }

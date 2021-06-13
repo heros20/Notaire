@@ -3,26 +3,25 @@
 
 	{% if is_granted('ROLE_USER') %}
 
-	{% else %}
+		{% else %}
+			<div class="input-cont">
+				{{ form_widget(form.email) }}
+				{{form_label(form.email)}}
+				<div class="border1"></div>
+			</div>
+			<div class="input-cont">
+				{{ form_widget(form.name) }}
+				{{form_label(form.name)}}
+				{{form_errors(form.name)}}
+				<div class="border2"></div>
+			</div>
 
-	<div class="input-cont">
-		{{ form_widget(form.phone) }}
-		{{form_label(form.phone)}}
-		<div class="border2"></div>
-	</div>
-
-		<div class="input-cont">
-			{{ form_widget(form.email) }}
-			{{form_label(form.email)}}
-			<div class="border1"></div>
-		</div>
-
-		<div class="input-cont">
-			{{ form_widget(form.name) }}
-			{{form_label(form.name)}}
-			<div class="border2"></div>
-		</div>
-
+			<div class="input-cont">
+				{{ form_widget(form.phone) }}
+				{{form_label(form.phone)}}
+				{{form_errors(form.phone)}}
+				<div class="border2"></div>
+			</div>
 	{% endif %}
 	<div class="input-cont">
 		{{ form_widget(form.message) }}

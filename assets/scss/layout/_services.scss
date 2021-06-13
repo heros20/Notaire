@@ -1,0 +1,14 @@
+@use "../composants/services" as *;
+.services {
+    text-align: center;
+    background-color: #a8d7f5;
+    border-top: 1px solid black;
+    padding-bottom: 50px;
+    &__title {
+        font-weight: bold;
+        font-family: var(--title);
+        font-size: 26px;
+        padding: 30px 0;
+    }
+    @include services;
+}

@@ -24,13 +24,7 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Email*',
                 'label_attr' => ['class' => 'formConnex_label1'],
-                'attr' => ['class' => "form-control-material"],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez renseigner votre Email',
-                    ]),
-
-                ],
+                'attr' => ['class' => "form-control-material"]
             ])
             ->add('name', TextType::class, [
                 'label' => 'Nom*',
@@ -68,7 +62,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez renseigner un mot de passe',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 0,
                         'minMessage' => 'Votre mot de passe doit avoir {{ limit }} caractère minimum',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,

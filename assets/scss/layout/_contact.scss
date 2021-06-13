@@ -1,0 +1,47 @@
+@use "../utils/mixins" as *;
+@use "../composants/form" as *;
+.global {
+    &__contact {
+        width: 60%;
+        margin: 60px auto;
+        & img{
+            width: 100%;
+        }
+        & div{
+            padding: 20px 0;
+        }
+        & p{
+            margin-top: 10px;
+            text-align: center;
+        }
+    }
+}
+@include form;
+@include laptop{
+    .global{
+        display: flex;
+        align-items: center;
+        &_contact{
+            width: 90%;
+        }
+        & div{
+            padding: 0 10px;
+        }
+    }
+}
+@include deckstop{
+    .global{
+        display: flex;
+        align-items: center;
+        &_contact{
+            width: 70%;
+        }
+        & div{
+            padding: 0 10px;
+            transition: all .2s ease-in-out;
+            &:hover{
+                color: var(--color-primary);
+            }
+        }
+    }
+}

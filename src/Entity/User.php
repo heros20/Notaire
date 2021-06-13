@@ -27,6 +27,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Assert\Email(
      *      message = "L'email est invalide"
      * )
+     * @Assert\NotBlank(
+     *  message = "tets"
+     * )
      */
     private $email;
 
@@ -38,22 +41,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=30)
-     *  @Assert\Length(
+     * @Assert\Length(
      *      min = 2,
      *      max = 30,
      *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
      *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums",
+     * )
+     * @Assert\NotBlank(
+     *  message = "Obligatoire"
      * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(
+     *  message = "Obligatoire"
+     * )
      *  @Assert\Length(
      *      min = 2,
      *      max = 30,
@@ -109,6 +119,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $reset_token;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $resetTokenAt;
 
     public function __construct()
     {
@@ -381,4 +396,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getResetTokenAt(): ?\DateTimeInterface
+    {
+        return $this->resetTokenAt;
+    }
+
+    public function setResetTokenAt(\DateTimeInterface $resetTokenAt): self
+    {
+        $this->resetTokenAt = $resetTokenAt;
+
+        return $this;
+    }
+
 }
