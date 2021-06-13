@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
+use App\Entity\Contact;
 use App\Entity\User;
 use App\Form\InfoType;
 use App\Repository\AnnonceRepository;
@@ -15,6 +16,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use App\Service\FileUploader;
+use AsyncAws\Ses\ValueObject\Message;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\FormError;
 
@@ -62,11 +64,17 @@ class ProfileController extends AbstractController
             'user' => $user,
         ]);
     }
-    #[Route('/notification/show', name: 'notif_show')]
-    public function notifShow(): Response
+    #[Route('/notification/show/{id}', name: 'notif_show')]
+    public function notifShow(Contact $message): Response
     {
+        $message->setIsRead(true);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($message);
+        $em->flush();
+
         return $this->render('profile/notif_show.html.twig', [
             'controller_name' => 'ProfileController',
+            'contact' => $message,
         ]);
     }
 

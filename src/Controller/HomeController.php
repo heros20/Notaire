@@ -70,7 +70,7 @@ class HomeController extends AbstractController
     }
     #[Route('/annonces/{id}', name: 'frontAnnonce_show', methods: ['GET'])]
     public function show(Annonce $annonce): Response
-    {
+    {   
         return $this->render('home/show.html.twig', [
             'annonce' => $annonce,
         ]);
@@ -85,7 +85,7 @@ class HomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
         $em->flush();
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('favoris');
     }
      #[Route('/annonces/favoris/retrait/{id}', name: 'retrait_favoris')]
     public function retraitFavoris(Annonce $annonce): Response
@@ -97,7 +97,7 @@ class HomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
         $em->flush();
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('favoris');
     }
 
     #[Route('/conditions_generales', name: 'conditions_generales')]

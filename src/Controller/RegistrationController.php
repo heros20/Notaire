@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\ForgetPasswordType;
 use App\Form\RegistrationFormType;
+use App\Form\ResetType;
 use App\Security\EmailVerifier;
 use DateTime;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -18,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
 class RegistrationController extends AbstractController
@@ -96,7 +98,7 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(ForgetPasswordType::class)->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $email = $form->getData();
+            $email = $form->getData("email");
             $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(["email"=>$email["email"]]);
 
             if(!$user){
@@ -108,22 +110,41 @@ class RegistrationController extends AbstractController
                 $this->getDoctrine()->getManager()->persist($user);
                 $this->getDoctrine()->getManager()->flush();
 
-            //     $email = new TemplatedEmail();
-            // if (!$this->security->isGranted('ROLE_USER')) {
-            //     $email->from($contact->getEmail())
-            // }
-            //     $email->to(new Address('sebastienweb27@gmail.com'))
-            //     ->subject('Contact')
-            //     ->htmlTemplate('emails/contact.html.twig')
-            //     ->context([
-            //         'contact' => $contact,
-            //         'mail' => $contact->getEmail(),
-            //         'message' => $contact->getMessage()
-            //     ]);
-            // $mailer->send($email);
+                $url = $this->generateUrl("reset",['token' =>$token], UrlGeneratorInterface::ABSOLUTE_URL);
+                $mail = (new TemplatedEmail())
+                ->from('seb@gmail.com')
+                ->to('test@gmail.com')
+                ->subject('Mot de passe oublié')
+                ->htmlTemplate('emails/motdepasse.html.twig')
+                ->context([
+                    "url" => $url
+                ]);
+            $mailer->send($mail);
             }
         }
         return $this->render('emails/mdp.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+    #[Route('/reset_password/{token}', name: 'reset')]
+    public function reset(Request $request, $token, UserPasswordHasherInterface $passwordHasher){
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(["reset_token" =>$token]);
+        //Vérifier l'utilisateur existe ou pas
+        //
+
+        $form = $this->createForm(ResetType::class)->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setResetToken(null);
+            $user->setPassword(
+                $passwordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('app_login');
+        }
+        return $this->render('emails/reset.html.twig', [
             'form' => $form->createView()
         ]);
     }

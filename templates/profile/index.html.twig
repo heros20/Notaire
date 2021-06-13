@@ -4,9 +4,8 @@
 
 {% block body %}
 {% include "profile/nav.html.twig" %}
-
-<h1>information personnelle</h1>
-
+<input type="button" value="Retour" onclick="history.go(-1)">
+    <h1>information personnelle</h1>
     <section class="container">
 		<div class="">
             <table class="table">
@@ -23,16 +22,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                            <td>{{ user.name }}</td>
-                            <td>{{ user.username }}</td>
-                            <td>{{ user.email }}</td>
-                            <td>{{ user.phone }}</td>
-                            <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : ''  }}</td>
-                            <td>{{ user.modifiedAt ? user.modifiedAt|date('Y-m-d H:i:s') : ''  }}</td>
-                            <td>
-                                <a class="action" href="{{ path('infos_perso_edit') }}">Éditer</a>
-                            </td>
-                        </tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : ''  }}</td>
+                        <td>{{ user.modifiedAt ? user.modifiedAt|date('Y-m-d H:i:s') : ''  }}</td>
+                        <td>
+                            <a class="action" href="{{ path('infos_perso_edit') }}">Éditer</a>
+                        </td>
+                    </tr>
 			    </tbody>
             </table>
         </div>

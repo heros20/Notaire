@@ -2,26 +2,42 @@
 	{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
 
 	{% if is_granted('ROLE_USER') %}
+		<div class="input-cont">Nom :
+			{{ user.name }}</div>
+		<div class="input-cont">Prénom :
+			{{ user.username }}</div>
+		<div class="input-cont">Email :
+			{{ user.email }}</div>
+		{% if user.phone != NULL %}
+			<div class="input-cont">Téléphone :
+				{{ user.phone }}</div>
+		{% endif %}
 
-		{% else %}
-			<div class="input-cont">
-				{{ form_widget(form.email) }}
-				{{form_label(form.email)}}
-				<div class="border1"></div>
-			</div>
-			<div class="input-cont">
-				{{ form_widget(form.name) }}
-				{{form_label(form.name)}}
-				{{form_errors(form.name)}}
-				<div class="border2"></div>
-			</div>
+	{% else %}
 
-			<div class="input-cont">
-				{{ form_widget(form.phone) }}
-				{{form_label(form.phone)}}
-				{{form_errors(form.phone)}}
-				<div class="border2"></div>
-			</div>
+		<div class="input-cont">
+			{{ form_widget(form.phone) }}
+			{{form_label(form.phone)}}
+			<div class="border2"></div>
+		</div>
+
+		<div class="input-cont">
+			{{ form_widget(form.email) }}
+			{{form_label(form.email)}}
+			<div class="border1"></div>
+		</div>
+
+		<div class="input-cont">
+			{{ form_widget(form.name) }}
+			{{form_label(form.name)}}
+			<div class="border2"></div>
+		</div>
+		<div class="input-cont">
+			{{ form_widget(form.phone) }}
+			{{form_label(form.phone)}}
+			{{form_errors(form.phone)}}
+			<div class="border2"></div>
+		</div>
 	{% endif %}
 	<div class="input-cont">
 		{{ form_widget(form.message) }}

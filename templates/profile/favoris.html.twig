@@ -1,29 +1,30 @@
 {% extends "base.html.twig" %}
-{% block body %}
-	<h3 class="h3">Mes favoris</h3>
-
-	<section class="container">
-		<div class="container_Annonces">
-			<div class="container_allAnnonces">
-				<div class="container_annonces">
-					<div class="container_annonce">
-						{% if is_granted("ROLE_USER") %}
-							{% for user in users %}
-								{% for fav in user.favoris %}
-										<img src="{{ asset('assets/uploads/' ~ fav.image) }}" alt="{{ fav.image }}">
-									<h3>{{ fav.title }}</h3>
-									<p>{{ fav.description }}</p>
-									{% for f in fav.favoris %}
-										<p>
-											<a class="favoris" href="{{ path('remove_favoris', {id: fav.id}) }}">Retirer</a>
-										</p>
-									{% endfor %}
-								{% endfor %}
-							{% endfor %}
-						{% endif %}
-					</>
-				</div>
-			</div>
-		</div>
-    </section>
+{% block title %}Vos favoris
 {% endblock %}
+{% block body %}
+	<section class="annonce">
+		<div class="annonce__blockTitle">
+			<h3>Mes favoris</h3>
+		</div>
+		<div class="annonce__blockCard">
+			{% if is_granted("ROLE_USER") %}
+				{% for user in users %}
+					{% for fav in user.favoris %}
+						<div class="annonce__card" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
+							<a class="action" href="{{ path('frontAnnonce_show', {'id': fav.id}) }}">
+								<img src="{{ asset('assets/uploads/' ~ fav.image) }}" alt="{{ fav.image }}">
+								<h4>{{ fav.title }}</h4>
+								<p>{{ fav.description }}</p>
+								{% for f in fav.favoris %}
+									<p>
+										<a class="favoris" href="{{ path('remove_favoris', {id: fav.id}) }}">Retirer</a>
+									</p>
+								{% endfor %}
+							</a>
+							</div>
+						{% endfor %}
+					{% endfor %}
+				{% endif %}
+			</div>
+		</section>
+	{% endblock %}

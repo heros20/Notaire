@@ -1,5 +1,5 @@
 <a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
-	<img src="{{ annonce.image }}" alt="" class="container_cardimg">
+	<img src="{{ asset('assets/uploads/' ~ annonce.image) }}" alt="{{ annonce.image }}">
 	<h4>{{ annonce.title }}</h4>
 	<p>{{ annonce.description }}</p>
 	<p>{{ annonce.price | number_format(0,',', ' ')}}€</p>

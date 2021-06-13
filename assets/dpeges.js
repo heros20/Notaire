@@ -1,7 +1,5 @@
 var DpeGes = function () {
 
-  "use strict";
-
     function Diag(options) {
 
       var self = this;

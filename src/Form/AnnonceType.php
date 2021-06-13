@@ -33,13 +33,13 @@ class AnnonceType extends AbstractType
                 'attr' => ['placeholder' => 'Description de l\'annonce...']
             ])
             ->add('image', FileType::class,[
-                'label' => 'image multiple',
+                'label' => 'image(s) supplémentaire',
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false,
             ])
             ->add('fileimage', FileType::class, [
-                'label' => 'image',
+                'label' => 'image à la une',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -60,11 +60,11 @@ class AnnonceType extends AbstractType
             ])
             ->add('superficieTerrain', NumberType::class, [
                 'label' => 'Superficie Terrain (m²)',
-                'attr' => ['placeholder' => 'Superficie en chiffres...']
+                'attr' => ['placeholder' => 'optionnel...']
             ])
             ->add('price', NumberType::class, [
                 'label' => 'Prix ( € )',
-                'attr' => ['placeholder' => '300000  ']
+                'attr' => ['placeholder' => '300 000  ']
             ])
             ->add('status', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
@@ -105,39 +105,116 @@ class AnnonceType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'title',
                 'multiple' => true,
-                'expanded' => true,
+                // 'expanded' => true,
             ])
-            ->add('dpe', NumberType::class, [
-                'label' => 'DPE',
-                'attr' => ['placeholder' => 'Performance énergétique ...']
+            ->add('dpe', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    'A' => 'A',
+                    'B' => 'B',
+                    'C' => 'C',
+                    'D' => 'D',
+                    'E' => 'E',
+                    'F' => 'F',
+                    'G' => 'G',
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('ges', NumberType::class, [
-                'label' => 'GES',
-                'attr' => ['placeholder' => 'Gaz à effet de serre']
+            ->add('ges', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    'A' => 'A',
+                    'B' => 'B',
+                    'C' => 'C',
+                    'D' => 'D',
+                    'E' => 'E',
+                    'F' => 'F',
+                    'G' => 'G',
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('nbrePieces', NumberType::class, [
-                'label' => 'Nombre de pièce',
-                'attr' => ['placeholder' => 'renseignez ici...']
+             ->add('nbrePieces', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                    '7' => '7',
+                    '8' => '8',
+                    '9' => '9',
+                    '10' => '10',
+                    '11' => '11',
+                    '12' => '12',
+                    '13' => '13',
+                    '14' => '14',
+                    '15' => '15',
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('nbreChambre', NumberType::class, [
-                'label' => 'Nombre de chambre',
-                'attr' => ['placeholder' => 'renseignez ici...']
+            ->add('nbreChambre', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                    '7' => '7',
+                    '8' => '8',
+                    '9' => '9',
+                    '10' => '10'
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('salleBain', NumberType::class, [
-                'label' => 'Nombre de salle de bain',
-                'attr' => ['placeholder' => 'renseignez ici...']
+            ->add('salleBain', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5'
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('wc', NumberType::class, [
-                'label' => 'Nombre de toilette',
-                'attr' => ['placeholder' => 'renseignez ici...']
+            ->add('wc', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5'
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('garage', NumberType::class, [
-                'label' => 'Nombre de garage ',
-                'attr' => ['placeholder' => "Optionnel..."]
+             ->add('garage', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    'oui' => 'oui',
+                    'non' => 'non'
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('piscine', NumberType::class, [
-                'label' => 'Nombre de piscine',
-                'attr' => ['placeholder' => "Optionnel..."]
+            ->add('piscine', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    'oui' => 'oui',
+                    'non' => 'non'
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
             ;
     }

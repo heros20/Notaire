@@ -1,0 +1,41 @@
+{% extends "back.html.twig" %}
+
+{% block body %}
+<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+    <h1>page notification</h1>
+    <p>Reçus : {{ app.user.received|length }}</p>
+    <p>Envoyés : {{ app.user.sent|length }}</p>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>De</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for message in app.user.received %}
+            {% if message.isRead == 1 %}
+                 <tr class="no_color">
+                 {# tu peux modifier si tu veux, seb. Je te laisse gérer ça #}
+            {% else %}
+                <tr class="color"> 
+            {% endif %}
+                    <td><a href="{{ path("notif_show_admin", {id: message.id}) }}">{{ message.sender.email }}</a></td>
+                    <td>{{ message.createdAt|date }}</td>
+                    <td><a href="{{ path("notif_delete", {id: message.id}) }}">Supprimer</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="18">Pas d'éléments</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+{% endblock %}

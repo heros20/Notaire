@@ -7,12 +7,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=false)
  */
 class Contact
 {
+    use SoftDeleteableEntity;
+    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -47,6 +52,7 @@ class Contact
 
     /**
      * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="contacts")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $Annonce;
 
@@ -57,6 +63,7 @@ class Contact
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sent")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $sender;
 

@@ -4,8 +4,8 @@
 
 {% block body %}
 	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
-
 		<h1 class="mb-5">Annonce</h1>
+		<a class="btn btn-primary mb-2" href="{{ path('annonce_new') }}">Ajouter une annonce</a>
 		<table class="table">
 			<thead>
 				<tr>
@@ -39,7 +39,5 @@
 				{% endfor %}
 			</tbody>
 		</table>
-
-		<a class="btn btn-primary mt-5 pl-4 pr-4" href="{{ path('annonce_new') }}">Créer</a>
 	</div>
 {% endblock %}

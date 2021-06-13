@@ -24,7 +24,7 @@
 	<body>
 		<header>
 			<div class="topHeader">
-				<div class="topHeader_info">
+				<div class="topHeader_info topHeader_1">
 					<svg width="19" height="14" viewbox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M17.986 4.54036C18.1256 4.42936 18.3333 4.5332 18.3333 4.70866V12.0313C18.3333 12.9801 17.5635 13.75 16.6146 13.75H1.71875C0.769857 13.75 0 12.9801 0 12.0313V4.71224C0 4.5332 0.204102 4.43294 0.347331 4.54395C1.14941 5.16699 2.21289 5.95833 5.86523 8.61165C6.62077 9.16309 7.89551 10.3232 9.16667 10.3161C10.445 10.3268 11.7448 9.1416 12.4717 8.61165C16.124 5.95833 17.1839 5.16341 17.986 4.54036ZM9.16667 9.16667C9.99739 9.18099 11.1934 8.12109 11.7949 7.68425C16.5465 4.236 16.9082 3.93522 18.0039 3.07585C18.2116 2.91471 18.3333 2.66406 18.3333 2.39909V1.71875C18.3333 0.769857 17.5635 0 16.6146 0H1.71875C0.769857 0 0 0.769857 0 1.71875V2.39909C0 2.66406 0.121745 2.91113 0.329427 3.07585C1.42513 3.93164 1.78678 4.236 6.53841 7.68425C7.13997 8.12109 8.33594 9.18099 9.16667 9.16667Z" fill="black"/>
 					</svg>
@@ -32,7 +32,7 @@
 						notaire@defrance.com
 					</p>
 				</div>
-				<div class="topHeader_info">
+				<div class="topHeader_info topHeader_2">
 					<svg width="14" height="18" viewbox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M13.6007 12.0732L10.5382 10.4714C10.4074 10.4034 10.262 10.389 10.1239 10.4306C9.98579 10.4721 9.8625 10.5672 9.77255 10.7017L8.41628 12.7239C6.28773 11.4992 4.57474 9.40865 3.57116 6.81099L5.22822 5.1558C5.3386 5.04624 5.41673 4.89577 5.45077 4.72717C5.48481 4.55857 5.47292 4.38103 5.41689 4.22142L4.10437 0.483906C4.04287 0.31185 3.93411 0.171371 3.79684 0.0866943C3.65957 0.00201731 3.50239 -0.0215509 3.3524 0.0200535L0.508603 0.82095C0.363998 0.861701 0.234981 0.961066 0.14261 1.10283C0.0502382 1.24459 -3.3311e-05 1.42037 1.65602e-08 1.60149C1.65602e-08 10.1611 5.68486 17.0855 12.6877 17.0855C12.8362 17.0856 12.9803 17.0243 13.0965 16.9115C13.2127 16.7988 13.2942 16.6413 13.3276 16.4648L13.9838 12.9942C14.0177 12.8103 13.998 12.6177 13.9281 12.4496C13.8581 12.2815 13.7424 12.1484 13.6007 12.0732V12.0732Z" fill="black"/>
 					</svg>
@@ -63,7 +63,7 @@
 									<a href="{{path('contact')}}" class="navbar__link">Contact</a>
 								</li>
 								{% if is_granted('ROLE_USER') %}
-									<li class="deroulant">
+									<li class="navbar__item deroulant">
 										<a href="{{ path('profile') }}" class="navbar__link">Espace Client</a>
 										<ul class="sous">
 											<li class="navbar__item">
@@ -73,6 +73,12 @@
 												<a class="navbar__link" href="{{ path('favoris') }}">Favoris</a>
 											</li>
 										</ul>
+									</li>
+									<li class="navbar__item none">
+										<a class="navbar__link" href="{{ path('notif') }}">Messagerie</a>
+									</li>
+									<li class="navbar__item none">
+										<a class="navbar__link" href="{{ path('favoris') }}">Favoris</a>
 									</li>
 									<li class="navbar__item">
 										<a href="{{ path('app_logout') }}" class="navbar__link">Deconnexion</a>
@@ -124,6 +130,14 @@
 							<a href="">CGU</a>
 						</p>
 					</div>
+					<div class="footer_contact">
+						<h3>HORAIRE</h3>
+						<p>>   AGENCE NOTAIRE</p>
+						<p>>   Adresse de l'agence</p>
+						<p>>   Tel : 06 xx xx xx xx</p>
+						<p>>   Email : notaire@defrance.com</p>
+					</div>
+
 					<div class="footer_contact">
 						<h3>CONTACT</h3>
 						<p>>   AGENCE NOTAIRE</p>
