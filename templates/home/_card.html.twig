@@ -1,9 +1,9 @@
 <a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
-	<img src="{{ annonce.image }}" alt="" class="container_cardimg">
-	<h3>{{ annonce.title }}</h3>
+	<img src="{{ asset('assets/uploads/' ~ annonce.image) }}" alt="{{ annonce.image }}">
+	<h4>{{ annonce.title }}</h4>
 	<p>{{ annonce.description }}</p>
 	<p>{{ annonce.price | number_format(0,',', ' ')}}€</p>
 	{% for c in annonce.category %}
-		<p>#{{ c.title }}</p>
+		<p class="étiquette">#{{ c.title }}</p>
 	{% endfor %}
 </a>

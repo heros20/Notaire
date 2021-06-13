@@ -1,0 +1,16 @@
+@mixin flash{
+    .flash{
+        position: absolute;
+        top: 50%;
+        text-align: center;
+        transform: translateY(-50%);
+        right: 0;
+        left: 0;
+        background-color: var(--color-primary);
+        color: #fff;
+        width: 240px;
+        margin: 0 auto;
+        padding: 30px 50px;
+        border-radius: 5px;
+    }
+}
