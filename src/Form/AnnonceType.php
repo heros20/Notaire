@@ -32,7 +32,7 @@ class AnnonceType extends AbstractType
                 'label' => 'Description',
                 'attr' => ['placeholder' => 'Description de l\'annonce...']
             ])
-            ->add('image', FileType::class,[
+            ->add('image', FileType::class, [
                 'label' => 'image(s) supplémentaire',
                 'multiple' => true,
                 'mapped' => false,
@@ -88,6 +88,7 @@ class AnnonceType extends AbstractType
             ])
             ->add('ville', EntityType::class, [
                 'label' => 'Ville *',
+                'attr' => ['class' => 'p-2'],
                 'class' => Ville::class,
                 'choice_label' => 'title',
                 // 'multiple' => true,
@@ -95,6 +96,7 @@ class AnnonceType extends AbstractType
             ])
             ->add('departement', EntityType::class, [
                 'label' => 'Departement *',
+                'attr' => ['class' => 'p-2'],
                 'class' => Departement::class,
                 'choice_label' => 'title',
                 // 'multiple' => true,
@@ -102,6 +104,7 @@ class AnnonceType extends AbstractType
             ])
             ->add('category', EntityType::class, [
                 'label' => 'Categorie(s) *',
+                'attr' => ['class' => 'pt-2 pb-5'],
                 'class' => Category::class,
                 'choice_label' => 'title',
                 'multiple' => true,
@@ -135,7 +138,7 @@ class AnnonceType extends AbstractType
                 // 'multiple' => true,
                 // 'expanded' => true,
             ])
-             ->add('nbrePieces', ChoiceType::class, [
+            ->add('nbrePieces', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
                 'choices'  => [
                     '1' => '1',
@@ -198,7 +201,7 @@ class AnnonceType extends AbstractType
                 // 'multiple' => true,
                 // 'expanded' => true,
             ])
-             ->add('garage', ChoiceType::class, [
+            ->add('garage', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
                 'choices'  => [
                     'oui' => 'oui',
@@ -215,8 +218,7 @@ class AnnonceType extends AbstractType
                 ],
                 // 'multiple' => true,
                 // 'expanded' => true,
-            ])
-            ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
