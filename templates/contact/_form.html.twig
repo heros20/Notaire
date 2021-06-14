@@ -3,15 +3,19 @@
 
 	{% if is_granted('ROLE_USER') %}
 		<div class="input-cont">Nom :
-			{{ user.name }}</div>
+			{{ user.name }}
+		</div>
 		<div class="input-cont">Prénom :
-			{{ user.username }}</div>
+			{{ user.username }}
+		</div>
 		<div class="input-cont">Email :
-			{{ user.email }}</div>
+			{{ user.email }}
+		</div>
 		{% if user.phone != NULL %}
 			<div class="input-cont">Téléphone :
-				{{ user.phone }}</div>
-		{% endif %}
+				{{ user.phone }}
+			</div>
+	{% endif %}
 
 	{% else %}
 
@@ -20,7 +24,6 @@
 			{{form_label(form.email)}}
 			<div class="border1"></div>
 		</div>
-
 		<div class="input-cont">
 			{{ form_widget(form.name) }}
 			{{form_label(form.name)}}

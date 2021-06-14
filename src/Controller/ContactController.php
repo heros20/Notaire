@@ -25,29 +25,21 @@ class ContactController extends AbstractController
     {
         $this->security = $security;
     }
-    // #[Route('/', name: 'contact', methods: ['GET'])]
-    // public function index(ContactRepository $contactRepository): Response
-    // {
-    //     return $this->render('contact/index.html.twig', [
-    //         'contacts' => $contactRepository->findAll(),
-    //     ]);
-    // }
-
 
     #[Route('/', name: 'contact', methods: ['GET', 'POST'])]
-    public function new(Request $request, MailerInterface $mailer): Response
+    public function new(Request $request, MailerInterface $mailer, UserRepository $repoUser): Response
     {
         $user = $this->getUser();
+        $id_user = 3;
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
                 
+            $recipient = $repoUser->find($id_user);
             $contact->setIsRead(false)
-            ->setRecipient($this->getDoctrine()
-            ->getRepository(User::class)
-            ->find($user->getId()));            
+            ->setRecipient($recipient);
             $email = new TemplatedEmail();
             if ($this->security->isGranted('ROLE_USER')) {
                 $contact->setSender($this->getUser());
@@ -84,44 +76,4 @@ class ContactController extends AbstractController
             'user' => $user
         ]);
     }
-    
-    
-
-    // #[Route('/{id}', name: 'contact_show', methods: ['GET'])]
-    // public function show(Contact $contact): Response
-    // {
-    //     return $this->render('contact/show.html.twig', [
-    //         'contact' => $contact,
-    //     ]);
-    // }
-
-    // #[Route('/{id}/edit', name: 'contact_edit', methods: ['GET', 'POST'])]
-    // public function edit(Request $request, Contact $contact): Response
-    // {
-    //     $form = $this->createForm(ContactType::class, $contact);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $this->getDoctrine()->getManager()->flush();
-
-    //         return $this->redirectToRoute('contact');
-    //     }
-
-    //     return $this->render('contact/edit.html.twig', [
-    //         'contact' => $contact,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
-
-    // #[Route('/{id}', name: 'contact_delete', methods: ['POST'])]
-    // public function delete(Request $request, Contact $contact): Response
-    // {
-    //     if ($this->isCsrfTokenValid('delete'.$contact->getId(), $request->request->get('_token'))) {
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->remove($contact);
-    //         $entityManager->flush();
-    //     }
-
-    //     return $this->redirectToRoute('contact');
-    // }
 }

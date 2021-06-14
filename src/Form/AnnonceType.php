@@ -64,7 +64,7 @@ class AnnonceType extends AbstractType
             ])
             ->add('price', NumberType::class, [
                 'label' => 'Prix ( € )',
-                'attr' => ['placeholder' => '300 000  ']
+                'attr' => ['placeholder' => '300000  ']
             ])
             ->add('status', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
@@ -80,8 +80,7 @@ class AnnonceType extends AbstractType
                 'choices'  => [
                     '--------' => null,
                     'Vendu' => 'Vendu',
-                    'Loué' => 'Loué',
-                    'Réservé' => 'Réservé',
+                    'Loué' => 'Loué'
                 ],
                 // 'multiple' => true,
                 // 'expanded' => true,
@@ -141,6 +140,7 @@ class AnnonceType extends AbstractType
             ->add('nbrePieces', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
                 'choices'  => [
+                    '0' => '0',
                     '1' => '1',
                     '2' => '2',
                     '3' => '3',
@@ -163,6 +163,7 @@ class AnnonceType extends AbstractType
             ->add('nbreChambre', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
                 'choices'  => [
+                    '0' => '0',
                     '1' => '1',
                     '2' => '2',
                     '3' => '3',
@@ -180,6 +181,7 @@ class AnnonceType extends AbstractType
             ->add('salleBain', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
                 'choices'  => [
+                    '0' => '0',
                     '1' => '1',
                     '2' => '2',
                     '3' => '3',
@@ -192,6 +194,7 @@ class AnnonceType extends AbstractType
             ->add('wc', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
                 'choices'  => [
+                    '0' => '0',
                     '1' => '1',
                     '2' => '2',
                     '3' => '3',

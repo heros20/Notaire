@@ -136,6 +136,10 @@
     font-size: 30px;
     font-family: var(--title);
   }
+  .alert-danger{
+    margin-left: 5%;
+    color: red;
+  }
   @include tablette {
     .log {
       width: 80%;

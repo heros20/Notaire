@@ -22,6 +22,14 @@ class ContactType extends AbstractType
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        if (!$this->security->isGranted('ROLE_ADMIN')){
+            $builder
+            ->add('recipient', TextType::class, [
+                'label' => 'Nom *',
+                'label_attr' => ['class' => 'formConnex_label2'],
+                'attr' => ['class' => 'class="form-control-material"'],
+            ]);
+        }
         if (!$this->security->isGranted('ROLE_USER')) {
             $builder
                 ->add('name', TextType::class, [
