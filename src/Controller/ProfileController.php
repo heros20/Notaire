@@ -77,6 +77,15 @@ class ProfileController extends AbstractController
             'contact' => $message,
         ]);
     }
+    
+    #[Route('/notif/delete/{id}', name: 'notification_delete')]
+    public function notifDelete(Contact $message): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($message);
+        $em->flush();
+        return $this->redirectToRoute('notif');
+    }
 
     #[Route('/favoris', name: 'favoris')]
     public function favori(): Response
