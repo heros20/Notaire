@@ -14,6 +14,15 @@ use App\Entity\Annonce;
 use App\Entity\Category;
 use App\Entity\Ville;
 use App\Entity\Departement;
+use App\Entity\Contact;
+use App\entity\User;
+use App\Form\ContactType;
+use Symfony\Component\Security\Core\Security;
+use App\Repository\ContactRepository;
+use App\Repository\UserRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 
 class HomeController extends AbstractController
 {
@@ -69,10 +78,55 @@ class HomeController extends AbstractController
         ]);
     }
     #[Route('/annonces/{id}', name: 'frontAnnonce_show', methods: ['GET'])]
-    public function show(Annonce $annonce): Response
+    public function show(Annonce $annonce,Request $request, MailerInterface $mailer, UserRepository $repoUser): Response
     {   
+        $user = $this->getUser();
+        $id_user = 2;
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+                
+            $recipient = $repoUser->find($id_user);
+            $contact->setIsRead(false)
+            ->setSender($user)
+            ->setRecipient($recipient);
+            $email = new TemplatedEmail();
+            if ($this->security->isGranted('ROLE_USER')) {
+                $contact->setSender($this->getUser());
+                $email->from($contact->getSender()->getEmail())
+                ->context([
+                    'contact' => $contact,
+                    'mail' => $contact->getSender()->getEmail(),
+                    'message' => $contact->getMessage()
+                ]);
+            }else {
+                $email->from($contact->getEmail())
+                ->context([
+                    'contact' => $contact,
+                    'mail' => $contact->getEmail(),
+                    'message' => $contact->getMessage()
+                ]);
+            }
+                $email->to(new Address('sebastienweb27@gmail.com'))
+                ->subject('Contact')
+                ->htmlTemplate('emails/contact.html.twig');
+              
+            $mailer->send($email);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+            $this->addFlash('message', 'Votre email à bien était envoyez');
+            return $this->redirectToRoute('home');
+        }
+        $user = $this->getUser();
         return $this->render('home/show.html.twig', [
             'annonce' => $annonce,
+            'contact' => $contact,
+            'form' => $form->createView(),
+            'user' => $user
         ]);
     }
     #[Route('/annonces/favoris/ajout/{id}', name: 'ajout_favoris')]
