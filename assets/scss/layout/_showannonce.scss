@@ -1,4 +1,5 @@
 @use "../composants/flexslider" as *;
+@use "../utils/mixins" as *;
 .show {
     @include flexslider;
 }
@@ -8,4 +9,18 @@
     margin: 30px;
     padding-bottom: 30px;
     @include details;
+}
+@include deckstop{
+    .show{
+        width: 50%;
+    }
+    .display{
+        display: flex;
+        justify-content: space-around;
+    }
+    .details{
+        box-shadow: 0 0 0 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
