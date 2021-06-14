@@ -32,12 +32,12 @@ class AnnonceType extends AbstractType
                 'label' => 'Description',
                 'attr' => ['placeholder' => 'Description de l\'annonce...']
             ])
-            ->add('image', FileType::class, [
-                'label' => 'image(s) supplémentaire',
-                'multiple' => true,
-                'mapped' => false,
-                'required' => false,
-            ])
+            // ->add('image', FileType::class, [
+            //     'label' => 'image(s) supplémentaire',
+            //     'multiple' => true,
+            //     'mapped' => false,
+            //     'required' => false,
+            // ])
             ->add('fileimage', FileType::class, [
                 'label' => 'image à la une',
                 'mapped' => false,
@@ -80,7 +80,7 @@ class AnnonceType extends AbstractType
                 'choices'  => [
                     '--------' => null,
                     'Vendu' => 'Vendu',
-                    'Loué' => 'Loué'
+                    'Loué' => 'Loué',
                 ],
                 // 'multiple' => true,
                 // 'expanded' => true,
