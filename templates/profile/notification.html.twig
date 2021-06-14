@@ -23,7 +23,7 @@
             {% else %}
                 <tr class="color"> 
             {% endif %}
-                    <td><a href="{{ path("notif_show_admin", {id: message.id}) }}">{{ message.sender.email }}</a></td>
+                    <td><a href="{{ path("notif_show", {id: message.id}) }}">{{ message.sender.email }}</a></td>
                     <td>{{ message.createdAt|date }}</td>
                 </tr>
             {% else %}

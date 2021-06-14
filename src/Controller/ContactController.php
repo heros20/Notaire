@@ -19,7 +19,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/contact')]
 class ContactController extends AbstractController
 {
-    private $security;
+    private 
+    $security;
 
     public function __construct(Security $security)
     {
