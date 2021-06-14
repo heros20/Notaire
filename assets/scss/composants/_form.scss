@@ -119,6 +119,13 @@
     text-align: center;
     padding-bottom: 25px;
   }
+  .helps{
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+  }
+  .helps a:hover{
+    color: var(--color-primary);
+  }
   .d-block {
     color: red;
     margin-left: 10px;

@@ -5,6 +5,7 @@
 {% block body %}
 	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
 		<h1 class="mb-5">Annonce</h1>
+		<a class="btn btn-primary mb-2" href="{{ path('admin') }}">Retour</a>
 		<a class="btn btn-primary mb-2" href="{{ path('annonce_new') }}">Ajouter une annonce</a>
 		<table class="table">
 			<thead>
@@ -30,6 +31,7 @@
 						<td>
 							<a class="action" href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a>
 							<a class="action" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Éditer</a>
+							<a class="text-warning" href="{{ path('add_new_images', {'id': annonce.id}) }}">Upload images</a>
 						</td>
 					</tr>
 				{% else %}
