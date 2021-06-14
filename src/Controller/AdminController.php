@@ -173,7 +173,7 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
-            $this->addFlash('message', 'Votre message à bien était envoyez');
+            // $this->addFlash('message', 'Votre message à bien était envoyez');
             return $this->redirectToRoute('admin');
         }
         $user = $this->getUser();
@@ -183,39 +183,32 @@ class AdminController extends AbstractController
             'user' => $user
         ]);
     }
-    #[Route('/notif/message/{id}', name: 'notif_new')]
-    public function message(Request $request, $id): Response
+    #[Route('/notif/message', name: 'notif_new')]
+    public function message(Request $request): Response
     {
         // $recipient = $this->getUser()->getId();
-        // $user = $this->getUser();
-        // dd($id);
-        // $contact = new Contact();
-        // $form = $this->createForm(ContactType::class, $contact);
-        // $form->handleRequest($request);
-
-        // if ($form->isSubmitted() && $form->isValid()) {
-                
-        //     $contact->setIsRead(false)
-        //         ->setSender($this->getDoctrine()
-        //         ->getRepository(User::class)
-        //         ->find($user->getId()))
-        //         ->setRecipient($this->getDoctrine()
-        //         ->getRepository(User::class)
-        //         ->find($id));
-
-            // dd($contact);
-
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($contact);
-            // $entityManager->flush();
-            // $this->addFlash('message', 'Votre message à bien était envoyez');
-            // return $this->redirectToRoute('admin');
-        // }
         $user = $this->getUser();
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+                
+            $contact->setIsRead(false)
+                ->setSender($this->getDoctrine()
+                ->getRepository(User::class)
+                ->find($user->getId()));
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+            $this->addFlash('message', 'Votre message à bien était envoyez');
+            return $this->redirectToRoute('admin');
+        }
         return $this->render('admin/form_notif.html.twig', [
-            // 'contact' => $contact,
-            // 'form' => $form->createView(),
-            // 'user' => $user
+            'contact' => $contact,
+            'form' => $form->createView(),
+            'user' => $user
         ]);
     }
 }

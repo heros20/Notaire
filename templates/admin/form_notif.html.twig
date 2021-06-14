@@ -11,7 +11,14 @@
     {% if user.phone != NULL %}
         <div class="input-cont">Téléphone : {{ user.phone }}</div>
     {% endif %}
-
+	<div class="input-cont">
+		{{ form_widget(form.recipient) }}
+		{{ form_label(form.recipient) }}
+		<div class="border2"></div>
+	</div>
+	<p class="help">
+		*Obligatoire
+	</p>
 	<div class="input-cont">
 		{{ form_widget(form.message) }}
 		{{form_label(form.message)}}
