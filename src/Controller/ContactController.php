@@ -67,7 +67,7 @@ class ContactController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
-            $this->addFlash('message', 'Votre email à bien était envoyez');
+            $this->addFlash('message', 'Votre email à bien été envoyé');
             return $this->redirectToRoute('home');
         }
         $user = $this->getUser();
