@@ -1,5 +1,5 @@
 <a class="action" href="{{ path('frontAnnonce_show', {'slug': annonce.slug}) }}">
-	<img src="{{ asset('assets/uploads/' ~ annonce.image) }}" alt="{{ annonce.image }}">
+	<img src="{{ asset('assets/media/cache/resolve/carre/' ~ annonce.image|imagine_filter('carre')) }}" alt="{{ annonce.image }}">
 	<h4>{{ annonce.title }}</h4>
 	<p>{{ annonce.description }}</p>
 	<p>{{ annonce.price | number_format(0,',', ' ')}}€</p>

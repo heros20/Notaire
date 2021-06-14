@@ -18,7 +18,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
             $annonce1 = new Annonce();
             $annonce1 ->setTitle('Villa vue sur mer');
             $annonce1 ->setDescription('jolie trop mognon');
-            $annonce1 ->setImage('https://picsum.photos/200/300');
+            $annonce1 ->setImage('paysage.jpg');
             $annonce1 ->setPrice(120000);
             $annonce1 ->setSuperficie(1000);
             $annonce1 ->setSuperficieTerrain(1500);

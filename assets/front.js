@@ -82,15 +82,4 @@ if (slider) {
 
 
 
-var dpe = new DpeGes();
-dpe.dpe({
-    domId: 'dpe',
-    value: 'B',
-});
-var ges = new DpeGes();
-ges.ges({
-    domId: 'ges',
-    value: 'A'
-});
-
 

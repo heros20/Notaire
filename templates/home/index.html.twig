@@ -4,7 +4,6 @@
 {% endblock %}
 
 {% block body %}
-<script>"dpeges.js"</script>
 	<section class="presentation">
 		<div class="presentation__agence">
 			<img src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
@@ -25,13 +24,13 @@
 			<div class="apropos__propos">
 				<h2>À Propos</h2>
 				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
-																												repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
-																												impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
-																												 a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+				repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+				impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+				a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
 				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
-																												repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
-																												impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
-																												a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+				repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+				impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+				a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
 			</div>
 			<div>
 				<img class="apropos__imgs" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
@@ -48,7 +47,7 @@
 			{% for annonce in annonces %}
 				<div class="annonce__card" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
 					<a class="action" href="{{ path('frontAnnonce_show', {'slug': annonce.slug}) }}">
-						<img src="{{ asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg') }}" alt="{{ annonce.image }}">
+						<img src="{{ annonce.image | imagine_filter('carre') }}" alt="{{ annonce.image }}">
 						<h4>{{ annonce.title }}</h4>
 						<p>{{ annonce.description }}</p>
 						<div class="annonce__coeur">
