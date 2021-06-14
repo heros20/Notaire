@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<script>"dpeges.js"</script>
 	<section class="presentation">
 		<div class="presentation__agence">
 			<img src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
@@ -46,7 +47,7 @@
 		<div class="annonce__blockCard">
 			{% for annonce in annonces %}
 				<div class="annonce__card" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
-					<a class="action" href="{{ path('frontAnnonce_show', {'id': annonce.id}) }}">
+					<a class="action" href="{{ path('frontAnnonce_show', {'slug': annonce.slug}) }}">
 						<img src="{{ asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg') }}" alt="{{ annonce.image }}">
 						<h4>{{ annonce.title }}</h4>
 						<p>{{ annonce.description }}</p>

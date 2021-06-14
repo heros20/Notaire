@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
-use Gedmo\Mapping\Annotation\Sluggable;
+
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -38,6 +38,14 @@ class Annonce
      */
 
     private $title;
+
+
+      
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
     
     /**
      * @ORM\Column(type="text")
@@ -221,6 +229,16 @@ class Annonce
         $this->title = $title;
 
         return $this;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->code = $slug;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     public function getDescription(): ?string

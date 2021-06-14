@@ -39,7 +39,6 @@ class ContactController extends AbstractController
                 
             $recipient = $repoUser->find($id_user);
             $contact->setIsRead(false)
-            ->setSender($user)
             ->setRecipient($recipient);
             $email = new TemplatedEmail();
             if ($this->security->isGranted('ROLE_USER')) {
@@ -67,7 +66,7 @@ class ContactController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
-            $this->addFlash('message', 'Votre email à bien était envoyez');
+            $this->addFlash('message', 'Votre email à bien été envoyé');
             return $this->redirectToRoute('home');
         }
         $user = $this->getUser();

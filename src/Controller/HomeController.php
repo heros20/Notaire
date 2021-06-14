@@ -26,6 +26,13 @@ use Symfony\Component\Mime\Address;
 
 class HomeController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/', name: 'home')]
     public function index(): Response
     {
@@ -68,6 +75,7 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         [$min, $max] = $repository->findMinMax($data);
         $searchAnnonce = $repository->findSearch($data);
+        
         // dd($searchAnnonce);
         return $this->render('home/annonces.html.twig', [
             // 'annonces' => $annonces,
@@ -77,7 +85,7 @@ class HomeController extends AbstractController
             'max' => $max
         ]);
     }
-    #[Route('/annonces/{id}', name: 'frontAnnonce_show', methods: ['GET'])]
+    #[Route('/annonces/{slug}', name: 'frontAnnonce_show', methods: ['GET', 'POST'])]
     public function show(Annonce $annonce,Request $request, MailerInterface $mailer, UserRepository $repoUser): Response
     {   
         $user = $this->getUser();
@@ -85,28 +93,32 @@ class HomeController extends AbstractController
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-                
             $recipient = $repoUser->find($id_user);
             $contact->setIsRead(false)
-            ->setSender($user)
+            ->setAnnonce($annonce)
             ->setRecipient($recipient);
             $email = new TemplatedEmail();
+            $message ='<p></p>';
+            $message .='</h1>'.$annonce->getTitle().'</h1>';
+            $message .= '<p>'.$contact->getMessage().'</p>';
             if ($this->security->isGranted('ROLE_USER')) {
+                $message .= '<p>'.$user->getName().'</p>';
+                $message .= '<p>'.$user->getUsername().'<p>';
                 $contact->setSender($this->getUser());
                 $email->from($contact->getSender()->getEmail())
                 ->context([
                     'contact' => $contact,
                     'mail' => $contact->getSender()->getEmail(),
-                    'message' => $contact->getMessage()
+                    'message' => $message,
                 ]);
             }else {
+                $message .= '<p>'.$contact->getName().'</p>';
                 $email->from($contact->getEmail())
                 ->context([
                     'contact' => $contact,
                     'mail' => $contact->getEmail(),
-                    'message' => $contact->getMessage()
+                    'message' => $message,
                 ]);
             }
                 $email->to(new Address('sebastienweb27@gmail.com'))
