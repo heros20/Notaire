@@ -37,7 +37,7 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['class' => "form-control-material"]
             ])
             ->add('phone', TextType::class, [
-                'label' => 'Numero',
+                'label' => 'Numero ( Optionnel )',
                 'label_attr' => ['class' => 'formConnex_label2'],
                 'attr' => ['class' => "form-control-material"]
             ])

@@ -23,10 +23,10 @@
 					<tr>
 						<td>{{ annonce.title }}</td>
 						<td>{{ annonce.description }}</td>
-						<td>{{ annonce.image }}</td>
+						<td><img src="{{ asset('assets/uploads/'~ annonce.image) }}" alt="" width="150" height="150"></td>
 						<td>{{ annonce.price }}</td>
 						<td>{{ annonce.status ? 'Vente' : 'Location' }}</td>
-						<td>{{ annonce.etat }}</td>
+						<td>{{ annonce.etat ? 'rien' ? 'Vendu' : 'Loué'}}</td>
 						<td>
 							<a class="action" href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a>
 							<a class="action" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Éditer</a>
