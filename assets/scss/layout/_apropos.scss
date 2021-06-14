@@ -40,6 +40,9 @@
 .form-error-icon{
     display: none;
 }
+.test{
+    display: none;
+}
 @include navigationBarre;
 @include deckstop {
     .apropos {

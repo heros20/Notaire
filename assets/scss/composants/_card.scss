@@ -66,6 +66,20 @@
             transition: all 0.2s ease-in-out;
             cursor: pointer;
         }
+        &__cards {
+            width: 80%;
+        }
+        & h4 {
+            font-size: 30px;
+        }
+        & p {
+            font-size: 18px;
+        }
+        &__barre{
+            background-color: var(--color-primary);
+            height: 2px;
+            margin: 15px 0;
+        }
         .fa-hearts{
             bottom: 100px
         }
