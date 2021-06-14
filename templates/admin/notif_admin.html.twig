@@ -5,6 +5,7 @@
     <h1>page notification</h1>
     <p>Reçus : {{ app.user.received|length }}</p>
     <p>Envoyés : {{ app.user.sent|length }}</p>
+    <div><a href="{{ path("notif_new") }}">Nouveau message<a/></div>
 
 <div>
     <table>

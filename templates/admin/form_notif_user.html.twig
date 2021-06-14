@@ -1,0 +1,27 @@
+{% extends 'back.html.twig' %}
+
+
+{% block body %}
+<div class="log">
+	{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+
+    <div class="input-cont">Nom : {{ user.name }}</div>
+    <div class="input-cont">Prénom : {{ user.username }}</div>
+    <div class="input-cont">Email : {{ user.email }}</div>
+    {% if user.phone != NULL %}
+        <div class="input-cont">Téléphone : {{ user.phone }}</div>
+    {% endif %}
+
+	<div class="input-cont">
+		{{ form_widget(form.message) }}
+		{{form_label(form.message)}}
+		<div class="border2"></div>
+	</div>
+	<p class="help">
+		*Obligatoire
+	</p>
+	<input type="submit" value="Envoyez">
+	{{ form_end(form) }}
+</div>
+
+{% endblock %}

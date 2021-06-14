@@ -17,6 +17,7 @@ $(document).ready(() => {
      $('#carousel').flexslider({
         animation: "slide",
         controlNav: false,
+        directionNav: false,
         animationLoop: false,
         slideshow: false,
         itemWidth: 210,
@@ -28,6 +29,7 @@ $(document).ready(() => {
     $('#slider').flexslider({
         animation: "slide",
         controlNav: false,
+        directionNav: false,
         animationLoop: false,
         slideshow: false,
         sync: "#carousel"
