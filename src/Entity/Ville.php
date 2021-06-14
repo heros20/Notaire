@@ -32,8 +32,8 @@ class Ville
      * @Assert\Length(
      *      min = 1,
      *      max = 80,
-     *      minMessage = "Vous devez respecter {{ min }} caractères minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} caractères maximums"
+     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums"
      * )
      */
     private $title;
@@ -45,7 +45,7 @@ class Ville
      *      min = 5,
      *      max = 5,
      *      minMessage = "Vous devez respecter {{ min }} characters minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     *      maxMessage = "Vous devez respecter {{ min }} characters maximums"
      * )
      */
     private $codePostal;

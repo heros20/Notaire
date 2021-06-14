@@ -77,6 +77,10 @@
 					<td>{{ annonce.createdAt ? annonce.createdAt|date('d/m/Y à H:i') : '' }}</td>
 				</tr>
 				<tr>
+					<th>Etat</th>
+					<td>{{ annonce.etat ? 'rien' ? 'Vendu' : 'Loué'}}</td>
+				</tr>
+				<tr>
 					<th>Modifier le</th>
 					<td>{{ annonce.modifiedAt ? annonce.modifiedAt|date('d/m/Y à H:i') : '' }}</td>
 				</tr>
