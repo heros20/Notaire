@@ -1,0 +1,11 @@
+@use "../composants/flexslider" as *;
+.show {
+    @include flexslider;
+}
+.details{
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    margin: 30px;
+    padding-bottom: 30px;
+    @include details;
+}

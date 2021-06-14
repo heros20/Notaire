@@ -47,7 +47,8 @@ class ContactController extends AbstractController
             $contact->setIsRead(false)
             ->setRecipient($this->getDoctrine()
             ->getRepository(User::class)
-            ->find($user->getId()));            $email = new TemplatedEmail();
+            ->find($user->getId()));            
+            $email = new TemplatedEmail();
             if ($this->security->isGranted('ROLE_USER')) {
                 $contact->setSender($this->getUser());
                 $email->from($contact->getSender()->getEmail())
