@@ -91,7 +91,7 @@
             }
         }
         &_contact {
-            margin: 20px 0 0 50px;
+            margin: -8px 0 0 50px;
             border: none;
             padding: 0;
             & h3 {
@@ -103,6 +103,9 @@
         }
         &_boite {
             width: 45%;
+        }
+        &_margin{
+            margin: 40px 0;
         }
     }
 }

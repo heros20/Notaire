@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block title %}Edition profil{% endblock %}
 {% block body %}
-<input type="button" value="Retour" onclick="history.go(-1)">
+<div class="boite">
+	<h1 class="boite__title">Modification de mes informations</h1>
+	<p class="boite__para">
+		<a href="{{path('home')}}">Accueil</a>
+		- Modification de mes info personnelles
+	</p>
+</div>
+
     <div class="log">
 		{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
@@ -35,7 +42,6 @@
             {{form_errors(form.phone)}}
 			<div class="border2"></div>
 		</div>
-		<div class="clear"></div>
 
 		<input type="submit" value="Modifier" onclick="return confirm('Cela va modifer vos informations personnelles: cliquez pour confirmer');">
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Annonce;
 use App\Entity\Images;
 use App\Form\AnnonceType;
+use App\Form\ImagesAnnonceType;
 
 use App\Repository\AnnonceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,23 +39,23 @@ class AnnonceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $imageFile */
-            $imageMultiple = $form->get('image')->getData();
+            // /** @var UploadedFile $imageFile */
+            // $imageMultiple = $form->get('image')->getData();
             $annonceFile = $form->get('fileimage')->getData();
-            foreach ($imageMultiple as $image) {
-                // on genere un nouveau nom de fichier
-                $fichier = md5(uniqid()). '.' . $image->guessExtension();
-                // on copie le fichier dans le dossier uploads
-                $image->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
+            // foreach ($imageMultiple as $image) {
+            //     // on genere un nouveau nom de fichier
+            //     $fichier = md5(uniqid()). '.' . $image->guessExtension();
+            //     // on copie le fichier dans le dossier uploads
+            //     $image->move(
+            //         $this->getParameter('images_directory'),
+            //         $fichier
+            //     );
                 
-                // on stock l'image dans la Bdd (son nom)
-                $img = new Images();
-                $img->setName($fichier);
-                $annonce->addImage($img);
-            }
+            //     // on stock l'image dans la Bdd (son nom)
+            //     $img = new Images();
+            //     $img->setName($fichier);
+            //     $annonce->addImage($img);
+            // }
             if ($annonceFile) {
                 $annonceFileName = $fileUploader->upload($annonceFile);
                 $annonce->setimage($annonceFileName);
@@ -77,6 +78,7 @@ class AnnonceController extends AbstractController
     #[Route('/{id}', name: 'annonce_show', methods: ['GET'])]
     public function show(Annonce $annonce): Response
     {
+        
         return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce,
         ]);
@@ -92,26 +94,26 @@ class AnnonceController extends AbstractController
              /** @var UploadedFile $imageFile */
              $imageMultiple = $form->get('image')->getData();
              $annonceFile = $form->get('fileimage')->getData();
-            foreach ($imageMultiple as $image) {
-                // on genere un nouveau nom de fichier
-                $fichier = md5(uniqid()). '.' . $image->guessExtension();
-                // on copie le fichier dans le dossier uploads
-                $image->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
+           // foreach ($imageMultiple as $image) {
+                // // on genere un nouveau nom de fichier
+                // $fichier = md5(uniqid()). '.' . $image->guessExtension();
+                // // on copie le fichier dans le dossier uploads
+                // $image->move(
+                //     $this->getParameter('images_directory'),
+                //     $fichier
+                // );
                 
                 // on stock l'image dans la Bdd (son nom)
-                $img = new Images();
-                $img->setName($fichier);
-                $annonce->addImage($img);
-            }
+                // $img = new Images();
+                // $img->setName($fichier);
+                // $annonce->addImage($img);
+            //}
             if ($annonceFile) {
                 $annonceFileName = $fileUploader->upload($annonceFile);
                 $annonce->setimage($annonceFileName);
             }
             $this->getDoctrine()->getManager()->flush();
-            $form['image']->getData();
+            // $form['image']->getData();
 
             return $this->redirectToRoute('annonce_index');
         }
@@ -156,5 +158,41 @@ class AnnonceController extends AbstractController
             return new JsonResponse(['error' => 'token invalide'], 400);
         }
     }
+    #[Route('/add/images/{id}', name: 'add_new_images', methods: ['GET', 'POST'])]
+    public function AddImages(Request $request, Annonce $annonce): Response
+    {
+        $form = $this->createForm(ImagesAnnonceType::class, $annonce);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $imageFile */
+            $imageMultiple = $form->get('image')->getData();
+          foreach ($imageMultiple as $image) {
+               // on genere un nouveau nom de fichier
+                $fichier = md5(uniqid()). '.' . $image->guessExtension();
+               // on copie le fichier dans le dossier uploads
+                $image->move(
+                   $this->getParameter('images_directory'),
+                   $fichier
+               );
+               
+                // on stock l'image dans la Bdd (son nom)
+                $img = new Images();
+                $img->setName($fichier);
+               $annonce->addImage($img);
+          }
+           $this->getDoctrine()->getManager()->flush();
+           // $form['image']->getData();
+
+           return $this->redirectToRoute('annonce_index');
+       }
+
+        return $this->render('images_annonce/index.html.twig', [
+            'annonce' => $annonce,
+            'form' => $form->createView(),
+        ]);
+    }
 }
+
+
+

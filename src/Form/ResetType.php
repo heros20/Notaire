@@ -28,7 +28,7 @@ class ResetType extends AbstractType
                         'message' => 'Veuillez renseigner un mot de passe',
                     ]),
                     new Length([
-                        'min' => 0,
+                        'min' => 6,
                         'minMessage' => 'Votre mot de passe doit avoir {{ limit }} caractère minimum',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,

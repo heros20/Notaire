@@ -14,14 +14,18 @@
 		</div>
 	</section>
 
-
 	<div class="log">
 		<form method="post" novalidate>
+			{% if error %}
+				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
 			<div class="input-cont">
 				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
 				<label for="inputEmail">Email</label>
 				<div class="border1"></div>
 			</div>
+			
+
 
 			<div class="input-cont">
 				<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
@@ -35,7 +39,9 @@
 					Souvenir de moi
 				</label>
 			</div>
-			{# <a href="{{path('mdp')}}">Mot de passe oublié?</a> #}
-			<input type="submit" value="Connexion"></input>
+			<div class="help helps">
+				<a href="{{path('forget')}}">Mot de passe oublié?</a>
+			</div>
+			<input type="submit" value="Connexion">
 	</form>
 </div>{% endblock %}

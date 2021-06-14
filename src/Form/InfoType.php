@@ -67,6 +67,8 @@ class InfoType extends AbstractType
             ->add(
                 'roles', ChoiceType::class, [
                     'choices' => ['ROLE_ADMIN' => 'ROLE_ADMIN', 'ROLE_USER' => ''],
+                    'label_attr' =>['class' => 'test tests'],
+                    'attr'=> ['class' => 'test tests'],
                     // 'expanded' => true,
                     'multiple' => true,
                 ]

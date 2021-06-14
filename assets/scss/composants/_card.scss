@@ -31,9 +31,13 @@
         font-size: 22px;
         z-index: 400;
         -webkit-text-stroke: 1px white;
+        color: #a8d7f5;
     }
     .fa-hearts{
         bottom: 90px;
+    }
+    .fullHearth{
+        color: #6e0603;
     }
     .heart:hover {
         background: linear-gradient(var(--color-primary), #a8d7f5);
@@ -61,6 +65,20 @@
             margin: 54px 30px;
             transition: all 0.2s ease-in-out;
             cursor: pointer;
+        }
+        &__cards {
+            width: 80%;
+        }
+        & h4 {
+            font-size: 30px;
+        }
+        & p {
+            font-size: 18px;
+        }
+        &__barre{
+            background-color: var(--color-primary);
+            height: 2px;
+            margin: 15px 0;
         }
         .fa-hearts{
             bottom: 100px

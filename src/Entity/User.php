@@ -30,10 +30,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\Email(
-     *      message = "L'email est invalide"
+     *      message = "Veuillez renseigner un email valide"
      * )
      * @Assert\NotBlank(
-     *  message = "tets"
+     *  message = "Veuillez renseigner votre email"
      * )
      */
     private $email;
@@ -46,7 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-
+    * @Assert\Length(
+     *      min = 6,
+     *      max = 30,
+     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums",
+     * )
      */
     private $password;
 
@@ -59,7 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums",
      * )
      * @Assert\NotBlank(
-     *  message = "Obligatoire"
+     *  message = "Veuillez renseigner votre nom"
      * )
      */
     private $name;
@@ -67,7 +72,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank(
-     *  message = "Obligatoire"
+     *  message = "Veuillez renseigner votre prénom"
      * )
      *  @Assert\Length(
      *      min = 2,

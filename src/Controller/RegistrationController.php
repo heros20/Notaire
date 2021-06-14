@@ -31,7 +31,7 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    #[Route('/register', name: 'app_register')]
+    #[Route('/inscription', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
@@ -65,7 +65,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/verify/email', name: 'app_verify_email')]
+    #[Route('/verification-email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -84,7 +84,7 @@ class RegistrationController extends AbstractController
 
         return $this->redirectToRoute('profile');
     }
-    #[Route('/attente', name: 'attente')]
+    #[Route('/verification', name: 'attente')]
     public function attente()
     {
         return $this->render('emails/attente.html.twig', [
@@ -92,7 +92,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/forget_password', name: 'forget')]
+    #[Route('/email', name: 'forget')]
     public function forget_password(Request $request, MailerInterface $mailer, TokenGeneratorInterface $tokenInterface)
     {
         $form = $this->createForm(ForgetPasswordType::class)->handleRequest($request);
@@ -113,7 +113,7 @@ class RegistrationController extends AbstractController
                 $url = $this->generateUrl("reset",['token' =>$token], UrlGeneratorInterface::ABSOLUTE_URL);
                 $mail = (new TemplatedEmail())
                 ->from('seb@gmail.com')
-                ->to('test@gmail.com')
+                ->to($user->getEmail())
                 ->subject('Mot de passe oublié')
                 ->htmlTemplate('emails/motdepasse.html.twig')
                 ->context([
@@ -126,7 +126,7 @@ class RegistrationController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    #[Route('/reset_password/{token}', name: 'reset')]
+    #[Route('/mot-de-passe/{token}', name: 'reset')]
     public function reset(Request $request, $token, UserPasswordHasherInterface $passwordHasher){
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(["reset_token" =>$token]);
         //Vérifier l'utilisateur existe ou pas
