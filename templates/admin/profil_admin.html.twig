@@ -1,0 +1,52 @@
+{% extends "back.html.twig" %}
+
+{% block body %}
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+
+		<h1 class="mb-5">{{ user.name }} {{ user.username }}</h1>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ user.id }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ user.name }}</td>
+				</tr>
+				<tr>
+					<th>Prénom</th>
+					<td>{{ user.username }}</td>
+				</tr>
+				<tr>
+					<th>Téléphone</th>
+					<td>
+						{% if user.phone is empty %}
+							Non renseigner
+						{% else %}
+							{{ user.phone }}
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<th>Rôle</th>
+					<td> 
+						{% for role in user.roles %}
+							{{ role }}
+						{% endfor %} 
+					</td>
+				</tr>
+				<tr>
+					<th>Crée le</th>
+					<td>{{ user.createdAt ? user.createdAt|date('d/m/Y à H:i') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Action</th>
+					<td><a href="{{ path('edit_profil_admin', {'id': user.id}) }}">Éditer</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}
+

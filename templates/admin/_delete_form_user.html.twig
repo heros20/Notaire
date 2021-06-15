@@ -1,0 +1,19 @@
+{# {% for role in user.roles %}
+    {% if role != 'ROLE_ADMIN' %}
+        <form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Cela va supprimer un utilisateur confirmer?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+            <button class="btn btn-danger ml-5 mt-3">Supprimer</button>
+        </form>
+    {% else %}
+        <form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('ATTENTION, cela va supprimer un compte ADMINISTRATEUR, confirmer?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+            <button class="btn btn-danger ml-5 mt-3">Supprimer</button>
+        </form>
+    {% endif %}
+ {% endfor %} #}
+
+ <form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Cela va supprimer un utilisateur confirmer?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+    <button class="btn btn-danger ml-5 mt-3">Supprimer</button>
+ </form>
+    

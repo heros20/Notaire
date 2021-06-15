@@ -1,21 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}S'inscrire
+{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+<section>
+	<div class="boite">
+		<h1 class="boite__title">S'inscrire</h1>
+		<p class="boite__para">
+			<a href="{{path('home')}}">Accueil</a>
+			- S'inscrire
+		</p>
+	</div>
+</section>
 
-    <h1>Register</h1>
+{% if is_granted('ROLE_USER') %}
+	<p>Bonjour
+		{{ app.user.name }}</p>
+	<p>Vous êtes déja connecté</p>
+	<a href="{{ path('home') }}">Retour à l'accueil</a>
+{% else %}
+	<div class="log">
+		{{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+		<div class="input-cont">
+			{{ form_widget(registrationForm.email) }}
+			{{form_label(registrationForm.email)}}
+			<div class="border1"></div>
+		</div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+		<div class="input-cont">
+			{{ form_widget(registrationForm.name)}}
+			{{form_label(registrationForm.name)}}
+			<div class="border2"></div>
+		</div>
+
+		<div class="input-cont">
+			{{ form_widget(registrationForm.username)}}
+			{{form_label(registrationForm.username)}}
+			<div class="border2"></div>
+		</div>
+
+		<div class="input-cont">
+			{{ form_widget(registrationForm.phone)}}
+			{{form_label(registrationForm.phone)}}
+			<div class="border2"></div>
+		</div>
+
+		<div class="input-cont">
+			{{ form_widget(registrationForm.plainPassword.first)}}
+			{{form_label(registrationForm.plainPassword.first)}}
+			<div class="border2"></div>
+		</div>
+
+		<div class="input-cont">
+			{{ form_widget(registrationForm.plainPassword.second)}}
+			{{form_label(registrationForm.plainPassword.second)}}
+			<div class="border2"></div>
+		</div>
+
+		<span class="check">
+			{{ form_widget(registrationForm.agreeTerms) }}
+		</span>
+		<p class="help">*Obligatoire</p>
+		<div class="clear"></div>
+
+		<input type="submit" value="S'inscrire"></input>
+	{{ form_end(registrationForm) }}
+</div>{% endif %}{% endblock %}

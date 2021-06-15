@@ -1,20 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Hello ProfileController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<div class="boite">
+		<h1 class="boite__title">Mon Profil</h1>
+		<p class="boite__para">
+			<a href="{{path('home')}}">Accueil</a>
+			- Mes informations Personnelle
+		</p>
+	</div>
+	<section class="annonce">
+		<div class="annonce__blockCard">
+			<div class="annonce__card annonce__cards">
+				<img src="{{asset('assets/images/paysage.jpg')}}" alt="">
+				<h4>Bonjour,
+					{{ user.name }}
+				</h4>
+				<div class="annonce__barre"></div>
+				<p>Prénom:
+					{{ user.username}}
+				</p>
+				<div class="annonce__barre"></div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+				<p>Nom:
+					{{ user.name}}
+				</p>
+				<div class="annonce__barre"></div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Stella/OneDrive/Bureau/Notaire/src/Controller/ProfileController.php'|file_link(0) }}">src/Controller/ProfileController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Stella/OneDrive/Bureau/Notaire/templates/profile/index.html.twig'|file_link(0) }}">templates/profile/index.html.twig</a></code></li>
-    </ul>
-</div>
+				<p>Email:
+					{{user.email}}
+				</p>
+				<div class="annonce__barre"></div>
+
+				<p>Téléphone:
+					{{user.phone}}
+				</p>
+				<div class="annonce__barre"></div>
+
+				<p>Vous avez créez votre compte le:
+					{{ user.createdAt ? user.createdAt|date('m-d à H:i') : ''  }}
+				</p>
+				<div class="annonce__barre"></div>
+
+				<p>
+					<a class="action" href="{{ path('infos_perso_edit') }}">Éditer vos informations</a>
+				</p>
+
+			</div>
+		</div>
+	</section>
 {% endblock %}

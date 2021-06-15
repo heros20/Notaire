@@ -1,13 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'back.html.twig' %}
 
-{% block title %}Edit Category{% endblock %}
+{% block title %}Editer la Catégorie
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Category</h1>
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+		<h1 class="mb-3">Editer la Catégorie</h1>
+		<div class="flex mb-5">
+			<a class="btn btn-primary " href="{{ path('category_index') }}">Retour</a>
+			{{ include('category/_delete_form.html.twig') }}
+		</div>	
 
-    {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('category_index') }}">back to list</a>
-
-    {{ include('category/_delete_form.html.twig') }}
+		{{ include('category/_form.html.twig', {'button_label': 'Modifier'}) }}
+	</div>
 {% endblock %}

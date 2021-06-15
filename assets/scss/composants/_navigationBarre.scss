@@ -1,0 +1,20 @@
+@mixin navigationBarre {
+    .boite {
+        background-color: #fff;
+        box-shadow: var(--box-shadow);
+        padding-bottom: 30px;
+        & a {
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                color: var(--color-primary);
+            }
+        }
+        text-align: center;
+        &__title {
+            font-weight: bold;
+            font-family: var(--title);
+            font-size: 26px;
+            padding: 30px 0;
+        }
+    }
+}

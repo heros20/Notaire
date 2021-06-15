@@ -2,46 +2,152 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
 
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+			<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+			{{ encore_entry_link_tags('front') }}
 		{% endblock %}
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
+			{{ encore_entry_script_tags('front') }}
+			<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 		{% endblock %}
 	</head>
 	<body>
 		<header>
-			<nav>
-				<ul>
-					<li><a href="{{ path('home') }}">Home</a></li>
-					<li><a href="{{ path('presentation') }}">Présentation</a></li>
-					<li><a href="{{ path('competence') }}">Competence</a></li>
-					<li><a href="{{ path('annonces') }}">Annonces</a></li>
-					<li><a href="{{ path('contact') }}">Contact</a></li>
-					<li><a href="{{ path('conditions_generales') }}">Conditions Generales</a></li>
-					<li><a href="{{ path('mentions_legales') }}">Mentions Legales</a></li>
-					{% if is_granted('ROLE_USER') %}
-						{{ app.user.email }}
-						<li><a href="{{ path('profile') }}">Escpace Client</a></li>
-						<li><a href="{{ path('app_logout') }}">Deconextion</a></li>
-						{% if is_granted('ROLE_ADMIN') %}
-							<li><a href="{{ path('admin') }}">Admin</a></li>
-						{% endif %}
-					{% else %}
-						<li><a href="{{ path('app_login') }}">Connection</a></li>
-						<li><a href="{{ path('app_register') }}">Inscription</a></li>
-					{% endif %}
-				</ul>
-			</nav>
+			<div class="topHeader">
+				<div class="topHeader_info topHeader_1">
+					<svg width="19" height="14" viewbox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M17.986 4.54036C18.1256 4.42936 18.3333 4.5332 18.3333 4.70866V12.0313C18.3333 12.9801 17.5635 13.75 16.6146 13.75H1.71875C0.769857 13.75 0 12.9801 0 12.0313V4.71224C0 4.5332 0.204102 4.43294 0.347331 4.54395C1.14941 5.16699 2.21289 5.95833 5.86523 8.61165C6.62077 9.16309 7.89551 10.3232 9.16667 10.3161C10.445 10.3268 11.7448 9.1416 12.4717 8.61165C16.124 5.95833 17.1839 5.16341 17.986 4.54036ZM9.16667 9.16667C9.99739 9.18099 11.1934 8.12109 11.7949 7.68425C16.5465 4.236 16.9082 3.93522 18.0039 3.07585C18.2116 2.91471 18.3333 2.66406 18.3333 2.39909V1.71875C18.3333 0.769857 17.5635 0 16.6146 0H1.71875C0.769857 0 0 0.769857 0 1.71875V2.39909C0 2.66406 0.121745 2.91113 0.329427 3.07585C1.42513 3.93164 1.78678 4.236 6.53841 7.68425C7.13997 8.12109 8.33594 9.18099 9.16667 9.16667Z" fill="black"/>
+					</svg>
+					<p>
+						notaire@defrance.com
+					</p>
+				</div>
+				<div class="topHeader_info topHeader_2">
+					<svg width="14" height="18" viewbox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M13.6007 12.0732L10.5382 10.4714C10.4074 10.4034 10.262 10.389 10.1239 10.4306C9.98579 10.4721 9.8625 10.5672 9.77255 10.7017L8.41628 12.7239C6.28773 11.4992 4.57474 9.40865 3.57116 6.81099L5.22822 5.1558C5.3386 5.04624 5.41673 4.89577 5.45077 4.72717C5.48481 4.55857 5.47292 4.38103 5.41689 4.22142L4.10437 0.483906C4.04287 0.31185 3.93411 0.171371 3.79684 0.0866943C3.65957 0.00201731 3.50239 -0.0215509 3.3524 0.0200535L0.508603 0.82095C0.363998 0.861701 0.234981 0.961066 0.14261 1.10283C0.0502382 1.24459 -3.3311e-05 1.42037 1.65602e-08 1.60149C1.65602e-08 10.1611 5.68486 17.0855 12.6877 17.0855C12.8362 17.0856 12.9803 17.0243 13.0965 16.9115C13.2127 16.7988 13.2942 16.6413 13.3276 16.4648L13.9838 12.9942C14.0177 12.8103 13.998 12.6177 13.9281 12.4496C13.8581 12.2815 13.7424 12.1484 13.6007 12.0732V12.0732Z" fill="black"/>
+					</svg>
+					<p>
+						06 xx xx xx xx
+					</p>
+				</div>
+			</div>
+			<div class="containerHeader">
+				<div class="topHeader_logo">
+					<img src="{{ asset('assets/images/logo.svg') }}" alt="notaire_de_france">
+				</div>
+				<div class="navigation">
+					<input type="checkbox" class="navigation__checkbox" id="navi-toggle" aria-checked="false">
+					<nav class="navbar">
+						<div class="navbar__menu">
+							<ul class="navbar__links">
+								<li class="navbar__item">
+									<a href="{{path('home')}}" class="navbar__link">Accueil</a>
+								</li>
+								<li class="navbar__item">
+									<a href="{{path('presentation')}}" class="navbar__link ">A propos</a>
+								</li>
+								<li class="navbar__item">
+									<a href="{{path('annonces')}}" class="navbar__link ">Immobilier</a>
+								</li>
+								<li class="navbar__item">
+									<a href="{{path('contact')}}" class="navbar__link">Contact</a>
+								</li>
+								{% if is_granted('ROLE_USER') %}
+									<li class="navbar__item deroulant">
+										<a href="{{ path('profile') }}" class="navbar__link">Espace Client</a>
+										<ul class="sous">
+											<li class="navbar__item">
+												<a class="navbar__link" href="{{ path('notif') }}">Messagerie</a>
+											</li>
+											<li class="navbar__item">
+												<a class="navbar__link" href="{{ path('favoris') }}">Favoris</a>
+											</li>
+										</ul>
+									</li>
+									<li class="navbar__item none">
+										<a class="navbar__link" href="{{ path('notif') }}">Messagerie</a>
+									</li>
+									<li class="navbar__item none">
+										<a class="navbar__link" href="{{ path('favoris') }}">Favoris</a>
+									</li>
+									<li class="navbar__item">
+										<a href="{{ path('app_logout') }}" class="navbar__link">Deconnexion</a>
+									</li>
+									{% if is_granted('ROLE_ADMIN') %}
+										<li class="navbar__item">
+											<a href="{{ path('admin') }}" class="navbar__link ">Admin</a>
+										</li>
+									{% endif %}
+								{% else %}
+									<li class="navbar__item">
+										<a class="navbar__link" href="{{ path('app_register') }}" class="navbar__link ">Inscription
+										</a>
+									</li>
+									<li class="navbar__item">
+										<a class="navbar__link" href="{{ path('app_login') }}">Connexion</a>
+									</li>
+								{% endif %}
+							</ul>
+						</div>
+					</nav>
+					<label for="navi-toggle" class="navigation__button" aria-haspopup="true" aria-controls="main-menu" aria-label="Open or close main menu">
+						<span class="navigation__icon">&nbsp;</span>
+					</label>
+				</div>
+			</div>
 		</header>
-		{% block body %}{% endblock %}
-		<script src="https://kit.fontawesome.com/5541233122.js" crossorigin="anonymous"></script>
 
+		{% block body %}{% endblock %}
+
+		<footer>
+			<div class="footer">
+				<div class="footer_insidefooter">
+					<div class="footer_description">
+						<div>
+							<img class="mb" src="{{asset('assets/images/logo.svg')}}" alt="notaire_de_france">
+						</div>
+						<p class="mb">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti,omnis aperiam at commodi rem id magnam aliquam voluptatibus, enim neque nihil.</p>
+					</div>
+					<div class="footer_pratique">
+						<h3>PRATIQUE</h3>
+						<p>
+							<a href="{{ path('presentation') }}">À Propos</a>
+						</p>
+						<p>
+							<a href="{{ path('mentions_legales') }}">Mentions Légales</a>
+						</p>
+						<p>
+							<a href="{{ path('conditions_generales') }}">Conditions générales d'utilisation</a>
+						</p>
+					</div>
+					<div class="footer_pratique footer_margin">
+						<h3>HORAIRE</h3>
+						<p>Lundi: 8h - 12h 14h - 19h</p>
+						<p>Mardi: 8h - 12h 14h - 19h</p>
+						<p>Mercredi: 8h - 12h 14h - 19h</p>
+						<p>Jeudi: 8h - 12h 14h - 19h</p>
+						<p>Vendredi: 8h - 12h 14h - 19h</p>
+					</div>
+
+					<div class="footer_contact">
+						<h3>CONTACT</h3>
+						<p>AGENCE NOTAIRE</p>
+						<p>Adresse de l'agence</p>
+						<p>Tel : 06 xx xx xx xx</p>
+						<p>Email : notaire@defrance.com</p>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>

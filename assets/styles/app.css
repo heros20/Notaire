@@ -1,3 +1,70 @@
-body {
-    background-color: rgb(197, 31, 31);
+
+/* BOOSTRAP */
+.btn-primary {
+    background-color: #008BE0;
+    color: #fff;
 }
+.btn-primary:hover {
+    opacity: 0.8;
+    background-color: #008BE0;
+    color: #fff;
+}
+.action:hover {
+    text-decoration: none;
+}
+.boxshadow {
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.56);
+}
+.btn-danger {
+    color: #fff;
+}
+.btn-danger:hover {
+    color: #fff;
+}
+.form {
+    margin: 0 40px;
+}
+textarea.form-control  {
+    resize: none;
+    height: 150px;
+}
+.flex{
+    display: flex;
+    align-items: center;
+}
+.mt-3{
+    margin-top: 0 !important;
+}
+.app-nav .nav-link:hover{
+    color: #fff;
+    background-color: #008BE0;
+}
+.nav-link-text:active{
+    color: #fff;
+}
+.app-card.border-left-decoration {
+    border-left: 3px solid #008BE0;
+}
+.table>:not(:last-child)>:last-child>*{
+    border-bottom-color: #008BE0;
+}
+.table th, .table td{
+    border-color: #008BE0;
+}
+ul li.active a{
+    background: #008BE0;
+    padding: 5px;
+    color: #fff;
+}
+ul li.active a span{
+    color: #fff;
+}
+
+.action{
+    text-decoration: none;
+    color: #008BE0;
+}
+.action:hover{
+    color: #a8d7f5;
+}
+/* END BOOSTRAP */

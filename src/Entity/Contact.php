@@ -3,13 +3,21 @@
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=false)
  */
 class Contact
 {
+    use SoftDeleteableEntity;
+    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -41,6 +49,34 @@ class Contact
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="contacts")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $Annonce;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isRead = 0;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sent")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $sender;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="received")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $recipient;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime;
+    }
 
     public function getId(): ?int
     {
@@ -106,4 +142,52 @@ class Contact
 
         return $this;
     }
+    public function getAnnonce(): ?Annonce
+    {
+        return $this->Annonce;
+    }
+
+    public function setAnnonce(?Annonce $Annonce): self
+    {
+        $this->Annonce = $Annonce;
+
+        return $this;
+    }
+
+    public function getIsRead(): ?bool
+    {
+        return $this->isRead;
+    }
+
+    public function setIsRead(bool $isRead): self
+    {
+        $this->isRead = $isRead;
+
+        return $this;
+    }
+
+    public function getSender(): ?User
+    {
+        return $this->sender;
+    }
+
+    public function setSender(?User $sender): self
+    {
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    public function getRecipient(): ?User
+    {
+        return $this->recipient;
+    }
+
+    public function setRecipient(?User $recipient): self
+    {
+        $this->recipient = $recipient;
+
+        return $this;
+    }
+
 }

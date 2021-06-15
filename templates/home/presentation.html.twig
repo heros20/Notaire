@@ -1,2 +1,73 @@
 {% extends 'base.html.twig' %}
-<h1>dodo presentation</h1>
+
+{% block body %}
+	<section>
+		<div class="boite">
+			<h1 class="boite__title">À Propos de nous</h1>
+			<p class="boite__para">
+				<a href="{{path('home')}}">Accueil</a>
+				- À propos
+			</p>
+		</div>
+	</section>
+	<section class="apropos">
+		<div class="apropos__block">
+			<div class="apropos__propos">
+				<h2>À Propos</h2>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
+				repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+				impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+				a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
+				repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+				impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+				a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda volupplaceatquam?</p>
+			</div>
+			<div>
+				<img class="apropos__imgs" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+			</div>
+		</div>
+	</section>
+
+	<section class="services">
+		<h3 class="services__title">Équipes</h3>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit?</p>
+
+		<div class="services__boites">
+			<div class="services__perso">
+				<img src="{{asset('assets/uploads/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
+				<h4>Family Law</h4>
+				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
+			</div>
+			<div class="services__perso">
+				<img src="{{asset('assets/uploads/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
+				<h4>Family Law</h4>
+				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
+			</div>
+
+			<div class="services__perso">
+				<img src="{{asset('assets/uploads/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
+				<h4>Family Law</h4>
+				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
+			</div>
+
+			<div class="services__perso">
+				<img src="{{asset('assets/uploads/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
+				<h4>Family Law</h4>
+				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
+			</div>
+
+			<div class="services__perso">
+				<img src="{{asset('assets/uploads/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
+				<h4>Family Law</h4>
+				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
+			</div>
+
+			<div class="services__perso">
+				<img src="{{asset('assets/uploads/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
+				<h4>Family Law</h4>
+				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
+			</div>
+		</div>
+	</section>
+{% endblock %}

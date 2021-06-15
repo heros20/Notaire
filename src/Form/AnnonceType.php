@@ -3,14 +3,21 @@
 namespace App\Form;
 
 use App\Entity\Annonce;
+use App\Entity\Ville;
+use App\Entity\Category;
+use App\Entity\Departement;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
+
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class AnnonceType extends AbstractType
 {
@@ -19,26 +26,48 @@ class AnnonceType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Titre',
-                'attr' => ['placeholder' => 'Chaumière Normande']
+                'attr' => ['placeholder' => 'Titre de l\'annonce...']
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
-                'attr' => ['placeholder' => 'Maison situé plein sud...']
+                'attr' => ['placeholder' => 'Description de l\'annonce...']
             ])
-            ->add('image', FileType::class)
+            // ->add('image', FileType::class, [
+            //     'label' => 'image(s) supplémentaire',
+            //     'multiple' => true,
+            //     'mapped' => false,
+            //     'required' => false,
+            // ])
+            ->add('fileimage', FileType::class, [
+                'label' => 'image à la une',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpg',
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez uploader une image sous format jpg, jpeg ou png',
+                    ])
+                ],
+            ])
             ->add('superficie', NumberType::class, [
-                'label' => 'Superficie',
-                'attr' => ['placeholder' => '20m²']
+                'label' => 'Superficie (m²)',
+                'attr' => ['placeholder' => 'Superficie en chiffres...']
             ])
             ->add('superficieTerrain', NumberType::class, [
-                'label' => 'Superficie Terrain',
-                'attr' => ['placeholder' => '1ha']
+                'label' => 'Superficie Terrain (m²)',
+                'attr' => ['placeholder' => 'optionnel...']
             ])
             ->add('price', NumberType::class, [
-                'label' => 'Prix',
-                'attr' => ['placeholder' => '300 000 € ']
+                'label' => 'Prix ( € )',
+                'attr' => ['placeholder' => '300000  ']
             ])
             ->add('status', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
                 'choices'  => [
                     'Vente' => true,
                     'Location' => false,
@@ -47,46 +76,151 @@ class AnnonceType extends AbstractType
                 // 'expanded' => true,
             ])
             ->add('etat', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
                 'choices'  => [
                     '--------' => null,
                     'Vendu' => 'Vendu',
                     'Loué' => 'Loué',
-                    'Réservé' => 'Réservé',
                 ],
                 // 'multiple' => true,
                 // 'expanded' => true,
             ])
-            ->add('dpe', NumberType::class, [
-                'label' => 'DPE',
-                'attr' => ['placeholder' => '100']
+            ->add('ville', EntityType::class, [
+                'label' => 'Ville *',
+                'attr' => ['class' => 'p-2'],
+                'class' => Ville::class,
+                'choice_label' => 'title',
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('ges', NumberType::class, [
-                'label' => 'GES',
-                'attr' => ['placeholder' => '100']
+            ->add('departement', EntityType::class, [
+                'label' => 'Departement *',
+                'attr' => ['class' => 'p-2'],
+                'class' => Departement::class,
+                'choice_label' => 'title',
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('nbrePieces', NumberType::class, [
-                'label' => 'Nombre de pièce',
-                'attr' => ['placeholder' => '4']
+            ->add('category', EntityType::class, [
+                'label' => 'Categorie(s) *',
+                'attr' => ['class' => 'pt-2 pb-5'],
+                'class' => Category::class,
+                'choice_label' => 'title',
+                'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('nbreChambre', NumberType::class, [
-                'label' => 'Nombre de chambre',
-                'attr' => ['placeholder' => '2']
+            ->add('dpe', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    'A' => 'A',
+                    'B' => 'B',
+                    'C' => 'C',
+                    'D' => 'D',
+                    'E' => 'E',
+                    'F' => 'F',
+                    'G' => 'G',
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('salleBain', NumberType::class, [
-                'label' => 'Nombre de salle de bain',
-                'attr' => ['placeholder' => '1']
+            ->add('ges', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    'A' => 'A',
+                    'B' => 'B',
+                    'C' => 'C',
+                    'D' => 'D',
+                    'E' => 'E',
+                    'F' => 'F',
+                    'G' => 'G',
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('wc', NumberType::class, [
-                'label' => 'Nombre de toilette',
-                'attr' => ['placeholder' => '1']
+            ->add('nbrePieces', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    '0' => '0',
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                    '7' => '7',
+                    '8' => '8',
+                    '9' => '9',
+                    '10' => '10',
+                    '11' => '11',
+                    '12' => '12',
+                    '13' => '13',
+                    '14' => '14',
+                    '15' => '15',
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('garage', NumberType::class, [
-                'label' => 'Nombre de garage',
-                'attr' => ['placeholder' => "S'il n'y a pas de garage ne remplissez pas"]
+            ->add('nbreChambre', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    '0' => '0',
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                    '7' => '7',
+                    '8' => '8',
+                    '9' => '9',
+                    '10' => '10'
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ])
-            ->add('piscine', NumberType::class, [
-                'label' => 'Nombre de piscine',
-                'attr' => ['placeholder' => "S'il n'y a pas de garage ne remplissez pas"]
+            ->add('salleBain', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    '0' => '0',
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5'
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ])
+            ->add('wc', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    '0' => '0',
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5'
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ])
+            ->add('garage', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    'oui' => 'oui',
+                    'non' => 'non'
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ])
+            ->add('piscine', ChoiceType::class, [
+                'attr' => ['class' => 'p-2'],
+                'choices'  => [
+                    'oui' => 'oui',
+                    'non' => 'non'
+                ],
+                // 'multiple' => true,
+                // 'expanded' => true,
             ]);
     }
 

@@ -17,13 +17,16 @@
                         {{app.user.username}}</a>
 						<ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 							<li>
-								<a class="dropdown-item" href="account.html">Profil</a>
+								<a class="dropdown-item" href="{{path('profil_admin')}}">Profil</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('notif_admin')}}">Messagerie</a>
 							</li>
 							<li>
 								<hr class="dropdown-divider">
 							</li>
 							<li>
-								<a class="dropdown-item" href="login.html">Déconnexion</a>
+								<a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a>
 							</li>
 						</ul>
 					</div>

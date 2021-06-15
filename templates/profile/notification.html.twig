@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+{% block title %}Notification{% endblock %}
+{% block body %}
+<section class="container">
+    <input type="button" value="Retour" onclick="history.go(-1)">
+    <h1>page notification</h1>
+    <p>Reçus : {{ app.user.received|length }}</p>
+    <p>Envoyés : {{ app.user.sent|length }}</p>
+
+ <div>
+    <table>
+        <thead>
+            <tr>
+                <th>De</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for message in app.user.received %}
+            {% if message.isRead == 1 %}
+                <tr class="no_color">
+                {# tu peux modifier si tu veux, seb. Je te laisse gérer ça #}
+            {% else %}
+                <tr class="color"> 
+            {% endif %}
+                {% if message.sender %}
+                    <td><a href="{{ path("notif_show", {id: message.id}) }}">{{ message.sender.email }}</a></td>
+                {% else %}
+                    <td><a href="{{ path("notif_show", {id: message.id}) }}">{{ message.email }}</a></td>
+                {% endif %}
+                
+                    <td>{{ message.createdAt|date }}</td>
+                    <td><a href="{{ path("notification_delete", {id: message.id}) }}">Supprimer</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="18">Pas d'éléments</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</section>
+
+
+{% endblock %}

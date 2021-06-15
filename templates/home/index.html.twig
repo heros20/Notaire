@@ -1,20 +1,88 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<section class="presentation">
+		<div class="presentation__agence">
+			<img src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+			{% for flashError in app.flashes('message') %}
+				<div class="flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
+			{% endfor %}
+		</div>
+	</section>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/Notaire/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/Notaire/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<section class="apropos">
+		<div class="apropos__dixAns">
+			<h1>Nous avons 10 ans d'expérience dans différent cas</h1>
+			<div id="dpe"></div>
+   			 <div id="ges"></div>
+		</div>
+		<div class="apropos__block">
+			<div class="apropos__propos">
+				<h2>À Propos</h2>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
+				repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+				impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+				a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
+				repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
+				impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
+				a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+			</div>
+			<div>
+				<img class="apropos__imgs" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+			</div>
+		</div>
+	</section>
+
+	<section class="annonce">
+		<div class="annonce__blockTitle">
+			<h3>Les dernières annonces immobilières</h3>
+			<p>Que vous soyez vendeur ou acquéreur, vous trouverez chez votre notaire le service complet vous garantissant la bone fin de votre opération</p>
+		</div>
+		<div class="annonce__blockCard">
+			{% for annonce in annonces %}
+				<div class="annonce__card" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
+					<a class="action" href="{{ path('frontAnnonce_show', {'slug': annonce.slug}) }}">
+						<img src="{{ annonce.image | imagine_filter('carre') }}" alt="{{ annonce.image }}">
+						<h4>{{ annonce.title }}</h4>
+						<p>{{ annonce.description }}</p>
+						<div class="annonce__coeur">
+							{% if is_granted("ROLE_USER") %}
+								{% for favoris in annonce.favoris %}
+									{% if favoris.id == app.user.id %}
+										<span>
+											<a href="{{ path('retrait_favoris', {id: annonce.id}) }}">
+												<i class="fas fa-heart heart fullHearth"></i>
+												<i class="fas fa-heart heart-color"></i>
+											</a>
+										</span>
+									{% else %}
+										<span>
+											<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+												<i class="far fa-heart heart "></i>
+												<i class="far fa-heart heart-color"></i>
+											</a>
+										</span>
+									{% endif %}
+								{% else %}
+									<span>
+										<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+											<i class="fas fa-heart heart"></i>
+											<i class="fas fa-heart heart-color"></i>
+										</a>
+									</span>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
 {% endblock %}
+
+  

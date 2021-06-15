@@ -1,0 +1,137 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Archives{% endblock %}
+
+{% block body %}
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+		<h1 class="mb-5">Archives</h1>
+		<p class="mb-5">Retrouvez ici toutes les données supprimées </p>
+	</div>
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+		<h2  class="mb-5">utilisateur(s) supprimé(s)</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Email</th>
+					<th>Téléphone</th>
+					<th>Supprimé le</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					{% for user in users %}
+						{% if user.deletedAt != NULL %}
+							<td>{{ user.name }}</td>
+							<td>{{ user.username }}</td>
+							<td>{{ user.email }}</td>
+							<td>{{ user.phone }}</td>
+							<td>{{ user.deletedAt ? user.deletedAt|date('d/m/Y à H:i') : ''  }}</td>
+						{% endif %}
+					{% endfor %}
+				</tr>
+			</tbody>
+		</table>
+    </div>
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+    	<h2 class="mb-5">Annonce(s) supprimée(s)</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Prix</th>
+					<th>Status</th>
+					<th>supprimé le</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for annonce in annonces %}
+                    {% if annonce.deletedAt != NULL %}
+                        <tr>
+						<td>{{ annonce.title }}</td>
+						<td>{{ annonce.description }}</td>
+						<td>{{ annonce.price }}</td>
+						<td>{{ annonce.status ? 'Vente' : 'Location' }}</td>
+						<td>{{ annonce.deletedAt ? annonce.deletedAt|date('d/m/Y à H:i') : ''  }}</td>
+					</tr>
+                    {% endif %}
+				{% endfor %}
+            </tbody>
+		</table>
+	</div>
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+		<h2 class="mb-5">Categorie(s) supprimée(s)</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Supprimé le</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for category in categorys %}
+					{% if category.deletedAt != NULL %}
+						<tr>
+							<td>{{ category.title }}</td>
+							<td>{{ category.description }}</td>
+							<td>{{ category.deletedAt ? category.deletedAt|date('d/m/Y à H:i') : ''  }}</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+		<h2 class="mb-5">Departement(s) supprimé(s)</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Code Postal</th>
+					<th>Description</th>
+                    <th>Supprimé le</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for departement in departements %}
+					{% if departement.deletedAt != NULL %}
+						<tr>
+							<td>{{ departement.title }}</td>
+							<td>{{ departement.codePostal }}</td>
+							<td>{{ departement.description }}</td>
+							<td>{{ departement.deletedAt ? departement.deletedAt|date('d/m/Y à H:i') : ''  }}</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+		<h2 class="mb-5">Ville(s) supprimée(s)</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>CodePostal</th>
+					<th>Description</th>
+					<th>Supprimé le</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for ville in villes %}
+					{% if ville.deletedAt != NULL %}
+						<tr>
+							<td>{{ ville.title }}</td>
+							<td>{{ ville.codePostal }}</td>
+							<td>{{ ville.description }}</td>
+							<td>{{ ville.deletedAt ? ville.deletedAt|date('d/m/Y à H:i') : ''  }}</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>	
+{% endblock %}

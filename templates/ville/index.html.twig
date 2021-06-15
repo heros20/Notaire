@@ -1,41 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'back.html.twig' %}
 
-{% block title %}Ville index{% endblock %}
+{% block title %}Ville
+{% endblock %}
 
 {% block body %}
-    <h1>Ville index</h1>
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+		<h1 class="mb-5">Ville</h1>
+		<a class="btn btn-primary mb-2" href="{{ path('admin') }}">Retour</a>
+		<a class="btn btn-primary mb-2" href="{{ path('ville_new') }}">Ajouter une ville</a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>CodePostal</th>
+					<th>Description</th>
+					<th>CreatedAt</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for ville in villes %}
+					<tr>
+						<td>{{ ville.title }}</td>
+						<td>{{ ville.codePostal }}</td>
+						<td>{{ ville.description }}</td>
+						<td>{{ ville.createdAt ? ville.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<a class="action" href="{{ path('ville_show', {'id': ville.id}) }}">Voir</a>
+							<a class="action" href="{{ path('ville_edit', {'id': ville.id}) }}">Éditer</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">Pas d'éléments</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>CodePostal</th>
-                <th>Description</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ville in villes %}
-            <tr>
-                <td>{{ ville.id }}</td>
-                <td>{{ ville.title }}</td>
-                <td>{{ ville.codePostal }}</td>
-                <td>{{ ville.description }}</td>
-                <td>{{ ville.createdAt ? ville.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('ville_show', {'id': ville.id}) }}">show</a>
-                    <a href="{{ path('ville_edit', {'id': ville.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('ville_new') }}">Create new</a>
+	
 {% endblock %}
