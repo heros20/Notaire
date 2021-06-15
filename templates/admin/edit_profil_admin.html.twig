@@ -1,0 +1,19 @@
+{% extends "back.html.twig" %}
+{% block title %}
+Étude de Maître Régis Richard - Éditer le profil
+{% endblock %}
+{% block body %}
+
+<div class="ml-5 mr-5">
+	{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+		{{ form_row(form.name) }}
+		{{ form_row(form.username) }}
+		{{ form_row(form.email) }}
+		{{ form_row(form.phone) }}
+		{{ form_row(form.roles, {'attr': {'class':'select'}}) }}
+		<button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+	{{ form_end(form) }}
+</div>
+
+{% endblock %}
+

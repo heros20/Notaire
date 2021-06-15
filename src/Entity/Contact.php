@@ -7,12 +7,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=false)
  */
 class Contact
 {
+    use SoftDeleteableEntity;
+    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -46,25 +51,31 @@ class Contact
     private $createdAt;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="contacts")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $Annonce;
+
+    /**
      * @ORM\Column(type="boolean")
      */
-    private $etat;
+    private $isRead = 0;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Annonce::class, inversedBy="contacts")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sent")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $annonces;
+    private $sender;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="contacts")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="received")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $users;
+    private $recipient;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime;
-        $this->annonces = new ArrayCollection();
-        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,64 +142,52 @@ class Contact
 
         return $this;
     }
-
-    public function getEtat(): ?bool
+    public function getAnnonce(): ?Annonce
     {
-        return $this->etat;
+        return $this->Annonce;
     }
 
-    public function setEtat(bool $etat): self
+    public function setAnnonce(?Annonce $Annonce): self
     {
-        $this->etat = $etat;
+        $this->Annonce = $Annonce;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Annonce[]
-     */
-    public function getAnnonce(): Collection
+    public function getIsRead(): ?bool
     {
-        return $this->annonces;
+        return $this->isRead;
     }
 
-    public function addAnnonce(Annonce $annonce): self
+    public function setIsRead(bool $isRead): self
     {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces[] = $annonce;
-        }
+        $this->isRead = $isRead;
 
         return $this;
     }
 
-    public function removeAnnonce(Annonce $annonce): self
+    public function getSender(): ?User
     {
-        $this->annonces->removeElement($annonce);
+        return $this->sender;
+    }
+
+    public function setSender(?User $sender): self
+    {
+        $this->sender = $sender;
 
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
+    public function getRecipient(): ?User
     {
-        return $this->users;
+        return $this->recipient;
     }
 
-    public function addUser(User $user): self
+    public function setRecipient(?User $recipient): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-        }
+        $this->recipient = $recipient;
 
         return $this;
     }
 
-    public function removeUser(User $user): self
-    {
-        $this->users->removeElement($user);
-
-        return $this;
-    }
 }

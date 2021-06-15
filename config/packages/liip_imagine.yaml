@@ -1,0 +1,12 @@
+liip_imagine:
+    resolvers:
+        default:
+            web_path : ~
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "gd"
+    filter_sets: # Contient la liste des filtres
+        cache : ~
+        carre: # Nom du filtre
+            quality: 75 # Qualité de l'image
+            filters: # Liste des filtres à appliquer
+                carre  : { size : [120, 90], mode : outbound }

@@ -1,0 +1,256 @@
+@use "../utils/mixins" as *;
+@mixin navigation {
+    .navigation {
+        position: relative;
+        z-index: 200;
+    }
+
+    .navigation__checkbox {
+        display: none;
+    }
+
+    .navigation__button {
+        position: absolute;
+        top: -92px;
+        right: 30px;
+        border-radius: 50%;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+        z-index: 2500;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .navigation__icon {
+        position: relative;
+        margin-top: 24px;
+    }
+
+    .navigation__icon,
+    .navigation__icon:after,
+    .navigation__icon:before {
+        width: 20px;
+        height: 2px;
+        background: white;
+        display: inline-block;
+    }
+
+    .navigation__icon:after,
+    .navigation__icon:before {
+        position: absolute;
+        content: "";
+        left: 0;
+        transition: all 0.2s;
+    }
+
+    .navigation__icon:before {
+        top: -14px;
+    }
+
+    .navigation__icon:after {
+        top: -7px;
+    }
+
+    .navigation__checkbox:checked ~ .navigation__button .navigation__icon {
+        background: transparent;
+    }
+
+    .navigation__checkbox:checked ~ .navigation__button .navigation__icon:before {
+        top: 0;
+        transform: rotate(135deg);
+        height: 3px;
+        background-color: #fff;
+    }
+
+    .navigation__checkbox:checked ~ .navigation__button .navigation__icon:after {
+        top: 0;
+        transform: rotate(-135deg);
+        height: 3px;
+        background-color: #fff;
+    }
+
+    .navigation__checkbox:checked + .navbar .navbar__menu {
+        transform: scale(1);
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .navigation__checkbox:checked + .navbar .navbar__link {
+        transform: translateX(0);
+        opacity: 1;
+        transition: all 0.3s ease 0.2s;
+    }
+    .sous {
+        right: 100px;
+        left: 334px;
+        background: var(--color-primary);
+        border: 1px solid #fff;
+        margin: 30px 0;
+        border-radius: 5px;
+    }
+    .sous li {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .sous li a {
+        color: #fff;
+    }
+    .sous {
+        display: none;
+        box-shadow: 0px 1px 2px #ccc;
+        background: var(--color-primary);
+        z-index: 100;
+        padding: 20px;
+        position: absolute;
+    }
+    .sous li {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+    .sous a {
+        border-bottom: none;
+        color: #0275d8;
+    }
+    .navbar {
+        position: fixed;
+        width: 100vw;
+        min-height: 6rem;
+        top: 0px;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .navbar__menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding-bottom: 1.2rem;
+        background-color: var(--color-primary);
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: all 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .navbar__links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        min-height: 60%;
+    }
+
+    .navbar__item {
+        padding: 8px 16px;
+        text-align: center;
+    }
+
+    .navbar__link {
+        position: relative;
+        text-transform: uppercase;
+        font-size: 18px;
+        width: 100%;
+        display: block;
+        transform: translateX(-100%);
+        opacity: 0;
+        transition: all 0.3s ease 0.2s;
+        color: #fff;
+    }
+
+    .navbar__link:after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 3px;
+        bottom: -10px;
+        left: 0;
+        background: #fff;
+        transform-origin: right center;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .navbar__link:hover:after {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
+
+    .current-page:before {
+        top: 0;
+    }
+
+    .current-page:after {
+        bottom: 0;
+    }
+    .navbar__menu ul li.active a {
+        background: rgb(115, 182, 221);
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    @include tablette {
+        .navigation {
+            &__button {
+                top: -100px;
+            }
+        }
+    }
+    @include laptop {
+        .navigation {
+            &__button {
+                top: -88px;
+            }
+        }
+    }
+    @include deckstop {
+        .navbar {
+            width: unset;
+            position: inherit;
+        }
+        .navigation__button {
+            display: none;
+        }
+
+        .navbar,
+        .navbar__menu {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .navbar__menu {
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+            top: 0;
+            padding-bottom: 0;
+            margin-right: 33px;
+            background: unset;
+            opacity: 1;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .navbar__links {
+            flex-direction: row;
+            justify-content: space-between;
+            width: auto;
+            min-height: unset;
+        }
+
+        .navbar__link {
+            opacity: 1;
+            display: inline;
+        }
+        .none {
+            display: none;
+        }
+    }
+}

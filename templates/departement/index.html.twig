@@ -1,14 +1,15 @@
 {% extends 'back.html.twig' %}
 
 {% block title %}
-	Les Départements
+Étude de Maître Régis Richard - Les Départements
+
 {% endblock %}
 
 {% block body %}
 	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
-
-		<h1 class="ml-5 mb-5">Departement</h1>
-
+		<h1 class="mb-5">Departement</h1>
+		<a class="btn btn-primary mb-2" href="{{ path('admin') }}">Retour</a>
+		<a class="btn btn-primary mb-2" href="{{ path('departement_new') }}">Ajouter un département</a>
 		<table class="table">
 			<thead>
 				<tr>
@@ -26,8 +27,8 @@
 						<td>{{ departement.description }}</td>
 	
 						<td>
-							<a href="{{ path('departement_show', {'id': departement.id}) }}">Voir</a>
-							<a href="{{ path('departement_edit', {'id': departement.id}) }}">Éditer</a>
+							<a class="action" href="{{ path('departement_show', {'id': departement.id}) }}">Voir</a>
+							<a class="action" href="{{ path('departement_edit', {'id': departement.id}) }}">Éditer</a>
 						</td>
 					</tr>
 				{% else %}
@@ -39,6 +40,6 @@
 		</table>
 	</div>
 
-	<a class="btn btn-primary ml-5" href="{{ path('departement_new') }}">Créez</a>
+	
 
 {% endblock %}

@@ -1,21 +1,7 @@
 @use "../utils/mixins" as *;
-.container {
-    &_img {
-        width: 100%;
-    }
-    &_imge {
-        height: 300px;
-        width: 100%;
-        object-fit: cover;
-    }
-    &_imgs {
-        height: 180px;
-        width: 100%;
-        object-fit: cover;
-        margin: 30px 0;
-        border-radius: 10px 10px 0 0;
-    }
-    &_dixAns {
+@use "../composants/navigationBarre" as *;
+.apropos {
+    &__dixAns {
         background: #a8d7f5;
         text-align: center;
         padding: 30px;
@@ -26,7 +12,7 @@
         line-height: 1.5;
         font-family: var(--title);
     }
-    &_propos {
+    &__propos {
         & h2 {
             margin: 30px 0;
             text-align: center;
@@ -40,158 +26,36 @@
             padding: 0 30px;
         }
     }
-    &_h2Annonces {
-        & h3 {
-            font-size: 21px;
-            font-family: var(--title);
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-        & p {
-            text-align: center;
-            line-height: 1.6;
-            padding: 0 30px;
-            color: #8f8f8f;
-        }
-    }
-    * &_allAnnonces {
-        padding-bottom: 50px;
-    }
-    &_annonce {
-        box-shadow: 0px 5px 13px 6px #9e9e9e;
-        width: 80%;
-        margin: 50px auto;
-        border-radius: 10px;
-        position: relative;
-    }
-    &_cardimg {
+    &__imgs {
+        height: 180px;
         width: 100%;
-        height: 150px;
-        border-radius: 10px 10px 0 0;
         object-fit: cover;
+        margin: 30px 0;
     }
-    & h3 {
-        font-family: var(--title);
-        padding: 20px 0 10px 15px;
-        font-size: 18px;
-        font-weight: bold;
-    }
-    & p {
-        padding: 0 0 20px 15px;
-    }
-    &_coeur {
-        position: absolute;
-        right: 18px;
-        bottom: 30px;
-        font-size: 22px;
-        z-index: 400;
-        &:hover {
-            background-color: blue;
-        }
-    }
-    &_boite {
-        background-color: #fff;
-        box-shadow: 0 0 20px 0 #9e9e9e;
-        padding-bottom: 30px;
-    }
-    &_title {
-        text-align: center;
-        font-weight: bold;
-        font-family: var(--title);
-        font-size: 26px;
-        padding: 30px 0;
-    }
-    &_para{
-        text-align: center;
-    }
-    &_services{
-        background-color: #a8d7f5;
-        border-top: 1px solid black;
-        padding-bottom: 50px;
-    }
-    &_boites{
-        text-align: center;
-        margin: 50px 0;
-        & img{
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        & h4{
-            font-size: 19px;
-            font-family: var(--title);
-            font-weight: bold;
-            margin: 20px 0;
-        }
-        & p{
-            padding: 0 30px;
-        }
-    }
-    &_perso{
+    &_perso {
         margin: 30px 0;
     }
 }
-.fa-heart {
-    color: red;
+.form-error-icon{
+    display: none;
 }
-@include tablette {
-    .container {
-        &_h2Annonces {
-            & h3 {
-                font-size: 24px;
-            }
-        }
-        &_annonce {
-            width: 50%;
-        }
-    }
+.test{
+    display: none;
 }
+@include navigationBarre;
 @include deckstop {
-    .container {
-        &_annonces {
+    .apropos {
+        &__block {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            margin: 40px 30px 80px;
         }
-        &_annonce {
-            width: 25%;
-            margin: 54px 30px;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            &:hover {
-                opacity: 0.7;
-            }
+        &__propos {
+            padding: 0 40px 0 0;
         }
-        &_coeur {
-            bottom: 40px;
-        }
-        &_proposIMG {
-            display: flex;
-            margin-bottom: 80px;
-        }
-        &_propos {
-            padding: 0 100px;
-        }
-        &_imgs {
+        &__imgs {
             margin: 30px 0 0 0;
             border-radius: 0;
-            height: 260px;
-        }
-        &_preimg{
-            height: 600px;
-        }
-        &_img {
-            margin-right: 80px;
-        }
-        &_boites{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        &_perso{
-            width: 30%;
+            height: 350px;
         }
     }
 }

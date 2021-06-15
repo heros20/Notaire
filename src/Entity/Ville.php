@@ -7,13 +7,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 
 /**
  * @ORM\Entity(repositoryClass=VilleRepository::class)
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=false)
  */
 class Ville
 {
+    use SoftDeleteableEntity;
+    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -27,8 +32,8 @@ class Ville
      * @Assert\Length(
      *      min = 1,
      *      max = 80,
-     *      minMessage = "Vous devez respecter {{ min }} caractères minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} caractères maximums"
+     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums"
      * )
      */
     private $title;
@@ -40,7 +45,7 @@ class Ville
      *      min = 5,
      *      max = 5,
      *      minMessage = "Vous devez respecter {{ min }} characters minimums",
-     *      maxMessage = "Vous devez respecter {{ max }} characters maximums"
+     *      maxMessage = "Vous devez respecter {{ min }} characters maximums"
      * )
      */
     private $codePostal;

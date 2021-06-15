@@ -1,0 +1,40 @@
+@use "../composants/flexslider" as *;
+@use "../utils/mixins" as *;
+.show {
+    @include flexslider;
+}
+.details{
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    margin: 30px;
+    padding-bottom: 30px;
+    @include details;
+}
+@include deckstop{
+    .show{
+        width: 50%;
+        margin: 0 auto;
+    }
+    .display{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 60px auto;
+        box-shadow: var(--box-shadow);
+    }
+    .details{
+        box-shadow: 0 0 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        & h3{
+            margin: 0 0 10px 0;
+            padding: 0;
+        }
+        & p{
+            line-height: 2;
+        }
+    }
+    .detailsShow{
+        margin-left: 50px;
+    }
+}

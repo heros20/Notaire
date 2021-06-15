@@ -1,9 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Étude de Maître Régis Richard - Votre profil
+{% endblock %}
 
 {% block body %}
-{% include "profile/nav.html.twig" %}
+	<div class="boite">
+		<h1 class="boite__title">Mon Profil</h1>
+		<p class="boite__para">
+			<a href="{{path('home')}}">Accueil</a>
+			- Mes informations Personnelle
+		</p>
+	</div>
+	<section class="annonce">
+		<div class="annonce__blockCard">
+			<div class="annonce__card annonce__cards">
+				<img src="{{asset('assets/images/paysage.jpg')}}" alt="">
+				<h4>Bonjour,
+					{{ user.username }}
+				</h4>
+				<div class="annonce__barre"></div>
+				<p>Prénom:
+					{{ user.username}}
+				</p>
+				<div class="annonce__barre"></div>
 
-<h1>accueil espace client</h1>
+				<p>Nom:
+					{{ user.name}}
+				</p>
+				<div class="annonce__barre"></div>
+
+				<p>Email:
+					{{user.email}}
+				</p>
+				<div class="annonce__barre"></div>
+
+				<p>Téléphone:
+					{{user.phone}}
+				</p>
+				<div class="annonce__barre"></div>
+
+				<p>Vous avez créez votre compte le:
+					{{ user.createdAt ? user.createdAt|date('d-m-Y à H:i') : ''  }}
+				</p>
+				<div class="annonce__barre"></div>
+
+				<p>
+					<a class="action" href="{{ path('infos_perso_edit') }}">Éditer vos informations</a>
+				</p>
+
+			</div>
+		</div>
+	</section>
 {% endblock %}

@@ -19,7 +19,7 @@ class CategoryType extends AbstractType
             'attr' => ['placeholder' => 'Titre de la categorie...']
         ])
         ->add('description', TextareaType::class, [
-            'label' => 'Description',
+            'label' => 'Description (Optionnel)',
             'attr' => ['placeholder' => 'Description de la categorie...']
         ])
 

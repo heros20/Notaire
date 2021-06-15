@@ -1,0 +1,13 @@
+<svg id="Composant_1_1" data-name="Composant 1 – 1" xmlns="http://www.w3.org/2000/svg" width="459" height="80" viewBox="0 0 459 80">
+  <line id="Ligne_4" data-name="Ligne 4" x2="459" transform="translate(0 40.5)" fill="none" stroke="#000" stroke-width="1"/>
+  <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(189.5)" fill="#fff" stroke="#000" stroke-width="1">
+    <circle cx="40" cy="40" r="40" stroke="none"/>
+    <circle cx="40" cy="40" r="39.5" fill="none"/>
+  </g>
+  <g id="Groupe_29" data-name="Groupe 29" transform="translate(110.094 21.072)">
+    <path id="Tracé_31" data-name="Tracé 31" d="M127.539,0H111.273A2.776,2.776,0,0,0,108.5,2.773V35.084a2.776,2.776,0,0,0,2.773,2.773h16.267a2.776,2.776,0,0,0,2.773-2.773V2.773A2.776,2.776,0,0,0,127.539,0ZM111.273,1.109h16.267A1.665,1.665,0,0,1,129.2,2.773V4.436H109.609V2.773A1.665,1.665,0,0,1,111.273,1.109Zm16.267,35.639H111.273a1.665,1.665,0,0,1-1.664-1.664V31.2h1.664a.555.555,0,0,0,0-1.109h-1.664V5.545H129.2V30.093H113.491a.555.555,0,0,0,0,1.109H129.2v3.882A1.665,1.665,0,0,1,127.539,36.748Z"/>
+    <path id="Tracé_32" data-name="Tracé 32" d="M249.055,31.109h2.218a.555.555,0,1,0,0-1.109h-2.218a.555.555,0,0,0,0,1.109Z" transform="translate(-129.649 -27.782)"/>
+    <path id="Tracé_33" data-name="Tracé 33" d="M235.164,437a1.664,1.664,0,1,0,1.664,1.664A1.665,1.665,0,0,0,235.164,437Zm0,2.218a.555.555,0,1,1,.555-.555A.555.555,0,0,1,235.164,439.218Z" transform="translate(-115.758 -404.689)"/>
+    <circle id="Ellipse_14" data-name="Ellipse 14" cx="0.384" cy="0.384" r="0.384" transform="translate(116.941 2.558)"/>
+  </g>
+</svg>

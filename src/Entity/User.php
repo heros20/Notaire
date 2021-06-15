@@ -2,19 +2,24 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=false)
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    use SoftDeleteableEntity;
+    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -25,7 +30,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\Email(
-     *      message = "L'email est invalide"
+     *      message = "Veuillez renseigner un email valide"
+     * )
+     * @Assert\NotBlank(
+     *  message = "Veuillez renseigner votre email"
      * )
      */
     private $email;
@@ -38,22 +46,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+    * @Assert\Length(
+     *      min = 6,
+     *      max = 30,
+     *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
+     *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums",
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=30)
-     *  @Assert\Length(
+     * @Assert\Length(
      *      min = 2,
      *      max = 30,
      *      minMessage = "Vous devez respecter {{ limit }} caractères minimums",
      *      maxMessage = "Vous devez respecter {{ limit }} caractères maximums",
+     * )
+     * @Assert\NotBlank(
+     *  message = "Veuillez renseigner votre nom"
      * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(
+     *  message = "Veuillez renseigner votre prénom"
+     * )
      *  @Assert\Length(
      *      min = 2,
      *      max = 30,
@@ -90,15 +110,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $favoris;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Contact::class, mappedBy="users")
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="sender")
      */
-    private $contacts;
-    
+    private $sent;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="recipient")
+     */
+    private $received;
+
+
+    /**
+     * @ORM\Column(type="boolean",nullable=true)
+     */
+    private $IsVerified;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $reset_token;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $resetTokenAt;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;
+        $this->modifieddAt = new \DateTime;
         $this->favoris = new ArrayCollection();
-        $this->contacts = new ArrayCollection();
+        $this->sent = new ArrayCollection();
+        $this->received = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -283,27 +326,97 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection|Contact[]
      */
-    public function getContacts(): Collection
+    public function getSent(): Collection
     {
-        return $this->contacts;
+        return $this->sent;
     }
 
-    public function addContact(Contact $contact): self
+    public function addSent(Contact $sent): self
     {
-        if (!$this->contacts->contains($contact)) {
-            $this->contacts[] = $contact;
-            $contact->addUser($this);
+        if (!$this->sent->contains($sent)) {
+            $this->sent[] = $sent;
+            $sent->setSender($this);
         }
 
         return $this;
     }
 
-    public function removeContact(Contact $contact): self
+    public function removeSent(Contact $sent): self
     {
-        if ($this->contacts->removeElement($contact)) {
-            $contact->removeUser($this);
+        if ($this->sent->removeElement($sent)) {
+            // set the owning side to null (unless already changed)
+            if ($sent->getSender() === $this) {
+                $sent->setSender(null);
+            }
         }
 
         return $this;
     }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getReceived(): Collection
+    {
+        return $this->received;
+    }
+
+    public function addReceived(Contact $received): self
+    {
+        if (!$this->received->contains($received)) {
+            $this->received[] = $received;
+            $received->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceived(Contact $received): self
+    {
+        if ($this->received->removeElement($received)) {
+            // set the owning side to null (unless already changed)
+            if ($received->getRecipient() === $this) {
+                $received->setRecipient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->IsVerified;
+    }
+
+    public function setIsVerified(bool $IsVerified): self
+    {
+        $this->IsVerified = $IsVerified;
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->reset_token;
+    }
+
+    public function setResetToken(?string $reset_token): self
+    {
+        $this->reset_token = $reset_token;
+
+        return $this;
+    }
+
+    public function getResetTokenAt(): ?\DateTimeInterface
+    {
+        return $this->resetTokenAt;
+    }
+
+    public function setResetTokenAt(\DateTimeInterface $resetTokenAt): self
+    {
+        $this->resetTokenAt = $resetTokenAt;
+
+        return $this;
+    }
+
 }

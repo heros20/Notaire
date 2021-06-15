@@ -23,6 +23,7 @@ class SearchForm extends AbstractType
             ->add('category', EntityType::class, [
                 'label' => false,
                 'required' => false,
+                'attr' => ['class' => 'filter_selecte'],
                 'class' => Category::class,
                 // 'expanded' => true,
                 'multiple' => true
@@ -33,7 +34,8 @@ class SearchForm extends AbstractType
                 'class' => Ville::class,
                 'choice_label' => 'title',
                 // 'expanded' => true,
-                'multiple' => true
+                'multiple' => true,
+                'attr' => ['class' => 'filter_selecte'],
             ])
             ->add('departement', EntityType::class, [
                 'label' => false,
@@ -41,14 +43,16 @@ class SearchForm extends AbstractType
                 'class' => Departement::class,
                 'choice_label' => 'title',
                 // 'expanded' => true,
-                'multiple' => true
+                'multiple' => true,
+                'attr' => ['class' => 'filter_selecte'],
             ])
             ->add('status', ChoiceType::class, [
-                'attr' => ['class' => 'p-2'],
                 'choices'  => [
+                    '-----' => NULL,
                     'Vente' => true,
                     'Location' => false,
                 ],
+                'attr' => ['class' => 'filter_selecte'],
                 // 'multiple' => true,
                 // 'expanded' => true,
             ])
@@ -56,19 +60,21 @@ class SearchForm extends AbstractType
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Prix min'
+                    'placeholder' => 'Prix min',
+                    'class' => 'filter_input'
                 ]
             ])
             ->add('max', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Prix max'
+                    'placeholder' =>
+                    'Prix max',
+                    'class' => 'filter_input'
                 ]
-            ])
-        ;
+            ]);
     }
-    
+
     public function configurationOptions(optionsResolver $resolver)
     {
         $resolver->setDefaults([

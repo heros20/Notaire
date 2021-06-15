@@ -14,9 +14,25 @@ use App\Entity\Annonce;
 use App\Entity\Category;
 use App\Entity\Ville;
 use App\Entity\Departement;
+use App\Entity\Contact;
+use App\entity\User;
+use App\Form\ContactType;
+use Symfony\Component\Security\Core\Security;
+use App\Repository\ContactRepository;
+use App\Repository\UserRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 
 class HomeController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/', name: 'home')]
     public function index(): Response
     {
@@ -59,6 +75,7 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         [$min, $max] = $repository->findMinMax($data);
         $searchAnnonce = $repository->findSearch($data);
+        
         // dd($searchAnnonce);
         return $this->render('home/annonces.html.twig', [
             // 'annonces' => $annonces,
@@ -68,36 +85,90 @@ class HomeController extends AbstractController
             'max' => $max
         ]);
     }
-    #[Route('/annonces/{id}', name: 'frontAnnonce_show', methods: ['GET'])]
-    public function show(Annonce $annonce): Response
-    {
+    #[Route('/annonces/{slug}', name: 'frontAnnonce_show', methods: ['GET', 'POST'])]
+    public function show(Annonce $annonce,Request $request, MailerInterface $mailer, UserRepository $repoUser): Response
+    {   
+        $user = $this->getUser();
+        $id_user = 2;
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $recipient = $repoUser->find($id_user);
+            $contact->setIsRead(false)
+            ->setAnnonce($annonce)
+            ->setRecipient($recipient);
+            $email = new TemplatedEmail();
+            $message ='<p></p>';
+            $message .='<h1 style="background-color:lime">'.$annonce->getTitle().'</h1>';
+            $message .= '<p>'.$contact->getMessage().'</p>';
+            if ($this->security->isGranted('ROLE_USER')) {
+                $message .= '<p>'.$user->getName().'</p>';
+                $message .= '<p>'.$user->getUsername().'<p>';
+                $contact->setSender($this->getUser());
+                $email->from($contact->getSender()->getEmail())
+                ->context([
+                    'contact' => $contact,
+                    'mail' => $contact->getSender()->getEmail(),
+                    'message' => $message,
+                ]);
+            }else {
+                $message .= '<p>'.$contact->getName().'</p>';
+                $email->from($contact->getEmail())
+                ->context([
+                    'contact' => $contact,
+                    'mail' => $contact->getEmail(),
+                    'message' => $message,
+                ]);
+            }
+                $email->to(new Address('sebastienweb27@gmail.com'))
+                ->subject('Contact')
+                ->htmlTemplate('emails/annonce_contact.html.twig');
+              
+            $mailer->send($email);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+            $this->addFlash('message', 'Votre email à bien était envoyé');
+            return $this->redirectToRoute('home');
+        }
+        $user = $this->getUser();
+        $dpe = $annonce->getDpe();
+        $ges = $annonce->getGes();
         return $this->render('home/show.html.twig', [
             'annonce' => $annonce,
+            'contact' => $contact,
+            'form' => $form->createView(),
+            'user' => $user,
+            'dpe' => $dpe,
+            'ges' => $ges
         ]);
     }
     #[Route('/annonces/favoris/ajout/{id}', name: 'ajout_favoris')]
     public function ajoutFavoris(Annonce $annonce): Response
     {
         if (!$annonce) {
-            throw new NotFoundHttpException('Pas d\'annonce trouvée');
+            return $this->redirectToRoute('404');
         }
+        
         $annonce->addFavori($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
         $em->flush();
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('favoris');
     }
      #[Route('/annonces/favoris/retrait/{id}', name: 'retrait_favoris')]
     public function retraitFavoris(Annonce $annonce): Response
     {
         if (!$annonce) {
-            throw new NotFoundHttpException('Pas d\'annonce trouvée');
+            return $this->redirectToRoute('404');
         }
         $annonce->removeFavori($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
         $em->flush();
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('favoris');
     }
 
     #[Route('/conditions_generales', name: 'conditions_generales')]
@@ -114,5 +185,10 @@ class HomeController extends AbstractController
         return $this->render('home/mentions_legales.html.twig', [
             'controller_name' => 'HomeController',
         ]);
+    }
+    #[Route('/404', name: '404')]
+    public function FunctionName(): Response
+    {
+        return $this->render('home/404.html.twig', []);
     }
 }

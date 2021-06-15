@@ -1,11 +1,13 @@
 {% extends 'back.html.twig' %}
-{% block title %}Les Annonces
+{% block title %}Étude de Maître Régis Richard - Les Annonces
+
 {% endblock %}
 
 {% block body %}
 	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
-
 		<h1 class="mb-5">Annonce</h1>
+		<a class="btn btn-primary mb-2" href="{{ path('admin') }}">Retour</a>
+		<a class="btn btn-primary mb-2" href="{{ path('annonce_new') }}">Ajouter une annonce</a>
 		<table class="table">
 			<thead>
 				<tr>
@@ -23,13 +25,14 @@
 					<tr>
 						<td>{{ annonce.title }}</td>
 						<td>{{ annonce.description }}</td>
-						<td>{{ annonce.image }}</td>
+						<td><img src="{{ asset('assets/uploads/'~ annonce.image) }}" alt="" width="150" height="150"></td>
 						<td>{{ annonce.price }}</td>
 						<td>{{ annonce.status ? 'Vente' : 'Location' }}</td>
-						<td>{{ annonce.etat }}</td>
+						<td>{{ annonce.etat ? 'rien' ? 'Vendu' : 'Loué'}}</td>
 						<td>
 							<a class="action" href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a>
 							<a class="action" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Éditer</a>
+							<a class="action" href="{{ path('add_new_images', {'id': annonce.id}) }}">Upload images</a>
 						</td>
 					</tr>
 				{% else %}
@@ -39,7 +42,5 @@
 				{% endfor %}
 			</tbody>
 		</table>
-
-		<a class="btn btn-primary mt-5 pl-4 pr-4" href="{{ path('annonce_new') }}">Créer</a>
 	</div>
 {% endblock %}

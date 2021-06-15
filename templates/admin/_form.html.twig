@@ -1,0 +1,12 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+<div class="ml-5 mr-5">
+  {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+  {{ form_row(form.name,{ 'disabled':'disabled' }) }}
+  {{ form_row(form.username,{ 'disabled':'disabled' }) }}
+  {{ form_row(form.email,{ 'disabled':'disabled' }) }}
+  {{ form_row(form.phone,{ 'disabled':'disabled' }) }}
+  {{ form_row(form.roles, {'attr': {'class':'select'}}) }}
+  <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+  {{ form_end(form) }}
+</div>

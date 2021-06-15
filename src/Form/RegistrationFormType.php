@@ -24,28 +24,22 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Email*',
                 'label_attr' => ['class' => 'formConnex_label1'],
-                'attr' => ['class' => 'class="form-control-material"'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez renseigner votre Email',
-                    ]),
-
-                ],
+                'attr' => ['class' => "form-control-material"]
             ])
             ->add('name', TextType::class, [
                 'label' => 'Nom*',
                 'label_attr' => ['class' => 'formConnex_label2'],
-                'attr' => ['class' => 'class="form-control-material"']
+                'attr' => ['class' => "form-control-material"]
             ])
             ->add('username', TextType::class, [
                 'label' => 'Prénom*',
                 'label_attr' => ['class' => 'formConnex_label2'],
-                'attr' => ['class' => 'class="form-control-material"']
+                'attr' => ['class' => "form-control-material"]
             ])
             ->add('phone', TextType::class, [
-                'label' => 'Numero',
+                'label' => 'Numero ( Optionnel )',
                 'label_attr' => ['class' => 'formConnex_label2'],
-                'attr' => ['class' => 'class="form-control-material"']
+                'attr' => ['class' => "form-control-material"]
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -61,14 +55,14 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'invalid_message' => 'Veuillez renseigner des mot de passe identique.',
-                'first_options'  => ['label' => 'Mot de passe*', 'label_attr' => ['class' => 'formConnex_label2'], 'attr' => ['class' => 'class="form-control-material"']],
-                'second_options' => ['label' => 'Confirmation mot de passe*', 'label_attr' => ['class' => 'formConnex_label2'], 'attr' => ['class' => 'class="form-control-material"']],
+                'first_options'  => ['label' => 'Mot de passe*', 'label_attr' => ['class' => 'formConnex_label2'], 'attr' => ['class' => "form-control-material"]],
+                'second_options' => ['label' => 'Confirmation mot de passe*', 'label_attr' => ['class' => 'formConnex_label2'], 'attr' => ['class' => "form-control-material"]],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner un mot de passe',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 0,
                         'minMessage' => 'Votre mot de passe doit avoir {{ limit }} caractère minimum',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,

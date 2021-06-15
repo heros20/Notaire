@@ -1,59 +1,53 @@
 {% extends 'base.html.twig' %}
+{% block title %}
+	Étude de Maître Régis Richard - À Propos de nous
+{% endblock %}
 
 {% block body %}
 	<section>
-		<div class="container_boite">
-			<h1 class="container_title">À Propos de nous</h1>
-			<p class="container_para">Acceuil - À propos - Nos compétences</p>
+		<div class="boite">
+			<h1 class="boite__title">À Propos de nous</h1>
+			<p class="boite__para">
+				<a href="{{path('home')}}">Accueil</a>
+				- À propos
+			</p>
 		</div>
-		<div class="container_proposIMG">
-			<div class="container_propos">
+	</section>
+	<section class="apropos">
+		<div class="apropos__block">
+			<div class="apropos__propos">
 				<h2>À Propos</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta animi itaque nobis beatae. Provident doloribus obcaecati voluptatibus, reiciendis porro explicabo facilis qui perspiciatis harum minima hic aspernatur eum deserunt soluta?<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta animi itaque nobis beatae. Provident doloribus obcaecati voluptatibus, reiciendis porro explicabo facilis qui perspiciatis harum minima hic aspernatur eum deserunt soluta?<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta animi itaque nobis beatae. Provident doloribus obcaecati voluptatibus, reiciendis porro explicabo facilis qui perspiciatis harum minima hic aspernatur eum deserunt soluta?<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta animi itaque nobis beatae. Provident doloribus obcaecati voluptatibus, reiciendis porro explicabo facilis qui perspiciatis harum minima hic aspernatur eum deserunt soluta?<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta animi itaque nobis beatae. Provident doloribus obcaecati voluptatibus, reiciendis porro explicabo facilis qui perspiciatis harum minima hic aspernatur eum deserunt soluta?<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta animi itaque nobis beatae. Provident doloribus obcaecati voluptatibus, reiciendis porro explicabo facilis qui perspiciatis harum minima hic aspernatur eum deserunt soluta?<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta animi itaque nobis beatae. Provident doloribus obcaecati voluptatibus, reiciendis porro explicabo facilis qui perspiciatis harum minima hic aspernatur eum deserunt soluta?<br></p>
+				<p>Bienvenue sur L'étude Maître Régis Richard. Située à Épaignes, à 15 min de Pont-Audemer, à 5 min de Cormeilles et 2h de Paris, notre agence vous propose une sélection de biens immobiliers dans les cantons de l'Eure.</p>
+				<p>
+					Demeures Normande, Maisons contemporaines, appartements ou produits d’investissement, les biens que nous vous présentons répondent aux mêmes critères de qualité.</p>
+				<p>Notre portefeuille immobilier vous permet de consulter des annonces immobilières à Honfleur, Saint-Georges-du-Vièvre, Épaignes, Pont-l'Évêque, Bourneville, Saint-Eustache-la-Forêt, Lieurey, Bourg-Achard, Pont-Audemer, Bernay, Toutainville, Cormeilles, Beuzeville, Montfort-sur-Risle, Brionne, ...
+																A bientôt</p>
 			</div>
-			<div class="container_img">
-				<img class="container_imgs container_preimg" src="{{asset('assets/images/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+			<div>
+				<img class="apropos__imgs" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
 			</div>
 		</div>
-		<div class="container_services">
-			<h2 class="container_title">Équipes</h2>
-			<p class="container_para">Lorem ipsum dolor sit amet consectetur adipisicing elit?</p>
+	</section>
 
-			<div class="container_boites">
-				<div class="container_perso">
-					<img src="{{asset('assets/images/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
-					<h4>Family Law</h4>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
-				</div>
-				<div class="container_perso">
-					<img src="{{asset('assets/images/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
-					<h4>Family Law</h4>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
-				</div>
+	<section class="services">
+		<h3 class="services__title">Équipes</h3>
+		<p>L'équipe de Maitre Richard Régis est composé de:</p>
 
-				<div class="container_perso">
-					<img src="{{asset('assets/images/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
-					<h4>Family Law</h4>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
-				</div>
-
-				<div class="container_perso">
-					<img src="{{asset('assets/images/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
-					<h4>Family Law</h4>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
-				</div>
-
-				<div class="container_perso">
-					<img src="{{asset('assets/images/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
-					<h4>Family Law</h4>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
-				</div>
-
-				<div class="container_perso">
-					<img src="{{asset('assets/images/christopher-campbell-rDEOVtE7vOs-unsplash.jpg')}}" alt="">
-					<h4>Family Law</h4>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, consequatur quod distinctio voluptate atque quos quae fugiat! Consequuntur, quis sint.</p>
-				</div>
+		<div class="services__boites">
+			<div class="services__perso">
+				<img src="{{asset('assets/images/users.jpg')}}" alt="">
+				<h4>Lillian Hervé</h4>
+				<p>Responsable d'agence</p>
+			</div>
+			<div class="services__perso">
+				<img src="{{asset('assets/images/user.jpg')}}" alt="">
+				<h4>Liliane DELAMARE</h4>
+				<p>Conseillère immobilier</p>
+			</div>
+			<div class="services__perso">
+				<img src="{{asset('assets/images/userst.jpg')}}" alt="">
+				<h4>Juliette dam</h4>
+				<p>Sécretaire</p>
 			</div>
 		</div>
 	</section>

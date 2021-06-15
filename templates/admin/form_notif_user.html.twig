@@ -1,0 +1,32 @@
+{% extends 'back.html.twig' %}
+
+
+{% block body %}
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+		{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+
+		<div class="p-2">Nom :
+			{{ user.name }}</div>
+		<div class="p-2">Prénom :
+			{{ user.username }}</div>
+		<div class="p-2">Email :
+			{{ user.email }}</div>
+		{% if user.phone != NULL %}
+			<div class="p-2">Téléphone :
+				{{ user.phone }}</div>
+		{% endif %}
+
+		<div class="p-2">
+			{{form_label(form.message)}}
+			{{ form_widget(form.message) }}
+		</div>
+
+		<button class="btn btn-primary p-2" type="submit">Envoyez</button>
+		<p class="help p-2">
+			*Obligatoire
+		</p>
+
+		{{ form_end(form) }}
+	</div>
+
+{% endblock %}

@@ -2,8 +2,41 @@
 
 <div class="p-5">
 	{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+	{{ form_row(form.category) }}
+	{{ form_row(form.departement) }}
+	{{ form_row(form.ville) }}
+	{{ form_row(form.status) }}
+	{{ form_row(form.title) }}
+	{{ form_row(form.description) }}
+	{{ form_row(form.superficie) }}
+	{{ form_row(form.superficieTerrain) }}
+	{{ form_row(form.dpe) }}
+	{{ form_row(form.ges) }}
+	{{ form_row(form.nbrePieces) }}
+	{{ form_row(form.nbreChambre) }}
+	{{ form_row(form.salleBain) }}
+	{{ form_row(form.wc) }}
+	{{ form_row(form.garage) }}
+	{{ form_row(form.piscine) }}
+	{{ form_row(form.price) }}
 	{{ form_row(form.fileimage) }}
-	{{ form_row(form) }}
-	<button class="btn btn-primary">{{ button_label|default('Ajoutez') }}</button>
+	<div class="test">{{ form_row(form.image) }}</div>
+	{{ form_row(form.etat) }}
+	{# Vérifier si la route est "annonces_dit" : on affiche les images #}
+	{% if app.request.attributes.get('_route') == 'annonce_edit' %}
+		<p>Image(s) de l'annonce</p>
+		<div class="flex">
+			{% for image in annonce.images %}
+				{% if annonce.images != null %}
+					<div class="images mb-5">
+						<div class="img m-2"><img src="{{ asset('assets/uploads/'~ image.name) }}" alt="" width="150" height="150"></div>
+						<a class="ml-4" href="{{ path('annonce_delete_image', {'id': image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">supprimer</a>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+		
+	{% endif %}
+	<button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
 	{{ form_end(form) }}
 </div>

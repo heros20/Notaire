@@ -1,15 +1,33 @@
-{{ form_start(form, {attr: {class: 'filter'}}) }}
-    <div class="status"></div>
-    {{ form_row(form.status) }}
-    <h4>Categories</h4>
-    {{ form_row(form.category) }}
-    <h4>Département</h4>
-    {{ form_row(form.departement) }}
-    <h4>Villes</h4>
-    {{ form_row(form.ville) }}
-    <h4>Prix</h4>
-    {{ form_row(form.min) }}
-    {{ form_row(form.max) }}
-    <div id="price-slider" data-min="{{ min }}" data-max="{{ max }}" style="margin:40px 200px"></div>
-    <button type="submit" class="btn btn-primary w-100">Filtrer</button>
-{{ form_end(form) }}
+
+	{{ form_start(form, {attr: {class: 'filter'}}) }}
+	<div class="filter_container">
+			<div class="filter_select">
+				<h4 class="filter_title">Status</h4>
+				{{ form_widget(form.status) }}
+			</div>
+			<div class="filter_selects">
+				<h4 class="filter_title">Catégories</h4>
+				{{ form_widget(form.category) }}
+			</div>
+
+			<div class="filter_select">
+				<h4 class="filter_title">Département</h4>
+				{{ form_widget(form.departement) }}
+			</div>
+			<div class="filter_select">
+				<h4 class="filter_title">Villes</h4>
+				{{ form_widget(form.ville) }}
+			</div>
+	</div>
+
+	<div class="filter_prix">
+		<h4 class="filter_title">Prix</h4>
+		{{ form_widget(form.min,{ 'attr': {'class': 'priceNone'}}) }}
+		{{ form_widget(form.max,{ 'attr': {'class': 'priceNone'}}) }}
+		<div id="price-slider" class="filter_barre" data-min="{{ min }}" data-max="{{ max }}"></div>
+	</div>
+
+
+	<button class="filter_btn" type="submit">Filtrer</button>
+	{{ form_end(form) }}
+

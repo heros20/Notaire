@@ -1,93 +1,248 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonce
+{% block title %}
+	Étude de Maître Régis Richard - Détails de l'annonce
+
 {% endblock %}
 
 {% block body %}
-	<div class="show">
-		<div class="showAnnonce">
-			<p>{{ annonce.title }}</p>
-			<p>Description : {{ annonce.description }}</p>
-			<p>{{ annonce.ville.title }}  {{ annonce.ville.codePostal }}</P>
-			<p>{{ annonce.departement.title }}</p>
-			<p><img class="container_cardimg" src="{{ asset('assets/images/' ~ annonce.image) }}" alt="{{ annonce.image }}"></p>
-			<p><img src="{{ annonce.image }}" alt=""></p>
-			<p>
-				{% if annonce.superficie %}
-					Superficie du batiment : {{ annonce.superficie }}
-				{% endif %}
+<script src="{{ asset('assets/js/dpeges.js') }}" ></script>
+	<section>
+		<div class="boite">
+			<h1 class="boite__title">À Propos de nous</h1>
+			<p class="boite__para">
+				<a href="{{path('home')}}">Accueil</a>
+				- À propos
 			</p>
-			<p>
-				{% if annonce.superficieTerrain %}
-					Superficie du terrain : {{ annonce.superficieTerrain }}
-				{% endif %}
-			</p>
-			<p>prix {{ annonce.price | number_format(0,',', ' ')}} €</p>
-			<p>Categorie(s) : {% for cat in annonce.category %}
-                        {{ cat.title }}
-                {% endfor %}
-			</P>
-			<p>{{ annonce.status ? 'Vente' : 'Location' }}</p>
-			<p>{{ annonce.etat}}</p>
-			<p>
-				{% if annonce.dpe %}
-					{{ annonce.dpe }}
-				{% endif %}
-			</p>
-			<p>
+		</div>
+	</section>
+	<section class="show">
+		<div class="display">
+			<div>
+				<div id="slider" class="flexslider">
+					<ul class="slides">
+						<li>
+							<img src="{{ asset('assets/images/' ~ annonce.image) }}" alt="{{ annonce.image }}">
+						</li>
+						{% for img in annonce.images %}
+							<li>
+								<img src="{{ asset('assets/images/' ~ img.name) }}"/>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div id="carousel" class="flexslider">
+					<ul class="slides slide">
+						<li>
+							<img src="{{ asset('assets/images/' ~ annonce.image) }}" alt="{{ annonce.image }}">
+						</li>
+						{% for img in annonce.images %}
+							<li>
+								<img src="{{ asset('assets/images/' ~ img.name) }}"/>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			<h3>{{ annonce.title }}</h3>
+			<p>prix
+				{{ annonce.price | number_format(0,',', ' ')}}
+				€</p>
+
+		</div>
+	</section>
+	<section class="detailsShow">
+		<div class="details">
+			<div class="details__Annonce">
+				<p>Ville :
+					{{ annonce.ville.title }}
+				</p>
+				<p>Code postal :
+					{{ annonce.ville.codePostal }}
+				</p>
+				<p>Département
+					{{ annonce.departement.title }}
+				</p>
+				<p>
+					{% if annonce.superficie %}
+						Superficie du batiment :
+						{{ annonce.superficie }}m²
+					{% endif %}
+				</p>
+				<p>
+					{% if annonce.superficieTerrain %}
+						Superficie du terrain :
+						{{ annonce.superficieTerrain }}m²
+					{% endif %}
+				</p>
+				<p>prix
+					{{ annonce.price | number_format(0,',', ' ')}}
+					€</p>
+				<p>Categorie(s) :
+					{% for cat in annonce.category %}
+						{{ cat.title }}
+					{% endfor %}
+				</p>
+				<p>Status:
+					{{ annonce.status ? 'Vente' : 'Location' }}
+				</p>
+				<p>État:
+					{{ annonce.etat}}
+				</p>
+				<p>Classe énergétique:
+					{% if annonce.dpe %}
+						{{ annonce.dpe }}
+					{% endif %}
+				</p>
+				<p>Classe énergétique:</p>
 				{% if annonce.ges %}
 					{{ annonce.ges }}
 				{% endif %}
-			</p>
-			<p>
-				{% if annonce.nbrePieces %}
-					Nombre de pièces  : {{ annonce.nbrePieces }}
-				{% endif %}
-			</p>
-			<p>
-				{% if annonce.nbreChambre %}
-					Nombre de chambre  : {{ annonce.nbreChambre }}
-				{% endif %}
-			</p>
-			<p>
-				{% if annonce.salleBain %}
-					Nombre de salle de bain  : {{ annonce.salleBain }}
-				{% endif %}
-			</p>
-			<p>
-				{% if annonce.wc %}
-					Nombre de wc  : {{ annonce.wc }}
-				{% endif %}
-			</p>
-			<p>
-				{% if annonce.garage %}
-					Nombre de garage  : {{ annonce.garage }}
-				{% endif %}
-			</p>
-			<p>
-				{% if annonce.piscine %}
-					Nombre de picine  : {{ annonce.piscine }}
-				{% endif %}
-			</p>
-			<div class="red">
-			{% if is_granted("ROLE_USER") %}
-				{% for favoris in annonce.favoris %}
-					{% if favoris.id == app.user.id %}
-						<a href="{{ path('retrait_favoris', {id: annonce.id}) }}"><i class="fas fa-heart"></i></a>
-					{% else %}
-						<a href="{{ path('ajout_favoris', {id: annonce.id}) }}"><i class="far fa-heart"></i></a>
+				<p>
+					{% if annonce.nbrePieces %}
+						Nombre de pièces  :
+						{{ annonce.nbrePieces }}
 					{% endif %}
+				</p>
+				<p>
+					{% if annonce.nbreChambre %}
+						Nombre de chambre  :
+						{{ annonce.nbreChambre }}
+					{% endif %}
+				</p>
+				<p>
+					{% if annonce.salleBain %}
+						Nombre de salle de bain  :
+						{{ annonce.salleBain }}
+					{% endif %}
+				</p>
+				<p>
+					{% if annonce.wc %}
+						Nombre de wc  :
+						{{ annonce.wc }}
+					{% endif %}
+				</p>
+				<p>
+					{% if annonce.garage %}
+						Nombre de garage  :
+						{{ annonce.garage }}
+					{% endif %}
+				</p>
+				<p>
+					{% if annonce.piscine %}
+						Nombre de picine  :
+						{{ annonce.piscine }}
+					{% endif %}
+				</p>
+				{% if is_granted("ROLE_USER") %}
+					{% for favoris in annonce.favoris %}
+						{% if favoris.id == app.user.id %}
+							<a href="{{ path('retrait_favoris', {id: annonce.id}) }}">
+								<i class="fas fa-heart"></i>
+							</a>
+						{% else %}
+							<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+								<i class="far fa-heart"></i>
+							</a>
+						{% endif %}
+
+					{% else %}
+						<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+							<i class="far fa-heart"></i>
+						</a>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</section>
+	<div id="dpe"></div>
+	<div id="ges"></div>
+	<button class="button" id="myBtn">Contactez l'agence</button>
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<div class="log logs">
+				{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+
+				{% if is_granted('ROLE_USER') %}
+					<div class="input-cont">Nom :
+						{{ user.name }}
+					</div>
+					<div class="input-cont">Prénom :
+						{{ user.username }}
+					</div>
+					<div class="input-cont">Email :
+						{{ user.email }}
+					</div>
+					{% if user.phone != NULL %}
+						<div class="input-cont">Téléphone :
+							{{ user.phone }}
+						</div>
+					{% endif %}
+
 				{% else %}
-					<a href="{{ path('ajout_favoris', {id: annonce.id}) }}"><i class="far fa-heart"></i></a>
-				{% endfor %}	
-			{% endif %}
-			
-			
+					<div class="input-cont">
+						{{ form_widget(form.email) }}
+						{{form_label(form.email)}}
+						<div class="border1"></div>
+					</div>
+					<div class="input-cont">
+						{{ form_widget(form.name) }}
+						{{form_label(form.name)}}
+						<div class="border2"></div>
+					</div>
+					<div class="input-cont">
+						{{ form_widget(form.phone) }}
+						{{form_label(form.phone)}}
+						{{form_errors(form.phone)}}
+						<div class="border2"></div>
+					</div>
+				{% endif %}
+				<div class="input-cont">
+					{{ form_widget(form.message) }}
+					{{form_label(form.message)}}
+					<div class="border2"></div>
+				</div>
+				<p class="help">
+					*Obligatoire
+				</p>
+				<input type="submit" value="Envoyez">
+				{{ form_end(form) }}
+			</div>
 		</div>
-		</div>
-		
 	</div>
+<script>
+	var dpeShow = '{{ annonce.dpe|capitalize }}';
+	var gesShow = '{{ annonce.ges|capitalize }}';
+	var dpe = new DpeGes();
+		dpe.dpe({
+			domId: 'dpe',
+			value: dpeShow,
+		});
+		var ges = new DpeGes();
+		ges.ges({
+			domId: 'ges',
+			value: gesShow
+		});
+</script> 
+<script>
+	let modal = document.getElementById("myModal");
+	let btn = document.getElementById("myBtn");
+	let span = document.getElementsByClassName("close")[0];
+
+	btn.onclick = function () {
+		modal.style.display = "block";
+	}
+
+	span.onclick = function () {
+		modal.style.display = "none";
+	}
+
+	window.onclick = function (event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+</script>
 {% endblock %}
-
-
-
