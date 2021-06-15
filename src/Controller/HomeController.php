@@ -100,7 +100,7 @@ class HomeController extends AbstractController
             ->setRecipient($recipient);
             $email = new TemplatedEmail();
             $message ='<p></p>';
-            $message .='</h1>'.$annonce->getTitle().'</h1>';
+            $message .='<h1 style="background-color:lime">'.$annonce->getTitle().'</h1>';
             $message .= '<p>'.$contact->getMessage().'</p>';
             if ($this->security->isGranted('ROLE_USER')) {
                 $message .= '<p>'.$user->getName().'</p>';
@@ -130,7 +130,7 @@ class HomeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
-            $this->addFlash('message', 'Votre email à bien était envoyez');
+            $this->addFlash('message', 'Votre email à bien était envoyé');
             return $this->redirectToRoute('home');
         }
         $user = $this->getUser();
