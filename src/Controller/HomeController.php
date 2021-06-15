@@ -134,11 +134,15 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('home');
         }
         $user = $this->getUser();
+        $dpe = $annonce->getDpe();
+        $ges = $annonce->getGes();
         return $this->render('home/show.html.twig', [
             'annonce' => $annonce,
             'contact' => $contact,
             'form' => $form->createView(),
-            'user' => $user
+            'user' => $user,
+            'dpe' => $dpe,
+            'ges' => $ges
         ]);
     }
     #[Route('/annonces/favoris/ajout/{id}', name: 'ajout_favoris')]
