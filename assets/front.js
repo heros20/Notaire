@@ -8,10 +8,10 @@ AOS.init();
 
 $(document).ready(() => {
     $('.deroulant').on('mouseenter',function(){
-        $(".sous").fadeIn(350);
+        $(".sous").css('display','block');
     });
     $('.sous').on('mouseleave',function(){
-        $(".sous").fadeOut("slow");
+        $(".sous").css('display','none');
     });
 
      $('#carousel').flexslider({
@@ -30,8 +30,8 @@ $(document).ready(() => {
         animation: "slide",
         controlNav: false,
         directionNav: false,
-        animationLoop: false,
-        slideshow: false,
+        animationLoop: true,
+        slideshow: true,
         sync: "#carousel"
     });
 
@@ -79,7 +79,15 @@ if (slider) {
   });
 }
 
-
-
+var dpe = new DpeGes();
+dpe.dpe({
+    domId: 'dpe',
+    value: 'B',
+});
+var ges = new DpeGes();
+ges.ges({
+    domId: 'ges',
+    value: 'A'
+});
 
 

@@ -1,7 +1,8 @@
 {% extends 'back.html.twig' %}
 
 {% block title %}
-	Les utilisateurs
+Étude de Maître Régis Richard - Les utilisateurs
+
 {% endblock %}
 
 {% block body %}
@@ -33,9 +34,9 @@
                         </td>
                         <td>{{ user.createdAt | date('d/m/Y') }} à {{ user.createdAt | date('H:i') }}</td>
 	                    <td>
-							<a href="{{ path('utilisateur_show', {'id': user.id}) }}">Voir</a>
-							<a href="{{ path('utilisateur_notif', {'id': user.id}) }}">Envoyer un message</a>
-							<a href="{{ path('utilisateur_edit', {'id': user.id}) }}">Éditer</a>
+							<a class="action" href="{{ path('utilisateur_show', {'id': user.id}) }}">Voir</a>
+							<a class="action" href="{{ path('utilisateur_notif', {'id': user.id}) }}">Envoyer un message</a>
+							<a class="action" href="{{ path('utilisateur_edit', {'id': user.id}) }}">Éditer</a>
 						</td>
 					</tr>
 				{% else %}

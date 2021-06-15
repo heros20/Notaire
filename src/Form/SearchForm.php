@@ -47,7 +47,6 @@ class SearchForm extends AbstractType
                 'attr' => ['class' => 'filter_selecte'],
             ])
             ->add('status', ChoiceType::class, [
-                'attr' => ['class' => 'p-2'],
                 'choices'  => [
                     '-----' => NULL,
                     'Vente' => true,

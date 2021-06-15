@@ -2,26 +2,31 @@
 
 
 {% block body %}
-<div class="log">
-	{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
+		{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
 
-    <div class="input-cont">Nom : {{ user.name }}</div>
-    <div class="input-cont">Prénom : {{ user.username }}</div>
-    <div class="input-cont">Email : {{ user.email }}</div>
-    {% if user.phone != NULL %}
-        <div class="input-cont">Téléphone : {{ user.phone }}</div>
-    {% endif %}
+		<div class="p-2">Nom :
+			{{ user.name }}</div>
+		<div class="p-2">Prénom :
+			{{ user.username }}</div>
+		<div class="p-2">Email :
+			{{ user.email }}</div>
+		{% if user.phone != NULL %}
+			<div class="p-2">Téléphone :
+				{{ user.phone }}</div>
+		{% endif %}
 
-	<div class="input-cont">
-		{{ form_widget(form.message) }}
-		{{form_label(form.message)}}
-		<div class="border2"></div>
+		<div class="p-2">
+			{{form_label(form.message)}}
+			{{ form_widget(form.message) }}
+		</div>
+
+		<button class="btn btn-primary p-2" type="submit">Envoyez</button>
+		<p class="help p-2">
+			*Obligatoire
+		</p>
+
+		{{ form_end(form) }}
 	</div>
-	<p class="help">
-		*Obligatoire
-	</p>
-	<input type="submit" value="Envoyez">
-	{{ form_end(form) }}
-</div>
 
 {% endblock %}

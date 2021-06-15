@@ -68,3 +68,6 @@ ul li.active a span{
     color: #a8d7f5;
 }
 /* END BOOSTRAP */
+.test{
+    display: none;
+}

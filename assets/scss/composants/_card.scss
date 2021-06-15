@@ -54,6 +54,19 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    @include laptop{
+        &__blockCard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        &__card {
+            width: 40%;
+            margin: 54px 30px;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+    }
     @include deckstop {
         &__blockCard {
             display: flex;

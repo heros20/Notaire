@@ -20,7 +20,7 @@
 	{{ form_row(form.piscine) }}
 	{{ form_row(form.price) }}
 	{{ form_row(form.fileimage) }}
-	{# {{ form_row(form.image) }} #}
+	<div class="test">{{ form_row(form.image) }}</div>
 	{{ form_row(form.etat) }}
 	{# Vérifier si la route est "annonces_dit" : on affiche les images #}
 	{% if app.request.attributes.get('_route') == 'annonce_edit' %}

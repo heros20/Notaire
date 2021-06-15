@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ResetPassType;
 use App\Form\ForgetPasswordType;
 use App\Form\RegistrationFormType;
 use App\Form\ResetType;
@@ -130,11 +131,35 @@ class RegistrationController extends AbstractController
     public function reset(Request $request, $token, UserPasswordHasherInterface $passwordHasher){
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(["reset_token" =>$token]);
         //Vérifier l'utilisateur existe ou pas
-        //
-
+        if (!$user) {
+            return $this->redirectToRoute('404');
+        }
+        
         $form = $this->createForm(ResetType::class)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setResetToken(null);
+            $user->setPassword(
+                $passwordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('app_login');
+        }
+        return $this->render('emails/reset.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/mdp/edit', name: 'update_pass')]
+    public function resetPassword(Request $request, UserPasswordHasherInterface $passwordHasher){
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('404');
+        }
+        $form = $this->createForm(ResetType::class)->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,

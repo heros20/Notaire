@@ -1,4 +1,7 @@
 {% extends "back.html.twig" %}
+{% block title %}
+Étude de Maître Régis Richard - Votre profil
+{% endblock %}
 
 {% block body %}
 	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
@@ -42,7 +45,7 @@
 				</tr>
 				<tr>
 					<th>Action</th>
-					<td><a href="{{ path('edit_profil_admin', {'id': user.id}) }}">Éditer</a></td>
+					<td><a class="action" href="{{ path('edit_profil_admin', {'id': user.id}) }}">Éditer</a></td>
 				</tr>
 			</tbody>
 		</table>

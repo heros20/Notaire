@@ -1,12 +1,11 @@
 @use "../composants/navigation" as *;
 @use "../utils/mixins" as *;
 .topHeader {
-  padding: 10px;
   display: flex;
   justify-content: space-between;
-  margin: 20px auto;
+  margin: 20px;
   &_info {
-    padding: 0 30px 0 0;
+    
     display: flex;
     align-items: center;
   }
@@ -20,6 +19,9 @@
       width: 25%;
     }
   }
+}
+.containerHeader .navigation__checkbox:checked ~ .navigation__button .navigation__icon{
+  position: fixed;
 }
 .containerHeader {
   @include navigation;
@@ -45,8 +47,10 @@
 }
 @include deckstop {
   .topHeader {
+    padding: 10px;
     justify-content: space-between;
     width: 66%;
+    margin: 20px auto;
     &_logo {
       padding: 20px 0 20px 100px;
       & img {
@@ -54,7 +58,7 @@
       }
     }
     &_info {
-      text-align: right;
+      padding: 0 30px 0 0;
     }
     &_2 {
       margin-right: -110px;

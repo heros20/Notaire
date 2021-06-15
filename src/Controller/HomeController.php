@@ -145,8 +145,9 @@ class HomeController extends AbstractController
     public function ajoutFavoris(Annonce $annonce): Response
     {
         if (!$annonce) {
-            throw new NotFoundHttpException('Pas d\'annonce trouvée');
+            return $this->redirectToRoute('404');
         }
+        
         $annonce->addFavori($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
@@ -157,7 +158,7 @@ class HomeController extends AbstractController
     public function retraitFavoris(Annonce $annonce): Response
     {
         if (!$annonce) {
-            throw new NotFoundHttpException('Pas d\'annonce trouvée');
+            return $this->redirectToRoute('404');
         }
         $annonce->removeFavori($this->getUser());
         $em = $this->getDoctrine()->getManager();
@@ -180,5 +181,10 @@ class HomeController extends AbstractController
         return $this->render('home/mentions_legales.html.twig', [
             'controller_name' => 'HomeController',
         ]);
+    }
+    #[Route('/404', name: '404')]
+    public function FunctionName(): Response
+    {
+        return $this->render('home/404.html.twig', []);
     }
 }
