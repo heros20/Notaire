@@ -12,10 +12,10 @@ AOS.init();
 $(document).ready(() => {
     
     $('.deroulant').on('mouseenter',function(){
-        $(".sous").fadeIn(350);
+        $(".sous").css('display','block');
     });
     $('.sous').on('mouseleave',function(){
-        $(".sous").fadeOut("slow");
+        $(".sous").css('display','none');
     });
 
      $('#carousel').flexslider({
@@ -76,6 +76,10 @@ if (slider) {
   });
 }
 
+if ($('#footer').height() > $(".filter").height()) {
+  $('.filter').attr('style', 'display: none!important; bottom: 0px;');
+}
+
 let modal = document.getElementById("myModal");
 let btn = document.getElementById("myBtn");
 let span = document.getElementsByClassName("close")[0];
@@ -93,6 +97,7 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
+
 
 
 
