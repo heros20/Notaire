@@ -28,8 +28,10 @@ class ProfileController extends AbstractController
     public function index(): Response
     {
         $user = $this->getUser();
-        // dd($user);
-
+        if (!$user) {
+            return $this->redirectToRoute('404');
+        }
+        
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
             'user' => $user
@@ -39,6 +41,9 @@ class ProfileController extends AbstractController
     public function infos_persoEdit(Request $request): Response
     {
         $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('404');
+        }
 
         $form = $this->createForm(InfoType::class, $user);
         $form->handleRequest($request);
@@ -59,6 +64,9 @@ class ProfileController extends AbstractController
     public function notif(): Response
     {
         $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('404');
+        }
         return $this->render('profile/notification.html.twig', [
             'controller_name' => 'ProfileController',
             'user' => $user,
@@ -66,7 +74,11 @@ class ProfileController extends AbstractController
     }
     #[Route('/notification/show/{id}', name: 'notif_show')]
     public function notifShow(Contact $message): Response
-    {
+    {   
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('404');
+        }
         $message->setIsRead(true);
         $em = $this->getDoctrine()->getManager();
         $em->persist($message);
@@ -81,6 +93,10 @@ class ProfileController extends AbstractController
     #[Route('/notif/delete/{id}', name: 'notification_delete')]
     public function notifDelete(Contact $message): Response
     {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('404');
+        }
         $em = $this->getDoctrine()->getManager();
         $em->remove($message);
         $em->flush();
@@ -111,19 +127,5 @@ class ProfileController extends AbstractController
         $em->persist($annonce);
         $em->flush();
         return $this->redirectToRoute('favoris');
-    }
-    #[Route('/favoris/show', name: 'favoris_show')]
-    public function favoriShow(): Response
-    {
-        return $this->render('profile/favoris_show.html.twig', [
-            'controller_name' => 'ProfileController',
-        ]);
-    }
-    #[Route('/favoris/edit', name: 'favoris_edit')]
-    public function favoriEdit(): Response
-    {
-        return $this->render('profile/favoris_edit.html.twig', [
-            'controller_name' => 'ProfileController',
-        ]);
     }
 }

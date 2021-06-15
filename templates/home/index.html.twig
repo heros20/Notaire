@@ -47,7 +47,7 @@
 			{% for annonce in annonces %}
 				<div class="annonce__card" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
 					<a class="action" href="{{ path('frontAnnonce_show', {'slug': annonce.slug}) }}">
-						<img src="{{ annonce.image | imagine_filter('carre') }}" alt="{{ annonce.image }}">
+						<img src="{{ asset('assets/images/paysage.jpg') | imagine_filter('carre') }}" alt="{{ annonce.image }}">
 						<h4>{{ annonce.title }}</h4>
 						<p>{{ annonce.description }}</p>
 						<div class="annonce__coeur">

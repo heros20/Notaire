@@ -8,10 +8,10 @@ AOS.init();
 
 $(document).ready(() => {
     $('.deroulant').on('mouseenter',function(){
-        $(".sous").fadeIn(350);
+        $(".sous").css('display','block');
     });
     $('.sous').on('mouseleave',function(){
-        $(".sous").fadeOut("slow");
+        $(".sous").css('display','none');
     });
 
      $('#carousel').flexslider({
