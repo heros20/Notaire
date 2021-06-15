@@ -71,27 +71,12 @@ a{
 body{
   font-family: var(--texte);
 }
-<<<<<<< HEAD
 .action{
   cursor: pointer;
   transition: all .2 ease-in-out;
 }
 .action:hover{
   color: var(--color-primary);
-=======
-.sous{
-  display: none;
-  box-shadow: 0px 1px 2px #CCC;
-  background: rgb(144, 151, 157);
-  z-index: 100;
-  padding: 20px;
-  position: absolute;
-}
-.sous li{
-  float: none;
-  width: 100%;
-  text-align: left;
->>>>>>> 106b3692a71a3d1552c9e7912220b613ccca4035
 }
 .modal {
   display: none;
@@ -104,7 +89,6 @@ body{
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
 }
-<<<<<<< HEAD
 
 /* Modal Content/Box */
 .modal-content {
@@ -130,29 +114,4 @@ body{
 .button:hover{
   color: var(--color-primary);
   background-color: #fff;
-=======
-.container_mentions{
-   background: rgb(198, 242, 255);
-   padding: 50px;
-}
-.content_mention{
-  margin: 25px 50px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-.content_mention h1,h2,p{
-  margin-bottom: 15px;
-}
-.content_mention h1{
-  font-size: 2em;
-  font-weight: bold;
-}
-.content_mention h2{
-  font-size: 1.5em;
-  font-weight: bold;
-}
-.content_mention h3,h4{
-  font-size: 1.2em;
-  font-weight: bold;
-  margin: 15px;
->>>>>>> 106b3692a71a3d1552c9e7912220b613ccca4035
 }

@@ -1,11 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<<<<<<< HEAD
 	<script>
 		"dpeges.js"</script>
-=======
->>>>>>> 106b3692a71a3d1552c9e7912220b613ccca4035
 	<section class="presentation">
 		<div class="presentation__agence">
 			<img src="{{asset('assets/images/devanture.jpg')}}" alt="">
@@ -43,13 +40,8 @@
 		<div class="annonce__blockCard">
 			{% for annonce in annonces %}
 				<div class="annonce__card" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
-<<<<<<< HEAD
-					<a href="{{ path('frontAnnonce_show', {'slug': annonce.slug}) }}">
-						<img src="{{ asset('assets/images/' ~ annonce.image) }}" alt="{{ annonce.image }}">
-=======
 					<a class="action" href="{{ path('frontAnnonce_show', {'slug': annonce.slug}) }}">
 						<img src="{{ annonce.image | imagine_filter('carre') }}" alt="{{ annonce.image }}">
->>>>>>> 106b3692a71a3d1552c9e7912220b613ccca4035
 						<h4>{{ annonce.title }}</h4>
 						<p>{{ annonce.description }}</p>
 						<div class="annonce__coeur">
