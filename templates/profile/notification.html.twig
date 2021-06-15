@@ -24,7 +24,12 @@
             {% else %}
                 <tr class="color"> 
             {% endif %}
+                {% if message.sender %}
                     <td><a href="{{ path("notif_show", {id: message.id}) }}">{{ message.sender.email }}</a></td>
+                {% else %}
+                    <td><a href="{{ path("notif_show", {id: message.id}) }}">{{ message.email }}</a></td>
+                {% endif %}
+                
                     <td>{{ message.createdAt|date }}</td>
                     <td><a href="{{ path("notification_delete", {id: message.id}) }}">Supprimer</a></td>
                 </tr>

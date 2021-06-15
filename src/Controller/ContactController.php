@@ -31,7 +31,7 @@ class ContactController extends AbstractController
     public function new(Request $request, MailerInterface $mailer, UserRepository $repoUser): Response
     {
         $user = $this->getUser();
-        $id_user = 2;
+        $id_user = 3;
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
