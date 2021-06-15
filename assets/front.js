@@ -30,8 +30,8 @@ $(document).ready(() => {
         animation: "slide",
         controlNav: false,
         directionNav: false,
-        animationLoop: false,
-        slideshow: false,
+        animationLoop: true,
+        slideshow: true,
         sync: "#carousel"
     });
 
@@ -78,9 +78,6 @@ if (slider) {
   }
   });
 }
-
-
-
 
 var dpe = new DpeGes();
 dpe.dpe({

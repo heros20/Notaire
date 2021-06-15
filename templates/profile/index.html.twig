@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!
+{% block title %}Étude de Maître Régis Richard - Votre profil
 {% endblock %}
 
 {% block body %}
@@ -16,7 +16,7 @@
 			<div class="annonce__card annonce__cards">
 				<img src="{{asset('assets/images/paysage.jpg')}}" alt="">
 				<h4>Bonjour,
-					{{ user.name }}
+					{{ user.username }}
 				</h4>
 				<div class="annonce__barre"></div>
 				<p>Prénom:
@@ -40,7 +40,7 @@
 				<div class="annonce__barre"></div>
 
 				<p>Vous avez créez votre compte le:
-					{{ user.createdAt ? user.createdAt|date('m-d à H:i') : ''  }}
+					{{ user.createdAt ? user.createdAt|date('d-m-Y à H:i') : ''  }}
 				</p>
 				<div class="annonce__barre"></div>
 
