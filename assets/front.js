@@ -4,9 +4,13 @@ import noUiSlider from "nouislider";
 import 'nouislider/dist/nouislider.css';
 import './FlexSlider/flexslider.css';
 import './FlexSlider/jquery.flexslider-min.js';
+
 AOS.init();
 
+
+
 $(document).ready(() => {
+    
     $('.deroulant').on('mouseenter',function(){
         $(".sous").fadeIn(350);
     });
@@ -34,9 +38,26 @@ $(document).ready(() => {
         slideshow: false,
         sync: "#carousel"
     });
-
 })
 
+
+
+
+
+let modal = document.getElementById("myModal");
+let btn = document.getElementById("myBtn");
+let span = document.getElementsByClassName("close")[0];
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+span.onclick = function () {
+    modal.style.display = "none";
+}
+window.onclick = function (event) {
+if (event.target == modal) {
+    modal.style.display = "none";
+}
+}
 $(function() {
       // je stock la recherche d'une url
       var url = window.location.href;
