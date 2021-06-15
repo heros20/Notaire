@@ -1,4 +1,4 @@
-{% block body %}
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -267,18 +267,22 @@
                 <td style="background-color: #ffffff;">
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
-                            <td style="padding: 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                            {# <td style="padding: 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
                                 <h1 style="margin: 0 0 10px; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;">Confirmation d'envoie de message.</h1>
                                 <p style="margin: 0 0 10px;">Bonjour 
-                                {% block name %}{% endblock %}
-                                ,<br>{% block content %}{% endblock %}</p>
-                            </td>
+                                {{ user.name }} {{ user.username }}
+                                ,<br>Votre message a bien été envoyés. Nous prendrons contact avec vous dans les plus brefs delais.</p>
+                            </td> #}
+
+                            {% block body %}
+                            {% endblock %}
                         </tr>
                         <tr>
                             <td style="padding: 0 20px 20px;">
                                 <!-- Button : BEGIN -->
                                 <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: auto;">
                                     <tr>
+                                        <p>Retrouvez nous sur notre site :</p>
                                         <td class="button-td button-td-primary" style="border-radius: 4px; background: #008BE0;">
 											<a class="button-a button-a-primary" href="{{path('home')}}" style="background: #008BE0; border: 1px solid #ffffff; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; color: #ffffff; display: block; border-radius: 4px;">Retourner sur le site</a>
 										</td>
@@ -306,7 +310,7 @@
 	                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
 	                        <tr>
 	                            <td valign="middle" style="text-align: center; padding: 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #ffffff;">
-	                                <p style="margin: 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut&nbsp;erat.</p>
+	                                <p style="margin: 0;">Nous avons 10 ans d'expérience dans différent cas.</p>
 	                            </td>
 	                        </tr>
 	                    </table>
@@ -324,7 +328,7 @@
 	            <td style="padding: 10px; background-color: #ffffff;">
 	                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
 	                    <tr  display="flex" flex-flow="row">
-                                {% for annonce in annonces %}
+                                {# {% for annonce in annonces %}
                                     <!-- Column : BEGIN -->
                                     <th valign="top" width="50%" class="stack-column-center">
                                         <div class="annonce__card" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
@@ -336,7 +340,7 @@
                                         </div>
                                     </th>
 	                        <!-- Column : END -->
-                                {% endfor %}
+                                {% endfor %} #}
                         </tr>
 	                </table>
 	            </td>
@@ -563,4 +567,4 @@
     </center>
 </body>
 </html>
-{% endblock %}
+

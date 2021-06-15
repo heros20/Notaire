@@ -1,15 +1,18 @@
 {% extends 'email/index.html.twig' %}
 
-{% block name %}
-    {% if is_granted('ROLE_USER') %}
-        {{ user.name }} {{ user.username }}
-        {% else %}
-        {# {{ user.name }},<br> Votre message a bien été envoyés.</p> #}
-    {% endif %}
-{% endblock %}
-{% block content %}
-Votre message a bien été envoyés. Nous prendrons contact avec vous dans les plus brefs delais.
-{% endblock %}
-{# <p>De : {{mail}}</p>
 
-<p>Message : {{ message|raw}}</p> #}
+{% block body %}
+    <td style="padding: 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+        <h1 style="margin: 0 0 10px; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;">Confirmation d'envoie de message.</h1>
+        <p style="margin: 0 0 10px;">Bonjour 
+            {% if is_granted('ROLE_USER') %}
+                {{ contact.sender.name }} {{ contact.sender.username }}
+                {% else %}
+                {{ contact.name }},<br> Votre message a bien été envoyés.</p>
+            {% endif %}                               
+            ,</p>
+            <p>Votre message a bien été envoyés. Nous prendrons contact avec vous dans les plus brefs delais.</p>
+            <p>Voici votre message: {{ contact.message }}</p>
+            
+    </td>
+{% endblock %}
