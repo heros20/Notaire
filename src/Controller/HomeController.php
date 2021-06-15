@@ -123,7 +123,7 @@ class HomeController extends AbstractController
             }
                 $email->to(new Address('sebastienweb27@gmail.com'))
                 ->subject('Contact')
-                ->htmlTemplate('emails/contact.html.twig');
+                ->htmlTemplate('emails/annonce_contact.html.twig');
               
             $mailer->send($email);
 
