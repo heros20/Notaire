@@ -22,8 +22,8 @@
 
 	<div class="filter_prix">
 		<h4 class="filter_title">Prix</h4>
-		{{ form_widget(form.min) }}
-		{{ form_widget(form.max) }}
+		{{ form_widget(form.min,{ 'attr': {'class': 'priceNone'}}) }}
+		{{ form_widget(form.max,{ 'attr': {'class': 'priceNone'}}) }}
 		<div id="price-slider" class="filter_barre" data-min="{{ min }}" data-max="{{ max }}"></div>
 	</div>
 

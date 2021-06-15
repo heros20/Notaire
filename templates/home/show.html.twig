@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body %}
+<script src="{{ asset('assets/js/dpeges.js') }}" ></script>
 	<section>
 		<div class="boite">
 			<h1 class="boite__title">À Propos de nous</h1>
@@ -211,6 +212,22 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
+<script>
+	var dpeShow = '{{ annonce.dpe|capitalize }}';
+	var gesShow = '{{ annonce.ges|capitalize }}';
+	var dpe = new DpeGes();
+		dpe.dpe({
+			domId: 'dpe',
+			value: dpeShow,
+		});
+		var ges = new DpeGes();
+		ges.ges({
+			domId: 'ges',
+			value: gesShow
+		});
+</script> 
+=======
 {# <script>
 	var DpeGes = function () {
 	function Diag(options) {
@@ -586,4 +603,5 @@
 		value: '\''.{{ ges }}.'\'',
 	});
 </script> #}
+>>>>>>> 1dddb2090729ceb268142847500dba784e45d366
 {% endblock %}
