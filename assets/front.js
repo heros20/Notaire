@@ -8,10 +8,10 @@ AOS.init();
 
 $(document).ready(() => {
     $('.deroulant').on('mouseenter',function(){
-        $(".sous").css('display','block');
+        $(".sous").fadeIn(350);
     });
     $('.sous').on('mouseleave',function(){
-        $(".sous").css('display','none');
+        $(".sous").fadeOut("slow");
     });
 
      $('#carousel').flexslider({
@@ -30,16 +30,11 @@ $(document).ready(() => {
         animation: "slide",
         controlNav: false,
         directionNav: false,
-        animationLoop: true,
-        slideshow: true,
+        animationLoop: false,
+        slideshow: false,
         sync: "#carousel"
     });
 
-    // const link = document.getElementById("action");
-    //     $(link).click(function( e ) {
-    //         e.preventDefault();
-    //         console.log('click');
-    // });
 })
 
 $(function() {
@@ -79,15 +74,23 @@ if (slider) {
   });
 }
 
-var dpe = new DpeGes();
-dpe.dpe({
-    domId: 'dpe',
-    value: 'B',
-});
-var ges = new DpeGes();
-ges.ges({
-    domId: 'ges',
-    value: 'A'
-});
+let modal = document.getElementById("myModal");
+let btn = document.getElementById("myBtn");
+let span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 
 
