@@ -1,5 +1,15 @@
-<h1>Contact</h1>
+{% extends 'email/index.html.twig' %}
 
-<p>De : {{mail}}</p>
+{% block name %}
+    {% if is_granted('ROLE_USER') %}
+        {{ user.name }} {{ user.username }}
+        {% else %}
+        {# {{ user.name }},<br> Votre message a bien été envoyés.</p> #}
+    {% endif %}
+{% endblock %}
+{% block content %}
+Votre message a bien été envoyés. Nous prendrons contact avec vous dans les plus brefs delais.
+{% endblock %}
+{# <p>De : {{mail}}</p>
 
-<p>Message : {{ message|raw}}</p>
+<p>Message : {{ message|raw}}</p> #}
