@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
-{% endblock %}
-
 {% block body %}
+	<script>
+		"dpeges.js"</script>
 	<section class="presentation">
 		<div class="presentation__agence">
-			<img src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+			<img src="{{asset('assets/images/devanture.jpg')}}" alt="">
 			{% for flashError in app.flashes('message') %}
 				<div class="flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
 			{% endfor %}
@@ -18,22 +17,17 @@
 		<div class="apropos__dixAns">
 			<h1>Nous avons 10 ans d'expérience dans différent cas</h1>
 			<div id="dpe"></div>
-   			 <div id="ges"></div>
+			<div id="ges"></div>
 		</div>
 		<div class="apropos__block">
 			<div class="apropos__propos">
 				<h2>À Propos</h2>
-				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
-				repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
-				impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
-				a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
-				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consectetur laboriosam accusamus
-				repudiandae adipisci officia amet reiciendis, dignissimos beatae enim facilis at laudantium eligendi incidunt, 
-				impedit necessitatibus excepturi fugit voluptates rerum eveniet nesciunt sequi autem. Sed,
-				a officiis, et sapiente voluptatem distinctio quo similique non fugiat, assumenda voluptas placeat quam?</p>
+				<p>Bienvenue sur L'étude Maître Régis Richard. Située à Épaignes, à 15 min de Pont-Audemer, à 5 min de Cormeilles et 2h de Paris, notre agence vous propose une sélection de biens immobiliers dans les cantons de l'Eure.</p><p> Demeures Normande, Maisons contemporaines, appartements ou produits d’investissement, les biens que nous vous présentons répondent aux mêmes critères de qualité.</p>
+				<p>Notre portefeuille immobilier vous permet de consulter des annonces immobilières à Honfleur, Saint-Georges-du-Vièvre, Épaignes, Pont-l'Évêque, Bourneville, Saint-Eustache-la-Forêt, Lieurey, Bourg-Achard, Pont-Audemer, Bernay, Toutainville, Cormeilles, Beuzeville, Montfort-sur-Risle, Brionne, ...
+					A bientôt</p>
 			</div>
 			<div>
-				<img class="apropos__imgs" src="{{asset('assets/uploads/pascal-bernardon-TVcj-so0GDs-unsplash.jpg')}}" alt="">
+				<img class="apropos__imgs" src="{{asset('assets/images/devanture.jpg')}}" alt="">
 			</div>
 		</div>
 	</section>
@@ -41,7 +35,7 @@
 	<section class="annonce">
 		<div class="annonce__blockTitle">
 			<h3>Les dernières annonces immobilières</h3>
-			<p>Que vous soyez vendeur ou acquéreur, vous trouverez chez votre notaire le service complet vous garantissant la bone fin de votre opération</p>
+			<p>Que vous soyez vendeur ou acquéreur, vous trouverez chez votre notaire le service complet vous garantissant la bonne fin de votre opération</p>
 		</div>
 		<div class="annonce__blockCard">
 			{% for annonce in annonces %}
@@ -84,5 +78,3 @@
 		</div>
 	</section>
 {% endblock %}
-
-  

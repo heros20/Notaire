@@ -11,25 +11,34 @@ class CategoryFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $category1 = (new Category())
-            ->setTitle('Maison')
-            ->setDescription('jgphfs gsoieq fqiuyr');
+            ->setTitle('Villa')
+            ->setDescription('Magnifique villa au bord de mer');
 
         $manager->persist($category1);
+
         $category2 = (new Category())
-            ->setTitle('Appartement')
-            ->setDescription('kfehofis ehofiryfo sdiguroiçeug');
+            ->setTitle('Villa')
+            ->setDescription('Magnifique villa qui surplombe la dune du pilat');
 
         $manager->persist($category2);
+
         $category3 = (new Category())
-            ->setTitle('Terrain constructible')
-            ->setDescription('iseioghsorig ehgofiueyofg uoyhqeofiyezrs');
+            ->setTitle('Appartement')
+            ->setDescription('Découvrez ce magnifique appart du 16 ème');
 
         $manager->persist($category3);
+
         $category4 = (new Category())
-            ->setTitle('Terrain non constructible')
-            ->setDescription('usdoivf soidyvfoir gfrhsdoifvyh rsg'); 
+            ->setTitle('Résidence')
+            ->setDescription('Résidence situé en millieu rural'); 
 
         $manager->persist($category4);
+
+        $category5 = (new Category())
+            ->setTitle('Maison')
+            ->setDescription('Maison situé au plein coeur du centre ville');
+
+        $manager->persist($category5);
         
         $manager->flush();
 
@@ -38,5 +47,6 @@ class CategoryFixtures extends Fixture
         $this->addReference('category2', $category2);
         $this->addReference('category3', $category3);
         $this->addReference('category4', $category4);     
+        $this->addReference('category5', $category5);     
     }
 }
