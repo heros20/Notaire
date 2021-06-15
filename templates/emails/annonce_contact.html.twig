@@ -4,6 +4,8 @@
 {% block body %}
     <td style="padding: 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
         <h1 style="margin: 0 0 10px; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;">Confirmation d'envoie de message.</h1>
+        <p>Annonce : {{ contact.annonce.title }} </p>
+            <a class="button-a button-a-primary" href="{{path('frontAnnonce_show', {'slug': contact.annonce.slug}) }}" style="background: #008BE0; border: 1px solid #ffffff; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; color: #ffffff; display: block; border-radius: 4px; width: 25%; text-aline: center">Retourner sur l'annonce</a>
         <p style="margin: 0 0 10px;">Bonjour 
             {% if is_granted('ROLE_USER') %}
                 {{ contact.sender.name }} {{ contact.sender.username }}
