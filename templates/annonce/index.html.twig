@@ -30,9 +30,9 @@
 						<td>{{ annonce.status ? 'Vente' : 'Location' }}</td>
 						<td>{{ annonce.etat ? 'rien' ? 'Vendu' : 'Loué'}}</td>
 						<td>
-							<a class="action" href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a>
-							<a class="action" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Éditer</a>
-							<a class="action" href="{{ path('add_new_images', {'id': annonce.id}) }}">Upload images</a>
+							<a class="action btn btn-info text-light" href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a>
+							<a class="action btn btn-success text-light" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Éditer</a>
+							<a class="action btn btn-warning text-light" href="{{ path('add_new_images', {'id': annonce.id}) }}">Upload images</a>
 						</td>
 					</tr>
 				{% else %}

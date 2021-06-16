@@ -34,9 +34,9 @@
                         </td>
                         <td>{{ user.createdAt | date('d/m/Y') }} à {{ user.createdAt | date('H:i') }}</td>
 	                    <td>
-							<a class="action" href="{{ path('utilisateur_show', {'id': user.id}) }}">Voir</a>
-							<a class="action" href="{{ path('utilisateur_notif', {'id': user.id}) }}">Envoyer un message</a>
-							<a class="action" href="{{ path('utilisateur_edit', {'id': user.id}) }}">Éditer</a>
+							<a class="action btn btn-info text-light" href="{{ path('utilisateur_show', {'id': user.id}) }}">Voir</a>
+							<a class="action btn btn-success text-light" href="{{ path('utilisateur_edit', {'id': user.id}) }}">Éditer</a>
+							<a class="action btn btn-secondary text-light" href="{{ path('utilisateur_notif', {'id': user.id}) }}">Envoyer un message</a>
 						</td>
 					</tr>
 				{% else %}

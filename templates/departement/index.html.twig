@@ -27,8 +27,8 @@
 						<td>{{ departement.description }}</td>
 	
 						<td>
-							<a class="action" href="{{ path('departement_show', {'id': departement.id}) }}">Voir</a>
-							<a class="action" href="{{ path('departement_edit', {'id': departement.id}) }}">Éditer</a>
+							<a class="action btn btn-info text-light" href="{{ path('departement_show', {'id': departement.id}) }}">Voir</a>
+							<a class="action btn btn-success text-light" href="{{ path('departement_edit', {'id': departement.id}) }}">Éditer</a>
 						</td>
 					</tr>
 				{% else %}

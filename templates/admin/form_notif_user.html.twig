@@ -4,7 +4,10 @@
 {% block body %}
 	<div class="shadow-sm p-3 mb-5 bg-white rounded form">
 		{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
-
+		<div class="test">
+			{{ form_widget(form.recipient, { 'attr': {'class': 'none'} }) }}
+		</div>
+		
 		<div class="p-2">Nom :
 			{{ user.name }}</div>
 		<div class="p-2">Prénom :
@@ -20,11 +23,9 @@
 			{{form_label(form.message)}}
 			{{ form_widget(form.message) }}
 		</div>
-
-		<button class="btn btn-primary p-2" type="submit">Envoyez</button>
-		<p class="help p-2">
-			*Obligatoire
-		</p>
+		
+		<p class="help p-2">*Obligatoire</p>
+		<button class="btn btn-primary p-2 ml-2" type="submit">Envoyer</button>
 
 		{{ form_end(form) }}
 	</div>

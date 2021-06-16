@@ -2,46 +2,49 @@
 
 {% block body %}
 
-<a class="btn btn-primary mb-2" href="{{ path('admin') }}">Retour</a>
+
 <div class="shadow-sm p-3 mb-5 bg-white rounded form">
     <h1>page notification</h1>
     <p>Reçus : {{ app.user.received|length }}</p>
     <p>Envoyés : {{ app.user.sent|length }}</p>
-    <div><a href="{{ path("notif_new") }}">Nouveau message<a/></div>
+    <div>
+        <a class="btn btn-primary mb-2" href="{{ path('admin') }}">Retour</a>
+        <a class="btn btn-primary mb-2" href="{{ path("notif_new") }}">Nouveau message<a/>
+    </div>
 
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>De</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for message in app.user.received %}
-            {% if message.isRead == 1 %}
-                 <tr class="no_color">
-                 {# tu peux modifier si tu veux, seb. Je te laisse gérer ça #}
-            {% else %}
-                <tr class="color"> 
-            {% endif %}
-                {% if message.sender %}
-                    <td><a href="{{ path("notif_show", {id: message.id}) }}">{{ message.sender.email }}</a></td>
-                {% else %}
-                    <td><a href="{{ path("notif_show", {id: message.id}) }}">{{ message.email }}</a></td>
-                {% endif %}
-                    <td>{{ message.createdAt|date }}</td>
-                    <td><a href="{{ path("notif_delete", {id: message.id}) }}">Supprimer</a></td>
-                </tr>
-            {% else %}
+    <div>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td colspan="18">Pas d'éléments</td>
+                    <th>De</th>
+                    <th>Date</th>
+                    <th>Actions</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                {% for message in app.user.received %}
+                {% if message.isRead == 1 %}
+                    <tr class="no_color">
+                    {# tu peux modifier si tu veux, seb. Je te laisse gérer ça #}
+                {% else %}
+                    <tr class="color"> 
+                {% endif %}
+                    {% if message.sender %}
+                        <td><a class="text-primary" href="{{ path("notif_show", {id: message.id}) }}">{{ message.sender.email }}</a></td>
+                    {% else %}
+                        <td><a class="text-primary" href="{{ path("notif_show", {id: message.id}) }}">{{ message.email }}</a></td>
+                    {% endif %}
+                        <td>{{ message.createdAt|date }}</td>
+                        <td><a class="btn btn-danger text-light" href="{{ path("notif_delete", {id: message.id}) }}">Supprimer</a></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="18">Pas d'éléments</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 </div>
 
