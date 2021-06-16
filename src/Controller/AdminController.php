@@ -65,10 +65,12 @@ class AdminController extends AbstractController
     #[Route('/utilisateur/{id}/edit', name: 'utilisateur_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
+        $originalPassword = $user->getPassword();
         $form = $this->createForm(InfoType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+            $user->setPassword($originalPassword);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('utilisateur_index');
@@ -103,7 +105,6 @@ class AdminController extends AbstractController
     public function edit_admin_profil(Request $request): Response
     {
         $user = $this->getUser();
-
         $form = $this->createForm(InfoType::class, $user);
         $form->handleRequest($request);
 
@@ -128,13 +129,14 @@ class AdminController extends AbstractController
     #[Route('/notif/show/{id}', name: 'notif_show_admin')]
     public function admin_show_notif(Contact $message): Response
     {
-        
+        $user = $this->getUser();
         $message->setIsRead(true);
         $em = $this->getDoctrine()->getManager();
         $em->persist($message);
         $em->flush();
         return $this->render('admin/notif_show_admin.html.twig', [
             'contact' => $message,
+            'user' => $user
         ]);
     }
     
@@ -148,7 +150,7 @@ class AdminController extends AbstractController
     }
     
     #[Route('/utilisateur/message/{id}', name: 'utilisateur_notif')]
-    public function reponse(Request $request, $id): Response {
+    public function reponse(Request $request, $id,Contact $message): Response {
         $user = $this->getUser();
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -173,7 +175,7 @@ class AdminController extends AbstractController
         return $this->render('admin/form_notif_user.html.twig', [
             'contact' => $contact,
             'form' => $form->createView(),
-            'user' => $user
+            'user' => $user,
         ]);
     }
     #[Route('/notif/message', name: 'notif_new')]

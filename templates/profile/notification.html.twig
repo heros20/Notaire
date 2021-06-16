@@ -37,16 +37,21 @@
 								{% endif %}
 								{% if message.sender %}
 									<td>
-										<a href="{{ path("notif_show", {id: message.id}) }}">{{ message.sender.email }}</a>
+										{{ message.sender.email }}
 									</td>
 								{% else %}
 									<td>
-										<a href="{{ path("notif_show", {id: message.id}) }}">{{ message.email }}</a>
+										{{ message.email }}
 									</td>
 								{% endif %}
 
-								<td>{{ message.createdAt|dateTime('now') }}</td>
+								<td>{{ message.createdAt|date('d/m/Y à H:i') }}</td>
 								<td>
+									{% if message.sender %}
+										<a href="{{ path("notif_show", {id: message.id}) }}">Voir</a>
+									{% else %}
+										<a href="{{ path("notif_show", {id: message.id}) }}">Voir</a>
+									{% endif %}
 									<a href="{{ path("notification_delete", {id: message.id}) }}">Supprimer</a>
 								</td>
 							</tr>

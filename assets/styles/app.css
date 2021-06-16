@@ -82,3 +82,19 @@ ul li.active a span{
 .input-cont span{
     color: #008BE0;
 }
+.table tbody td{
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgb(0, 62, 161);
+}
+.required{
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgb(0, 62, 161);
+}
+.form-control{
+    color: rgb(56, 0, 161);
+}
+.form-group select{
+    height: 80px;
+}
