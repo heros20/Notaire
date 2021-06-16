@@ -15,9 +15,13 @@ class DepartementController extends AbstractController
 {
     #[Route('/', name: 'departement_index', methods: ['GET'])]
     public function index(DepartementRepository $departementRepository): Response
-    {
+    {   
+        $departements = $departementRepository->findBy(
+            [],
+            ['createdAt' => 'DESC'],
+        );
         return $this->render('departement/index.html.twig', [
-            'departements' => $departementRepository->findAll(),
+            'departements' => $departements,
         ]);
     }
 

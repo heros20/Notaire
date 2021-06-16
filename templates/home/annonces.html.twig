@@ -5,24 +5,23 @@
 {% endblock %}
 
 {% block body %}
-	<section class="flexFilter">
-			<div class="filterSearch">
-				{% include "home/_filter.html.twig" with {form: form, min: min, max: max} only %}
-			</div>
-			<div class="annonce__blockCard" data-aos="zoom-in" data-aos-duration="400">
+	<section class="flexFilter annonce">
+		{% include "home/_filter.html.twig" with {form: form, min: min, max: max} only %}
+		<div class="annonce__blockCard" data-aos="zoom-in" data-aos-duration="400">
 			{% for annonce in searchAnnonce %}
 				<div class="annonce__card">
 					{% include "home/_card.html.twig" with {annonce: annonce} only %}
-					<div class="annonce__coeur annonce__coeurs">
+					<div class="annonce__coeur">
 						{% if is_granted("ROLE_USER") %}
 							{% for favoris in annonce.favoris %}
 								{% if favoris.id == app.user.id %}
 									<span>
 										<a href="{{ path('retrait_favoris', {id: annonce.id}) }}">
 											<i class="fas fa-heart fa-hearts fullHearth"></i>
-											<i class="fas fa-heart fa-hearts heart-color"></i>
+											<i class="fas fa-heart  fa-hearts heart-color"></i>
 										</a>
 									</span>
+
 								{% else %}
 									<span>
 										<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
@@ -31,7 +30,7 @@
 										</a>
 									</span>
 								{% endif %}
-						{% else %}
+							{% else %}
 								<span>
 									<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
 										<i class="fas fa-heart fa-hearts heart"></i>

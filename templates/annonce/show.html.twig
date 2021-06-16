@@ -43,11 +43,24 @@
 				</tr>
 				<tr>
 					<th>Diagnostic de perfomance énergétique</th>
-					<td>{{ annonce.dpe }}</td>
+					
+					<td>
+						{% if annonce.dpe == 1 %}
+							aucune
+						{% else %}
+							{{ annonce.dpe|capitalize }}
+						{% endif %}
+					</td>
 				</tr>
 				<tr>
 					<th>Gaz à effet de serre</th>
-					<td>{{ annonce.ges }}</td>
+					<td>
+						{% if annonce.ges == 1 %}
+							aucune
+						{% else %}
+							{{ annonce.ges|capitalize }}
+						{% endif %}
+					</td>
 				</tr>
 				<tr>
 					<th>Nombre de pieces</th>
@@ -87,9 +100,19 @@
 				</tr>
 			</tbody>
 		</table>
-
+		<h2>Image à la une</h2>
+		<div class="une">
+			<img src="{{ asset('/assets/uploads/'~ annonce.image) | imagine_filter('pre_back') }}" alt="">
+		</div>
+		<h3>Image(s) Generale(s)</h3>
+		<div class="flex flex-wrap">
+			{% for image in annonce.images %}
+				{% if annonce.images != null %}
+					<div class="images mb-5">
+						<div class="img m-2"><img src="{{ asset('assets/uploads/'~ image.name) | imagine_filter('pre_back') }}" alt="{{annonce.title}}"></div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
 	</div>
-
-	
-
 {% endblock %}

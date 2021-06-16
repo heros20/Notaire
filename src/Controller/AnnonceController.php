@@ -25,9 +25,13 @@ class AnnonceController extends AbstractController
 {
     #[Route('/', name: 'annonce_index', methods: ['GET'])]
     public function index(AnnonceRepository $annonceRepository): Response
-    {
+    {   
+        $annonces = $annonceRepository->findBy(
+            [],
+            ['createdAt' => 'DESC']
+        );
         return $this->render('annonce/index.html.twig', [
-            'annonces' => $annonceRepository->findAll(),
+            'annonces' => $annonces,
         ]);
     }
 

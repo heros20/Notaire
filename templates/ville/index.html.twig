@@ -27,8 +27,8 @@
 						<td>{{ ville.description }}</td>
 						<td>{{ ville.createdAt ? ville.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 						<td>
-							<a class="action" href="{{ path('ville_show', {'id': ville.id}) }}">Voir</a>
-							<a class="action" href="{{ path('ville_edit', {'id': ville.id}) }}">Éditer</a>
+							<a class="action btn btn-info text-light" href="{{ path('ville_show', {'id': ville.id}) }}">Voir</a>
+							<a class="action btn btn-success text-light" href="{{ path('ville_edit', {'id': ville.id}) }}">Éditer</a>
 						</td>
 					</tr>
 				{% else %}

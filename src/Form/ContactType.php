@@ -59,7 +59,7 @@ class ContactType extends AbstractType
             
         }
         $builder
-            ->add('message', TextType::class, [
+            ->add('message', TextareaType::class, [
                 'label' => 'Message *',
                 'empty_data' => '',
                 'constraints' => [

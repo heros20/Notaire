@@ -15,9 +15,12 @@ class VilleController extends AbstractController
 {
     #[Route('/', name: 'ville_index', methods: ['GET'])]
     public function index(VilleRepository $villeRepository): Response
-    {
+    {   $villes = $villeRepository->findBy(
+            [],
+            ['createdAt' => 'DESC'],
+        );
         return $this->render('ville/index.html.twig', [
-            'villes' => $villeRepository->findAll(),
+            'villes' => $villes,
         ]);
     }
 
