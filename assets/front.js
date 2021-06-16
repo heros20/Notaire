@@ -76,16 +76,6 @@ if (slider) {
   });
 }
 
-$(document).ready(function() {
-    //Get height of the div
-    var iHeight = $("#footer").height();
-    //Get ScrollHeight of the div
-    var iScrollHeight= $('.filter')[0].scrollHeight; 
-    if (iHeight > iScrollHeight) {
-        $(".filter").css('display','none');
-    }
-});
-
 
 
 

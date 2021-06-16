@@ -1,17 +1,20 @@
 {% extends "base.html.twig" %}
 {% block body %}
-<section class="container">
-
-   {% if contact.sender %}
-        <p>De {{ contact.sender.email}}</p>
-    {% else %}
-        <p>De {{ contact.email}}</p>
-    {% endif %}
-    <p>Le {{ contact.createdAt|date }}</p>
-
-    <div>{{ contact.message}}</div>
-
-</section>
-
-
+	<section class="container annonce">
+		<div class="annonce__blockCard">
+			<div class="annonce__card cursor">
+				<img src="{{asset('assets/images/paysage.jpg')}}" alt="">
+				<h4>Récapitulatif</h4>
+				{% if contact.sender %}
+					<p>{{ contact.sender.email}},</p>
+				{% else %}
+					<p>De
+						{{ contact.email}}</p>
+				{% endif %}
+				<p>vous à envoyez un message contenant :</p>
+				<p>{{ contact.message}}</p>
+				<p>Dâté du :{{ contact.createdAt|date('d-m-Y à H:i') }}</p>
+			</div>
+		</div>
+	</section>
 {% endblock %}

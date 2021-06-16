@@ -1,23 +1,20 @@
 @use "../utils/mixins" as *;
-.priceNone{
+.priceNone {
     display: none;
 }
-.flexFilter{
-    display: flex;
-    margin: 0 50px;
-}
-.filter select{
+.filter select {
     width: 100%;
     margin-bottom: 40px;
 }
 .filter {
-    margin-top: 50px;
+    margin: 50px;
     border-radius: 20px;
     background-color: #435f7a;
     padding: 50px;
     margin-bottom: 80px;
+    height: 610px;
     &_container {
-       text-align: center;
+        text-align: center;
     }
     &_title {
         margin: 5px 0;
@@ -32,7 +29,7 @@
         text-align: center;
         font-size: 16px;
         height: 43px;
-        & option{
+        & option {
             border-bottom: 1px solid #fff;
         }
     }
@@ -63,15 +60,14 @@
     }
 }
 .filter {
-    &_selecte:hover{
+    &_selecte:hover {
         background: rgb(230, 230, 230);
-        & option{
+        & option {
             border-bottom: 1px solid #fff;
         }
     }
-   
 }
-.noUi-connect{
+.noUi-connect {
     background-color: var(--color-primary) !important;
 }
 @include laptop {
@@ -79,5 +75,9 @@
         &_container {
             flex-direction: row;
         }
+    }
+    .flexFilter {
+        display: flex;
+        margin: 0 50px;
     }
 }

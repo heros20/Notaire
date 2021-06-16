@@ -12,54 +12,56 @@
 			</p>
 		</div>
 	</section>
-	<section class="container">
-		<h1>page notification</h1>
-		<p>Reçus :
-			{{ app.user.received|length }}</p>
-		<p>Envoyés :
-			{{ app.user.sent|length }}</p>
-
-		<div>
-			<table>
-				<thead>
-					<tr>
-						<th>De</th>
-						<th>Date</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for message in app.user.received %}
-						{% if message.isRead == 1 %}
-							<tr class="no_color">
-							{% else %}
-								<tr class="color">
-								{% endif %}
-								{% if message.sender %}
-									<td>
-										<a href="{{ path("notif_show", {id: message.id}) }}">{{ message.sender.email }}</a>
-									</td>
+	<section class="annonce">
+		<div class="annonce__blockCard">
+			<div class="annonce__card cursor">
+				<img src="{{asset('assets/images/paysage.jpg')}}" alt="">
+				<h4>Vos notification</h4>
+				<p>Vous avez reçus :
+					{{ app.user.received|length }}
+					message(s)</p>
+				<p>Vous avez envoyés :
+					{{ app.user.sent|length }}
+					message(s)</p>
+				<table class="cardTable">
+					<thead>
+						<tr>
+							<th>De</th>
+							<th>Date</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for message in app.user.received %}
+							{% if message.isRead == 1 %}
+								<tr class="no_color">
 								{% else %}
-									<td>
-										<a href="{{ path("notif_show", {id: message.id}) }}">{{ message.email }}</a>
-									</td>
-								{% endif %}
+									<tr class="color">
+									{% endif %}
+									{% if message.sender %}
+										<td>
+											<a href="{{ path("notif_show", {id: message.id}) }}">{{ message.sender.email }}</a>
+										</td>
+									{% else %}
+										<td>
+											<a href="{{ path("notif_show", {id: message.id}) }}">{{ message.email }}</a>
+										</td>
+									{% endif %}
 
-								<td>{{ message.createdAt|dateTime('now') }}</td>
-								<td>
-									<a href="{{ path("notification_delete", {id: message.id}) }}">Supprimer</a>
-								</td>
-							</tr>
-						{% else %}
-							<tr>
-								<td colspan="18">Pas d'éléments</td>
-							</tr>
-						{% endfor %}
+									<td>{{ message.createdAt|date('d-m-Y à H:i') }}</td>
+									<td>
+										<a class="danger" href="{{ path("notification_delete", {id: message.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">Supprimer</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="18">Pas d'éléments</td>
+								</tr>
+							{% endfor %}
+						</tbody>
 					</tbody>
-				</tbody>
-			</table>
+				</table>
+			</div>
 		</div>
 	</section>
-
-
 {% endblock %}
