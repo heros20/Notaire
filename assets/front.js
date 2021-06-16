@@ -20,7 +20,7 @@ $(document).ready(() => {
 
      $('#carousel').flexslider({
         animation: "slide",
-        controlNav: false,
+        controlNav: true,
         directionNav: false,
         animationLoop: false,
         slideshow: false,

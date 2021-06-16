@@ -18,17 +18,22 @@
 	</section>
 	<section class="show" >
 		<div class="display">
-			<div class="flexsliders">				
+			<div class="flexsliders">	
+			{% if annonce.status == 1 %}
+			<h2>Vente</h2>
+			{% else %}
+			<h2>Location</h2>
+			{% endif %}
 				<h3>{{ annonce.title }}</h3>
 				<p class="prix">prix : {{ annonce.price | number_format(0,',', ' ')}} €</p>
 				<div id="slider" class="flexslider">
 					<ul class="slides">
 						<li>
-							<img src="{{ asset('assets/images/' ~ annonce.image) }}" alt="{{ annonce.image }}">
+							<img src="{{ asset('assets/uploads/' ~ annonce.image)| imagine_filter('flex_detail') }}" alt="{{ annonce.image }}">
 						</li>
 						{% for img in annonce.images %}
 							<li>
-								<img src="{{ asset('assets/images/' ~ img.name) }}"/>
+								<img src="{{ asset('assets/uploads/' ~ img.name)| imagine_filter('flex_detail') }}"/>
 							</li>
 						{% endfor %}
 					</ul>
@@ -36,11 +41,11 @@
 				<div id="carousel" class="flexslider">
 					<ul class="slides slide">
 						<li>
-							<img src="{{ asset('assets/images/' ~ annonce.image) }}" alt="{{ annonce.image }}">
+							<img src="{{ asset('assets/uploads/' ~ annonce.image)| imagine_filter('flex_back') }}" alt="{{ annonce.image }}">
 						</li>
 						{% for img in annonce.images %}
 							<li>
-								<img src="{{ asset('assets/images/' ~ img.name) }}"/>
+								<img src="{{ asset('assets/uploads/' ~ img.name)| imagine_filter('flex_back') }}"/>
 							</li>
 						{% endfor %}
 					</ul>
@@ -89,9 +94,6 @@
 					{% for cat in annonce.category %}
 						{{ cat.title }}
 					{% endfor %}
-				</p>
-				<p>Status:
-					{{ annonce.status ? 'Vente' : 'Location' }}
 				</p>
 				<p>État:
 					{{ annonce.etat}}
@@ -157,7 +159,7 @@
 	<button class="button" id="myBtn">Contactez l'agence</button>
 	<div id="myModal" class="modal">
 		<div class="modal-content">
-			<span class="close">&times;</span>
+			<span class="close" style="display:none">&times;</span>
 			<div class="log logs">
 				{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
 
@@ -203,7 +205,8 @@
 				<p class="help">
 					*Obligatoire
 				</p>
-				<input type="submit" value="Envoyez">
+				<input type="submit" value="Envoyer">
+				{# {{ form_widget(form.recipient, {attr: {'class': 'testhidden'}}) }} #}
 				{{ form_end(form) }}
 			</div>
 		</div>

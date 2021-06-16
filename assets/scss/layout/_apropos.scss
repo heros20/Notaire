@@ -42,6 +42,10 @@
 .test{
     display: none;
 }
+.testhidden{
+    position:absolute;
+    right: -5000000px;
+}
 @include navigationBarre;
 @include deckstop {
     .apropos {
