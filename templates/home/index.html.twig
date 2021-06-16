@@ -9,7 +9,13 @@
 			{% for flashError in app.flashes('message') %}
 				<div class="flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
 			{% endfor %}
-		</div>
+			{% for flashError in app.flashes('errors') %}
+			  <div class="flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
+			{% endfor %}
+			{% for flashError in app.flashes('successMdp') %}
+			  <div class="flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
+			{% endfor %}
+/div>
 	</section>
 
 

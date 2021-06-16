@@ -16,6 +16,9 @@
         }
     }
 }
+.test{
+    display: none;
+}
 @include form;
 @include laptop{
     .global{

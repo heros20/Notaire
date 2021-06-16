@@ -37,6 +37,7 @@
 							<a class="action btn btn-info text-light" href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a>
 							<a class="action btn btn-success text-light" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Éditer</a>
 							<a class="action btn btn-warning text-light" href="{{ path('add_new_images', {'id': annonce.id}) }}">Upload images</a>
+							<div class="mt-5">{{ include('annonce/_delete_form.html.twig') }}</div>
 						</td>
 					</tr>
 				{% else %}

@@ -1,31 +1,33 @@
 {% extends "back.html.twig" %}
 {% block body %}
-<table class="table">
-    <thead>
-        <tr>
-            <th>De</th>
-            <th>Message</th>
-            <th>Reçu le</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                {% if contact.sender %}
-                    {{ contact.sender.email}}
-                {% else %}
-                    {{ contact.email}}
-                {% endif %}
-            </td>
-            <td>{{ contact.message}}</td>
-            <td>{{ contact.createdAt|date('d/m/Y à H:i') }}</td>
-            {% for message in app.user.received %}
-                <td><a class="btn btn-danger text-light" href="{{ path("notif_delete", {id: message.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">Supprimer</a></td>
-            {% endfor %}
-        </tr>
-    </tbody>
-</table>
+<div class="content m-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>De</th>
+                <th>Message</th>
+                <th>Reçu le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {% if contact.sender %}
+                        {{ contact.sender.email}}
+                    {% else %}
+                        {{ contact.email}}
+                    {% endif %}
+                </td>
+                <td>{{ contact.message}}</td>
+                <td>{{ contact.createdAt|date('d/m/Y à H:i') }}</td>
+                <td><a class="btn btn-danger text-light" href="{{ path("notif_delete", {id: contact.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">Supprimer</a></td>
+               
+
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 
 

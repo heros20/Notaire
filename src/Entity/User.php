@@ -11,10 +11,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=false)
+ * @UniqueEntity(fields="email", message="Cet email existe déja.")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
