@@ -4,20 +4,21 @@
 
 
 <div class="shadow-sm p-3 mb-5 bg-white rounded form">
-    <h1>page notification</h1>
-    <p>Reçus : {{ app.user.received|length }}</p>
-    <p>Envoyés : {{ app.user.sent|length }}</p>
-    <div>
-        <a class="btn btn-primary mb-2" href="{{ path('admin') }}">Retour</a>
-        <a class="btn btn-primary mb-2" href="{{ path("notif_new") }}">Nouveau message<a/>
+    <h1 class="mb-4">Vos message(s)</h1>
+    <div class="mb-4">
+        <a class="btn btn-primary" href="{{ path('admin') }}">Retour</a>
+        <a class="btn btn-primary " href="{{ path("notif_new") }}">Nouveau message<a/>
     </div>
-
+    <div class="font-weight-bold d-flex mt-4 mb-2">
+        <p class="mr-4">Reçus : {{ app.user.received|length }}</p>
+        <p>Envoyés : {{ app.user.sent|length }}</p>
+    </div>
     <div>
         <table class="table">
             <thead>
                 <tr>
                     <th>De</th>
-                    <th>Date</th>
+                    <th>Reçu le</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -30,12 +31,15 @@
                     <tr class="color"> 
                 {% endif %}
                     {% if message.sender %}
-                        <td><a class="text-primary" href="{{ path("notif_show", {id: message.id}) }}">{{ message.sender.email }}</a></td>
+                        <td>{{ message.sender.email }}</td>
                     {% else %}
-                        <td><a class="text-primary" href="{{ path("notif_show", {id: message.id}) }}">{{ message.email }}</a></td>
+                        <td>{{ message.email }}</td>
                     {% endif %}
-                        <td>{{ message.createdAt|date }}</td>
-                        <td><a class="btn btn-danger text-light" href="{{ path("notif_delete", {id: message.id}) }}">Supprimer</a></td>
+                        <td>{{ message.createdAt|date('d/m/Y à H:i') }}</td>
+                        <td>
+                            <a class="action btn btn-info text-light" href="{{ path("notif_show_admin", {id: message.id}) }}">Voir</a>
+                            <a class="btn btn-danger text-light" href="{{ path("notif_delete", {id: message.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">Supprimer</a>
+                        </td>
                     </tr>
                 {% else %}
                     <tr>

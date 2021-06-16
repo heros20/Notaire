@@ -39,7 +39,7 @@ class HomeController extends AbstractController
         $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy(
             [],
             ['createdAt' => 'DESC'],
-            $limit = 9
+            $limit = 1
         );
         return $this->render('home/index.html.twig', [
             'annonces' => $annonces

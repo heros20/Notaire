@@ -28,12 +28,12 @@
 	{# Vérifier si la route est "annonces_dit" : on affiche les images #}
 	{% if app.request.attributes.get('_route') == 'annonce_edit' %}
 		<p>Image(s) de l'annonce</p>
-		<div class="flex">
+		<div class="flex flex-wrap">
 			{% for image in annonce.images %}
 				{% if annonce.images != null %}
 					<div class="images mb-5">
 						<div class="img m-2"><img src="{{ asset('assets/uploads/'~ image.name) | imagine_filter('flex_back') }}" alt="{{annonce.title}}"></div>
-						<a class="ml-4 action" href="{{ path('annonce_delete_image', {'id': image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">supprimer</a>
+						<a class="ml-4 action btn btn-danger text-light" href="{{ path('annonce_delete_image', {'id': image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">supprimer</a>
 					</div>
 				{% endif %}
 			{% endfor %}

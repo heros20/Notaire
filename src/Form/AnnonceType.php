@@ -113,6 +113,7 @@ class AnnonceType extends AbstractType
             ->add('dpe', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
                 'choices'  => [
+                    'aucune' => '1',
                     'A' => 'A',
                     'B' => 'B',
                     'C' => 'C',
@@ -127,6 +128,7 @@ class AnnonceType extends AbstractType
             ->add('ges', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
                 'choices'  => [
+                    'aucune' => '1',
                     'A' => 'A',
                     'B' => 'B',
                     'C' => 'C',
