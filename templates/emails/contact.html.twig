@@ -8,9 +8,8 @@
             {% if is_granted('ROLE_USER') %}
                 {{ contact.sender.name }} {{ contact.sender.username }}
                 {% else %}
-                {{ contact.name }},<br> Votre message a bien été envoyés.</p>
-            {% endif %}                               
-            ,</p>
+                {{ contact.name }}
+            {% endif %},</p>
             <p>Votre message a bien été envoyés. Nous prendrons contact avec vous dans les plus brefs delais.</p>
             <p>Voici votre message:</p>
             <p>{{ contact.message|nl2br }}</p>

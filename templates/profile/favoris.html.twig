@@ -12,20 +12,20 @@
 				{% for user in users %}
 					{% for fav in user.favoris %}
 						<div class="annonce__card" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">
-							<a class="action" href="{{ path('frontAnnonce_show', {'slug': fav.slug}) }}">
-								<img src="{{ asset('assets/uploads/' ~ fav.image) }}" alt="{{ fav.image }}">
+							<a href="{{ path('frontAnnonce_show', {'slug': fav.slug}) }}">
+								<img src="{{ asset('assets/uploads/' ~ fav.image) | imagine_filter('card_front') }}" alt="{{ fav.title }}">
 								<h4>{{ fav.title }}</h4>
 								<p>{{ fav.description }}</p>
 								{% for f in fav.favoris %}
 									<p>
-										<a class="favoris" href="{{ path('remove_favoris', {id: fav.id}) }}">Retirer</a>
+										<a class="favoris danger" href="{{ path('remove_favoris', {id: fav.id}) }}">Retirer</a>
 									</p>
 								{% endfor %}
 							</a>
-							</div>
-						{% endfor %}
+						</div>
 					{% endfor %}
-				{% endif %}
-			</div>
-		</section>
-	{% endblock %}
+				{% endfor %}
+			{% endif %}
+		</div>
+	</section>
+{% endblock %}
