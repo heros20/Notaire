@@ -18,7 +18,7 @@
 								<p>{{ fav.description }}</p>
 								{% for f in fav.favoris %}
 									<p>
-										<a class="favoris" href="{{ path('remove_favoris', {id: fav.id}) }}">Retirer</a>
+										<a class="favoris danger" href="{{ path('remove_favoris', {id: fav.id}) }}">Retirer</a>
 									</p>
 								{% endfor %}
 							</a>
