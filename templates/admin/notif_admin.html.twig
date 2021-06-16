@@ -30,12 +30,12 @@
                     <tr class="color"> 
                 {% endif %}
                     {% if message.sender %}
-                        <td><a class="text-primary" href="{{ path("notif_show", {id: message.id}) }}">{{ message.sender.email }}</a></td>
+                        <td><a class="action" href="{{ path("notif_show_admin", {id: message.id}) }}">{{ message.sender.email }}</a></td>
                     {% else %}
-                        <td><a class="text-primary" href="{{ path("notif_show", {id: message.id}) }}">{{ message.email }}</a></td>
+                        <td><a class="action" href="{{ path("notif_show_admin", {id: message.id}) }}">{{ message.email }}</a></td>
                     {% endif %}
                         <td>{{ message.createdAt|date }}</td>
-                        <td><a class="btn btn-danger text-light" href="{{ path("notif_delete", {id: message.id}) }}">Supprimer</a></td>
+                        <td><a class="btn btn-danger text-light" href="{{ path("notif_delete", {id: message.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">Supprimer</a></td>
                     </tr>
                 {% else %}
                     <tr>

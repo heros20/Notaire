@@ -2,26 +2,22 @@
 
 
 {% block body %}
-<div class="log">
+<div class="shadow-sm p-3 mb-5 bg-white rounded form">
 	{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
 
-    <div class="input-cont">Nom : {{ user.name }}</div>
-    <div class="input-cont">Prénom : {{ user.username }}</div>
-    <div class="input-cont">Email : {{ user.email }}</div>
+    <div class="input-cont">Expediteur : <span>{{ user.email }}</span></div>
     {% if user.phone != NULL %}
-        <div class="input-cont">Téléphone : {{ user.phone }}</div>
+        <div class="input-cont">Téléphone : <span>{{ user.phone }}</span></div>
     {% endif %}
 	<div class="input-cont">
-		{{ form_widget(form.recipient) }}
 		{{ form_label(form.recipient) }}
+		{{ form_widget(form.recipient) }}
 		<div class="border2"></div>
 	</div>
-	<p class="help">
-		*Obligatoire
-	</p>
+	
 	<div class="input-cont">
-		{{ form_widget(form.message) }}
 		{{form_label(form.message)}}
+		{{ form_widget(form.message) }}
 		<div class="border2"></div>
 	</div>
 	<p class="help">
@@ -30,5 +26,4 @@
 	<input type="submit" value="Envoyer">
 	{{ form_end(form) }}
 </div>
-
 {% endblock %}
