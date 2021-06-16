@@ -58,17 +58,18 @@ class ContactController extends AbstractController
                     'message' => $contact->getMessage()
                 ]);
             }
-                $email->to(new Address('sebastienweb27@gmail.com'))
+           
+                $email->to('sebastienweb27@gmail.com')
                 ->subject('Contact')
                 ->htmlTemplate('emails/contact.html.twig');
-              
+                // dd($email);
             $mailer->send($email);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
-            //$this->addFlash('message', 'Votre email à bien été envoyé');
-           // return $this->redirectToRoute('home');
+            $this->addFlash('message', 'Votre email à bien été envoyé');
+           return $this->redirectToRoute('home');
         }
         $user = $this->getUser();
         return $this->render('contact/index.html.twig', [

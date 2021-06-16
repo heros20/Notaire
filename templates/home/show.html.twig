@@ -46,13 +46,17 @@
 					</ul>
 				</div>
 			</div>
-			{% if annonce.dpe && annonce.ges == 1 %}
-			{% else %}$
 			<div class="energetique">
-				<div id="dpe">{{ annonce.dpe }}</div>
-				<div id="ges">{{ annonce.ges }}</div>
+				{% if annonce.dpe == 1 %}
+				{% else %}$
+					<div id="dpe">{{ annonce.dpe }}</div>
+				{% endif %}
+				{% if annonce.ges == 1 %}
+				{% else %}
+					<div id="ges">{{ annonce.ges }}</div>
+				
+				{% endif %}
 			</div>
-			{% endif %}
 		</div>
 		{# <section class="detailsShow"> #}
 			<div class="details">
