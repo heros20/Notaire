@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-	<section class="flexFilter">
+	<section class="flexFilter annonce">
 		{% include "home/_filter.html.twig" with {form: form, min: min, max: max} only %}
 		<div class="annonce__blockCard" data-aos="zoom-in" data-aos-duration="400">
 			{% for annonce in searchAnnonce %}
@@ -18,7 +18,7 @@
 									<span>
 										<a href="{{ path('retrait_favoris', {id: annonce.id}) }}">
 											<i class="fas fa-heart fa-hearts fullHearth"></i>
-											<i class="fas fa-heart fa-hearts heart-color"></i>
+											<i class="fas fa-heart  fa-hearts heart-color"></i>
 										</a>
 									</span>
 
