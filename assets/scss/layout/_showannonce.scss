@@ -2,62 +2,63 @@
 @use "../utils/mixins" as *;
 .show {
     @include flexslider;
-   margin-top: 50px; 
+    margin-top: 50px; 
+    & .slider {
+        display: none;
+    }
 }
-.details{
+
+.details__Annonce{
     text-align: center;
     box-shadow: var(--box-shadow);
     margin: 30px;
     padding-bottom: 30px;
     @include details;
 }
-.details p{
-    padding: 10px;
-}
+
 @include deckstop{
     .show{
         width: 70%;
         margin: 50px auto;      
-        display: flex;
-        flex-direction: row;
         & h3{
             text-align: center;
             margin: 0 0 10px 0;
             padding: 0;
-            font-size: 1.8em;
+            font-size: 2em;
+            font-weight: bold;
         }
         & .prix{
             text-align: center;
             font-size: 1.5em;
+            color: #771310;
+            font-weight: bold;
         }
-		& .energetique{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
+        & .details__Annonce p{
+            padding: 10px;
         }
+        & .slider {
+            display: block;
+        }
+
            
     }
     .display{
         width: 100%;
-  
-        // justify-content: space-around;
-        // align-items: center;
-        // margin: 60px auto;
+        display: flex;
+        flex-direction: row;
         box-shadow: var(--box-shadow);
-    }
-    .details{
-        box-shadow: 0 0 0 0;
-        // display: flex;
-        // flex-wrap: wrap;
-        & h3{
-            text-align: center;
-            margin: 0 0 10px 0;
-            padding: 0;
+        & .energetique{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
         }
-        & p{
-            line-height: 2;
+        & .details{
+            box-shadow: none;
+             line-height: 2;
+             width: 25%;
         }
     }
+   
     .detailsShow{
         margin-left: 50px;
     }
