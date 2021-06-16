@@ -11,14 +11,12 @@ class CategoryFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $category1 = (new Category())
-            ->setTitle('Villa')
-            ->setDescription('Magnifique villa au bord de mer');
+            ->setTitle('Villa');
 
         $manager->persist($category1);
 
         $category2 = (new Category())
-            ->setTitle('Villa')
-            ->setDescription('Magnifique villa qui surplombe la dune du pilat');
+            ->setTitle('Maison');
 
         $manager->persist($category2);
 
@@ -29,17 +27,15 @@ class CategoryFixtures extends Fixture
         $manager->persist($category3);
 
         $category4 = (new Category())
-            ->setTitle('Résidence')
-            ->setDescription('Résidence situé en millieu rural'); 
+            ->setTitle('Terrain constructible');
 
         $manager->persist($category4);
 
         $category5 = (new Category())
-            ->setTitle('Maison')
-            ->setDescription('Maison situé au plein coeur du centre ville');
+            ->setTitle('Terrain non constructible');
 
         $manager->persist($category5);
-        
+     
         $manager->flush();
 
         
@@ -47,6 +43,6 @@ class CategoryFixtures extends Fixture
         $this->addReference('category2', $category2);
         $this->addReference('category3', $category3);
         $this->addReference('category4', $category4);     
-        $this->addReference('category5', $category5);     
+        $this->addReference('category5', $category5);         
     }
 }

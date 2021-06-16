@@ -25,7 +25,7 @@
 					<tr>
 						<td>{{ annonce.title }}</td>
 						<td>{{ annonce.description }}</td>
-						<td><img src="{{ asset('assets/uploads/'~ annonce.image) }}" alt="" width="150" height="150"></td>
+						<td><img src="{{ asset('assets/uploads/'~ annonce.image) | imagine_filter('pre_back') }}" alt="{{annonce.title}}"></td>
 						<td>{{ annonce.price }}</td>
 						<td>{{ annonce.status ? 'Vente' : 'Location' }}</td>
 						<td>{{ annonce.etat ? 'rien' ? 'Vendu' : 'Loué'}}</td>

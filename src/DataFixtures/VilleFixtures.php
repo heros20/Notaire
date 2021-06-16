@@ -12,13 +12,11 @@ class VilleFixtures extends Fixture
     {
         $ville1 = (new Ville())
             ->setTitle('Deauville')
-            ->setCodePostal('14800')
-            ->setDescription('Venez sentir l\'air marin');
+            ->setCodePostal('14800');
         
         $ville2 = (new Ville())
-            ->setTitle('Busan')
-            ->setCodePostal('753')
-            ->setDescription('jfsdegf dhoir ihsdofi shdgfh');
+            ->setTitle('Pont-Audemer')
+            ->setCodePostal('27260');
 
         $ville3 = (new Ville())
             ->setTitle('Paris')
@@ -27,19 +25,23 @@ class VilleFixtures extends Fixture
 
         $ville4 = (new Ville())
         ->setTitle('Honfleur')
-        ->setCodePostal('76')
-        ->setDescription('Vue magnifique sur le vieux port de Honfleur');
+        ->setCodePostal('76');
 
         $ville5 = (new Ville())
         ->setTitle('Caen')
         ->setCodePostal('14')
         ->setDescription('Facilitez de vie au coeur du centre ville');
 
+        $ville6 = (new Ville())
+        ->setTitle('Havre')
+        ->setCodePostal('76000');
+
         $manager->persist($ville1);
         $manager->persist($ville2);
         $manager->persist($ville3);
         $manager->persist($ville4);
         $manager->persist($ville5);
+        $manager->persist($ville6);
 
         $manager->flush();
 
@@ -48,5 +50,6 @@ class VilleFixtures extends Fixture
         $this->addReference('ville3', $ville3);
         $this->addReference('ville4', $ville4);
         $this->addReference('ville5', $ville5);
+        $this->addReference('ville6', $ville6);
     }
 }
