@@ -59,15 +59,26 @@ ul li.active a{
 ul li.active a span{
     color: #fff;
 }
-
 .action{
     text-decoration: none;
     color: #008BE0;
 }
 .action:hover{
-    color: #a8d7f5;
+    color: #7c8c95;
+}
+#info_roles{
+    height: 60px;
+}
+#contact_recipient{
+    height: 50px;
 }
 /* END BOOSTRAP */
 .test{
     display: none;
+}
+.input-cont{
+    margin-bottom: 15px;
+}
+.input-cont span{
+    color: #008BE0;
 }
