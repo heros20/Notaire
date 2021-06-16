@@ -4,18 +4,15 @@
 }
 .flexFilter{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 0 25px;
-}
-.filterSearch{
-    margin: 50px 10px;
-    position: relative;
 }
 .annonce__blockCard{
     margin-left: 150px;
 }
 .filter {
-    position: fixed;
+    margin-top: 70px;
+    margin-left: 50px;
     border-radius: 20px;
     background-color: #435f7a;
     padding: 30px;
