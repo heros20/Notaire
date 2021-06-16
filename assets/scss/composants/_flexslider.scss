@@ -3,11 +3,13 @@
         margin: 30px;
     }
     .flexslider .slides img{
+        width: 100%;
         height: 600px;
         object-fit: cover;
     }
     .flexslider .slide img{
         height: 150px;
+        width: 100%;
     }
 }
 @mixin details {

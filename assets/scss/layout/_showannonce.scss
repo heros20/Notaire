@@ -2,6 +2,7 @@
 @use "../utils/mixins" as *;
 .show {
     @include flexslider;
+   margin-top: 50px; 
 }
 .details{
     text-align: center;
@@ -10,23 +11,46 @@
     padding-bottom: 30px;
     @include details;
 }
+.details p{
+    padding: 10px;
+}
 @include deckstop{
     .show{
-        width: 50%;
-        margin: 0 auto;
+        width: 70%;
+        margin: 50px auto;      
+        display: flex;
+        flex-direction: row;
+        & h3{
+            text-align: center;
+            margin: 0 0 10px 0;
+            padding: 0;
+            font-size: 1.8em;
+        }
+        & .prix{
+            text-align: center;
+            font-size: 1.5em;
+        }
+		& .energetique{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+           
     }
     .display{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin: 60px auto;
+        width: 100%;
+  
+        // justify-content: space-around;
+        // align-items: center;
+        // margin: 60px auto;
         box-shadow: var(--box-shadow);
     }
     .details{
         box-shadow: 0 0 0 0;
-        display: flex;
-        flex-wrap: wrap;
+        // display: flex;
+        // flex-wrap: wrap;
         & h3{
+            text-align: center;
             margin: 0 0 10px 0;
             padding: 0;
         }
