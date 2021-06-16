@@ -45,7 +45,7 @@
 									</td>
 								{% endif %}
 
-								<td>{{ message.createdAt|date }}</td>
+								<td>{{ message.createdAt|dateTime('now') }}</td>
 								<td>
 									<a href="{{ path("notification_delete", {id: message.id}) }}">Supprimer</a>
 								</td>

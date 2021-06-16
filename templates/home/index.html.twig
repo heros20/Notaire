@@ -52,14 +52,14 @@
 									{% if favoris.id == app.user.id %}
 										<span>
 											<a href="{{ path('retrait_favoris', {id: annonce.id}) }}">
-												<i class="fas fa-heart fa-hearts fullHearth"></i>
+												<i class="fas fa-heart fa-hearts fa fullHearth"></i>
 												<i class="fas fa-heart fa-hearts heart-color"></i>
 											</a>
 										</span>
 									{% else %}
 										<span>
 											<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
-												<i class="far fa-heart fa-hearts heart"></i>
+												<i class="far fa-heart fa fa-hearts heart"></i>
 												<i class="far fa-heart fa-hearts heart-color"></i>
 											</a>
 										</span>
@@ -67,7 +67,7 @@
 								{% else %}
 								<span>
 									<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
-										<i class="fas fa-heart fa-hearts heart"></i>
+										<i class="fas fa-heart fa fa-hearts heart"></i>
 										<i class="fas fa-heart fa-hearts heart-color"></i>
 									</a>
 								</span>
