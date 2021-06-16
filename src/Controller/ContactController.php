@@ -59,7 +59,7 @@ class ContactController extends AbstractController
                 ]);
             }
            
-                $email->to('sebastienweb27@gmail.com')
+                $email->to(new Address('sebastienweb27@gmail.com'))
                 ->subject('Contact')
                 ->htmlTemplate('emails/contact.html.twig');
                 // dd($email);
