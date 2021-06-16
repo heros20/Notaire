@@ -40,11 +40,12 @@ class AnnonceType extends AbstractType
             ])
             ->add('fileimage', FileType::class, [
                 'label' => 'image à la une',
+                'attr' => ['id' =>'customFileInput'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '4000k',
                         'mimeTypes' => [
                             'image/jpg',
                             'image/jpeg',

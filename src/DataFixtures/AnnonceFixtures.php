@@ -53,7 +53,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         $annonce2->setStatus(true);
         $annonce2->setVille($this->getReference('ville2'));
         $annonce2->setDepartement($this->getReference('departement2'));
-        $annonce2->addCategory($this->getReference('category2'));
+        $annonce2->addCategory($this->getReference('category1'));
         $manager->persist($annonce2);
  
         $annonce3 = new Annonce();
@@ -79,7 +79,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         $annonce4 = new Annonce();
         $annonce4->setTitle('Résidence');
         $annonce4->setDescription('Résidence');
-        $annonce4->setImage('appartement.jpg');
+        $annonce4->setImage('appartement2.jpg');
         $annonce4->setPrice(100000);
         $annonce4->setSuperficie(800);
         $annonce4->setDpe('b');
@@ -93,7 +93,7 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         $annonce4->setStatus(true);
         $annonce4->setVille($this->getReference('ville4'));
         $annonce4->setDepartement($this->getReference('departement4'));
-        $annonce4->addCategory($this->getReference('category4'));
+        $annonce4->addCategory($this->getReference('category2'));
         $manager->persist($annonce4);
         $manager->flush();
 
@@ -115,33 +115,102 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         $annonce5->setStatus(true);
         $annonce5->setVille($this->getReference('ville5'));
         $annonce5->setDepartement($this->getReference('departement5'));
-        $annonce5->addCategory($this->getReference('category5'));
+        $annonce5->addCategory($this->getReference('category2'));
         $manager->persist($annonce5);
-        $manager->flush();
 
-        for ($i=0; $i < 15; $i++) { 
+
         $annonce6 = new Annonce();
         $annonce6->setTitle('Maison');
-        $annonce6->setDescription('Maison avec vue sur le musée');
-        $annonce6->setImage('maison.jpg');
+        $annonce6->setDescription('Découvrez cette magnifique maison Normande');
+        $annonce6->setImage('maison2.jpg');
         $annonce6->setPrice(10000);
-        $annonce6->setSuperficie(180);
-        $annonce6->setSuperficieTerrain('600');
-        $annonce6->setDpe('c');
-        $annonce6->setGes('a');
+        $annonce6->setSuperficie(10000);
+        $annonce6->setSuperficieTerrain(1500);
+        $annonce6->setDpe('d');
+        $annonce6->setGes('d');
         $annonce6->setNbrePieces(4);
-        $annonce6->setNbreChambre(4);
+        $annonce6->setNbreChambre(3);
         $annonce6->setSalleBain(2);
-        $annonce6->setWc(1);
+        $annonce6->setWc(2);
         $annonce6->setGarage('oui');
-        $annonce6->setPiscine('non');
-        $annonce6->setStatus(false);
-        $annonce6->setVille($this->getReference('ville5'));
-        $annonce6->setDepartement($this->getReference('departement5'));
-        $annonce6->addCategory($this->getReference('category5'));
+        $annonce6->setPiscine('oui');
+        $annonce6->setStatus(true);
+        $annonce6->setVille($this->getReference('ville6'));
+        $annonce6->setDepartement($this->getReference('departement6'));
+        $annonce6->addCategory($this->getReference('category2'));
         $manager->persist($annonce6);
+
+        $annonce7 = new Annonce();
+        $annonce7->setTitle('terrain constructible');
+        $annonce7->setDescription('Terrain pour lot de maison');
+        $annonce7->setImage('terrain.jpg');
+        $annonce7->setPrice(1000000);
+        $annonce7->setSuperficie(10000);
+        $annonce7->setSuperficieTerrain(1500);
+        $annonce7->setDpe('a');
+        $annonce7->setGes('d');
+        $annonce7->setStatus(true);
+        $annonce7->setVille($this->getReference('ville5'));
+        $annonce7->setDepartement($this->getReference('departement7'));
+        $annonce7->addCategory($this->getReference('category4'));
+        $manager->persist($annonce7);
+
+        $annonce8 = new Annonce();
+        $annonce8->setTitle('Terrain non constructible');
+        $annonce8->setDescription('Terrain non constructible');
+        $annonce8->setImage('terrain2.jpg');
+        $annonce8->setPrice(100000);
+        $annonce8->setSuperficie(900);
+        $annonce8->setDpe('a');
+        $annonce8->setGes('a');
+        $annonce8->setStatus(true);
+        $annonce8->setVille($this->getReference('ville5'));
+        $annonce8->setDepartement($this->getReference('departement3'));
+        $annonce8->addCategory($this->getReference('category5'));
+        $manager->persist($annonce8);
+
+        $annonce9 = new Annonce();
+        $annonce9->setTitle('Résidence');
+        $annonce9->setDescription('Résidence');
+        $annonce9->setImage('appartement.jpg');
+        $annonce9->setPrice(10000);
+        $annonce9->setSuperficie(150);
+        $annonce9->setDpe('d');
+        $annonce9->setGes('a');
+        $annonce9->setNbrePieces(8);
+        $annonce9->setNbreChambre(9);
+        $annonce9->setSalleBain(6);
+        $annonce9->setWc(8);
+        $annonce9->setGarage('non');
+        $annonce9->setPiscine('oui');
+        $annonce9->setStatus(true);
+        $annonce9->setVille($this->getReference('ville6'));
+        $annonce9->setDepartement($this->getReference('departement4'));
+        $annonce9->addCategory($this->getReference('category3'));
+        $manager->persist($annonce9);
         $manager->flush();
-        }
+
+        $annonce10 = new Annonce();
+        $annonce10->setTitle('Maison');
+        $annonce10->setDescription('Maison avec vue sur le musée');
+        $annonce10->setImage('maison.jpg');
+        $annonce10->setPrice(10000);
+        $annonce10->setSuperficie(180);
+        $annonce10->setSuperficieTerrain('50');
+        $annonce10->setDpe('a');
+        $annonce10->setGes('d');
+        $annonce10->setNbrePieces(4);
+        $annonce10->setNbreChambre(4);
+        $annonce10->setSalleBain(2);
+        $annonce10->setWc(1);
+        $annonce10->setGarage('oui');
+        $annonce10->setPiscine('oui');
+        $annonce10->setStatus(true);
+        $annonce10->setVille($this->getReference('ville4'));
+        $annonce10->setDepartement($this->getReference('departement5'));
+        $annonce10->addCategory($this->getReference('category2'));
+        $manager->persist($annonce10);
+
         $manager->flush();
 
     }

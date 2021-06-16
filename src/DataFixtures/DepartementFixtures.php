@@ -35,11 +35,26 @@ class DepartementFixtures extends Fixture
         ->setCodePostal('14')
         ->setDescription('Situé en plein centre ville');
 
+        $departement6 = (new Departement())
+        ->setTitle('Havre')
+        ->setCodePostal('76000');
+
+        $departement7 = (new Departement())
+        ->setTitle('Epaignes')
+        ->setCodePostal('27260');
+
+        $departement8 = (new Departement())
+        ->setTitle('Cormeilles')
+        ->setCodePostal('27260');
+
         $manager->persist($departement1);
         $manager->persist($departement2);
         $manager->persist($departement3);
         $manager->persist($departement4);
         $manager->persist($departement5);
+        $manager->persist($departement6);
+        $manager->persist($departement7);
+        $manager->persist($departement8);
         
 
         $manager->flush();
@@ -49,5 +64,8 @@ class DepartementFixtures extends Fixture
         $this->addReference('departement3', $departement3);
         $this->addReference('departement4', $departement4);
         $this->addReference('departement5', $departement5);
+        $this->addReference('departement6', $departement6);
+        $this->addReference('departement7', $departement7);
+        $this->addReference('departement8', $departement8);
     }
 }
