@@ -124,7 +124,7 @@ class HomeController extends AbstractController
             }
                 $email->to(new Address('sebastienweb27@gmail.com'))
                 ->subject('Contact')
-                ->htmlTemplate('emails/contact.html.twig');
+                ->htmlTemplate('emails/annonce_contact.html.twig');
               
             $mailer->send($email);
 
@@ -135,19 +135,24 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('home');
         }
         $user = $this->getUser();
+        $dpe = $annonce->getDpe();
+        $ges = $annonce->getGes();
         return $this->render('home/show.html.twig', [
             'annonce' => $annonce,
             'contact' => $contact,
             'form' => $form->createView(),
-            'user' => $user
+            'user' => $user,
+            'dpe' => $dpe,
+            'ges' => $ges
         ]);
     }
     #[Route('/annonces/favoris/ajout/{id}', name: 'ajout_favoris')]
     public function ajoutFavoris(Annonce $annonce): Response
     {
         if (!$annonce) {
-            throw new NotFoundHttpException('Pas d\'annonce trouvée');
+            return $this->redirectToRoute('404');
         }
+        
         $annonce->addFavori($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
@@ -158,7 +163,7 @@ class HomeController extends AbstractController
     public function retraitFavoris(Annonce $annonce): Response
     {
         if (!$annonce) {
-            throw new NotFoundHttpException('Pas d\'annonce trouvée');
+            return $this->redirectToRoute('404');
         }
         $annonce->removeFavori($this->getUser());
         $em = $this->getDoctrine()->getManager();
@@ -181,5 +186,10 @@ class HomeController extends AbstractController
         return $this->render('home/mentions_legales.html.twig', [
             'controller_name' => 'HomeController',
         ]);
+    }
+    #[Route('/404', name: '404')]
+    public function FunctionName(): Response
+    {
+        return $this->render('home/404.html.twig', []);
     }
 }

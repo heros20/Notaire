@@ -4,14 +4,18 @@ import noUiSlider from "nouislider";
 import 'nouislider/dist/nouislider.css';
 import './FlexSlider/flexslider.css';
 import './FlexSlider/jquery.flexslider-min.js';
+
 AOS.init();
 
+
+
 $(document).ready(() => {
+    
     $('.deroulant').on('mouseenter',function(){
-        $(".sous").fadeIn(350);
+        $(".sous").css('display','block');
     });
     $('.sous').on('mouseleave',function(){
-        $(".sous").fadeOut("slow");
+        $(".sous").css('display','none');
     });
 
      $('#carousel').flexslider({
@@ -30,18 +34,11 @@ $(document).ready(() => {
         animation: "slide",
         controlNav: false,
         directionNav: false,
-        animationLoop: true,
-        slideshow: true,
+        animationLoop: false,
+        slideshow: false,
         sync: "#carousel"
     });
-
-    // const link = document.getElementById("action");
-    //     $(link).click(function( e ) {
-    //         e.preventDefault();
-    //         console.log('click');
-    // });
 })
-
 $(function() {
       // je stock la recherche d'une url
       var url = window.location.href;
@@ -79,15 +76,8 @@ if (slider) {
   });
 }
 
-var dpe = new DpeGes();
-dpe.dpe({
-    domId: 'dpe',
-    value: 'B',
-});
-var ges = new DpeGes();
-ges.ges({
-    domId: 'ges',
-    value: 'A'
-});
+
+
+
 
 

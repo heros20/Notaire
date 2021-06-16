@@ -20,6 +20,9 @@
     }
   }
 }
+.containerHeader .navigation__checkbox:checked ~ .navigation__button .navigation__icon{
+  position: fixed;
+}
 .containerHeader {
   @include navigation;
 }

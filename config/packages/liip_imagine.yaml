@@ -1,4 +1,5 @@
 liip_imagine:
+<<<<<<< HEAD
 
     # configure resolvers
     resolvers:
@@ -48,3 +49,16 @@ liip_imagine:
                 # create a thumbnail: set size to 120x90 and use the "outbound" mode
                 # to crop the image when the size ratio of the input differs
                 thumbnail: { size: [300, 200]}
+=======
+    resolvers:
+        default:
+            web_path : ~
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "gd"
+    filter_sets: # Contient la liste des filtres
+        cache : ~
+        carre: # Nom du filtre
+            quality: 75 # Qualité de l'image
+            filters: # Liste des filtres à appliquer
+                carre  : { size : [120, 90], mode : outbound }
+>>>>>>> f6c2143254d28f48c45a7e6ed1391573f5949093

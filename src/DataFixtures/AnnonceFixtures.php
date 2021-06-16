@@ -119,8 +119,35 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         // $manager->persist($annonce5);
         // $manager->flush();
 
+<<<<<<< HEAD
 
         // $manager->flush();
+=======
+        for ($i=0; $i < 15; $i++) { 
+        $annonce6 = new Annonce();
+        $annonce6->setTitle('Maison');
+        $annonce6->setDescription('Maison avec vue sur le musée');
+        $annonce6->setImage('maison.jpg');
+        $annonce6->setPrice(10000);
+        $annonce6->setSuperficie(180);
+        $annonce6->setSuperficieTerrain('600');
+        $annonce6->setDpe('c');
+        $annonce6->setGes('a');
+        $annonce6->setNbrePieces(4);
+        $annonce6->setNbreChambre(4);
+        $annonce6->setSalleBain(2);
+        $annonce6->setWc(1);
+        $annonce6->setGarage('oui');
+        $annonce6->setPiscine('non');
+        $annonce6->setStatus(false);
+        $annonce6->setVille($this->getReference('ville5'));
+        $annonce6->setDepartement($this->getReference('departement5'));
+        $annonce6->addCategory($this->getReference('category5'));
+        $manager->persist($annonce6);
+        $manager->flush();
+        }
+        $manager->flush();
+>>>>>>> f6c2143254d28f48c45a7e6ed1391573f5949093
 
     }
     public function getDependencies()
