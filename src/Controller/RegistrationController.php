@@ -55,7 +55,7 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('notarial@gmail.com', 'agence notarial'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Confirmation de votre compte')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             return $this->redirectToRoute('attente');

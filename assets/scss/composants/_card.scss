@@ -35,7 +35,7 @@
         color: #a8d7f5;
     }
     .fa-hearts{
-        bottom: 90px;
+        bottom: 200px;
     }
     .fullHearth{
         color: #6e0603;
@@ -61,6 +61,31 @@
     }
     .danger:hover{
         color: red;
+    }
+    .cursor{
+        cursor: default;
+    }
+    .cardTable{
+        margin: 50px auto;
+    }
+    .no_color{
+        color: var(--color-primary);
+    }
+    .color{
+       background-color: #a8d7f5;
+    }
+    .danger{
+        transition: all .2s ease-in-out;
+        cursor: pointer;
+    }
+    .danger:hover{
+        color: red;
+    }
+    .cardTable th{
+        padding: 20px 0;
+    }
+    .cardTable td{
+        padding: 20px;
     }
     @include laptop{
         &__blockCard {

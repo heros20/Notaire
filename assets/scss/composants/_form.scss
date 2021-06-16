@@ -145,6 +145,8 @@
     width: 100%;
     border: none;
     outline: none;
+    font-size: 25px;
+    height: 100px;
   }
   @include tablette {
     .log {
