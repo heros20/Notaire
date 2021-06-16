@@ -27,7 +27,11 @@
 						<td>{{ annonce.description }}</td>
 						<td><img src="{{ asset('assets/uploads/'~ annonce.image) | imagine_filter('pre_back') }}" alt="{{annonce.title}}"></td>
 						<td>{{ annonce.price }}</td>
-						<td>{{ annonce.status ? 'Vente' : 'Location' }}</td>
+						{% if annonce.status == 1 %} 
+							<td>Vente</td>
+						{% else %}
+							<td>Location</td>
+						{% endif %}
 						<td>{{ annonce.etat ? 'rien' ? 'Vendu' : 'Loué'}}</td>
 						<td>
 							<a class="action btn btn-info text-light" href="{{ path('annonce_show', {'id': annonce.id}) }}">Voir</a>

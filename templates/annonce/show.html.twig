@@ -39,7 +39,11 @@
 				</tr>
 				<tr>
 					<th>Status</th>
-					<td>{{ annonce.status ? 'Vente' : 'Location' }}</td>
+					{% if annonce.status == 1 %} 
+						<td>Vente</td>
+					{% else %}
+						<td>Location</td>
+					{% endif %}
 				</tr>
 				<tr>
 					<th>Diagnostic de perfomance énergétique</th>

@@ -65,10 +65,6 @@ class HomeController extends AbstractController
     #[Route('/annonces', name: 'annonces')]
     public function annonces(AnnonceRepository $repository,Request $request): Response
     {
-        // $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy(
-        //     [], 
-        //     ['createdAt' => 'DESC']
-        // );
         $data = new SearchData();
         $form = $this->createForm(SearchForm::class, $data, [
             'method' => 'GET',

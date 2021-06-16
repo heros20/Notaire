@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210616165523 extends AbstractMigration
+final class Version20210616173205 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,7 +20,7 @@ final class Version20210616165523 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE annonce (id INT AUTO_INCREMENT NOT NULL, ville_id INT DEFAULT NULL, departement_id INT NOT NULL, title VARCHAR(255) NOT NULL, slug VARCHAR(128) NOT NULL, description LONGTEXT NOT NULL, image VARCHAR(255) NOT NULL, superficie INT DEFAULT NULL, superficie_terrain INT DEFAULT NULL, price INT NOT NULL, status TINYINT(1) NOT NULL, etat VARCHAR(20) DEFAULT NULL, dpe VARCHAR(1) DEFAULT NULL, ges VARCHAR(1) DEFAULT NULL, nbre_pieces INT DEFAULT NULL, nbre_chambre INT DEFAULT NULL, salle_bain INT DEFAULT NULL, wc INT DEFAULT NULL, garage VARCHAR(3) DEFAULT NULL, piscine VARCHAR(3) DEFAULT NULL, created_at DATETIME NOT NULL, modified_at DATETIME DEFAULT NULL, deleted_at DATETIME DEFAULT NULL, UNIQUE INDEX UNIQ_F65593E5989D9B62 (slug), INDEX IDX_F65593E5A73F0036 (ville_id), INDEX IDX_F65593E5CCF9E01E (departement_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE annonce (id INT AUTO_INCREMENT NOT NULL, ville_id INT DEFAULT NULL, departement_id INT NOT NULL, title VARCHAR(255) NOT NULL, slug VARCHAR(128) NOT NULL, description LONGTEXT NOT NULL, image VARCHAR(255) NOT NULL, superficie INT DEFAULT NULL, superficie_terrain INT DEFAULT NULL, price INT NOT NULL, status INT DEFAULT NULL, etat VARCHAR(20) DEFAULT NULL, dpe VARCHAR(1) DEFAULT NULL, ges VARCHAR(1) DEFAULT NULL, nbre_pieces INT DEFAULT NULL, nbre_chambre INT DEFAULT NULL, salle_bain INT DEFAULT NULL, wc INT DEFAULT NULL, garage VARCHAR(3) DEFAULT NULL, piscine VARCHAR(3) DEFAULT NULL, created_at DATETIME NOT NULL, modified_at DATETIME DEFAULT NULL, deleted_at DATETIME DEFAULT NULL, UNIQUE INDEX UNIQ_F65593E5989D9B62 (slug), INDEX IDX_F65593E5A73F0036 (ville_id), INDEX IDX_F65593E5CCF9E01E (departement_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE annonce_category (annonce_id INT NOT NULL, category_id INT NOT NULL, INDEX IDX_4B0417038805AB2F (annonce_id), INDEX IDX_4B04170312469DE2 (category_id), PRIMARY KEY(annonce_id, category_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE annonce_user (annonce_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_B7E60AD78805AB2F (annonce_id), INDEX IDX_B7E60AD7A76ED395 (user_id), PRIMARY KEY(annonce_id, user_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, created_at DATETIME NOT NULL, modified_at DATETIME DEFAULT NULL, deleted_at DATETIME DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

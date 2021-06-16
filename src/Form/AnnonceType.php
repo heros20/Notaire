@@ -70,8 +70,8 @@ class AnnonceType extends AbstractType
             ->add('status', ChoiceType::class, [
                 'attr' => ['class' => 'p-2'],
                 'choices'  => [
-                    'Vente' => true,
-                    'Location' => false,
+                    'Vente' => 1,
+                    'Location' => 2,
                 ],
                 // 'multiple' => true,
                 // 'expanded' => true,

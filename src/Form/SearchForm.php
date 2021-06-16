@@ -48,9 +48,9 @@ class SearchForm extends AbstractType
             ])
             ->add('status', ChoiceType::class, [
                 'choices'  => [
-                    '-----' => NULL,
-                    'Vente' => true,
-                    'Location' => false,
+                    'Vente et location' => NULL,
+                    'Vente' => 1,
+                    'Location' => 2,
                 ],
                 'attr' => ['class' => 'filter_selecte'],
                 // 'multiple' => true,
