@@ -8,11 +8,7 @@
 			{{ form_widget(form.recipient, { 'attr': {'class': 'none'} }) }}
 		</div>
 		
-		<div class="p-2">Nom :
-			{{ user.name }}</div>
-		<div class="p-2">Prénom :
-			{{ user.username }}</div>
-		<div class="p-2">Email :
+		<div class="p-2">Expediteur :
 			{{ user.email }}</div>
 		{% if user.phone != NULL %}
 			<div class="p-2">Téléphone :

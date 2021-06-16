@@ -1,6 +1,17 @@
 {% extends "base.html.twig" %}
 {% block body %}
-{{form_start(form)}}
-{{form_end(form)}}
+<div class="log">
+    {{form_start(form, { 'attr': {'novalidate':'novalidate','class': 'formMdp'} }) }}
+    <div class="input-cont">
+        {% for flashError in app.flashes('errors') %}
+          <div class="errors" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
+        {% endfor %}
+        {{form_widget(form.email)}}
+        {{form_label(form.email)}}
+        <div class="border1"></div>
+    </div>
+    {{form_widget(form.submit, { 'attr': {'class': 'myButton'} }) }}
+   {{form_end(form)}}
+</div>
 {% endblock %}
 

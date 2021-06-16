@@ -1,0 +1,30 @@
+.attente{
+    text-align: center;
+    margin-bottom: 60px;
+    h1{
+        font-family: var(--title);
+        margin: 50px 0;
+        font-size: 32px;
+    }
+    &_error{
+        margin-top: 20px;
+        color: red;
+        font-weight: bold;
+    }
+}
+.formMdp{
+    text-align: center;
+}
+.formMdp input{
+    margin: 10px;
+}
+.errors{
+    font-size: 1.2em;
+    color: red;
+}
+.flashMdp{
+    margin-top: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}

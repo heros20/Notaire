@@ -80,15 +80,14 @@
         transition: all 0.3s ease 0.2s;
     }
     .sous {
-        right: 100px;
-        left: 334px;
+        right: 99px;
+        left: 482px;
         background: var(--color-primary);
         border: 1px solid #fff;
         margin: 30px 0;
         border-radius: 5px;
     }
     .sous li {
-        text-align: center;
         margin-bottom: 15px;
     }
     .sous li a {
@@ -101,11 +100,6 @@
         z-index: 100;
         padding: 20px;
         position: absolute;
-    }
-    .sous li {
-        float: none;
-        width: 100%;
-        text-align: center;
     }
     .sous a {
         border-bottom: none;

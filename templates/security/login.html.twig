@@ -5,44 +5,46 @@
 {% endblock %}
 
 {% block body %}
-	<section>
-		<div class="boite">
-			<h1 class="boite__title">Se connecter</h1>
-			<p class="boite__para">
-				<a href="{{path('home')}}">Accueil</a>
-				- Se connecter
-			</p>
+		</section>
+			<div class="boite">
+				<h1 class="boite__title">Se connecter</h1>
+				<p class="boite__para">
+					<a href="{{path('home')}}">Accueil</a>
+					- Se connecter
+				</p>
+			</div>
+		</section>
+			{% for flashError in app.flashes('successMdp') %}
+				<div class="flashMdp" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
+			{% endfor %}
+		<div class="log">
+	<form method="post" novalidate>
+				{% if error %}
+					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+				<div class="input-cont">
+					<label for="inputEmail">Email</label>
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+					<div class="border1"></div>
+				</div>
+
+
+				<div class="input-cont">
+					<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+					<label for="inputPassword">Mot de passe</label>
+					<div class="border2"></div>
+				</div>
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<div class="help">
+					<label>
+						<input type="checkbox" name="_remember_me">
+						Souvenir de moi
+					</label>
+				</div>
+				<div class="help helps">
+					<a href="{{path('forget')}}">Mot de passe oublié?</a>
+				</div>
+				<input type="submit" value="Connexion">
+			</form>
 		</div>
-	</section>
-
-	<div class="log">
-		<form method="post" novalidate>
-			{% if error %}
-				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-			{% endif %}
-			<div class="input-cont">
-				<label for="inputEmail">Email</label>
-				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-				<div class="border1"></div>
-			</div>
-
-
-			<div class="input-cont">
-				<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-				<label for="inputPassword">Mot de passe</label>
-				<div class="border2"></div>
-			</div>
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-			<div class="help">
-				<label>
-					<input type="checkbox" name="_remember_me">
-					Souvenir de moi
-				</label>
-			</div>
-			<div class="help helps">
-				<a href="{{path('forget')}}">Mot de passe oublié?</a>
-			</div>
-			<input type="submit" value="Connexion">
-		</form>
-	</div>
 {% endblock %}

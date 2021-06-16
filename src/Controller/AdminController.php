@@ -165,11 +165,10 @@ class AdminController extends AbstractController
                 ->setRecipient($this->getDoctrine()
                 ->getRepository(User::class)
                 ->find($id));
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
-            $this->addFlash('message', 'Votre message à bien était envoyez');
+            $this->addFlash('message', 'Votre message à bien était envoyer');
             return $this->redirectToRoute('notif_admin');
         }
         return $this->render('admin/form_notif_user.html.twig', [

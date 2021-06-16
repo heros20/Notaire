@@ -95,7 +95,11 @@ class Annonce
     private $price;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Length(
+     *      min = 1,
+     *      minMessage = "Vous devez respecter {{ min }} caractères minimums"
+     * )
      */
     private $status;
 
@@ -301,12 +305,12 @@ class Annonce
         return $this;
     }
 
-    public function getStatus(): ?bool
+    public function getStatus(): ?int
     {
         return $this->status;
     }
 
-    public function setStatus(bool $status): self
+    public function setStatus(int $status): self
     {
         $this->status = $status;
 

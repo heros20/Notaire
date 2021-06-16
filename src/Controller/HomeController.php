@@ -39,7 +39,7 @@ class HomeController extends AbstractController
         $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy(
             [],
             ['createdAt' => 'DESC'],
-            $limit = 1
+            $limit = 9
         );
         return $this->render('home/index.html.twig', [
             'annonces' => $annonces
@@ -65,10 +65,6 @@ class HomeController extends AbstractController
     #[Route('/annonces', name: 'annonces')]
     public function annonces(AnnonceRepository $repository,Request $request): Response
     {
-        // $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy(
-        //     [], 
-        //     ['createdAt' => 'DESC']
-        // );
         $data = new SearchData();
         $form = $this->createForm(SearchForm::class, $data, [
             'method' => 'GET',

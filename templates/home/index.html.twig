@@ -9,7 +9,13 @@
 			{% for flashError in app.flashes('message') %}
 				<div class="flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
 			{% endfor %}
-		</div>
+			{% for flashError in app.flashes('errors') %}
+			  <div class="flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
+			{% endfor %}
+			{% for flashError in app.flashes('successMdp') %}
+			  <div class="flash" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="500">{{ flashError }}</div>
+			{% endfor %}
+/div>
 	</section>
 
 
@@ -26,7 +32,7 @@
 				<p>
 					Demeures Normande, Maisons contemporaines, appartements ou produits d’investissement, les biens que nous vous présentons répondent aux mêmes critères de qualité.</p>
 				<p>Notre portefeuille immobilier vous permet de consulter des annonces immobilières à Honfleur, Saint-Georges-du-Vièvre, Épaignes, Pont-l'Évêque, Bourneville, Saint-Eustache-la-Forêt, Lieurey, Bourg-Achard, Pont-Audemer, Bernay, Toutainville, Cormeilles, Beuzeville, Montfort-sur-Risle, Brionne, ...
-																				A bientôt</p>
+																																			A bientôt</p>
 			</div>
 			<div>
 				<img class="apropos__imgs" src="{{asset('assets/images/devanture.jpg')}}" alt="">
@@ -65,18 +71,21 @@
 										</span>
 									{% endif %}
 								{% else %}
-								<span>
-									<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
-										<i class="fas fa-heart fa fa-hearts heart"></i>
-										<i class="fas fa-heart fa-hearts heart-color"></i>
-									</a>
-								</span>
-							{% endfor %}
-						{% endif %}
+									<span>
+										<a href="{{ path('ajout_favoris', {id: annonce.id}) }}">
+											<i class="fas fa-heart fa fa-hearts heart"></i>
+											<i class="fas fa-heart fa-hearts heart-color"></i>
+										</a>
+									</span>
+								{% endfor %}
+							{% endif %}
 						</div>
 					</a>
 				</div>
 			{% endfor %}
 		</div>
+		<p>
+			<a class="annonce__voirplus" href="{{path('annonces')}}">Voir plus</a>
+		</p>
 	</section>
 {% endblock %}

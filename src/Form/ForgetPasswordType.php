@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ForgetPasswordType extends AbstractType
 {
@@ -14,10 +15,17 @@ class ForgetPasswordType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class,[
-                'attr'=>['placeholder' => 'Email']
+                'attr'=>['placeholder' => 'Renseigner ici...'],
+                'label_attr' => ['class' => 'formConnex_label2'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner votre Email',
+                    ])
+                ]
+
             ])
             ->add('submit',SubmitType::class,[
-                'label' => 'Envoyez'
+                'label' => 'Envoyer'
             ])
         ;
     }

@@ -55,7 +55,7 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('notarial@gmail.com', 'agence notarial'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Confirmation de votre compte')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             return $this->redirectToRoute('attente');
@@ -103,7 +103,7 @@ class RegistrationController extends AbstractController
             $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(["email"=>$email["email"]]);
 
             if(!$user){
-                $form->addError(new FormError("email inconnu"));
+                $this->addFlash("errors","cet email n'existe pas");
             }else{
                 $token = $tokenInterface->generateToken();
                 $user->setResetToken($token)
@@ -121,7 +121,11 @@ class RegistrationController extends AbstractController
                     "url" => $url
                 ]);
             $mailer->send($mail);
+            $this->addFlash('successMdp','Un email de reinitialisation de mot de passe vous a été envoyé');
+            return $this->redirectToRoute('app_login');
+            
             }
+            
         }
         return $this->render('emails/mdp.html.twig',[
             'form' => $form->createView()
