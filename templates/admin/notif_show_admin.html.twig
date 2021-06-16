@@ -2,11 +2,13 @@
 {% block body %}
 <section class="container">
 
-    <p>De {{ contact.sender.email}}</p>
-    <p>Le {{ contact.createdAt|date }}</p>
-
-    <div>{{ contact.message}}</div>
-
+    {% if contact.sender %}
+        <p>De {{ contact.sender.email}}</p>
+    {% else %}
+        <p>De {{ contact.email}}</p>
+    {% endif %}
+        <p>Le {{ contact.createdAt|date }}</p>
+        <div>{{ contact.message}}</div>
 </section>
 
 
