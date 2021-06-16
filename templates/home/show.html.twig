@@ -55,13 +55,13 @@
 	<section class="detailsShow">
 		<div class="details">
 			<div class="details__Annonce">
-				<p>Ville :
+				<p><i class="fas fa-city"></i>
 					{{ annonce.ville.title }}
 				</p>
-				<p>Code postal :
+				<p><i class="fas fa-map-marker-alt"></i>
 					{{ annonce.ville.codePostal }}
 				</p>
-				<p>Département
+				<p><i class="fas fa-map-marked-alt"></i>
 					{{ annonce.departement.title }}
 				</p>
 				<p>
@@ -76,9 +76,9 @@
 						{{ annonce.superficieTerrain }}m²
 					{% endif %}
 				</p>
-				<p>prix
+				<p>
 					{{ annonce.price | number_format(0,',', ' ')}}
-					€</p>
+					<i class="fas fa-euro-sign"></i></p>
 				<p>Categorie(s) :
 					{% for cat in annonce.category %}
 						{{ cat.title }}
@@ -107,31 +107,31 @@
 				</p>
 				<p>
 					{% if annonce.nbreChambre %}
-						Nombre de chambre  :
+						<i class="fas fa-bed"></i>
 						{{ annonce.nbreChambre }}
 					{% endif %}
 				</p>
 				<p>
 					{% if annonce.salleBain %}
-						Nombre de salle de bain  :
+						<i class="fas fa-sink"></i>
 						{{ annonce.salleBain }}
 					{% endif %}
 				</p>
 				<p>
 					{% if annonce.wc %}
-						Nombre de wc  :
+						<i class="fas fa-toilet"></i>
 						{{ annonce.wc }}
 					{% endif %}
 				</p>
 				<p>
 					{% if annonce.garage %}
-						Nombre de garage  :
+						<i class="fas fa-warehouse"></i>
 						{{ annonce.garage }}
 					{% endif %}
 				</p>
 				<p>
 					{% if annonce.piscine %}
-						Nombre de picine  :
+						<i class="fas fa-swimming-pool"></i>
 						{{ annonce.piscine }}
 					{% endif %}
 				</p>
