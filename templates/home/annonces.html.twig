@@ -6,8 +6,8 @@
 
 {% block body %}
 	<section class="flexFilter">
-				{% include "home/_filter.html.twig" with {form: form, min: min, max: max} only %}
-			<div class="annonce__blockCard" data-aos="zoom-in" data-aos-duration="400">
+		{% include "home/_filter.html.twig" with {form: form, min: min, max: max} only %}
+		<div class="annonce__blockCard" data-aos="zoom-in" data-aos-duration="400">
 			{% for annonce in searchAnnonce %}
 				<div class="annonce__card">
 					{% include "home/_card.html.twig" with {annonce: annonce} only %}
