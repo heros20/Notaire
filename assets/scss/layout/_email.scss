@@ -1,0 +1,14 @@
+.attente{
+    text-align: center;
+    margin-bottom: 60px;
+    h1{
+        font-family: var(--title);
+        margin: 50px 0;
+        font-size: 32px;
+    }
+    &_error{
+        margin-top: 20px;
+        color: red;
+        font-weight: bold;
+    }
+}

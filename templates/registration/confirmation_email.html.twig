@@ -1,7 +1,11 @@
-<h1>Bonjour, merci de confirmer votre email</h1>
+{% extends 'email/index.html.twig' %}
 
-<p>
-    Veuillez confirmer votre adresse e-mail en cliquant sur le lien suivant: <br><br>
-    <a href="{{ signedUrl }}">Confirmer mon email</a>.
-    Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
+{% block body %}
+	<td style="padding: 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+		<h1 style="margin: 0 0 10px; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;">Confirmation du compte</h1>
+		<p>Bonjour,vous venez de vous inscrire sur le site pour avoir accès à la totalité du site, veuillez validez votre compte ci dessous :</p>
+		<a class="button-a button-a-primary" style=" background: #008BE0; border: 1px solid #ffffff; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px 15px; color: #ffffff; display: block; border-radius: 4px; width: 25%; text-aline: center" href="{{ signedUrl }}">Confirmer mon email</a>.
+		<p>Ce lien expirera dans
+			{{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.</p>
+	</td>
+</p>{% endblock %}
