@@ -66,13 +66,13 @@
 				</p>
 				<p>
 					{% if annonce.superficie %}
-						Superficie du batiment :
+					<img src="{{ asset('assets/images/area-icon.png') }}">
 						{{ annonce.superficie }}m²
 					{% endif %}
 				</p>
 				<p>
 					{% if annonce.superficieTerrain %}
-						Superficie du terrain :
+						<img src="{{ asset('assets/images/area_icon.png') }}">
 						{{ annonce.superficieTerrain }}m²
 					{% endif %}
 				</p>
@@ -90,18 +90,9 @@
 				<p>État:
 					{{ annonce.etat}}
 				</p>
-				<p>Classe énergétique:
-					{% if annonce.dpe %}
-						{{ annonce.dpe }}
-					{% endif %}
-				</p>
-				<p>Classe énergétique:</p>
-				{% if annonce.ges %}
-					{{ annonce.ges }}
-				{% endif %}
 				<p>
 					{% if annonce.nbrePieces %}
-						Nombre de pièces  :
+						<i class="fas fa-door-open"></i>
 						{{ annonce.nbrePieces }}
 					{% endif %}
 				</p>
