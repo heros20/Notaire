@@ -1,10 +1,50 @@
 liip_imagine:
-    # valid drivers options include "gd" or "gmagick" or "imagick"
-    driver: "gd"
-    filter_sets: # Contient la liste des filtres
-        carre: # Nom du filtre
-            quality: 75 # Qualité de l'image
-            filters: # Liste des filtres à appliquer
-                thumbnail: # Filtre "Thumbnail"
-                    size: [200, 200] # Taille de l'image de sortie
-                    mode: outbound # Découpage de l'image
+
+    # configure resolvers
+    resolvers:
+
+        # setup the default resolver
+        default:
+
+            # use the default web path
+            web_path: ~
+
+    # your filter sets are defined here
+    filter_sets:
+
+        # use the default cache configuration
+        cache: ~
+        card_front:
+
+            # adjust the image quality to 75%
+            quality: 75
+
+            # list of transformations to apply (the "filters")
+            filters:
+
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [476, 200]}
+        pre_back:
+
+            # adjust the image quality to 75%
+            quality: 75
+
+            # list of transformations to apply (the "filters")
+            filters:
+
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [150, 150]}
+
+        flex_back:
+
+            # adjust the image quality to 75%
+            quality: 75
+
+            # list of transformations to apply (the "filters")
+            filters:
+
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [300, 200]}

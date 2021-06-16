@@ -22,7 +22,6 @@
     width: 100%;
     height: 40px;
     outline: none;
-    color: #c4c4c4;
     font-size: 22px;
     font-weight: 400;
     background: none;
@@ -139,6 +138,13 @@
   .alert-danger{
     margin-left: 5%;
     color: red;
+    padding-bottom: 50px;
+  }
+  textarea{
+    resize: none;
+    width: 100%;
+    border: none;
+    outline: none;
   }
   @include tablette {
     .log {
