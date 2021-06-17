@@ -17,8 +17,7 @@ class DepartementFixtures extends Fixture
         
         $departement2 = (new Departement())
             ->setTitle('Charente-Maritime')
-            ->setCodePostal('173')
-            ->setDescription('');
+            ->setCodePostal('173');
 
         $departement3 = (new Departement())
             ->setTitle('Paris')
