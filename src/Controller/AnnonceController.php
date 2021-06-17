@@ -156,7 +156,7 @@ class AnnonceController extends AbstractController
             $em->remove($image);
             $em->flush();
             // on répond en Json
-            return new JsonResponse(['success' => 1]);
+            return $this->Json(['success' => 1]);
         
         // else {
         //     return new JsonResponse(['error' => 'token invalide'], 400);
