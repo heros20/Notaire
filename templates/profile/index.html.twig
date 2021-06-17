@@ -33,14 +33,15 @@
 					{{user.email}}
 				</p>
 				<div class="annonce__barre"></div>
-
-				<p>Téléphone:
-					{{user.phone}}
-				</p>
-				<div class="annonce__barre"></div>
+				{% if user.phone != NULL %}
+					<p>Téléphone:
+						{{user.phone}}
+					</p>
+					<div class="annonce__barre"></div>
+				{% endif %}
 
 				<p>Vous avez créez votre compte le:
-					{{ user.createdAt ? user.createdAt|date('d-m-Y à H:i') : ''  }}
+					{{ user.createdAt ? user.createdAt|date('d/m/Y à H:i') : ''  }}
 				</p>
 				<div class="annonce__barre"></div>
 
