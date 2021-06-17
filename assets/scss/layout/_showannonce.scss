@@ -19,7 +19,14 @@
 @include deckstop{
     .show{
         width: 70%;
-        margin: 50px auto;      
+        margin: 50px auto; 
+        & h2{
+            text-align: center;
+            margin: 0 0 10px 0;
+            padding: 0;
+            font-size: 2em;
+            font-weight: bold;
+        }     
         & h3{
             text-align: center;
             margin: 0 0 10px 0;
@@ -43,8 +50,9 @@
            
     }
     .display{
-        width: 100%;
+        padding: 10px;
         display: flex;
+        justify-content: center;
         flex-direction: row;
         box-shadow: var(--box-shadow);
         & .energetique{
@@ -57,4 +65,10 @@
              line-height: 2;
         }
     }
+    .display.flexslider.ul li img{
+        width: 100%;
+    }
+}
+.flex-control-paging li a.flex-active{
+    margin: 10px 0;
 }
