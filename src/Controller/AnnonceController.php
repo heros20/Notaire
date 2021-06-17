@@ -140,7 +140,7 @@ class AnnonceController extends AbstractController
         return $this->redirectToRoute('annonce_index');
     }
 
-    #[Route('/supprimer/image/{id}', name: 'annonce_delete_image', methods: ["GET"])]
+    #[Route('/supprimer/image/{id}', name: 'annonce_delete_image', methods: ["POST"])]
     public function deleteImage(Images $image, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -156,7 +156,7 @@ class AnnonceController extends AbstractController
             $em->remove($image);
             $em->flush();
             // on répond en Json
-            return $this->Json(['success' => 1]);
+            return new JsonResponse(['success' => 1]);
         
         // else {
         //     return new JsonResponse(['error' => 'token invalide'], 400);
