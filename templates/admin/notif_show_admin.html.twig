@@ -4,26 +4,18 @@
     <table class="table">
         <thead>
             <tr>
-                <th>De</th>
-                <th>Message</th>
-                <th>Reçu le</th>
-                <th>Actions</th>
+                <th>De {% if contact.sender %}
+                        {{ contact.sender.email}}
+                    {% else %}
+                        {{ contact.email}}
+                    {% endif %}</th>
+                <th>Reçu le {{ contact.createdAt|date('d/m/Y à H:i') }}</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>
-                    {% if contact.sender %}
-                        {{ contact.sender.email}}
-                    {% else %}
-                        {{ contact.email}}
-                    {% endif %}
-                </td>
-                <td>{{ contact.message}}</td>
-                <td>{{ contact.createdAt|date('d/m/Y à H:i') }}</td>
+                <td>Message {{ contact.message}}</td>
                 <td><a class="btn btn-danger text-light" href="{{ path("notif_delete", {id: contact.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">Supprimer</a></td>
-               
-
             </tr>
         </tbody>
     </table>

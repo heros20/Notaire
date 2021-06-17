@@ -18,14 +18,19 @@
 	</section>
 	<section class="show" >
 		<div class="display">
-			<div class="flexsliders">	
-			{% if annonce.status == 1 %}
-			<h2>Vente</h2>
-			{% else %}
-			<h2>Location</h2>
-			{% endif %}
-				<h3>{{ annonce.title }}</h3>
-				<p class="prix">prix : {{ annonce.price | number_format(0,',', ' ')}} €</p>
+			<div class="flexsliders">
+				<div class="info">
+					{% if annonce.status == 1 %}
+						<h2>Vente</h2>
+					{% else %}
+						<h2>Location</h2>
+					{% endif %}
+					<h3>{{ annonce.title }}</h3>
+					<p class="prix">prix : {{ annonce.price | number_format(0,',', ' ')}} €</p>
+					<p>{% for cat in annonce.category %}
+							{{ cat.title }}
+					{% endfor %}</p>			
+				</div>	
 				<div id="slider" class="flexslider">
 					<ul class="slides">
 						<li>
@@ -63,7 +68,7 @@
 				</div>			
 			</div>
 			<div class="details__Annonce">
-				<p>description :
+				<p>
 					{{ annonce.description }}
 				</p>
 				<p><i class="fas fa-city"></i>
@@ -90,12 +95,7 @@
 				<p>
 					{{ annonce.price | number_format(0,',', ' ')}}
 					<i class="fas fa-euro-sign"></i></p>
-				<p>Categorie(s) :
-					{% for cat in annonce.category %}
-						{{ cat.title }}
-					{% endfor %}
-				</p>
-				<p>État:
+				<p>
 					{{ annonce.etat}}
 				</p>
 				<p>
@@ -206,7 +206,9 @@
 					*Obligatoire
 				</p>
 				<input type="submit" value="Envoyer">
-				{# {{ form_widget(form.recipient, {attr: {'class': 'testhidden'}}) }} #}
+				{% if is_granted("ROLE_ADMIN") %}
+					{{ form_widget(form.recipient, {attr: {'class': 'testhidden'}}) }}
+				{% endif %}
 				{{ form_end(form) }}
 			</div>
 		</div>
