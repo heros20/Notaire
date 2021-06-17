@@ -9,7 +9,7 @@
 		{% include "home/_filter.html.twig" with {form: form, min: min, max: max} only %}
 		<div class="annonce__blockCard" data-aos="zoom-in" data-aos-duration="400">
 			{% for annonce in searchAnnonce %}
-				<div class="annonce__card">
+				<div class="annonce__card oki">
 					{% include "home/_card.html.twig" with {annonce: annonce} only %}
 					<div class="annonce__coeur">
 						{% if is_granted("ROLE_USER") %}
