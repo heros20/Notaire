@@ -20,16 +20,16 @@
 		<div class="display">
 			<div class="flexsliders">
 				<div class="info">
-					{% if annonce.status == 1 %}
+					{# {% if annonce.status == 1 %}
 						<h2>Vente</h2>
 					{% else %}
 						<h2>Location</h2>
-					{% endif %}
-					<h3>{{ annonce.title }}</h3>
-					<p class="prix">prix : {{ annonce.price | number_format(0,',', ' ')}} €</p>
-					<p>{% for cat in annonce.category %}
-							{{ cat.title }}
-					{% endfor %}</p>			
+					{% endif %} #}
+					<p style="margin-bottom:5px">{% for cat in annonce.category %}
+						Categorie :	{{ cat.title }}
+					{% endfor %}</p>
+					<h3 style="margin-bottom:5px">{{ annonce.title }}</h3>
+					<p class="prix">prix : {{ annonce.price | number_format(0,',', ' ')}} €</p>			
 				</div>	
 				<div id="slider" class="flexslider">
 					<ul class="slides">
@@ -55,7 +55,7 @@
 						{% endfor %}
 					</ul>
 				</div>
-				<div class="energetique">
+				<div class="energetique" style="margin-top:50px">
 					{% if annonce.dpe == 1 %}
 					{% else %}
 						<div id="dpe">{{ annonce.dpe }}</div>

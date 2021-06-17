@@ -36,44 +36,20 @@ class UserFixtures extends Fixture
               ));
         $manager->persist($admin);
 
-        $admin2 = new User();
-        $admin2->setName('Daufresne')
-              ->setUsername('Sebastien')
+        $user1 = new User();
+        $user1->setName('maxime')
+              ->setUsername('Ladelete')
               ->setToken($this->tokengenerator->generateToken())
               ->setCreatedAt(new DateTime())
-              ->setEmail('sebastienweb27@gmail.com')
-              ->setRoles(array('ROLE_ADMIN'))
+              ->setEmail('ma-ladelete@gmail.com')
+              ->setRoles(array('ROLE_USER'))
               ->setPassword($this->passwordHasher->hashPassword(
-                $admin2,
+                $user1,
                 '123456'
               ));
-        $manager->persist($admin2);
+        $manager->persist($user1);
 
-        $admin3 = new User();
-        $admin3->setName('Zenon')
-              ->setUsername('Stella')
-              ->setToken($this->tokengenerator->generateToken())
-              ->setCreatedAt(new DateTime())
-              ->setEmail('stellazenon@gmail.com')
-              ->setRoles(array('ROLE_ADMIN'))
-              ->setPassword($this->passwordHasher->hashPassword(
-                $admin3,
-                '123456'
-              ));
-        $manager->persist($admin3);
 
-        // $admin4 = new User();
-        // $admin4->setName('Michellus')
-        //       ->setUsername('Michel')
-        //       ->setToken($this->tokengenerator->generateToken())
-        //       ->setCreatedAt(new DateTime())
-        //       ->setEmail('quidelantoine@gmail.com')
-        //       ->setRoles(array('ROLE_ADMIN'))
-        //       ->setPassword($this->passwordHasher->hashPassword(
-        //         $admin4,
-        //         'michel'
-        //       ));
-        // $manager->persist($admin4);
 
 
         $manager->flush();

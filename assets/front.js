@@ -57,13 +57,13 @@ const min = document.getElementById('min')
 const max = document.getElementById('max')
 if (slider) {
   const range =  noUiSlider.create(slider, {
-      start: [400, 1000000],
+      start: [500, 1000000],
       tooltips: [true,true],
       connect: true,
       step: 1000,
       range: {
-          'min': 1000,
-          'max': 300000
+          'min': 500,
+          'max': 1000000
       }
   })
   range.on('slide',function(values,handle){

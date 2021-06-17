@@ -21,13 +21,12 @@ class CategoryFixtures extends Fixture
         $manager->persist($category2);
 
         $category3 = (new Category())
-            ->setTitle('Appartement')
-            ->setDescription('Découvrez ce magnifique appart du 16 ème');
+            ->setTitle('Appartement');
 
         $manager->persist($category3);
 
         $category4 = (new Category())
-            ->setTitle('Terrain constructible');
+            ->setTitle('Immeuble');
 
         $manager->persist($category4);
 
@@ -35,6 +34,12 @@ class CategoryFixtures extends Fixture
             ->setTitle('Terrain non constructible');
 
         $manager->persist($category5);
+
+        $category6 = (new Category())
+            ->setTitle('Terrain à batir');
+
+        $manager->persist($category6);
+
      
         $manager->flush();
 
@@ -43,6 +48,7 @@ class CategoryFixtures extends Fixture
         $this->addReference('category2', $category2);
         $this->addReference('category3', $category3);
         $this->addReference('category4', $category4);     
-        $this->addReference('category5', $category5);         
+        $this->addReference('category5', $category5);    
+        $this->addReference('category6', $category6);      
     }
 }

@@ -20,21 +20,31 @@ class VilleFixtures extends Fixture
 
         $ville3 = (new Ville())
             ->setTitle('Paris')
-            ->setCodePostal('75')
-            ->setDescription('Belle appartement à Paris');
+            ->setCodePostal('75000');
 
         $ville4 = (new Ville())
         ->setTitle('Honfleur')
-        ->setCodePostal('76');
+        ->setCodePostal('14600');
 
         $ville5 = (new Ville())
         ->setTitle('Caen')
-        ->setCodePostal('14')
-        ->setDescription('Facilitez de vie au coeur du centre ville');
+        ->setCodePostal('14000');
 
         $ville6 = (new Ville())
         ->setTitle('Havre')
         ->setCodePostal('76000');
+
+        $ville7 = (new Ville())
+        ->setTitle('Grainville-sur-Odon')
+        ->setCodePostal('14210');
+
+        $ville8 = (new Ville())
+        ->setTitle('Amayé-sur-Orne')
+        ->setCodePostal('14006');
+
+        $ville9 = (new Ville())
+        ->setTitle('Varaville')
+        ->setCodePostal('14390');
 
         $manager->persist($ville1);
         $manager->persist($ville2);
@@ -42,6 +52,9 @@ class VilleFixtures extends Fixture
         $manager->persist($ville4);
         $manager->persist($ville5);
         $manager->persist($ville6);
+        $manager->persist($ville7);
+        $manager->persist($ville8);
+        $manager->persist($ville9);
 
         $manager->flush();
 
@@ -51,5 +64,8 @@ class VilleFixtures extends Fixture
         $this->addReference('ville4', $ville4);
         $this->addReference('ville5', $ville5);
         $this->addReference('ville6', $ville6);
+        $this->addReference('ville7', $ville7);
+        $this->addReference('ville8', $ville8);
+        $this->addReference('ville9', $ville9);
     }
 }
