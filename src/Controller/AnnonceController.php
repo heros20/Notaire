@@ -145,7 +145,7 @@ class AnnonceController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
         // on verifie si le token est valide
-        if ($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])) {
+        // if ($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])) {
             // on recupere le nom de l'image
             $nom = $image->getName();
             // on supprime le fichier
@@ -158,9 +158,10 @@ class AnnonceController extends AbstractController
 
             // on répond en Json
             return new JsonResponse(['success' => 1]);
-        } else {
-            return new JsonResponse(['error' => 'token invalide'], 400);
-        }
+        
+        // else {
+        //     return new JsonResponse(['error' => 'token invalide'], 400);
+        // }
     }
     #[Route('/add/images/{id}', name: 'add_new_images', methods: ['GET', 'POST'])]
     public function AddImages(Request $request, Annonce $annonce): Response
