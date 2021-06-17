@@ -34,11 +34,11 @@
 				<div id="slider" class="flexslider">
 					<ul class="slides">
 						<li>
-							<img src="{{ asset('assets/uploads/'~ annonce.image)| imagine_filter('flex_detail') }}" alt="{{ annonce.image }}">
+							<img src="{{ asset('assets/uploads/' ~ annonce.image)| imagine_filter('flex_detail') }}" alt="{{ annonce.image }}">
 						</li>
 						{% for img in annonce.images %}
 							<li>
-								<img src="{{ asset('assets/uploads/'~ img.name)| imagine_filter('flex_detail') }}"/>
+								<img src="{{ asset('assets/uploads/' ~ img.name)| imagine_filter('flex_detail') }}"/>
 							</li>
 						{% endfor %}
 					</ul>
@@ -46,7 +46,7 @@
 				<div id="carousel" class="flexslider">
 					<ul class="slides slide">
 						<li>
-							<img src="{{ asset('assets/uploads/'~ annonce.image)| imagine_filter('flex_back') }}" alt="{{ annonce.image }}">
+							<img src="{{ asset('assets/uploads/' ~ annonce.image)| imagine_filter('flex_back') }}" alt="{{ annonce.image }}">
 						</li>
 						{% for img in annonce.images %}
 							<li>
@@ -68,7 +68,7 @@
 				</div>			
 			</div>
 			<div class="details__Annonce">
-				<p>description :
+				<p>
 					{{ annonce.description }}
 				</p>
 				<p><i class="fas fa-city"></i>
@@ -95,7 +95,7 @@
 				<p>
 					{{ annonce.price | number_format(0,',', ' ')}}
 					<i class="fas fa-euro-sign"></i></p>
-				<p>État:
+				<p>
 					{{ annonce.etat}}
 				</p>
 				<p>
