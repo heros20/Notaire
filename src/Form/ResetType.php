@@ -35,7 +35,11 @@ class ResetType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('envoyez', SubmitType::class);
+            ->add('envoyez', SubmitType::class,[
+                'attr' => [
+                    'class' => 'myButton'
+                ]  
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
