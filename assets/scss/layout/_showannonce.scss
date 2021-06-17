@@ -19,24 +19,17 @@
 @include deckstop{
     .show{
         width: 70%;
-        margin: 50px auto; 
-        & h2{
+        margin: 50px auto;
+        & .info{
             text-align: center;
             margin: 0 0 10px 0;
             padding: 0;
             font-size: 2em;
             font-weight: bold;
-        }     
-        & h3{
-            text-align: center;
-            margin: 0 0 10px 0;
-            padding: 0;
-            font-size: 2em;
-            font-weight: bold;
-        }
+        } 
         & .prix{
             text-align: center;
-            font-size: 1.5em;
+            font-size: .8em;
             color: #771310;
             font-weight: bold;
         }
@@ -62,7 +55,8 @@
         }
         & .details__Annonce{
             box-shadow: none;
-             line-height: 2;
+            line-height: 2;
+            
         }
     }
     .display.flexslider.ul li img{

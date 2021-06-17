@@ -18,22 +18,27 @@
 	</section>
 	<section class="show" >
 		<div class="display">
-			<div class="flexsliders">	
-			{% if annonce.status == 1 %}
-			<h2>Vente</h2>
-			{% else %}
-			<h2>Location</h2>
-			{% endif %}
-				<h3>{{ annonce.title }}</h3>
-				<p class="prix">prix : {{ annonce.price | number_format(0,',', ' ')}} €</p>
+			<div class="flexsliders">
+				<div class="info">
+					{% if annonce.status == 1 %}
+						<h2>Vente</h2>
+					{% else %}
+						<h2>Location</h2>
+					{% endif %}
+					<h3>{{ annonce.title }}</h3>
+					<p class="prix">prix : {{ annonce.price | number_format(0,',', ' ')}} €</p>
+					<p>{% for cat in annonce.category %}
+							{{ cat.title }}
+					{% endfor %}</p>			
+				</div>	
 				<div id="slider" class="flexslider">
 					<ul class="slides">
 						<li>
-							<img src="{{ asset('assets/uploads/' ~ annonce.image)| imagine_filter('flex_detail') }}" alt="{{ annonce.image }}">
+							<img src="{{ asset('assets/uploads/'~ annonce.image)| imagine_filter('flex_detail') }}" alt="{{ annonce.image }}">
 						</li>
 						{% for img in annonce.images %}
 							<li>
-								<img src="{{ asset('assets/uploads/' ~ img.name)| imagine_filter('flex_detail') }}"/>
+								<img src="{{ asset('assets/uploads/'~ img.name)| imagine_filter('flex_detail') }}"/>
 							</li>
 						{% endfor %}
 					</ul>
@@ -41,7 +46,7 @@
 				<div id="carousel" class="flexslider">
 					<ul class="slides slide">
 						<li>
-							<img src="{{ asset('assets/uploads/' ~ annonce.image)| imagine_filter('flex_back') }}" alt="{{ annonce.image }}">
+							<img src="{{ asset('assets/uploads/'~ annonce.image)| imagine_filter('flex_back') }}" alt="{{ annonce.image }}">
 						</li>
 						{% for img in annonce.images %}
 							<li>
@@ -90,11 +95,6 @@
 				<p>
 					{{ annonce.price | number_format(0,',', ' ')}}
 					<i class="fas fa-euro-sign"></i></p>
-				<p>Categorie(s) :
-					{% for cat in annonce.category %}
-						{{ cat.title }}
-					{% endfor %}
-				</p>
 				<p>État:
 					{{ annonce.etat}}
 				</p>
