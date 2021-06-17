@@ -149,8 +149,7 @@ class AnnonceController extends AbstractController
             // on recupere le nom de l'image
             $nom = $image->getName();
             // on supprime le fichier
-            unlink($this->getParameter('images_directory').'/'.$nom);
-            
+            // unlink($this->getParameter('images_directory').'/'.$nom); 
             // on supprime l'entrée de la Bdd
             $em = $this->getDoctrine()->getManager();
             $em->remove($image);
