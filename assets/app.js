@@ -15,14 +15,14 @@ window.onload = () => {
     for (const link of links) {
         //on ecoute le clic
         link.addEventListener("click", function(e){
-            // on empeche la navigation
+            // // on empeche la navigation
             e.preventDefault()
 
             // on demande confirmation
             if (confirm('voulez-vous supprimer cette image')) {
                 // on envoie une requete Ajax vers le href du lien avec la méthode DELETE
                 fetch(this.getAttribute("href"), {
-                    method: "DELETE",
+                    method: "POST",
                     headers: {
                         'X-Requested-With' : "XMLHttpRequest",
                         'Content-Type': 'application/json'

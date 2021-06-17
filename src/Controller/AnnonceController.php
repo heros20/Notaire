@@ -140,8 +140,8 @@ class AnnonceController extends AbstractController
         return $this->redirectToRoute('annonce_index');
     }
 
-    #[Route('/supprimer/image/{id}', name: 'annonce_delete_image', methods: ["DELETE"])]
-    public function deleteImage(Images $image, Request $request)
+    #[Route('/supprimer/image/{id}', name: 'annonce_delete_image', methods: ["POST"])]
+    public function deleteImage(Images $image, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         // on verifie si le token est valide
@@ -150,7 +150,6 @@ class AnnonceController extends AbstractController
             $nom = $image->getName();
             // on supprime le fichier
             unlink($this->getParameter('images_directory').'/'.$nom);
-
             // on supprime l'entrée de la Bdd
             $em = $this->getDoctrine()->getManager();
             $em->remove($image);
