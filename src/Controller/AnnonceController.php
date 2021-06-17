@@ -140,7 +140,7 @@ class AnnonceController extends AbstractController
         return $this->redirectToRoute('annonce_index');
     }
 
-    #[Route('/supprimer/image/{id}', name: 'annonce_delete_image', methods: ["DELETE"])]
+    #[Route('/supprimer/image/{id}', name: 'annonce_delete_image', methods: ["GET"])]
     public function deleteImage(Images $image, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
