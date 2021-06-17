@@ -31,12 +31,15 @@ window.onload = () => {
                 }).then(
                     // on recupere la réponse en JSON
                     response => response.json()
-                ).then(data => {
-                    if(data.success)
+                ).then(response => {
+                    console.log(response);
+                    if(response.success)
                         this.parentElement.remove()
                     else
-                        alert(data.error)
-                }).catch(e => alert(e))
+                        alert(response.error)
+                }).catch(e => {
+                    console.log(e);
+                })
             }
         })
     }

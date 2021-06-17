@@ -150,11 +150,11 @@ class AnnonceController extends AbstractController
             $nom = $image->getName();
             // on supprime le fichier
             unlink($this->getParameter('images_directory').'/'.$nom);
+            
             // on supprime l'entrée de la Bdd
             $em = $this->getDoctrine()->getManager();
             $em->remove($image);
             $em->flush();
-
             // on répond en Json
             return new JsonResponse(['success' => 1]);
         
