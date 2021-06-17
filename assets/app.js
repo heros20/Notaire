@@ -22,7 +22,7 @@ window.onload = () => {
             if (confirm('voulez-vous supprimer cette image')) {
                 // on envoie une requete Ajax vers le href du lien avec la méthode DELETE
                 fetch(this.getAttribute("href"), {
-                    method: "DELETTE",
+                    method: "DELETE",
                     headers: {
                         'X-Requested-With' : "XMLHttpRequest",
                         'Content-Type': 'application/json'
