@@ -20,8 +20,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
 					{% for user in users %}
+				<tr>
 						{% if user.deletedAt != NULL %}
 							<td>{{ user.name }}</td>
 							<td>{{ user.username }}</td>
@@ -29,8 +29,8 @@
 							<td>{{ user.phone }}</td>
 							<td>{{ user.deletedAt ? user.deletedAt|date('d/m/Y à H:i') : ''  }}</td>
 						{% endif %}
-					{% endfor %}
 				</tr>
+					{% endfor %}
 			</tbody>
 		</table>
     </div>
