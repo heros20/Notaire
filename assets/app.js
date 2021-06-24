@@ -55,10 +55,7 @@ window.onload = () => {
                 $(this).closest("li").addClass("active");
             }
         });
-    });        
-    
-        
-    
+    });   
 }
 
 // any CSS you import will output into a single css file (app.css in this case)
